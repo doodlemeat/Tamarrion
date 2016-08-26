@@ -12,12 +12,12 @@ namespace Tamarrion {
 			canvas = GetComponent<Canvas> ();
 			contextEnabled = false;
 
-			if ( startEnabled && !canvas.enabled ) {
-				Show ();
-			}
-			else if ( !startEnabled && canvas.enabled ) {
-				Hide ();
-			}
+//			if ( startEnabled && !canvas.enabled ) {
+//				Show ();
+//			}
+//			else if ( !startEnabled && canvas.enabled ) {
+//				Hide ();
+//			}
 
 			AddListener<ChangeContextPanelEvent> (OnChangeContextPanel);
 			AddListener<CloseContextPanelEvent> (OnCloseContextPanel);
