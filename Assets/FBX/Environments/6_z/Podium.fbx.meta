@@ -1,0 +1,536 @@
+fileFormatVersion: 2
+guid: 0eda9b357571d7041a16cf67bad9c960
+timeCreated: 1449488376
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Base
+    100002: BBot
+    100004: BL1
+    100006: BL2
+    100008: BR1
+    100010: BR2
+    100012: BTop
+    100014: connectBone001
+    100016: connectBone002
+    100018: connectBone003
+    100020: connectBone004
+    100022: connectBone005
+    100024: connectBone006
+    100026: connectBone007
+    100028: FBot
+    100030: FL1
+    100032: FL2
+    100034: FR1
+    100036: FR2
+    100038: FTop
+    100040: Full
+    100042: Grave
+    100044: Lid
+    100046: //RootNode
+    100048: Podium
+    100050: Root
+    100052: Top
+    400000: Base
+    400002: BBot
+    400004: BL1
+    400006: BL2
+    400008: BR1
+    400010: BR2
+    400012: BTop
+    400014: connectBone001
+    400016: connectBone002
+    400018: connectBone003
+    400020: connectBone004
+    400022: connectBone005
+    400024: connectBone006
+    400026: connectBone007
+    400028: FBot
+    400030: FL1
+    400032: FL2
+    400034: FR1
+    400036: FR2
+    400038: FTop
+    400040: Full
+    400042: Grave
+    400044: Lid
+    400046: //RootNode
+    400048: Podium
+    400050: Root
+    400052: Top
+    4300000: Podium
+    4300002: Grave
+    4300004: Lid
+    7400000: Version1
+    7400002: Version2
+    7400004: Version3
+    7400006: Version4
+    7400008: Version5
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Grave
+    13700002: Lid
+    13700004: Podium
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Version1
+      takeName: Version1
+      firstFrame: 0
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Grave
+        weight: 1
+      - path: Lid
+        weight: 1
+      - path: Podium
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/connectBone007
+        weight: 1
+      - path: Root/connectBone007/Full
+        weight: 1
+      - path: Root/connectBone007/Full/Base
+        weight: 1
+      - path: Root/connectBone007/Full/Base/Top
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003/FR1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003/FR1/FR2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004/FL1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004/FL1/FL2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/FTop
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/BTop
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005/BL1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005/BL1/BL2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006/BR1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006/BR1/BR2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Version2
+      takeName: Version2
+      firstFrame: 0
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Grave
+        weight: 1
+      - path: Lid
+        weight: 1
+      - path: Podium
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/connectBone007
+        weight: 1
+      - path: Root/connectBone007/Full
+        weight: 1
+      - path: Root/connectBone007/Full/Base
+        weight: 1
+      - path: Root/connectBone007/Full/Base/Top
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003/FR1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003/FR1/FR2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004/FL1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004/FL1/FL2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/FTop
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/BTop
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005/BL1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005/BL1/BL2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006/BR1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006/BR1/BR2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Version3
+      takeName: Version3
+      firstFrame: 0
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Grave
+        weight: 1
+      - path: Lid
+        weight: 1
+      - path: Podium
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/connectBone007
+        weight: 1
+      - path: Root/connectBone007/Full
+        weight: 1
+      - path: Root/connectBone007/Full/Base
+        weight: 1
+      - path: Root/connectBone007/Full/Base/Top
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003/FR1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003/FR1/FR2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004/FL1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004/FL1/FL2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/FTop
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/BTop
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005/BL1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005/BL1/BL2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006/BR1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006/BR1/BR2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Version4
+      takeName: Version4
+      firstFrame: 0
+      lastFrame: 250
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Grave
+        weight: 1
+      - path: Lid
+        weight: 1
+      - path: Podium
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/connectBone007
+        weight: 1
+      - path: Root/connectBone007/Full
+        weight: 1
+      - path: Root/connectBone007/Full/Base
+        weight: 1
+      - path: Root/connectBone007/Full/Base/Top
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003/FR1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003/FR1/FR2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004/FL1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004/FL1/FL2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/FTop
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/BTop
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005/BL1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005/BL1/BL2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006/BR1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006/BR1/BR2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Version5
+      takeName: Version5
+      firstFrame: 0
+      lastFrame: 200
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Grave
+        weight: 1
+      - path: Lid
+        weight: 1
+      - path: Podium
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/connectBone007
+        weight: 1
+      - path: Root/connectBone007/Full
+        weight: 1
+      - path: Root/connectBone007/Full/Base
+        weight: 1
+      - path: Root/connectBone007/Full/Base/Top
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003/FR1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone003/FR1/FR2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004/FL1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/connectBone004/FL1/FL2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone001/FBot/FTop
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/BTop
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005/BL1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone005/BL1/BL2
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006/BR1
+        weight: 1
+      - path: Root/connectBone007/Full/connectBone002/BBot/connectBone006/BR1/BR2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

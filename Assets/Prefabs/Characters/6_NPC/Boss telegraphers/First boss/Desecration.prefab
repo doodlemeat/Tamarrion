@@ -1,0 +1,271 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &109624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 427654}
+  - 114: {fileID: 11401198}
+  m_Layer: 0
+  m_Name: Desecration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &119138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 408860}
+  - 119: {fileID: 11908666}
+  m_Layer: 0
+  m_Name: Charge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &159112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 440700}
+  - 119: {fileID: 11929126}
+  m_Layer: 0
+  m_Name: Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &408860
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119138}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 427654}
+  m_RootOrder: 1
+--- !u!4 &427654
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109624}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 440700}
+  - {fileID: 408860}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &440700
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159112}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 427654}
+  m_RootOrder: 0
+--- !u!114 &11401198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c74b80ae8593844499f98e1f7d84315e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_boss: {fileID: 0}
+  Particle: {fileID: 19898962, guid: 3faac4e2f446fdf48bb34c0f81fec3b1, type: 2}
+  particle_parent: telegrapher
+  particle_position: {x: 0, y: 0, z: 0}
+  particle_rotation: {x: 0, y: 0, z: 0}
+  particle_delay: 0
+  _useCastbar: 1
+  _isDirectional: 0
+  Damage:
+  - 0
+  - 0
+  - 0
+  Target: player
+  Buff_Debuff: Desecration
+  Target_position: {x: 0, y: 0, z: 0}
+  Movement_modifier:
+  - 0
+  - 0
+  - 0
+  Rotation_modifier:
+  - 0
+  - 0
+  - 0
+  Modifiers_persist_after_activate: 0
+  HitInterruptable: 0
+  StunInterruptable: 1
+  ActiveInterruptable: 0
+  Casting_time: 1
+  Active_time:
+  - 10
+  - 10
+  - 10
+  Dot_time:
+  - .200000003
+  - .200000003
+  - .200000003
+  Type: circle
+  Origin: player
+  Origin_position: {x: 0, y: 0, z: 0}
+  Follow_origin: 0
+  Lock_target: 0
+  Chase_origin: 1
+  Chase_speed: 1
+  Size: 2
+  Offset: 0
+  m_current_size: 0
+  Show_charger: 1
+  Hand: {fileID: 150008, guid: b395fd9aecfbb4e49bb78193995dd0a6, type: 2}
+  number_of_hands: 1
+  slow_amount: .5
+  slow_time: 1
+  slow_texture: {fileID: 2800000, guid: c450f16ac6647904ab363698d03c8f53, type: 3}
+--- !u!119 &11908666
+Projector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119138}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: -1
+  m_FarClipPlane: 100
+  m_FieldOfView: 1
+  m_AspectRatio: 1
+  m_Orthographic: 1
+  m_OrthographicSize: 9.99999994e-09
+  m_Material: {fileID: 2100000, guid: eacce28cd52ba1f45bd615083872a12f, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 768
+--- !u!119 &11929126
+Projector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159112}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: -1
+  m_FarClipPlane: 100
+  m_FieldOfView: 1
+  m_AspectRatio: 1
+  m_Orthographic: 1
+  m_OrthographicSize: 1
+  m_Material: {fileID: 2100000, guid: ea54238e414fbfb498e5607e430bafa4, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 768
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: Damage.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Damage.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Damage.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Active_time.Array.data[0]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Active_time.Array.data[1]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Active_time.Array.data[2]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Dot_time.Array.data[0]
+      value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Dot_time.Array.data[1]
+      value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Dot_time.Array.data[2]
+      value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Chase_speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Chase_origin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: slow_amount
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: slow_texture
+      value: 
+      objectReference: {fileID: 2800000, guid: c450f16ac6647904ab363698d03c8f53, type: 3}
+    - target: {fileID: 0}
+      propertyPath: slow_time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Particle
+      value: 
+      objectReference: {fileID: 19898962, guid: 3faac4e2f446fdf48bb34c0f81fec3b1,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: particle_parent
+      value: telegrapher
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Hand
+      value: 
+      objectReference: {fileID: 150008, guid: b395fd9aecfbb4e49bb78193995dd0a6, type: 2}
+    - target: {fileID: 0}
+      propertyPath: number_of_hands
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 109624}
+  m_IsPrefabParent: 1

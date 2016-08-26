@@ -1,0 +1,249 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &109624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 490468}
+  - 65: {fileID: 6581938}
+  - 114: {fileID: 11401198}
+  - 114: {fileID: 11438870}
+  m_Layer: 0
+  m_Name: Slam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &119138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 408860}
+  - 119: {fileID: 11908666}
+  m_Layer: 0
+  m_Name: Charge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &159112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 440700}
+  - 119: {fileID: 11929126}
+  m_Layer: 0
+  m_Name: Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &408860
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119138}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 490468}
+  m_RootOrder: 1
+--- !u!4 &440700
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159112}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 490468}
+  m_RootOrder: 0
+--- !u!4 &490468
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109624}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 440700}
+  - {fileID: 408860}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!65 &6581938
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109624}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 6, z: 6}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11401198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e9f3416bbc5a045b75ce860a21c338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_boss: {fileID: 0}
+  Particle: {fileID: 19875280, guid: 734d2696d3c1b914fa1edf275623e898, type: 2}
+  particle_parent: enemy
+  particle_position: {x: 0, y: .5, z: 4.5}
+  particle_rotation: {x: 0, y: 270, z: 0}
+  particle_delay: 0
+  _useCastbar: 1
+  _isDirectional: 1
+  Damage:
+  - 20
+  - 60
+  - 80
+  Target: player
+  Buff_Debuff: Slam
+  Target_position: {x: 0, y: 0, z: 0}
+  Movement_modifier:
+  - 0
+  - 0
+  - 0
+  Rotation_modifier:
+  - 0
+  - 0
+  - 0
+  Modifiers_persist_after_activate: 0
+  HitInterruptable: 0
+  StunInterruptable: 1
+  ActiveInterruptable: 0
+  Casting_time: 1.5
+  Active_time:
+  - 0
+  - 0
+  - 0
+  Dot_time:
+  - 0
+  - 0
+  - 0
+  Type: square
+  Origin: boss
+  Origin_position: {x: 0, y: 0, z: 0}
+  Follow_origin: 0
+  Lock_target: 0
+  Chase_origin: 0
+  Chase_speed: 0
+  Size: 3
+  Offset: 3
+  m_current_size: 0
+  Show_charger: 1
+  slam_effect: {fileID: 195364, guid: 005a48a4e1e2c994b9c5bd3bc69c1eb3, type: 2}
+--- !u!114 &11438870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645648440fe01dd4e96575d0c42a80a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  containerList: []
+--- !u!119 &11908666
+Projector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119138}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: -1
+  m_FarClipPlane: 100
+  m_FieldOfView: 1
+  m_AspectRatio: 1
+  m_Orthographic: 1
+  m_OrthographicSize: 1
+  m_Material: {fileID: 2100000, guid: ba97b9f5c9ca5c647a4e9b5321712d5b, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 768
+--- !u!119 &11929126
+Projector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159112}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: -1
+  m_FarClipPlane: 100
+  m_FieldOfView: 1
+  m_AspectRatio: 1
+  m_Orthographic: 1
+  m_OrthographicSize: 1
+  m_Material: {fileID: 2100000, guid: e8070fb6430c0d642b6c5713b0e71113, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 768
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: Particle
+      value: 
+      objectReference: {fileID: 19875280, guid: 734d2696d3c1b914fa1edf275623e898,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: particle_rotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: particle_rotation.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: particle_parent
+      value: enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: particle_position.z
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: particle_position.y
+      value: .5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 109624}
+  m_IsPrefabParent: 1

@@ -1,0 +1,141 @@
+fileFormatVersion: 2
+guid: 2b0f0c10abcd7d6478fd486142fb0067
+timeCreated: 1468065830
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: 6_zD_Arch_Door_Alcove
+    100004: 6_zD_Banner_Torch_Skull
+    100006: 6_zD_Carpet
+    100008: 6_zD_Map1
+    100010: 6_zD_Map2
+    100012: 6_zD_Map4
+    100014: 6_zD_Map5_1
+    100016: 6_zD_Map5_2
+    100018: 6_zD_Map5_Stairs
+    100020: 6_zD_Pillar
+    100022: 6_zD_Wall
+    100024: 6_zD_Windows
+    100026: 6_zD_Wood
+    100028: Window_Roof
+    400000: //RootNode
+    400002: 6_zD_Arch_Door_Alcove
+    400004: 6_zD_Banner_Torch_Skull
+    400006: 6_zD_Carpet
+    400008: 6_zD_Map1
+    400010: 6_zD_Map2
+    400012: 6_zD_Map4
+    400014: 6_zD_Map5_1
+    400016: 6_zD_Map5_2
+    400018: 6_zD_Map5_Stairs
+    400020: 6_zD_Pillar
+    400022: 6_zD_Wall
+    400024: 6_zD_Windows
+    400026: 6_zD_Wood
+    400028: Window_Roof
+    2300000: 6_zD_Arch_Door_Alcove
+    2300002: 6_zD_Banner_Torch_Skull
+    2300004: 6_zD_Carpet
+    2300006: 6_zD_Map1
+    2300008: 6_zD_Map2
+    2300010: 6_zD_Map4
+    2300012: 6_zD_Map5_1
+    2300014: 6_zD_Map5_2
+    2300016: 6_zD_Map5_Stairs
+    2300018: 6_zD_Pillar
+    2300020: 6_zD_Wall
+    2300022: 6_zD_Windows
+    2300024: 6_zD_Wood
+    2300026: Window_Roof
+    3300000: 6_zD_Arch_Door_Alcove
+    3300002: 6_zD_Banner_Torch_Skull
+    3300004: 6_zD_Carpet
+    3300006: 6_zD_Map1
+    3300008: 6_zD_Map2
+    3300010: 6_zD_Map4
+    3300012: 6_zD_Map5_1
+    3300014: 6_zD_Map5_2
+    3300016: 6_zD_Map5_Stairs
+    3300018: 6_zD_Pillar
+    3300020: 6_zD_Wall
+    3300022: 6_zD_Windows
+    3300024: 6_zD_Wood
+    3300026: Window_Roof
+    4300000: 6_zD_Arch_Door_Alcove
+    4300002: 6_zD_Banner_Torch_Skull
+    4300004: 6_zD_Carpet
+    4300006: 6_zD_Map1
+    4300008: 6_zD_Map2
+    4300010: 6_zD_Map4
+    4300012: 6_zD_Map5_1
+    4300014: 6_zD_Pillar
+    4300016: 6_zD_Wall
+    4300018: 6_zD_Wood
+    4300020: 6_zD_Windows
+    4300022: Window_Roof
+    4300024: 6_zD_Map5_Stairs
+    4300026: 6_zD_Map5_2
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

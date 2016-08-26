@@ -1,0 +1,792 @@
+fileFormatVersion: 2
+guid: 94f2fba2af0889c458738a1e3733f8b2
+timeCreated: 1461619976
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Victory_Sprite_0
+    21300002: Victory_Sprite_1
+    21300004: Victory_Sprite_2
+    21300006: Victory_Sprite_3
+    21300008: Victory_Sprite_4
+    21300010: Victory_Sprite_5
+    21300012: Victory_Sprite_6
+    21300014: Victory_Sprite_7
+    21300016: Victory_Sprite_8
+    21300018: Victory_Sprite_9
+    21300020: Victory_Sprite_10
+    21300022: Victory_Sprite_11
+    21300024: Victory_Sprite_12
+    21300026: Victory_Sprite_13
+    21300028: Victory_Sprite_14
+    21300030: Victory_Sprite_15
+    21300032: Victory_Sprite_16
+    21300034: Victory_Sprite_17
+    21300036: Victory_Sprite_18
+    21300038: Victory_Sprite_19
+    21300040: Victory_Sprite_20
+    21300042: Victory_Sprite_21
+    21300044: Victory_Sprite_22
+    21300046: Victory_Sprite_23
+    21300048: Victory_Sprite_24
+    21300050: Victory_Sprite_25
+    21300052: Victory_Sprite_26
+    21300054: Victory_Sprite_27
+    21300056: Victory_Sprite_28
+    21300058: Victory_Sprite_29
+    21300060: Victory_Sprite_30
+    21300062: Victory_Sprite_31
+    21300064: Victory_Sprite_32
+    21300066: Victory_Sprite_33
+    21300068: Victory_Sprite_34
+    21300070: Victory_Sprite_35
+    21300072: Victory_Sprite_36
+    21300074: Victory_Sprite_37
+    21300076: Victory_Sprite_38
+    21300078: Victory_Sprite_39
+    21300080: Victory_Sprite_40
+    21300082: Victory_Sprite_41
+    21300084: Victory_Sprite_42
+    21300086: Victory_Sprite_43
+    21300088: Victory_Sprite_44
+    21300090: Victory_Sprite_45
+    21300092: Victory_Sprite_46
+    21300094: Victory_Sprite_47
+    21300096: Victory_Sprite_48
+    21300098: Victory_Sprite_49
+    21300100: Victory_Sprite_50
+    21300102: Victory_Sprite_51
+    21300104: Victory_Sprite_52
+    21300106: Victory_Sprite_53
+    21300108: Victory_Sprite_54
+    21300110: Victory_Sprite_55
+    21300112: Victory_Sprite_56
+    21300114: Victory_Sprite_57
+    21300116: Victory_Sprite_58
+    21300118: Victory_Sprite_59
+    21300120: Victory_Sprite_60
+    21300122: Victory_Sprite_61
+    21300124: Victory_Sprite_62
+    21300126: Victory_Sprite_63
+    21300128: Victory_Sprite_64
+    21300130: Victory_Sprite_65
+    21300132: Victory_Sprite_66
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Victory_Sprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3601
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_1
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 3601
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_2
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 3601
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_3
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 3601
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_4
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 3601
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3324
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_6
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 3324
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_7
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 3324
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_8
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 3324
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_9
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 3324
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3047
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_11
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 3047
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_12
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 3047
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_13
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 3047
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_14
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 3047
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2770
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_16
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 2770
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_17
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 2770
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_18
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 2770
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_19
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 2770
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2493
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_21
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 2493
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_22
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 2493
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_23
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 2493
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_24
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 2493
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2216
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_26
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 2216
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_27
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 2216
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_28
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 2216
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_29
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 2216
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1939
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_31
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1939
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_32
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1939
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_33
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 1939
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_34
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 1939
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1662
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_36
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1662
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_37
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1662
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_38
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 1662
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_39
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 1662
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1385
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_41
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1385
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_42
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1385
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_43
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 1385
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_44
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 1385
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1108
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_46
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1108
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_47
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1108
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_48
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 1108
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_49
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 1108
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 831
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_51
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 831
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_52
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 831
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_53
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 831
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_54
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 831
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_55
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 554
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_56
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 554
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_57
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 554
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_58
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 554
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_59
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 554
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 277
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_61
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 277
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_62
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 277
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_63
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 277
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_64
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 277
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_65
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Victory_Sprite_66
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 0
+        width: 700
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

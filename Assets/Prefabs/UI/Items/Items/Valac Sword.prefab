@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &118708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 437622}
+  - 114: {fileID: 11411684}
+  m_Layer: 0
+  m_Name: Valac Sword
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &437622
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118708}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1409.22095, y: -202.637589, z: -342.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11411684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 988969035fab64148bd1d613aacfe67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: "Lord Valac\u2019s Greatsword"
+  itemDescription: The corrupted sword of Lord Valac.
+  type: 3
+  rarity: 3
+  Rating: 0
+  Available: 0
+  itemIcon: {fileID: 2800000, guid: 8bb7a0f9326d59948b56e44203257f3a, type: 3}
+  Health: 20
+  DamageReduction: .0500000007
+  Armor: 0
+  BaseDamage: 100
+  PhysicalDamage: 40
+  MagicalDamage: 100
+  CritChance: .0799999982
+  CritDamage: 0
+  Multistrike: 0
+  CooldownReduction: 0
+  MovementSpeed: 0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 118708}
+  m_IsPrefabParent: 1

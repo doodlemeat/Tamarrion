@@ -1,0 +1,241 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &109624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 460534}
+  - 114: {fileID: 11401198}
+  m_Layer: 0
+  m_Name: Charge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &119138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 408860}
+  - 119: {fileID: 11908666}
+  m_Layer: 0
+  m_Name: Charge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &159112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 440700}
+  - 119: {fileID: 11929126}
+  m_Layer: 0
+  m_Name: Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &408860
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119138}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 460534}
+  m_RootOrder: 1
+--- !u!4 &440700
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159112}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 460534}
+  m_RootOrder: 0
+--- !u!4 &460534
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109624}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 440700}
+  - {fileID: 408860}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11401198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d79b5bd63fe3944f972381d7ab95d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_boss: {fileID: 0}
+  Particle: {fileID: 0}
+  particle_parent: enemy
+  particle_position: {x: 0, y: 0, z: 0}
+  particle_rotation: {x: 270, y: 90, z: 0}
+  particle_delay: 0
+  _useCastbar: 1
+  _isDirectional: 1
+  Damage:
+  - 25
+  - 50
+  - 80
+  Target: player
+  Buff_Debuff: Charge
+  Target_position: {x: 0, y: 0, z: 0}
+  Movement_modifier:
+  - 0
+  - 0
+  - 0
+  Rotation_modifier:
+  - 0
+  - 0
+  - 0
+  Modifiers_persist_after_activate: 0
+  HitInterruptable: 0
+  StunInterruptable: 1
+  ActiveInterruptable: 0
+  Casting_time: 1
+  Active_time:
+  - 0
+  - 0
+  - 0
+  Dot_time:
+  - 0
+  - 0
+  - 0
+  Type: line
+  Origin: boss
+  Origin_position: {x: 0, y: 0, z: 0}
+  Follow_origin: 0
+  Lock_target: 0
+  Chase_origin: 0
+  Chase_speed: 0
+  Size: 4
+  Offset: 0
+  m_current_size: 0
+  Show_charger: 0
+  min_charge_distance: 25
+  stun_self_duration: 2
+  stun_tam_duration: 2
+  stunned_texture: {fileID: 2800000, guid: b557f2af707d12c4abe1e8deeb5f461c, type: 3}
+--- !u!119 &11908666
+Projector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119138}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: -1
+  m_FarClipPlane: 100
+  m_FieldOfView: 1
+  m_AspectRatio: 1
+  m_Orthographic: 1
+  m_OrthographicSize: 1
+  m_Material: {fileID: 2100000, guid: 6dc0f8fe89c551945a189a9a784c0b52, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 768
+--- !u!119 &11929126
+Projector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159112}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: -1
+  m_FarClipPlane: 100
+  m_FieldOfView: 1
+  m_AspectRatio: 1
+  m_Orthographic: 1
+  m_OrthographicSize: 1
+  m_Material: {fileID: 2100000, guid: 9690d745776fa2c49846e89e1fb6ffc2, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 768
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: stun_self_duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stun_tam_duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stunned_texture
+      value: 
+      objectReference: {fileID: 2800000, guid: b557f2af707d12c4abe1e8deeb5f461c, type: 3}
+    - target: {fileID: 0}
+      propertyPath: Particle
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _isDirectional
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: particale_rotation
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: particle_parent
+      value: enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: particle_position.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: particle_rotation.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: particle_rotation.x
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _useCastbar
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 109624}
+  m_IsPrefabParent: 1

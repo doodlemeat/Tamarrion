@@ -1,0 +1,493 @@
+fileFormatVersion: 2
+guid: 1bee4b89100f43e41a68822ac6a15b31
+timeCreated: 1468065825
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: 6_zE_Map1
+    100004: 6_zE_Map2
+    100006: 6_zE_Map5
+    100008: 6_zE_Roof
+    100010: 6_zE_Wall
+    100012: AlcoveFrame
+    100014: AlcoveWall
+    100016: Arch
+    100018: Arch 1
+    100020: Archway
+    100022: Archway 1
+    100024: Archway 2
+    100026: BrokenPillar
+    100028: Ceiling
+    100030: Ceiling 1
+    100032: Ceiling 2
+    100034: CeilingArchs
+    100036: CircleRoom1
+    100038: CircleRoom2
+    100040: Door_Half
+    100042: GreatHall
+    100044: GreatHallBanner1
+    100046: GreatHallBanner2
+    100048: GreatHallBanner3
+    100050: GreatHallBanner4
+    100052: GreatHallBanners
+    100054: GreatHallPillar1
+    100056: GreatHallPillar10
+    100058: GreatHallPillar11
+    100060: GreatHallPillar12
+    100062: GreatHallPillar13
+    100064: GreatHallPillar14
+    100066: GreatHallPillar15
+    100068: GreatHallPillar16
+    100070: GreatHallPillar17
+    100072: GreatHallPillar18
+    100074: GreatHallPillar19
+    100076: GreatHallPillar2
+    100078: GreatHallPillar20
+    100080: GreatHallPillar21
+    100082: GreatHallPillar22
+    100084: GreatHallPillar23
+    100086: GreatHallPillar24
+    100088: GreatHallPillar25
+    100090: GreatHallPillar26
+    100092: GreatHallPillar27
+    100094: GreatHallPillar28
+    100096: GreatHallPillar29
+    100098: GreatHallPillar3
+    100100: GreatHallPillar30
+    100102: GreatHallPillar31
+    100104: GreatHallPillar32
+    100106: GreatHallPillar33
+    100108: GreatHallPillar34
+    100110: GreatHallPillar35
+    100112: GreatHallPillar4
+    100114: GreatHallPillar5
+    100116: GreatHallPillar6
+    100118: GreatHallPillar7
+    100120: GreatHallPillar8
+    100122: GreatHallPillar9
+    100124: GreatHallPillars
+    100126: GreatStairs_Map5
+    100128: LightStop
+    100130: Map1
+    100132: Map1 1
+    100134: Map1 2
+    100136: Map2
+    100138: Map3
+    100140: Map5
+    100142: Map5 1
+    100144: Misc
+    100146: Misc 1
+    100148: Pillars
+    100150: Pillars 1
+    100152: Rubble
+    100154: SectionPillar
+    100156: SectionWall
+    100158: SmallCorridor
+    100160: Stairs
+    100162: WallFloorContact_Map4
+    100164: WallPillar_Small_Map2
+    100166: Walls
+    100168: Walls 1
+    100170: Walls 2
+    100172: Walls 3
+    100174: Walls 4
+    100176: WoodenDoors
+    400000: //RootNode
+    400002: 6_zE_Map1
+    400004: 6_zE_Map2
+    400006: 6_zE_Map5
+    400008: 6_zE_Roof
+    400010: 6_zE_Wall
+    400012: AlcoveFrame
+    400014: AlcoveWall
+    400016: Arch
+    400018: Arch 1
+    400020: Archway
+    400022: Archway 1
+    400024: Archway 2
+    400026: BrokenPillar
+    400028: Ceiling
+    400030: Ceiling 1
+    400032: Ceiling 2
+    400034: CeilingArchs
+    400036: CircleRoom1
+    400038: CircleRoom2
+    400040: Door_Half
+    400042: GreatHall
+    400044: GreatHallBanner1
+    400046: GreatHallBanner2
+    400048: GreatHallBanner3
+    400050: GreatHallBanner4
+    400052: GreatHallBanners
+    400054: GreatHallPillar1
+    400056: GreatHallPillar10
+    400058: GreatHallPillar11
+    400060: GreatHallPillar12
+    400062: GreatHallPillar13
+    400064: GreatHallPillar14
+    400066: GreatHallPillar15
+    400068: GreatHallPillar16
+    400070: GreatHallPillar17
+    400072: GreatHallPillar18
+    400074: GreatHallPillar19
+    400076: GreatHallPillar2
+    400078: GreatHallPillar20
+    400080: GreatHallPillar21
+    400082: GreatHallPillar22
+    400084: GreatHallPillar23
+    400086: GreatHallPillar24
+    400088: GreatHallPillar25
+    400090: GreatHallPillar26
+    400092: GreatHallPillar27
+    400094: GreatHallPillar28
+    400096: GreatHallPillar29
+    400098: GreatHallPillar3
+    400100: GreatHallPillar30
+    400102: GreatHallPillar31
+    400104: GreatHallPillar32
+    400106: GreatHallPillar33
+    400108: GreatHallPillar34
+    400110: GreatHallPillar35
+    400112: GreatHallPillar4
+    400114: GreatHallPillar5
+    400116: GreatHallPillar6
+    400118: GreatHallPillar7
+    400120: GreatHallPillar8
+    400122: GreatHallPillar9
+    400124: GreatHallPillars
+    400126: GreatStairs_Map5
+    400128: LightStop
+    400130: Map1
+    400132: Map1 1
+    400134: Map1 2
+    400136: Map2
+    400138: Map3
+    400140: Map5
+    400142: Map5 1
+    400144: Misc
+    400146: Misc 1
+    400148: Pillars
+    400150: Pillars 1
+    400152: Rubble
+    400154: SectionPillar
+    400156: SectionWall
+    400158: SmallCorridor
+    400160: Stairs
+    400162: WallFloorContact_Map4
+    400164: WallPillar_Small_Map2
+    400166: Walls
+    400168: Walls 1
+    400170: Walls 2
+    400172: Walls 3
+    400174: Walls 4
+    400176: WoodenDoors
+    2300000: 6_zE_Map1
+    2300002: 6_zE_Map2
+    2300004: 6_zE_Map5
+    2300006: 6_zE_Roof
+    2300008: 6_zE_Wall
+    2300010: AlcoveFrame
+    2300012: AlcoveWall
+    2300014: Arch
+    2300016: Arch 1
+    2300018: Archway
+    2300020: Archway 1
+    2300022: Archway 2
+    2300024: BrokenPillar
+    2300026: Ceiling
+    2300028: Ceiling 1
+    2300030: Ceiling 2
+    2300032: CeilingArchs
+    2300034: Door_Half
+    2300036: GreatHallBanner1
+    2300038: GreatHallBanner2
+    2300040: GreatHallBanner3
+    2300042: GreatHallBanner4
+    2300044: GreatHallPillar1
+    2300046: GreatHallPillar10
+    2300048: GreatHallPillar11
+    2300050: GreatHallPillar12
+    2300052: GreatHallPillar13
+    2300054: GreatHallPillar14
+    2300056: GreatHallPillar15
+    2300058: GreatHallPillar16
+    2300060: GreatHallPillar17
+    2300062: GreatHallPillar18
+    2300064: GreatHallPillar19
+    2300066: GreatHallPillar2
+    2300068: GreatHallPillar20
+    2300070: GreatHallPillar21
+    2300072: GreatHallPillar22
+    2300074: GreatHallPillar23
+    2300076: GreatHallPillar24
+    2300078: GreatHallPillar25
+    2300080: GreatHallPillar26
+    2300082: GreatHallPillar27
+    2300084: GreatHallPillar28
+    2300086: GreatHallPillar29
+    2300088: GreatHallPillar3
+    2300090: GreatHallPillar30
+    2300092: GreatHallPillar31
+    2300094: GreatHallPillar32
+    2300096: GreatHallPillar33
+    2300098: GreatHallPillar34
+    2300100: GreatHallPillar35
+    2300102: GreatHallPillar4
+    2300104: GreatHallPillar5
+    2300106: GreatHallPillar6
+    2300108: GreatHallPillar7
+    2300110: GreatHallPillar8
+    2300112: GreatHallPillar9
+    2300114: GreatStairs_Map5
+    2300116: LightStop
+    2300118: Map1
+    2300120: Map1 1
+    2300122: Map1 2
+    2300124: Map2
+    2300126: Map3
+    2300128: Map5
+    2300130: Map5 1
+    2300132: Misc
+    2300134: Misc 1
+    2300136: Pillars
+    2300138: Pillars 1
+    2300140: Rubble
+    2300142: SectionPillar
+    2300144: SectionWall
+    2300146: Stairs
+    2300148: WallFloorContact_Map4
+    2300150: WallPillar_Small_Map2
+    2300152: Walls
+    2300154: Walls 1
+    2300156: Walls 2
+    2300158: Walls 3
+    2300160: Walls 4
+    2300162: WoodenDoors
+    3300000: 6_zE_Map1
+    3300002: 6_zE_Map2
+    3300004: 6_zE_Map5
+    3300006: 6_zE_Roof
+    3300008: 6_zE_Wall
+    3300010: AlcoveFrame
+    3300012: AlcoveWall
+    3300014: Arch
+    3300016: Arch 1
+    3300018: Archway
+    3300020: Archway 1
+    3300022: Archway 2
+    3300024: BrokenPillar
+    3300026: Ceiling
+    3300028: Ceiling 1
+    3300030: Ceiling 2
+    3300032: CeilingArchs
+    3300034: Door_Half
+    3300036: GreatHallBanner1
+    3300038: GreatHallBanner2
+    3300040: GreatHallBanner3
+    3300042: GreatHallBanner4
+    3300044: GreatHallPillar1
+    3300046: GreatHallPillar10
+    3300048: GreatHallPillar11
+    3300050: GreatHallPillar12
+    3300052: GreatHallPillar13
+    3300054: GreatHallPillar14
+    3300056: GreatHallPillar15
+    3300058: GreatHallPillar16
+    3300060: GreatHallPillar17
+    3300062: GreatHallPillar18
+    3300064: GreatHallPillar19
+    3300066: GreatHallPillar2
+    3300068: GreatHallPillar20
+    3300070: GreatHallPillar21
+    3300072: GreatHallPillar22
+    3300074: GreatHallPillar23
+    3300076: GreatHallPillar24
+    3300078: GreatHallPillar25
+    3300080: GreatHallPillar26
+    3300082: GreatHallPillar27
+    3300084: GreatHallPillar28
+    3300086: GreatHallPillar29
+    3300088: GreatHallPillar3
+    3300090: GreatHallPillar30
+    3300092: GreatHallPillar31
+    3300094: GreatHallPillar32
+    3300096: GreatHallPillar33
+    3300098: GreatHallPillar34
+    3300100: GreatHallPillar35
+    3300102: GreatHallPillar4
+    3300104: GreatHallPillar5
+    3300106: GreatHallPillar6
+    3300108: GreatHallPillar7
+    3300110: GreatHallPillar8
+    3300112: GreatHallPillar9
+    3300114: GreatStairs_Map5
+    3300116: LightStop
+    3300118: Map1
+    3300120: Map1 1
+    3300122: Map1 2
+    3300124: Map2
+    3300126: Map3
+    3300128: Map5
+    3300130: Map5 1
+    3300132: Misc
+    3300134: Misc 1
+    3300136: Pillars
+    3300138: Pillars 1
+    3300140: Rubble
+    3300142: SectionPillar
+    3300144: SectionWall
+    3300146: Stairs
+    3300148: WallFloorContact_Map4
+    3300150: WallPillar_Small_Map2
+    3300152: Walls
+    3300154: Walls 1
+    3300156: Walls 2
+    3300158: Walls 3
+    3300160: Walls 4
+    3300162: WoodenDoors
+    4300000: 6_zE_Map1
+    4300002: 6_zE_Map2
+    4300004: 6_zE_Map5
+    4300006: 6_zE_Roof
+    4300008: 6_zE_Wall
+    4300010: GreatStairs_Map5
+    4300012: Misc
+    4300014: Walls
+    4300016: Map1
+    4300018: GreatHallBanner3
+    4300020: GreatHallBanner2
+    4300022: GreatHallBanner1
+    4300024: GreatHallBanner4
+    4300026: GreatHallPillar1
+    4300028: GreatHallPillar2
+    4300030: GreatHallPillar3
+    4300032: GreatHallPillar4
+    4300034: GreatHallPillar5
+    4300036: GreatHallPillar6
+    4300038: GreatHallPillar7
+    4300040: GreatHallPillar8
+    4300042: GreatHallPillar9
+    4300044: GreatHallPillar10
+    4300046: GreatHallPillar11
+    4300048: GreatHallPillar12
+    4300050: GreatHallPillar13
+    4300052: GreatHallPillar14
+    4300054: GreatHallPillar15
+    4300056: GreatHallPillar16
+    4300058: GreatHallPillar17
+    4300060: GreatHallPillar18
+    4300062: GreatHallPillar19
+    4300064: GreatHallPillar20
+    4300066: GreatHallPillar21
+    4300068: GreatHallPillar22
+    4300070: GreatHallPillar23
+    4300072: GreatHallPillar24
+    4300074: GreatHallPillar25
+    4300076: GreatHallPillar26
+    4300078: GreatHallPillar27
+    4300080: GreatHallPillar28
+    4300082: GreatHallPillar29
+    4300084: GreatHallPillar30
+    4300086: GreatHallPillar31
+    4300088: GreatHallPillar32
+    4300090: GreatHallPillar33
+    4300092: GreatHallPillar34
+    4300094: GreatHallPillar35
+    4300096: Map5
+    4300098: Map2
+    4300100: Map3
+    4300102: Misc
+    4300104: Walls
+    4300106: WoodenDoors
+    4300108: SectionWall
+    4300110: SectionPillar
+    4300112: Rubble
+    4300114: CeilingArchs
+    4300116: Walls
+    4300118: Pillars
+    4300120: Map1
+    4300122: Arch
+    4300124: Stairs
+    4300126: Ceiling
+    4300128: Walls
+    4300130: Arch
+    4300132: Pillars
+    4300134: Map1
+    4300136: Ceiling
+    4300138: Archway
+    4300140: Door_Half
+    4300142: Ceiling
+    4300144: BrokenPillar
+    4300146: Archway
+    4300148: AlcoveWall
+    4300150: AlcoveFrame
+    4300152: WallFloorContact_Map4
+    4300154: WallPillar_Small_Map2
+    4300156: Walls
+    4300158: Archway
+    4300160: Map5
+    4300162: LightStop
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

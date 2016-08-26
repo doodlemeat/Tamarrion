@@ -1,0 +1,205 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &167958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 470826}
+  - 114: {fileID: 11451396}
+  m_Layer: 0
+  m_Name: FSSkillNatureAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &470826
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167958}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.326943874, y: .441576481, z: 80.3458176}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11451396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2682381e6ee7c429c92852f436daa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Nature Anchor
+  skillIcon: {fileID: 2800000, guid: 27b6c42394d79a84e9e9e63376f84867, type: 3}
+  cooldown: 3
+  duration: 8
+  range: 10
+  shapeSize: 2.5
+  showRange: 0
+  noPlacement: 0
+  type: 1
+  element: 2
+  shape: 1
+  placing: 1
+  shapeTexture: {fileID: 2800000, guid: f86eeac3b0c04844999295564d75a8f5, type: 3}
+  chargeTexture: {fileID: 0}
+  shapeCollider: {fileID: 0}
+  MagicDamagePercentage: 1
+  PhysicalDamagePercentage: 1
+  TributeGainHoly: 0
+  TributeGainMagic: 0
+  TributeGainNature: 25
+  TributeGainDefense: 0
+  TributeGainWar: 0
+  CastAnimationName: Cast
+  CastLoopAnimationName: Looping spell
+  CastTime: 0
+  CastCancelOnMove: 1
+  CastCanMove: 1
+  CastCanRotate: 1
+  CastMovespeedMod: .5
+  PerformAnimationName: 
+  PerformTime: 0
+  PerformCanMove: 1
+  PerformCanRotate: 1
+  PerformMovespeedMod: .5
+  RecoverAnimationName: 
+  RecoverTime: 0
+  RecoverCanMove: 1
+  RecoverCanRotate: 1
+  RecoverMovespeedMod: .5
+  ChannelingAnimationName: 
+  isChanneling: 0
+  CanBeCanceled: 0
+  ChannelingTime: 0
+  ChannelingCanMove: 1
+  ChannelingCanRotate: 1
+  ChannelingMovespeedMod: .5
+  FinishAnimationName: Cast defensive
+  areaObject: {fileID: 0}
+  ArrowMinDistance: 3.5
+  anchorObjectPrefab: {fileID: 161936, guid: 66bb5fc6a2c99464397120452cd1212e, type: 2}
+  teleportEffect: {fileID: 197742, guid: 82088d9926253e743b324b9d2c45a47e, type: 2}
+  playerSwirlEffect: {fileID: 122052, guid: f34fa174b40eaa141b0d0ef66d23a705, type: 2}
+  arrowToTargetPrefab: {fileID: 103028, guid: 12aea6efc4a515541880ec00ece2d01d, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: FinishAnimationName
+      value: Cast defensive
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: RecoverTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ChannelingAnimationName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: isChanneling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ChannelingTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ChannelingCanRotate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ChannelingMovespeedMod
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shapeTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: f86eeac3b0c04844999295564d75a8f5, type: 3}
+    - target: {fileID: 0}
+      propertyPath: placing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shapeSize
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: areaObject
+      value: 
+      objectReference: {fileID: 161936, guid: a5473ba0fe124bc4f89333dda58f9a54, type: 2}
+    - target: {fileID: 0}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: TributeGainNature
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: skillName
+      value: Nature Anchor
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: skillIcon
+      value: 
+      objectReference: {fileID: 2800000, guid: 27b6c42394d79a84e9e9e63376f84867, type: 3}
+    - target: {fileID: 0}
+      propertyPath: cooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: element
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shape
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: anchorObjectPrefab
+      value: 
+      objectReference: {fileID: 161936, guid: 66bb5fc6a2c99464397120452cd1212e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: noPlacement
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: duration
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: teleportEffect
+      value: 
+      objectReference: {fileID: 197742, guid: 82088d9926253e743b324b9d2c45a47e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: arrowToTargetPrefab
+      value: 
+      objectReference: {fileID: 103028, guid: 12aea6efc4a515541880ec00ece2d01d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: ArrowMinDistance
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: playerSwirlEffect
+      value: 
+      objectReference: {fileID: 122052, guid: f34fa174b40eaa141b0d0ef66d23a705, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 167958}
+  m_IsPrefabParent: 1

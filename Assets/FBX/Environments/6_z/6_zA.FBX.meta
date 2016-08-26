@@ -1,0 +1,116 @@
+fileFormatVersion: 2
+guid: ddb66193568be8e46903332b022c2e46
+timeCreated: 1468065846
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: 6_zA_Arch_Door_Alcove
+    100004: 6_zA_Map1
+    100006: 6_zA_Map2
+    100008: 6_zA_Map4
+    100010: 6_zA_Map5
+    100012: 6_zA_PlantVeg
+    100014: 6_zA_Tree
+    100016: 6_zA_Wall
+    100018: 6_zA_WoodClosedDoor
+    400000: //RootNode
+    400002: 6_zA_Arch_Door_Alcove
+    400004: 6_zA_Map1
+    400006: 6_zA_Map2
+    400008: 6_zA_Map4
+    400010: 6_zA_Map5
+    400012: 6_zA_PlantVeg
+    400014: 6_zA_Tree
+    400016: 6_zA_Wall
+    400018: 6_zA_WoodClosedDoor
+    2300000: 6_zA_Arch_Door_Alcove
+    2300002: 6_zA_Map1
+    2300004: 6_zA_Map2
+    2300006: 6_zA_Map4
+    2300008: 6_zA_Map5
+    2300010: 6_zA_PlantVeg
+    2300012: 6_zA_Tree
+    2300014: 6_zA_Wall
+    2300016: 6_zA_WoodClosedDoor
+    3300000: 6_zA_Arch_Door_Alcove
+    3300002: 6_zA_Map1
+    3300004: 6_zA_Map2
+    3300006: 6_zA_Map4
+    3300008: 6_zA_Map5
+    3300010: 6_zA_PlantVeg
+    3300012: 6_zA_Tree
+    3300014: 6_zA_Wall
+    3300016: 6_zA_WoodClosedDoor
+    4300000: 6_zA_Arch_Door_Alcove
+    4300002: 6_zA_Map1
+    4300004: 6_zA_Map2
+    4300006: 6_zA_Map4
+    4300008: 6_zA_Map5
+    4300010: 6_zA_PlantVeg
+    4300012: 6_zA_Tree
+    4300014: 6_zA_Wall
+    4300016: 6_zA_WoodClosedDoor
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

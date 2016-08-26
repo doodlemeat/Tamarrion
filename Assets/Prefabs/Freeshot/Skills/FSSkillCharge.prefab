@@ -1,0 +1,417 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &176114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 483852}
+  - 114: {fileID: 11419826}
+  m_Layer: 0
+  m_Name: FSSkillCharge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &483852
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.326943874, y: .441576481, z: 80.3458176}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11419826
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f77aa7d0659cf4c8aa56b45cd3604f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Dashing Strike
+  skillIcon: {fileID: 2800000, guid: 5c5eabb8ec5b71f438aa69fcce5674f9, type: 3}
+  cooldown: 5
+  duration: 0
+  range: 10
+  shapeSize: 13
+  showRange: 0
+  noPlacement: 0
+  type: 0
+  element: 4
+  shape: 0
+  placing: 0
+  shapeTexture: {fileID: 2800000, guid: cf95e4e45ec365a41810789ef45bb556, type: 3}
+  chargeTexture: {fileID: 0}
+  shapeCollider: {fileID: 0}
+  MagicDamagePercentage: 1
+  PhysicalDamagePercentage: 1
+  TributeGainHoly: 0
+  TributeGainMagic: 0
+  TributeGainNature: 0
+  TributeGainDefense: 0
+  TributeGainWar: 30
+  CastAnimationName: 
+  CastLoopAnimationName: 
+  CastTime: 0
+  CastCancelOnMove: 1
+  CastCanMove: 1
+  CastCanRotate: 1
+  CastMovespeedMod: .5
+  PerformAnimationName: 
+  PerformTime: 0
+  PerformCanMove: 1
+  PerformCanRotate: 1
+  PerformMovespeedMod: .5
+  RecoverAnimationName: 
+  RecoverTime: 0
+  RecoverCanMove: 1
+  RecoverCanRotate: 1
+  RecoverMovespeedMod: .5
+  ChannelingAnimationName: Charge
+  isChanneling: 1
+  CanBeCanceled: 0
+  ChannelingTime: 1
+  ChannelingCanMove: 1
+  ChannelingCanRotate: 0
+  ChannelingMovespeedMod: 13
+  FinishAnimationName: 
+  channelingSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: -.00423081266
+      value: .00263157859
+      inSlope: .0643829331
+      outSlope: .0643829331
+      tangentMode: 0
+    - time: .199270695
+      value: .0781911612
+      inSlope: 1.49896717
+      outSlope: 1.49896717
+      tangentMode: 0
+    - time: .256243378
+      value: .99593854
+      inSlope: -3.13889861
+      outSlope: -3.13889861
+      tangentMode: 0
+    - time: 1.00068271
+      value: .0162070096
+      inSlope: .0105536934
+      outSlope: .0105536934
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  recoveringSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: -.0529613383
+      value: .00131034851
+      inSlope: -1.30130899
+      outSlope: -1.30130899
+      tangentMode: 10
+    - time: .183272108
+      value: -.306102365
+      inSlope: -.179755539
+      outSlope: -.179755539
+      tangentMode: 10
+    - time: .502464473
+      value: -.00548767485
+      inSlope: -.0310625732
+      outSlope: -.0310625732
+      tangentMode: 10
+    - time: .704648733
+      value: -.208465129
+      inSlope: -.150821239
+      outSlope: -.150821239
+      tangentMode: 10
+    - time: 1.00148106
+      value: -5.56185842e-06
+      inSlope: .702280581
+      outSlope: .702280581
+      tangentMode: 10
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  startEffect: {fileID: 114298, guid: 327ea895dc589254a9898991c6b55fff, type: 2}
+  speedEffect: {fileID: 169778, guid: e3bfcb5de71e89045b3d4ca148058867, type: 2}
+  collisionObject: {fileID: 175956, guid: 2155937969415784e9e2cbc0823bf708, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: skillIcon
+      value: 
+      objectReference: {fileID: 2800000, guid: 5c5eabb8ec5b71f438aa69fcce5674f9, type: 3}
+    - target: {fileID: 0}
+      propertyPath: cooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shapeSize
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: CastAnimationName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: CastLoopAnimationName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: PerformAnimationName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ChannelingAnimationName
+      value: Charge
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: isChanneling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ChannelingCanMove
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ChannelingCanRotate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ChannelingTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ChannelingMovespeedMod
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: RecoverTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: RecoverCanMove
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: RecoverCanRotate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[0].inSlope
+      value: .0643829331
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[0].outSlope
+      value: .0643829331
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[1].value
+      value: .0781911612
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[1].inSlope
+      value: 1.49896717
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[1].outSlope
+      value: 1.49896717
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[1].time
+      value: .199270695
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[2].inSlope
+      value: -3.13889861
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[2].outSlope
+      value: -3.13889861
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[0].value
+      value: .00263157859
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[0].time
+      value: -.00423081266
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[0].inSlope
+      value: -1.30130899
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[0].outSlope
+      value: -1.30130899
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[1].value
+      value: -.306102365
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[1].inSlope
+      value: -.179755539
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[1].outSlope
+      value: -.179755539
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[1].time
+      value: .183272108
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[0].value
+      value: .00131034851
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[0].time
+      value: -.0529613383
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[2].inSlope
+      value: -.0310625732
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[2].outSlope
+      value: -.0310625732
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: skillName
+      value: Dashing Strike
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shapeTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: cf95e4e45ec365a41810789ef45bb556, type: 3}
+    - target: {fileID: 0}
+      propertyPath: element
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[2].time
+      value: .256243378
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[2].time
+      value: .502464473
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[2].value
+      value: .99593854
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[3].time
+      value: 1.00068271
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[3].value
+      value: .0162070096
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[3].inSlope
+      value: .0105536934
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[3].outSlope
+      value: .0105536934
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[4].value
+      value: .0961754322
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[4].time
+      value: .998562694
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[4].inSlope
+      value: -3.12663054
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: channelingSpeedCurve.m_Curve.Array.data[4].outSlope
+      value: -3.12663054
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: RecoverMovespeedMod
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[2].value
+      value: -.00548767485
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[3].inSlope
+      value: -.150821239
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[3].outSlope
+      value: -.150821239
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[3].time
+      value: .704648733
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[3].value
+      value: -.208465129
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[4].inSlope
+      value: .702280581
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: recoveringSpeedCurve.m_Curve.Array.data[4].outSlope
+      value: .702280581
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: startEffect
+      value: 
+      objectReference: {fileID: 114298, guid: 327ea895dc589254a9898991c6b55fff, type: 2}
+    - target: {fileID: 0}
+      propertyPath: speedEffect
+      value: 
+      objectReference: {fileID: 122614, guid: 19105cf8c06aaf648965d1d00434d894, type: 2}
+    - target: {fileID: 0}
+      propertyPath: collisionObject
+      value: 
+      objectReference: {fileID: 175956, guid: 2155937969415784e9e2cbc0823bf708, type: 2}
+    - target: {fileID: 0}
+      propertyPath: TributeGainWar
+      value: 30
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 176114}
+  m_IsPrefabParent: 1

@@ -1,0 +1,385 @@
+fileFormatVersion: 2
+guid: 7fd584df4d904384db14897bed9fd2fc
+timeCreated: 1462044498
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: EnemyBar_0
+    21300002: EnemyBar_1
+    21300004: EnemyBar_2
+    21300006: EnemyBar_3
+    21300008: EnemyBar_4
+    21300010: EnemyBar_5
+    21300012: EnemyBar_6
+    21300014: EnemyBar_7
+    21300016: EnemyBar_8
+    21300018: EnemyBar_9
+    21300020: EnemyBar_10
+    21300022: EnemyBar_11
+    21300024: EnemyBar_12
+    21300026: EnemyBar_13
+    21300028: EnemyBar_14
+    21300030: EnemyBar_15
+    21300032: EnemyBar_16
+    21300034: EnemyBar_17
+    21300036: EnemyBar_18
+    21300038: EnemyBar_19
+    21300040: EnemyBar_20
+    21300042: EnemyBar_21
+    21300044: EnemyBar_22
+    21300046: EnemyBar_23
+    21300048: EnemyBar_24
+    21300050: EnemyBar_25
+    21300052: EnemyBar_26
+    21300054: EnemyBar_27
+    21300056: EnemyBar_28
+    21300058: EnemyBar_29
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: EnemyBar_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 588
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_1
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 588
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 546
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_3
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 546
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 504
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 504
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 462
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_7
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 462
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 420
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_9
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 420
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 378
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_11
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 378
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_13
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 336
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 294
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_15
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 294
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 252
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_17
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 252
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 210
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_19
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 210
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 168
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_21
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 168
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 126
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_23
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 126
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 84
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_25
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 84
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 42
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_27
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 42
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EnemyBar_29
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 800
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

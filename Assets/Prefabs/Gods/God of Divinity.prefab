@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &125322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 469434}
+  - 114: {fileID: 11425430}
+  m_Layer: 0
+  m_Name: God of Divinity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &469434
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125322}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.05329227, y: 4.38767767, z: .479868054}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11425430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef0d6bbddd55e644add671046d54780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: 1
+  Time: 10
+  Name: God of Divinity
+  _sound: {fileID: 8300000, guid: df0a7e5374f872b4caa0426e94d69b5b, type: 3}
+  godPowerActivationEffect: {fileID: 199608, guid: ce2c214c5819b634fb670bb2f6410ca2,
+    type: 2}
+  godPowerPersistantEffect: {fileID: 0}
+  _projectile: {fileID: 168000, guid: 97ae394f1e1630a4db18460e2ac92b11, type: 2}
+  CastParticleSys: {fileID: 112230, guid: db6f0dffab698fa42910b73ff703e12c, type: 2}
+  _speed: 24
+  _damageMin: 55
+  _damageMax: 85
+  swordEffect: {fileID: 195442, guid: d17f0243217d3a7449bc791209bab79b, type: 2}
+  orbPrefab: {fileID: 160038, guid: aeef11c978176004aa3584c3ffb8c9ea, type: 2}
+  OrbRespawnTime: 1
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: element
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _projectile
+      value: 
+      objectReference: {fileID: 168000, guid: 97ae394f1e1630a4db18460e2ac92b11, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _sound
+      value: 
+      objectReference: {fileID: 8300000, guid: df0a7e5374f872b4caa0426e94d69b5b, type: 3}
+    - target: {fileID: 0}
+      propertyPath: godPowerActivationEffect
+      value: 
+      objectReference: {fileID: 199608, guid: ce2c214c5819b634fb670bb2f6410ca2, type: 2}
+    - target: {fileID: 0}
+      propertyPath: swordEffect
+      value: 
+      objectReference: {fileID: 195442, guid: d17f0243217d3a7449bc791209bab79b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: orbPrefab
+      value: 
+      objectReference: {fileID: 160038, guid: aeef11c978176004aa3584c3ffb8c9ea, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 125322}
+  m_IsPrefabParent: 1

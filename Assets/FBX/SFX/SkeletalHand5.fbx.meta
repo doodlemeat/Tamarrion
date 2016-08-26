@@ -1,0 +1,330 @@
+fileFormatVersion: 2
+guid: 1245e663a3ead6f4090070213f09c832
+timeCreated: 1450262380
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Arm
+    100002: Hand1
+    100004: Hand2
+    100006: Hand3
+    100008: Hand4
+    100010: Index1
+    100012: Index2
+    100014: Index3
+    100016: Little1
+    100018: Little2
+    100020: Little3
+    100022: Long1
+    100024: Long2
+    100026: Long3
+    100028: LowPoly_Arm
+    100030: Ring1
+    100032: Ring2
+    100034: Ring3
+    100036: //RootNode
+    100038: Thumb1
+    100040: Thumb2
+    100042: Thumb3
+    400000: Arm
+    400002: Hand1
+    400004: Hand2
+    400006: Hand3
+    400008: Hand4
+    400010: Index1
+    400012: Index2
+    400014: Index3
+    400016: Little1
+    400018: Little2
+    400020: Little3
+    400022: Long1
+    400024: Long2
+    400026: Long3
+    400028: LowPoly_Arm
+    400030: Ring1
+    400032: Ring2
+    400034: Ring3
+    400036: //RootNode
+    400038: Thumb1
+    400040: Thumb2
+    400042: Thumb3
+    4300000: LowPoly_Arm
+    7400000: Grip1
+    7400002: Grip2
+    7400004: Grip3
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: LowPoly_Arm
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Grip1
+      takeName: Grip1
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm
+        weight: 1
+      - path: Arm/Hand1
+        weight: 1
+      - path: Arm/Hand1/Index1
+        weight: 1
+      - path: Arm/Hand1/Index1/Index2
+        weight: 1
+      - path: Arm/Hand1/Index1/Index2/Index3
+        weight: 1
+      - path: Arm/Hand2
+        weight: 1
+      - path: Arm/Hand2/Long1
+        weight: 1
+      - path: Arm/Hand2/Long1/Long2
+        weight: 1
+      - path: Arm/Hand2/Long1/Long2/Long3
+        weight: 1
+      - path: Arm/Hand3
+        weight: 1
+      - path: Arm/Hand3/Ring1
+        weight: 1
+      - path: Arm/Hand3/Ring1/Ring2
+        weight: 1
+      - path: Arm/Hand3/Ring1/Ring2/Ring3
+        weight: 1
+      - path: Arm/Hand4
+        weight: 1
+      - path: Arm/Hand4/Little1
+        weight: 1
+      - path: Arm/Hand4/Little1/Little2
+        weight: 1
+      - path: Arm/Hand4/Little1/Little2/Little3
+        weight: 1
+      - path: Arm/Thumb1
+        weight: 1
+      - path: Arm/Thumb1/Thumb2
+        weight: 1
+      - path: Arm/Thumb1/Thumb2/Thumb3
+        weight: 1
+      - path: LowPoly_Arm
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Grip2
+      takeName: Grip2
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm
+        weight: 1
+      - path: Arm/Hand1
+        weight: 1
+      - path: Arm/Hand1/Index1
+        weight: 1
+      - path: Arm/Hand1/Index1/Index2
+        weight: 1
+      - path: Arm/Hand1/Index1/Index2/Index3
+        weight: 1
+      - path: Arm/Hand2
+        weight: 1
+      - path: Arm/Hand2/Long1
+        weight: 1
+      - path: Arm/Hand2/Long1/Long2
+        weight: 1
+      - path: Arm/Hand2/Long1/Long2/Long3
+        weight: 1
+      - path: Arm/Hand3
+        weight: 1
+      - path: Arm/Hand3/Ring1
+        weight: 1
+      - path: Arm/Hand3/Ring1/Ring2
+        weight: 1
+      - path: Arm/Hand3/Ring1/Ring2/Ring3
+        weight: 1
+      - path: Arm/Hand4
+        weight: 1
+      - path: Arm/Hand4/Little1
+        weight: 1
+      - path: Arm/Hand4/Little1/Little2
+        weight: 1
+      - path: Arm/Hand4/Little1/Little2/Little3
+        weight: 1
+      - path: Arm/Thumb1
+        weight: 1
+      - path: Arm/Thumb1/Thumb2
+        weight: 1
+      - path: Arm/Thumb1/Thumb2/Thumb3
+        weight: 1
+      - path: LowPoly_Arm
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Grip3
+      takeName: Grip3
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm
+        weight: 1
+      - path: Arm/Hand1
+        weight: 1
+      - path: Arm/Hand1/Index1
+        weight: 1
+      - path: Arm/Hand1/Index1/Index2
+        weight: 1
+      - path: Arm/Hand1/Index1/Index2/Index3
+        weight: 1
+      - path: Arm/Hand2
+        weight: 1
+      - path: Arm/Hand2/Long1
+        weight: 1
+      - path: Arm/Hand2/Long1/Long2
+        weight: 1
+      - path: Arm/Hand2/Long1/Long2/Long3
+        weight: 1
+      - path: Arm/Hand3
+        weight: 1
+      - path: Arm/Hand3/Ring1
+        weight: 1
+      - path: Arm/Hand3/Ring1/Ring2
+        weight: 1
+      - path: Arm/Hand3/Ring1/Ring2/Ring3
+        weight: 1
+      - path: Arm/Hand4
+        weight: 1
+      - path: Arm/Hand4/Little1
+        weight: 1
+      - path: Arm/Hand4/Little1/Little2
+        weight: 1
+      - path: Arm/Hand4/Little1/Little2/Little3
+        weight: 1
+      - path: Arm/Thumb1
+        weight: 1
+      - path: Arm/Thumb1/Thumb2
+        weight: 1
+      - path: Arm/Thumb1/Thumb2/Thumb3
+        weight: 1
+      - path: LowPoly_Arm
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

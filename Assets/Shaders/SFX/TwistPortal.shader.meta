@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 324a516f89d33184987b76c2fdf49902
+timeCreated: 1472125956
+licenseType: Free
+ShaderImporter:
+  defaultTextures:
+  - _Circle: {fileID: 2800000, guid: b1d7fee26e54cc3498f6267f072a45b9, type: 3}
+  - _TwistRefraction: {fileID: 2800000, guid: 68d855c3be4997846b692110efa8c307, type: 3}
+  - _TwistEmissive: {fileID: 2800000, guid: a80492972cba68b4d9cb1c32543bf597, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,385 @@
+fileFormatVersion: 2
+guid: b1c6b555313b2f5419d9715d9c3754fd
+timeCreated: 1462044527
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PlayerBar_0
+    21300002: PlayerBar_1
+    21300004: PlayerBar_2
+    21300006: PlayerBar_3
+    21300008: PlayerBar_4
+    21300010: PlayerBar_5
+    21300012: PlayerBar_6
+    21300014: PlayerBar_7
+    21300016: PlayerBar_8
+    21300018: PlayerBar_9
+    21300020: PlayerBar_10
+    21300022: PlayerBar_11
+    21300024: PlayerBar_12
+    21300026: PlayerBar_13
+    21300028: PlayerBar_14
+    21300030: PlayerBar_15
+    21300032: PlayerBar_16
+    21300034: PlayerBar_17
+    21300036: PlayerBar_18
+    21300038: PlayerBar_19
+    21300040: PlayerBar_20
+    21300042: PlayerBar_21
+    21300044: PlayerBar_22
+    21300046: PlayerBar_23
+    21300048: PlayerBar_24
+    21300050: PlayerBar_25
+    21300052: PlayerBar_26
+    21300054: PlayerBar_27
+    21300056: PlayerBar_28
+    21300058: PlayerBar_29
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: PlayerBar_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 756
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_1
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 756
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 702
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_3
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 702
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 648
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_5
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 648
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 594
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_7
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 594
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 540
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_9
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 540
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 486
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_11
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 486
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 432
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_13
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 432
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 378
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_15
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 378
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 324
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_17
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 324
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 270
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_19
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 270
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 216
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_21
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 216
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 162
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_23
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 162
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 108
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_25
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 108
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 54
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_27
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 54
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBar_29
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 0
+        width: 700
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

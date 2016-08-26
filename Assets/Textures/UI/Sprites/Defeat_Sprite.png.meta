@@ -1,0 +1,561 @@
+fileFormatVersion: 2
+guid: bc490ea369398894e8c0681f01e522ad
+timeCreated: 1461620396
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Defeat_Sprite_0
+    21300002: Defeat_Sprite_1
+    21300004: Defeat_Sprite_2
+    21300006: Defeat_Sprite_3
+    21300008: Defeat_Sprite_4
+    21300010: Defeat_Sprite_5
+    21300012: Defeat_Sprite_6
+    21300014: Defeat_Sprite_7
+    21300016: Defeat_Sprite_8
+    21300018: Defeat_Sprite_9
+    21300020: Defeat_Sprite_10
+    21300022: Defeat_Sprite_11
+    21300024: Defeat_Sprite_12
+    21300026: Defeat_Sprite_13
+    21300028: Defeat_Sprite_14
+    21300030: Defeat_Sprite_15
+    21300032: Defeat_Sprite_16
+    21300034: Defeat_Sprite_17
+    21300036: Defeat_Sprite_18
+    21300038: Defeat_Sprite_19
+    21300040: Defeat_Sprite_20
+    21300042: Defeat_Sprite_21
+    21300044: Defeat_Sprite_22
+    21300046: Defeat_Sprite_23
+    21300048: Defeat_Sprite_24
+    21300050: Defeat_Sprite_25
+    21300052: Defeat_Sprite_26
+    21300054: Defeat_Sprite_27
+    21300056: Defeat_Sprite_28
+    21300058: Defeat_Sprite_29
+    21300060: Defeat_Sprite_30
+    21300062: Defeat_Sprite_31
+    21300064: Defeat_Sprite_32
+    21300066: Defeat_Sprite_33
+    21300068: Defeat_Sprite_34
+    21300070: Defeat_Sprite_35
+    21300072: Defeat_Sprite_36
+    21300074: Defeat_Sprite_37
+    21300076: Defeat_Sprite_38
+    21300078: Defeat_Sprite_39
+    21300080: Defeat_Sprite_40
+    21300082: Defeat_Sprite_41
+    21300084: Defeat_Sprite_42
+    21300086: Defeat_Sprite_43
+    21300088: Defeat_Sprite_44
+    21300090: Defeat_Sprite_45
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Defeat_Sprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3255
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_1
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 3255
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_2
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 3255
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3038
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_4
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 3038
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_5
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 3038
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2821
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_7
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 2821
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_8
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 2821
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2604
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_10
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 2604
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_11
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 2604
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2387
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_13
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 2387
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_14
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 2387
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2170
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_16
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 2170
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_17
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 2170
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1953
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_19
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1953
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_20
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1953
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1736
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_22
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1736
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_23
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1736
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1519
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_25
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1519
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_26
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1519
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1302
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_28
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1302
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_29
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1302
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1085
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_31
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1085
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_32
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1085
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 868
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_34
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 868
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_35
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 868
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 651
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_37
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 651
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_38
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 651
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 434
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_40
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 434
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_41
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 434
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 217
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_43
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 217
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_44
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 217
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Defeat_Sprite_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 700
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
