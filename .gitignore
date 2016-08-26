@@ -29,3 +29,5 @@ sysinfo.txt
 *.apk
 *.unitypackage
 Assets/ShaderForge/
+Assets/Scenes/6_Scene/LightingData.asset
+Assets/Scenes/6_Scene/LightingData.asset.meta
