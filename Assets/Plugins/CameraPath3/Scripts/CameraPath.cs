@@ -7,7 +7,7 @@
 // KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 // PARTICULAR PURPOSE.
-
+ 
 #if UNITY_EDITOR
 using System;
 using System.IO;
@@ -21,7 +21,7 @@ using System.Collections.Generic;
 [ExecuteInEditMode]
 public class CameraPath : MonoBehaviour
 {
-    public static float CURRENT_VERSION_NUMBER = 3.41f;
+    public static float CURRENT_VERSION_NUMBER = 3.54f;
     public float version = CURRENT_VERSION_NUMBER;
 
     public enum PointModes
@@ -69,24 +69,24 @@ public class CameraPath : MonoBehaviour
     private Interpolation _interpolation = Interpolation.Bezier;
 
     [SerializeField]
-    private bool initialised = false;
+    private bool initialised;
 
     //this is the length of the arc of the entire bezier curve
     [SerializeField]
-    private float _storedTotalArcLength = 0;
+    private float _storedTotalArcLength;
     //this is an arroy of arc lengths in a point by point basis
     [SerializeField]
-    private float[] _storedArcLengths = null;
+    private float[] _storedArcLengths;
     //this is an array of arc lenths are intervals specified by storedValueArraySize
     //it is the main data used in normalising the bezier curve to acheive a constant speed thoughout
     [SerializeField]
-    private float[] _storedArcLengthsFull = null;
+    private float[] _storedArcLengthsFull;
 
     [SerializeField]
-    private Vector3[] _storedPoints = null;
+    private Vector3[] _storedPoints;
 
     [SerializeField]
-    private float[] _normalisedPercentages = null;
+    private float[] _normalisedPercentages;
 
     //the unity distance of intervals to precalculate points
     //you can modify this number to get a faster output for RecalculateStoredValues
@@ -95,10 +95,13 @@ public class CameraPath : MonoBehaviour
     [SerializeField]
     private float _storedPointResolution = 0.1f;//world units
     [SerializeField]
-    private int _storedValueArraySize = 0;//calculated from above based on path length and resolution
+    private int _storedValueArraySize;//calculated from above based on path length and resolution
 
     [SerializeField]
-    private Vector3[] _storedPathDirections = null;//a list of path directions stored for other calculation
+    private Vector3[] _storedPathDirections;//a list of path directions stored for other calculation
+
+    [SerializeField]
+    private float _directionWidth = 0.05f;
 
     [SerializeField]
     private CameraPathControlPoint[] _pointALink = null;//a link to the point a for each stored point
@@ -106,33 +109,31 @@ public class CameraPath : MonoBehaviour
     private CameraPathControlPoint[] _pointBLink = null;//a link to the point a for each stored point
 
     [SerializeField]
-    private CameraPathOrientationList _orientationList = null;
+    private CameraPathOrientationList _orientationList;
 
     [SerializeField]
-    private CameraPathFOVList _fovList = null;//the list of FOV points
+    private CameraPathFOVList _fovList;//the list of FOV points
 
     [SerializeField]
-    private CameraPathTiltList _tiltList = null;
+    private CameraPathTiltList _tiltList;
 
     [SerializeField]
-    private CameraPathSpeedList _speedList = null;
+    private CameraPathSpeedList _speedList;
 
     [SerializeField]
-    private CameraPathEventList _eventList = null;
+    private CameraPathEventList _eventList;
 
     [SerializeField]
-    private CameraPathDelayList _delayList = null;
+    private CameraPathDelayList _delayList;
 
     [SerializeField]
     private bool _addOrientationsWithPoints = true;
     
     [SerializeField]
-    private bool _looped = false;//is the path looped
+    private bool _looped;//is the path looped
 
     [SerializeField]
     private bool _normalised = true;
-
-    private const float CLIP_THREASHOLD = 0.5f;
 
     [SerializeField]
     private Bounds _pathBounds = new Bounds();
@@ -145,19 +146,32 @@ public class CameraPath : MonoBehaviour
     public int selectedPoint = 0;
     public PointModes pointMode = PointModes.Transform;
     public float addPointAtPercent = 0;
+    [SerializeField]
+    private float _aspect = 1.7778f;
+    [SerializeField]
+    private int _previewResolution = 800;//wide
+    public float drawDistance = 1000;
+    [SerializeField]
+    private int _displayHeight = 225;
+
+    public Texture2D previewOverlay = null;
+    public bool ruleOfThirds = false;
+    public Color ruleOfThirdsColour = Color.magenta;
+    public Texture2D ruleOfThirdsOverlay;
 
     [SerializeField]
-    private CameraPath _nextPath = null;//link this path to a second one
+    private CameraPath _nextPath;//link this path to a second one
 
     [SerializeField]
-    private bool _interpolateNextPath = false;//should we interpolate to that next path?
+    private bool _interpolateNextPath;//should we interpolate to that next path?
 
     //Camera Path Options
     public bool showGizmos = true;
-    public Color selectedPathColour = CameraPathColours.GREEN;
+    public Color selectedPathColour = CameraPathColours.WHITE;
     public Color unselectedPathColour = CameraPathColours.GREY;
     public Color selectedPointColour = CameraPathColours.RED;
     public Color unselectedPointColour = CameraPathColours.GREEN;
+    public Color textColour = Color.white;
     public bool showOrientationIndicators = false;
     public float orientationIndicatorUnitLength = 2.5f;
     public Color orientationIndicatorColours = CameraPathColours.PURPLE;
@@ -302,6 +316,7 @@ public class CameraPath : MonoBehaviour
             curve = curve % (numberOfCurves-1);
         else
             curve = Mathf.Clamp(curve, 0, numberOfCurves - 1);
+        curve = Mathf.Clamp(curve, 0, _storedArcLengths.Length - 1);
         return _storedArcLengths[curve];
     }
 
@@ -322,7 +337,17 @@ public class CameraPath : MonoBehaviour
     /// <summary>
     /// Is the path normalised so that speed and be constant throughout the animation
     /// </summary>
-    public bool normalised {get {return _normalised;} set {_normalised = value;}}
+    public bool normalised
+    {
+        get
+        {
+            return _normalised;
+        }
+        set
+        {
+            _normalised = value;
+        }
+    }
 
     /// <summary>
     /// What kind of path interpolation is used for this path?
@@ -387,6 +412,26 @@ public class CameraPath : MonoBehaviour
     {
         get {return _storedPointResolution;} 
         set {_storedPointResolution = Mathf.Clamp(value,_storedTotalArcLength/10000, 10);}
+    }
+
+    public float directionWidth {get {return _directionWidth;} set {_directionWidth = value;}}
+
+    public int displayHeight
+    {
+        get {return _displayHeight;} 
+        set {_displayHeight = Mathf.Clamp(value,100,500);}
+    }
+
+    public float aspect
+    {
+        get {return _aspect;} 
+        set {_aspect = Mathf.Clamp(value,0.1f,10.0f);}
+    }
+
+    public int previewResolution 
+    {
+        get {return _previewResolution;} 
+        set {_previewResolution = Mathf.Clamp(value,1,1024);}
     }
 
     public int StoredValueIndex(float percentage)
@@ -546,8 +591,8 @@ public class CameraPath : MonoBehaviour
         if(_normalised)
         {
             int max = storedValueArraySize - 1;
-            float storedPointSize = (1.0f / storedValueArraySize);
-            int normalisationIndex = Mathf.Clamp(Mathf.FloorToInt(storedValueArraySize * percentage), 0, max);
+            float storedPointSize = (1.0f / max);
+            int normalisationIndex = Mathf.Clamp(Mathf.FloorToInt(max * percentage), 0, max);
             int nextNormalisationIndex = Mathf.Clamp(normalisationIndex + 1, 0, max);
             float normalisationPercentA = normalisationIndex * storedPointSize;
             float normalisationPercentB = nextNormalisationIndex * storedPointSize;
@@ -581,7 +626,7 @@ public class CameraPath : MonoBehaviour
         float targetLength = percentage * _storedTotalArcLength;
 
         int low = 0;
-        int high = storedValueArraySize;
+        int high = storedValueArraySize-1;
         int index = 0;
         while (low < high)
         {
@@ -651,7 +696,6 @@ public class CameraPath : MonoBehaviour
     {
         return GetPathPosition(percentage, false);
     }
-
 
     /// <summary>
     /// Get a position based on a percent of the path specifying the result will be normalised or not
@@ -734,8 +778,21 @@ public class CameraPath : MonoBehaviour
     /// <returns>The direction of the path at this percent</returns>
     public Vector3 GetPathDirection(float percentage, bool normalisePercent)
     {
-        if (normalisePercent) percentage = ParsePercentage(percentage);
-        return _storedPathDirections[StoredValueIndex(percentage)];
+        int max = storedValueArraySize - 1;
+        int indexa = Mathf.Clamp(Mathf.FloorToInt(max * percentage), 0, max);
+        int indexb = Mathf.Clamp(Mathf.CeilToInt(max * percentage), 0, max);
+
+        if(indexa == indexb)
+            return _storedPathDirections[indexa];
+
+        float percentA = indexa / (float)max;
+        float percentB = indexb / (float)max;
+
+        float lerpVal = (percentage - percentA) / (percentB - percentA);
+        Vector3 dirA = _storedPathDirections[indexa];
+        Vector3 dirB = _storedPathDirections[indexb];
+        
+        return Vector3.Lerp(dirA, dirB, lerpVal);
     }
 
     /// <summary>
@@ -1015,11 +1072,6 @@ public class CameraPath : MonoBehaviour
             }
 
             Debug.Log("Camera Path v." + version + " Upgrading to version " + CURRENT_VERSION_NUMBER + "\nRemember to backup your data!");
-//
-//            if (version < 3.13f)
-//            {
-//
-//            }
 
             version = CURRENT_VERSION_NUMBER;//update the data version number once upgrade is complete
         }
@@ -1077,10 +1129,10 @@ public class CameraPath : MonoBehaviour
             float pointAPercentage = pointPercentage * i;
             float pointBPercentage = pointPercentage * (i+1);
             float arcPercentage = pointBPercentage - pointAPercentage;
-            Vector3 arcCentre = (pointA.worldPosition + pointB.worldPosition) * 0.5f;
+            Vector3 arcCentre = Vector3.Lerp(pointA.worldPosition, pointB.worldPosition, 0.5f);
             float arcLength = StoredArcLength(GetCurveIndex(pointA.index));
             float arcDistance = Vector3.Distance(sceneCamera.transform.position, arcCentre);
-            int arcPoints = Mathf.RoundToInt(arcLength * (40 / Mathf.Max(arcDistance, 20)));
+            int arcPoints = Mathf.CeilToInt(Mathf.Min(arcLength, 50) / (Mathf.Max(arcDistance, 20)/2000));//Mathf.RoundToInt(arcLength * (40 / Mathf.Max(arcDistance, 20)));
             float arcTime = 1.0f / arcPoints;
 
             float endLoop = 1.0f - arcTime;
@@ -1109,6 +1161,17 @@ public class CameraPath : MonoBehaviour
     /// </summary>
     public void RecalculateStoredValues()
     {
+        if(!_normalised)
+        {
+            _storedTotalArcLength = 0;
+            _storedArcLengths = new float[0];
+            _storedArcLengthsFull = new float[0];
+            _storedPoints = new Vector3[0];
+            _normalisedPercentages = new float[0];
+            _storedPathDirections = new Vector3[0];
+            return;
+        }
+
         if(autoSetStoedPointRes && _storedTotalArcLength > 0)
             _storedPointResolution = _storedTotalArcLength / 1000.0f;//auto set this value so that long and short paths work fast
 
@@ -1121,9 +1184,6 @@ public class CameraPath : MonoBehaviour
             point.givenName = "Point " + i;
             point.fullName = name+ " Point " + i;
             point.index = i;
-//#if UNITY_EDITOR
-//            EditorUtility.SetDirty(point);
-//#endif
             point.hideFlags = HideFlags.HideInInspector;
         }
 
@@ -1158,15 +1218,30 @@ public class CameraPath : MonoBehaviour
         float targetLength = targetMovement;
         float totalArcLength = 0;
 
-        Vector3 pA = GetPathPosition(0, true), pB,pC;
+        Vector3 pA = GetPathPosition(0, true), pB;
 
         storedPoints.Add(pA);
-        storedDirections.Add((GetPathPosition(normilisePercentAmount, true) - pA).normalized);
+
+
+
+        float f0, f1;
+        if (!_looped)
+        {
+            f0 = 0;
+            f1 = Mathf.Clamp(normalisePercent + _directionWidth, 0, 1);
+        }
+        else
+        {
+            f0 = (normalisePercent - _directionWidth + 1) % 1;
+            f1 = (normalisePercent + _directionWidth) % 1;
+        }
+        Vector3 initDirection = (GetPathPosition(f1, true) - GetPathPosition(f0, true)).normalized;
+
+        storedDirections.Add(initDirection);
         normValues.Add(0);
 
         for (; normalisePercent < 1.0f; normalisePercent += normilisePercentAmount)
         {
-//            pB = SplineMaths.CalculateBezierPoint(normalisePercent, curveA, curveP, curveQ, curveB);
             pB = GetPathPosition(normalisePercent, true);
             float arcLength = Vector3.Distance(pA, pB);
 
@@ -1177,9 +1252,23 @@ public class CameraPath : MonoBehaviour
                 float normValue = Mathf.Lerp(normalisePercent, normalisePercent + normilisePercentAmount, lerpPoint);
                 normValues.Add(normValue);
                 storedPoints.Add(pB);
-                float cPercent = Mathf.Clamp(normalisePercent + normilisePercentAmount, 0, 1);
-                pC = GetPathPosition(cPercent, true);
-                Vector3 pointDireciton = ((pB - pA) + (pC - pB)).normalized;
+
+                //calculate direction
+                float xPercent, yPercent;
+                if(!_looped)
+                {
+                    xPercent = Mathf.Clamp(normalisePercent - _directionWidth, 0, 1);
+                    yPercent = Mathf.Clamp(normalisePercent + _directionWidth, 0, 1);
+                }
+                else
+                {
+                    xPercent = (normalisePercent - _directionWidth + 1) % 1;
+                    yPercent = (normalisePercent + _directionWidth) % 1;
+                }
+                Vector3 pX = GetPathPosition(xPercent, true);
+                Vector3 pY = GetPathPosition(yPercent, true);
+
+                Vector3 pointDireciton = ((pA - pX) + (pY - pA)).normalized;
                 storedDirections.Add(pointDireciton);
 
                 storedArcLengths.Add(currentLength);
@@ -1195,7 +1284,22 @@ public class CameraPath : MonoBehaviour
         }
         normValues.Add(1);
         storedPoints.Add(GetPathPosition(1, true));
-        storedDirections.Add(GetPathPosition(1, true) - (GetPathPosition(1-normilisePercentAmount, true)).normalized);
+        
+        if (!_looped)
+        {
+            f0 = Mathf.Clamp(normalisePercent - _directionWidth, 0, 1);
+            f1 = 1;
+        }
+        else
+        {
+            f0 = (normalisePercent - _directionWidth + 1) % 1;
+            f1 = (normalisePercent + _directionWidth) % 1;
+        }
+
+        Vector3 pf = GetPathPosition(f0, true);//penultimate position
+        Vector3 ff = GetPathPosition(f1, true);//final position
+        Vector3 finalDirection = (ff - pf).normalized;
+        storedDirections.Add(finalDirection);
 
         _storedValueArraySize = normValues.Count;//storedPointSize
         _normalisedPercentages = normValues.ToArray();
@@ -1204,65 +1308,6 @@ public class CameraPath : MonoBehaviour
         _storedPathDirections = storedDirections.ToArray();
         _storedArcLengths = storedArcLengths.ToArray();
         _storedArcLengthsFull = storedArcLengthsFull.ToArray();
-
-
-
-
-
-
-
-
-//        _storedValueArraySize = Mathf.Max(Mathf.RoundToInt(_storedTotalArcLength / _storedPointResolution), 1);
-//
-//        _storedArcLengths = new float[numberOfCurves];
-//        float alTime = 1.0f / (_storedValueArraySize-1);
-//        float calculatedTotalArcLength = 0;
-//        _storedArcLengthsFull = new float[_storedValueArraySize];
-//        _storedArcLengthsFull[0] = 0.0f;
-//        for (int i = 0; i < _storedValueArraySize - 1; i++)
-//        {
-//            float altA = alTime * (i + 1);
-//            float altB = alTime * (i + 1) + alTime;
-////            Vector3 pA = GetPathPosition(altA, true);
-////            Vector3 pB = GetPathPosition(altB, true);
-//            float arcLength = Vector3.Distance(pA, pB);
-//            calculatedTotalArcLength += arcLength;
-//            int arcpoint = Mathf.FloorToInt(altA * numberOfCurves);
-//            _storedArcLengths[arcpoint] += arcLength;
-//            _storedArcLengthsFull[i + 1] = calculatedTotalArcLength;
-//        }
-//        _storedTotalArcLength = calculatedTotalArcLength;
-
-//        _storedPoints = new Vector3[_storedValueArraySize];
-//        _storedPathDirections = new Vector3[_storedValueArraySize];
-//        _normalisedPercentages = new float[_storedValueArraySize];
-//        Debug.Log(alTime * 0);
-//        Debug.Log(alTime * 1);
-//        Debug.Log(alTime * 2);
-//        Debug.Log(CalculateNormalisedPercentage(alTime * 0));
-//        Debug.Log(CalculateNormalisedPercentage(alTime * 1));
-//        Debug.Log(CalculateNormalisedPercentage(alTime * 2));
-//        for (int i = 0; i < _storedValueArraySize; i++)
-//        {
-//            float altA = Mathf.Clamp01(alTime * (i + 1));
-//            float altB = alTime * (i);
-//            float altC = Mathf.Clamp01(alTime * (i - 1));
-//            _normalisedPercentages[i] = CalculateNormalisedPercentage(altB);
-//            Vector3 pA = GetPathPosition(altA, true);
-//            Vector3 pB = GetPathPosition(altB, true);
-//            Vector3 pC = GetPathPosition(altC, true);
-//            _storedPathDirections[i] = (((pB - pA) + (pB - pC))).normalized;
-//        }
-
-//        _normalisedPercentages[0] = 0;
-//        _normalisedPercentages[_storedValueArraySize-1] = 1;
-
-//        for (int i = 0; i < _storedValueArraySize; i++)
-//        {
-//            float altA = alTime * (i);
-//            Vector3 pA = GetPathPosition(altA);
-//            _storedPoints[i] = pA;
-//        }
 
         if (RecalculateCurvesEvent != null)
             RecalculateCurvesEvent();
@@ -1415,10 +1460,6 @@ public class CameraPath : MonoBehaviour
     /// </summary>
     public void Clear()
     {
-//        for (int i = 0; i < realNumberOfPoints; i++)
-//        {
-//            DestroyImmediate(_points[i]);
-//        }
         _points.Clear();
     }
 
@@ -1483,10 +1524,10 @@ public class CameraPath : MonoBehaviour
         if(initialised)
             return;
 
-        CameraPathControlPoint p0 = gameObject.AddComponent<CameraPathControlPoint>();//ScriptableObject.CreateInstance<CameraPathControlPoint>();
-        CameraPathControlPoint p1 = gameObject.AddComponent<CameraPathControlPoint>();//ScriptableObject.CreateInstance<CameraPathControlPoint>();
-        CameraPathControlPoint p2 = gameObject.AddComponent<CameraPathControlPoint>();//ScriptableObject.CreateInstance<CameraPathControlPoint>();
-        CameraPathControlPoint p3 = gameObject.AddComponent<CameraPathControlPoint>();//ScriptableObject.CreateInstance<CameraPathControlPoint>();
+        CameraPathControlPoint p0 = gameObject.AddComponent<CameraPathControlPoint>();
+        CameraPathControlPoint p1 = gameObject.AddComponent<CameraPathControlPoint>();
+        CameraPathControlPoint p2 = gameObject.AddComponent<CameraPathControlPoint>();
+        CameraPathControlPoint p3 = gameObject.AddComponent<CameraPathControlPoint>();
 
         p0.hideFlags = HideFlags.HideInInspector;
         p1.hideFlags = HideFlags.HideInInspector;
@@ -1514,17 +1555,17 @@ public class CameraPath : MonoBehaviour
     private void InitialiseLists()
     {
         if(_orientationList == null)
-            _orientationList = gameObject.AddComponent<CameraPathOrientationList>();// ScriptableObject.CreateInstance<CameraPathOrientationList>();
+            _orientationList = gameObject.AddComponent<CameraPathOrientationList>();
         if (_fovList == null)
-            _fovList = gameObject.AddComponent<CameraPathFOVList>();//ScriptableObject.CreateInstance<CameraPathFOVList>();
+            _fovList = gameObject.AddComponent<CameraPathFOVList>();
         if (_tiltList == null)
-            _tiltList = gameObject.AddComponent<CameraPathTiltList>();//ScriptableObject.CreateInstance<CameraPathTiltList>();
+            _tiltList = gameObject.AddComponent<CameraPathTiltList>();
         if (_speedList == null)
-            _speedList = gameObject.AddComponent<CameraPathSpeedList>();//ScriptableObject.CreateInstance<CameraPathSpeedList>();
+            _speedList = gameObject.AddComponent<CameraPathSpeedList>();
         if (_eventList == null)
-            _eventList = gameObject.AddComponent<CameraPathEventList>();//ScriptableObject.CreateInstance<CameraPathEventList>();
+            _eventList = gameObject.AddComponent<CameraPathEventList>();
         if (_delayList == null)
-            _delayList = gameObject.AddComponent<CameraPathDelayList>();//ScriptableObject.CreateInstance<CameraPathDelayList>();
+            _delayList = gameObject.AddComponent<CameraPathDelayList>();
 
         _orientationList.Init(this);
         _fovList.Init(this);
@@ -1555,6 +1596,13 @@ public class CameraPath : MonoBehaviour
         sb.AppendLine("<interpolation>" + interpolation + "</interpolation>");
         sb.AppendLine("<linkedPath>" + ((_nextPath!=null)?_nextPath.name:"null") + "</linkedPath>");
         sb.AppendLine("<looped>" + _looped + "</looped>");
+        sb.AppendLine("<normalised>" + _normalised + "</normalised>");
+        sb.AppendLine("<hermiteTension>" + hermiteTension + "</hermiteTension>");
+        sb.AppendLine("<hermiteBias>" + hermiteBias + "</hermiteBias>");
+        sb.AppendLine("<aspect>" + _aspect + "</aspect>");
+        sb.AppendLine("<previewResolution>" + _previewResolution + "</previewResolution>");
+        sb.AppendLine("<drawDistance>" + drawDistance + "</drawDistance>");
+        sb.AppendLine("<displayHeight>" + _displayHeight + "</displayHeight>");
 
         sb.Append(gameObject.GetComponent<CameraPathAnimator>().ToXML());
 
@@ -1607,8 +1655,29 @@ public class CameraPath : MonoBehaviour
             if (nextPathInScene != null)
                 _nextPath = nextPathInScene.GetComponent<CameraPath>();
         }
-        if(cameraPathNode["looped"] != null)
+        if (cameraPathNode["looped"] != null)
             _looped = bool.Parse(cameraPathNode["looped"].FirstChild.Value);
+
+        if (cameraPathNode["normalised"] != null)
+            _normalised = bool.Parse(cameraPathNode["normalised"].FirstChild.Value);
+
+        if (cameraPathNode["hermiteTension"] != null)
+            hermiteTension = float.Parse(cameraPathNode["hermiteTension"].FirstChild.Value);
+
+        if (cameraPathNode["hermiteBias"] != null)
+            hermiteBias = float.Parse(cameraPathNode["hermiteBias"].FirstChild.Value);
+
+        if (cameraPathNode["aspect"] != null)
+            _aspect = float.Parse(cameraPathNode["aspect"].FirstChild.Value);
+
+        if (cameraPathNode["previewResolution"] != null)
+            _previewResolution = int.Parse(cameraPathNode["previewResolution"].FirstChild.Value);
+
+        if (cameraPathNode["displayHeight"] != null)
+            _displayHeight = int.Parse(cameraPathNode["displayHeight"].FirstChild.Value);
+
+        if (cameraPathNode["drawDistance"] != null)
+            drawDistance = float.Parse(cameraPathNode["drawDistance"].FirstChild.Value);
 
         _points.Clear();
         foreach (XmlNode node in xml.SelectNodes("camerapath/controlpoints/controlpoint"))

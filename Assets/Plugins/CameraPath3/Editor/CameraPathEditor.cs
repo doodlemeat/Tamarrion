@@ -28,6 +28,8 @@ public class CameraPathEditor : Editor
 
         CameraPathEditorSceneGUI._cameraPath = _cameraPath;
         CameraPathEditorSceneGUI._animator = _animator;
+        CameraPathEditorSceneGUI.colouredText = new GUIStyle();
+        CameraPathEditorSceneGUI.colouredText.normal.textColor = _cameraPath.textColour;
 
         CameraPathEditorInspectorGUI._cameraPath = _cameraPath;
         CameraPathEditorInspectorGUI._animator = _animator;
@@ -74,6 +76,7 @@ public class CameraPathEditor : Editor
         HandleUtility.Repaint();
         SceneView.RepaintAll();
         _cameraPath.RecalculateStoredValues();
+        _cameraPath.ruleOfThirdsOverlay = null;
 //        EditorUtility.SetDirty(_cameraPath);
 //        if(_animator!=null)
 //            EditorUtility.SetDirty(_animator);

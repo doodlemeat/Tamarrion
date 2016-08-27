@@ -159,7 +159,7 @@ public class CameraPathDelayList : CameraPathPointList
                 }
             }
         }
-        return System.Math.Max(output, MINIMUM_EASE_VALUE);
+        return Math.Max(output, MINIMUM_EASE_VALUE);
     }
 
     public void FireDelay(CameraPathDelay eventPoint)

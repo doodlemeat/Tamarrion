@@ -18,6 +18,8 @@ public class CameraPathEditorSceneGUI
 
     public static CameraPath _cameraPath;
     public static CameraPathAnimator _animator;
+    public static GUIStyle colouredText;
+
     public static int selectedPointIndex
     {
         get { return _cameraPath.selectedPoint; }
@@ -241,7 +243,7 @@ public class CameraPathEditorSceneGUI
                 continue;
 
             if (_cameraPath.enableUndo) Undo.RecordObject(point, "Modifying Path Point");
-            Handles.Label(point.worldPosition, point.displayName+"\n"+(point.percentage*100).ToString("F1")+"%");
+            Handles.Label(point.worldPosition, point.displayName+"\n"+(point.percentage*100).ToString("F1")+"%", colouredText);
             float pointHandleSize = HandleUtility.GetHandleSize(point.worldPosition) * HANDLE_SCALE;
             Handles.color = (i == selectedPointIndex) ? _cameraPath.selectedPointColour : _cameraPath.unselectedPointColour;
             if (Handles.Button(point.worldPosition, Quaternion.identity, pointHandleSize, pointHandleSize, Handles.DotCap))
@@ -284,11 +286,11 @@ public class CameraPathEditorSceneGUI
                     Handles.DrawLine(point.worldPosition, point.backwardControlPointWorld);
                     point.backwardControlPointWorld = Handles.DoPositionHandle(point.backwardControlPointWorld, Quaternion.identity);
                     if (Vector3.Dot(sceneCamera.transform.forward, point.worldPosition - sceneCamera.transform.position) > 0)
-                        Handles.Label(point.backwardControlPoint, "point " + i + " reverse ControlPoints point");
+                        Handles.Label(point.backwardControlPoint, "point " + i + " reverse ControlPoints point", colouredText);
 
                     //Forward ControlPoints point
                     if (Vector3.Dot(sceneCamera.transform.forward, point.worldPosition - sceneCamera.transform.position) > 0)
-                        Handles.Label(point.forwardControlPoint, "point " + i + " ControlPoints point");
+                        Handles.Label(point.forwardControlPoint, "point " + i + " ControlPoints point", colouredText);
                     Handles.color = _cameraPath.selectedPointColour;
                     Handles.DrawLine(point.worldPosition, point.forwardControlPointWorld);
                     point.forwardControlPointWorld = Handles.DoPositionHandle(point.forwardControlPointWorld, Quaternion.identity);
@@ -321,10 +323,24 @@ public class CameraPathEditorSceneGUI
                     break;
             }
 
-            Handles.Label(orientation.worldPosition, orientationLabel);
+            Handles.Label(orientation.worldPosition, orientationLabel, colouredText);
             float pointHandleSize = HandleUtility.GetHandleSize(orientation.worldPosition) * HANDLE_SCALE;
-            Handles.color = (i == selectedPointIndex) ? _cameraPath.selectedPointColour : _cameraPath.unselectedPointColour;
-            Handles.ArrowCap(0, orientation.worldPosition, orientation.rotation, pointHandleSize*4);
+            Handles.color = (i == selectedPointIndex) ? Color.blue : _cameraPath.unselectedPointColour;
+            Handles.ArrowCap(0, orientation.worldPosition, orientation.rotation, pointHandleSize * 4);
+
+            if(i == selectedPointIndex)
+            {
+                //up arrow
+                Handles.color = Color.green;
+                Quaternion arrowUp = orientation.rotation * Quaternion.FromToRotation(Vector3.forward, Vector3.up);
+                Handles.ArrowCap(0, orientation.worldPosition, arrowUp, pointHandleSize * 4);
+
+                //right arrow
+                Handles.color = Color.red;
+                Quaternion arrowRight = orientation.rotation * Quaternion.FromToRotation(Vector3.forward, Vector3.right);
+                Handles.ArrowCap(0, orientation.worldPosition, arrowRight, pointHandleSize * 4);
+            }
+
             if (Handles.Button(orientation.worldPosition, Quaternion.identity, pointHandleSize, pointHandleSize, Handles.DotCap))
             {
                 ChangeSelectedPointIndex(i);
@@ -342,7 +358,7 @@ public class CameraPathEditorSceneGUI
                 CPPSlider(orientation);
             }
         }
-
+        
         if(_cameraPath.showOrientationIndicators)//draw orientation indicators
         {
             Handles.color = _cameraPath.orientationIndicatorColours;
@@ -376,7 +392,7 @@ public class CameraPathEditorSceneGUI
             if (fovPoint.positionModes == CameraPathPoint.PositionModes.FixedToPoint) pointLabel += "\nat point: " + fovPoint.point.displayName;
             else pointLabel += "\nat percentage: " + fovPoint.percent.ToString("F3");
 
-            Handles.Label(fovPoint.worldPosition, pointLabel);
+            Handles.Label(fovPoint.worldPosition, pointLabel, colouredText);
             float pointHandleSize = HandleUtility.GetHandleSize(fovPoint.worldPosition) * HANDLE_SCALE;
             Handles.color = (i == selectedPointIndex) ? _cameraPath.selectedPointColour : _cameraPath.unselectedPointColour;
             if (Handles.Button(fovPoint.worldPosition, Quaternion.identity, pointHandleSize, pointHandleSize, Handles.DotCap))
@@ -419,7 +435,7 @@ public class CameraPathEditorSceneGUI
             if (eventPoint.positionModes == CameraPathPoint.PositionModes.FixedToPoint) pointLabel += "\nat point: " + eventPoint.point.displayName;
             else pointLabel += "\nat percentage: " + eventPoint.percent.ToString("F3");
 
-            Handles.Label(eventPoint.worldPosition, pointLabel);
+            Handles.Label(eventPoint.worldPosition, pointLabel, colouredText);
             float pointHandleSize = HandleUtility.GetHandleSize(eventPoint.worldPosition) * HANDLE_SCALE;
             Handles.color = (i == selectedPointIndex) ? _cameraPath.selectedPointColour : _cameraPath.unselectedPointColour;
             if (Handles.Button(eventPoint.worldPosition, Quaternion.identity, pointHandleSize, pointHandleSize, Handles.DotCap))
@@ -454,7 +470,7 @@ public class CameraPathEditorSceneGUI
             pointLabel += "\npercent: " + point.percent;
             pointLabel += "\na percent: " + _cameraPath.DeNormalisePercentage(point.percent);
 
-            Handles.Label(point.worldPosition, pointLabel);
+            Handles.Label(point.worldPosition, pointLabel, colouredText);
             float pointHandleSize = HandleUtility.GetHandleSize(point.worldPosition) * HANDLE_SCALE;
             Handles.color = (i == selectedPointIndex) ? _cameraPath.selectedPointColour : _cameraPath.unselectedPointColour;
             if (Handles.Button(point.worldPosition, Quaternion.identity, pointHandleSize, pointHandleSize, Handles.DotCap))
@@ -488,13 +504,13 @@ public class CameraPathEditorSceneGUI
             string pointLabel = point.displayName;
             pointLabel += "\nvalue: " + point.tilt.ToString("F1") + "\u00B0";
 
-            Handles.Label(point.worldPosition, pointLabel);
+            Handles.Label(point.worldPosition, pointLabel, colouredText);
             float pointHandleSize = HandleUtility.GetHandleSize(point.worldPosition) * HANDLE_SCALE;
             bool pointIsSelected = i == selectedPointIndex;
             Handles.color = (pointIsSelected) ? _cameraPath.selectedPointColour : _cameraPath.unselectedPointColour;
 
             float tiltSize = 2.0f;
-            Vector3 pointForwardDirection = _cameraPath.GetPathDirection(point.percent, false);
+            Vector3 pointForwardDirection = _cameraPath.GetPathDirection(_cameraPath.DeNormalisePercentage(point.percent));
             Quaternion qTilt = Quaternion.AngleAxis(-point.tilt, pointForwardDirection);
             Quaternion pointForward = Quaternion.LookRotation(pointForwardDirection);
             Handles.CircleCap(0, point.worldPosition, pointForward, tiltSize);
@@ -520,6 +536,18 @@ public class CameraPathEditorSceneGUI
             }
         }
 
+        if (_cameraPath.showOrientationIndicators)//draw orientation indicators
+        {
+            Handles.color = _cameraPath.orientationIndicatorColours;
+            float indicatorLength = _cameraPath.orientationIndicatorUnitLength / _cameraPath.pathLength;
+            for (float i = 0; i < 1; i += indicatorLength)
+            {
+                Vector3 indicatorPosition = _cameraPath.GetPathPosition(i);
+                Quaternion inicatorRotation = Quaternion.LookRotation(_cameraPath.GetPathDirection(_cameraPath.DeNormalisePercentage(i), false));
+                float indicatorHandleSize = HandleUtility.GetHandleSize(indicatorPosition) * HANDLE_SCALE * 4;
+                Handles.ArrowCap(0, indicatorPosition, inicatorRotation, indicatorHandleSize);
+            }
+        }
     }
 
     private static void SceneGUIDelayBased()
@@ -558,7 +586,7 @@ public class CameraPathEditorSceneGUI
                     pointLabel += "\ndelay indefinitely";
             }
 
-            Handles.Label(point.worldPosition, pointLabel);
+            Handles.Label(point.worldPosition, pointLabel, colouredText);
             float pointHandleSize = HandleUtility.GetHandleSize(point.worldPosition) * HANDLE_SCALE;
             Handles.color = (i == selectedPointIndex) ? _cameraPath.selectedPointColour : _cameraPath.unselectedPointColour;
             if (Handles.Button(point.worldPosition, Quaternion.identity, pointHandleSize, pointHandleSize, Handles.DotCap))
@@ -602,7 +630,7 @@ public class CameraPathEditorSceneGUI
                     pointLabel += "\ndelay indefinitely";
             }
 
-            Handles.Label(point.worldPosition, pointLabel);
+            Handles.Label(point.worldPosition, pointLabel, colouredText);
             float pointHandleSize = HandleUtility.GetHandleSize(point.worldPosition) * HANDLE_SCALE;
             Handles.color = (i == selectedPointIndex) ? _cameraPath.selectedPointColour : _cameraPath.unselectedPointColour;
             if (Handles.Button(point.worldPosition, Quaternion.identity, pointHandleSize, pointHandleSize, Handles.DotCap))
@@ -620,7 +648,7 @@ public class CameraPathEditorSceneGUI
                 Vector3 outroEasePoint = _cameraPath.GetPathPosition(outroEasePointPercent, true);
                 Vector3 outroeaseDirection = _cameraPath.GetPathDirection(outroEasePointPercent, false);
 
-                Handles.Label(outroEasePoint, "Ease Out\n" + point.displayName);
+                Handles.Label(outroEasePoint, "Ease Out\n" + point.displayName, colouredText);
                 Vector3 newPosition = Handles.Slider(outroEasePoint, outroeaseDirection);
 
                 float movement = Vector3.Distance(outroEasePoint, newPosition);
@@ -656,7 +684,7 @@ public class CameraPathEditorSceneGUI
                 Vector3 introEaseDirection = _cameraPath.GetPathDirection(introEasePointPercent, false);
 
                 Handles.color = CameraPathColours.RED;
-                Handles.Label(introEasePoint, "Ease In\n" + point.displayName);
+                Handles.Label(introEasePoint, "Ease In\n" + point.displayName, colouredText);
                 Vector3 newPosition = Handles.Slider(introEasePoint, -introEaseDirection);
 
                 float movement = Vector3.Distance(introEasePoint, newPosition);
@@ -694,7 +722,7 @@ public class CameraPathEditorSceneGUI
         float handleSize = HandleUtility.GetHandleSize(atPointVector);
         Handles.color = Color.black;
         Handles.DotCap(0, atPointVector, Quaternion.identity, handleSize*0.05f);
-        Handles.Label(atPointVector, "Add Point Here\nfrom Inspector");
+        Handles.Label(atPointVector, "Add Point Here\nfrom Inspector", colouredText);
     }
 
     private static void AddPathPoints()
@@ -713,7 +741,7 @@ public class CameraPathEditorSceneGUI
 
         float mousePercentage = NearestmMousePercentage();// _track.GetNearestPoint(mousePlanePoint);
         Vector3 mouseTrackPoint = _cameraPath.GetPathPosition(mousePercentage, true);
-        Handles.Label(mouseTrackPoint, "Add New Path Point");
+        Handles.Label(mouseTrackPoint, "Add New Path Point", colouredText);
         float newPointHandleSize = HandleUtility.GetHandleSize(mouseTrackPoint) * HANDLE_SCALE;
         Quaternion lookDirection = Quaternion.LookRotation(Camera.current.transform.forward);
         if (Handles.Button(mouseTrackPoint, lookDirection, newPointHandleSize, newPointHandleSize, Handles.DotCap))
@@ -740,7 +768,7 @@ public class CameraPathEditorSceneGUI
         {
             CameraPathControlPoint point = _cameraPath[i];
             float pointHandleSize = HandleUtility.GetHandleSize(point.worldPosition) * HANDLE_SCALE;
-            Handles.Label(point.worldPosition, "Remove Point: "+point.displayName);
+            Handles.Label(point.worldPosition, "Remove Point: "+point.displayName, colouredText);
             if (Handles.Button(point.worldPosition, mouseLookDirection, pointHandleSize, pointHandleSize, Handles.DotCap))
             {
                 _cameraPath.RemovePoint(point);
@@ -788,7 +816,7 @@ public class CameraPathEditorSceneGUI
 
         float mousePercentage = NearestmMousePercentage();// _track.GetNearestPoint(mousePlanePoint);
         Vector3 mouseTrackPoint = _cameraPath.GetPathPosition(mousePercentage, true);
-        Handles.Label(mouseTrackPoint, "Add New Point");
+        Handles.Label(mouseTrackPoint, "Add New Point", colouredText);
         float newPointHandleSize = HandleUtility.GetHandleSize(mouseTrackPoint) * HANDLE_SCALE;
         Ray mouseRay = Camera.current.ScreenPointToRay(new Vector3(Event.current.mousePosition.x, Screen.height - Event.current.mousePosition.y - 30, 0));
         Quaternion mouseLookDirection = Quaternion.LookRotation(-mouseRay.direction);
@@ -875,7 +903,7 @@ public class CameraPathEditorSceneGUI
         {
             CameraPathPoint point = pointList[i];
             float pointHandleSize = HandleUtility.GetHandleSize(point.worldPosition) * HANDLE_SCALE;
-            Handles.Label(point.worldPosition, "Remove Point " + i);
+            Handles.Label(point.worldPosition, "Remove Point " + i, colouredText);
             if (Handles.Button(point.worldPosition, mouseLookDirection, pointHandleSize, pointHandleSize, Handles.DotCap))
             {
                 pointList.RemovePoint(point);

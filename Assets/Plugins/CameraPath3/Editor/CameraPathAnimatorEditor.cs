@@ -18,60 +18,21 @@ public class CameraPathAnimatorEditor : Editor
 
     private CameraPathAnimator _animator;
     private CameraPath _cameraPath;
+    private GUIStyle _colouredText;
 
-    private const float ASPECT = 1.7777f;
-    private const int PREVIEW_RESOLUTION = 800;
+//    private const float ASPECT = 1.7777f;
+//    private const int PREVIEW_RESOLUTION = 800;
 
     private Vector3 _previewCamPos;
     private Quaternion _previewCamRot;
-    //private float _previewCamFov;
+//    private float _previewCamFov;
 
     private void OnEnable()
     {
         _animator = (CameraPathAnimator)target;
         _cameraPath = _animator.GetComponent<CameraPath>();
-
-        //Preview Camera
-        if(_animator.editorPreview != null)
-            DestroyImmediate(_animator.editorPreview);
-        if (CameraPathPreviewSupport.previewSupported)
-        {
-            _animator.editorPreview = new GameObject("Animtation Preview Cam");
-            _animator.editorPreview.hideFlags = HideFlags.HideAndDontSave;
-            _animator.editorPreview.AddComponent<Camera>();
-            _animator.editorPreview.GetComponent<Camera>().fieldOfView = 60;
-            _animator.editorPreview.GetComponent<Camera>().depth = -1;
-            //Retreive camera settings from the main camera
-            Camera[] cams = Camera.allCameras;
-            bool sceneHasCamera = cams.Length > 0;
-            Camera sceneCamera = null;
-            Skybox sceneCameraSkybox = null;
-            if(Camera.main)
-            {
-                sceneCamera = Camera.main;
-            }
-            else if(sceneHasCamera)
-            {
-                sceneCamera = cams[0];
-            }
-
-            if(sceneCamera != null)
-                sceneCameraSkybox = sceneCamera.GetComponent<Skybox>();
-            if(sceneCamera != null)
-            {
-                _animator.editorPreview.GetComponent<Camera>().backgroundColor = sceneCamera.backgroundColor;
-                if(sceneCameraSkybox != null)
-                    _animator.editorPreview.AddComponent<Skybox>().material = sceneCameraSkybox.material;
-                else if(RenderSettings.skybox != null)
-                    _animator.editorPreview.AddComponent<Skybox>().material = RenderSettings.skybox;
-
-                _animator.editorPreview.GetComponent<Camera>().orthographic = sceneCamera.orthographic;
-            }
-            _animator.editorPreview.GetComponent<Camera>().enabled = false;
-        }
-
-        if(EditorApplication.isPlaying && _animator.editorPreview != null)
-            _animator.editorPreview.SetActive(false);
+        _colouredText = new GUIStyle();
+        _colouredText.normal.textColor = _cameraPath.textColour;
     }
 
     void OnDisable()
@@ -105,14 +66,14 @@ public class CameraPathAnimatorEditor : Editor
         //Preview Direction Arrow
         float handleSize = HandleUtility.GetHandleSize(_previewCamPos);
         Handles.ArrowCap(0, _previewCamPos, _previewCamRot, handleSize);
-        Handles.Label(_previewCamPos, "Preview\nCamera\nPosition");
+        Handles.Label(_previewCamPos, "Preview\nCamera\nPosition", _colouredText);
 
         if(_animator.startPercent != 0)
         {
             Vector3 startPos = _cameraPath.GetPathPosition(_animator.startPercent);
             Handles.color = Color.red;
             Handles.DotCap(0,startPos,Quaternion.identity,HandleUtility.GetHandleSize(startPos)*0.03f);
-            Handles.Label(startPos, "Animation\nStart\nPoint");
+            Handles.Label(startPos, "Animation\nStart\nPoint", _colouredText);
         }
 
         //draw line to indicate selected target
@@ -123,7 +84,7 @@ public class CameraPathAnimatorEditor : Editor
 
             string targetLabel = "Animation Orientation CameraPathOnRailsTarget:";
             targetLabel += "\n" + _animator.orientationTarget.name;
-            Handles.Label(_animator.orientationTarget.transform.position, targetLabel);
+            Handles.Label(_animator.orientationTarget.transform.position, targetLabel, _colouredText);
         }
 
         if (GUI.changed)
@@ -146,8 +107,8 @@ public class CameraPathAnimatorEditor : Editor
         bool noPath = _cameraPath.realNumberOfPoints < 2;
 
         EditorGUILayout.BeginVertical(GUILayout.Width(400));
-        RenderPreview();
-
+        CameraPathPreviewSupport.RenderPreview(_cameraPath, _animator, _animator.editorPercentage);
+        //            RenderPreview();
 
         bool isFollowingTargetTransform = _animator.orientationMode == CameraPathAnimator.orientationModes.followTransform;
         if (isFollowingTargetTransform)
@@ -194,7 +155,7 @@ public class CameraPathAnimatorEditor : Editor
 
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Animate Scene Object in Editor");
-        _animator.animateSceneObjectInEditor = EditorGUILayout.Toggle(_animator.animateSceneObjectInEditor);
+        _animator.animateSceneObjectInEditor = EditorGUILayout.Toggle(_animator.animateSceneObjectInEditor, GUILayout.Width(15));
         EditorGUILayout.EndHorizontal();
         
         EditorGUILayout.EndVertical();
@@ -313,6 +274,20 @@ public class CameraPathAnimatorEditor : Editor
                 EditorGUILayout.HelpBox("The orientation of the animated object will not be modified.", MessageType.None);
                 break;
         }
+        EditorGUILayout.Space();
+
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Smooth Orientation Mode Changes");
+        _animator.smoothOrientationModeChanges = EditorGUILayout.Toggle(_animator.smoothOrientationModeChanges, GUILayout.Width(15));
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUI.BeginDisabledGroup(!_animator.smoothOrientationModeChanges);
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Interpolation Time");
+        _animator.orientationModeLerpTime = EditorGUILayout.FloatField(_animator.orientationModeLerpTime, GUILayout.Width(80));
+        EditorGUILayout.EndHorizontal();
+        EditorGUI.EndDisabledGroup();
+
         EditorGUILayout.EndVertical();
 
         if(_animator.animationMode != CameraPathAnimator.animationModes.still)
@@ -337,6 +312,17 @@ public class CameraPathAnimatorEditor : Editor
                 _animator.pathSpeed = newPathSpeed;
             EditorGUILayout.LabelField("m/sec", GUILayout.Width(25));
             EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.Space();
+
+            EditorGUILayout.BeginHorizontal();
+            float animationTime = _cameraPath.pathLength / _animator.pathSpeed;
+            float newTime = EditorGUILayout.FloatField("Animation Time", animationTime);
+            if(animationTime != newTime)
+                _animator.pathSpeed = _cameraPath.pathLength / newTime;
+            EditorGUILayout.LabelField("sec", GUILayout.Width(25));
+            EditorGUILayout.EndHorizontal();
+
             EditorGUI.EndDisabledGroup();
             EditorGUI.EndDisabledGroup();
         }
@@ -388,54 +374,54 @@ public class CameraPathAnimatorEditor : Editor
         EditorGUILayout.EndVertical();
     }
 
-    private void RenderPreview()
-    {
-        if (_cameraPath.realNumberOfPoints < 2)
-            return;
-
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Preview");
-        string showPreviewButtonLabel = (_animator.showPreview) ? "hide" : "show";
-        if (GUILayout.Button(showPreviewButtonLabel, GUILayout.Width(74)))
-            _animator.showPreview = !_animator.showPreview;
-        EditorGUILayout.EndHorizontal();
-
-        if (!_cameraPath.enablePreviews || !_animator.showPreview)
-            return;
-
-        GameObject editorPreview = _animator.editorPreview;
-        if (CameraPathPreviewSupport.previewSupported && !EditorApplication.isPlaying)
-        {
-            RenderTexture rt = RenderTexture.GetTemporary(PREVIEW_RESOLUTION, Mathf.RoundToInt(PREVIEW_RESOLUTION / ASPECT), 24, RenderTextureFormat.Default, RenderTextureReadWrite.Default, 1);
-
-            editorPreview.SetActive(true);
-            editorPreview.transform.position = _previewCamPos;
-            editorPreview.transform.rotation = _previewCamRot;
-
-            Camera previewCam = editorPreview.GetComponent<Camera>();
-            if(previewCam.orthographic)
-                previewCam.orthographicSize = _cameraPath.GetPathOrthographicSize(_animator.editorPercentage);
-            else
-                previewCam.fieldOfView = _cameraPath.GetPathFOV(_animator.editorPercentage);
-
-            previewCam.enabled = true;
-            previewCam.targetTexture = rt;
-            previewCam.Render();
-            previewCam.targetTexture = null;
-            previewCam.enabled = false;
-            editorPreview.SetActive(false);
-
-            GUILayout.Label("", GUILayout.Width(400), GUILayout.Height(225));
-            Rect guiRect = GUILayoutUtility.GetLastRect();
-            GUI.DrawTexture(guiRect, rt, ScaleMode.ScaleToFit, false);
-            RenderTexture.ReleaseTemporary(rt);
-        }
-        else
-        {
-            string errorMsg = (!CameraPathPreviewSupport.previewSupported) ? CameraPathPreviewSupport.previewSupportedText : "No Preview When Playing.";
-            EditorGUILayout.LabelField(errorMsg, GUILayout.Height(225));
-        }
-    }
+//    private void RenderPreview()
+//    {
+//        if (_cameraPath.realNumberOfPoints < 2)
+//            return;
+//
+//        EditorGUILayout.BeginHorizontal();
+//        EditorGUILayout.LabelField("Preview");
+//        string showPreviewButtonLabel = (_animator.showPreview) ? "hide" : "show";
+//        if (GUILayout.Button(showPreviewButtonLabel, GUILayout.Width(74)))
+//            _animator.showPreview = !_animator.showPreview;
+//        EditorGUILayout.EndHorizontal();
+//
+//        if (!_cameraPath.enablePreviews || !_animator.showPreview)
+//            return;
+//
+//        GameObject editorPreview = _animator.editorPreview;
+//        if (CameraPathPreviewSupport.previewSupported && !EditorApplication.isPlaying)
+//        {
+//            RenderTexture rt = RenderTexture.GetTemporary(PREVIEW_RESOLUTION, Mathf.RoundToInt(PREVIEW_RESOLUTION / _cameraPath.aspect), 24, RenderTextureFormat.Default, RenderTextureReadWrite.Default, 1);
+//
+//            editorPreview.SetActive(true);
+//            editorPreview.transform.position = _previewCamPos;
+//            editorPreview.transform.rotation = _previewCamRot;
+//
+//            Camera previewCam = editorPreview.GetComponent<Camera>();
+//            if(previewCam.orthographic)
+//                previewCam.orthographicSize = _cameraPath.GetPathOrthographicSize(_animator.editorPercentage);
+//            else
+//                previewCam.fieldOfView = _cameraPath.GetPathFOV(_animator.editorPercentage);
+//
+//            previewCam.enabled = true;
+//            previewCam.targetTexture = rt;
+//            previewCam.Render();
+//            previewCam.targetTexture = null;
+//            previewCam.enabled = false;
+//            editorPreview.SetActive(false);
+//
+//            GUILayout.Label("", GUILayout.Width(400), GUILayout.Height(225));
+//            Rect guiRect = GUILayoutUtility.GetLastRect();
+//            GUI.DrawTexture(guiRect, rt, ScaleMode.ScaleToFit, false);
+//            RenderTexture.ReleaseTemporary(rt);
+//        }
+//        else
+//        {
+//            string errorMsg = (!CameraPathPreviewSupport.previewSupported) ? CameraPathPreviewSupport.previewSupportedText : "No Preview When Playing.";
+//            EditorGUILayout.LabelField(errorMsg, GUILayout.Height(225));
+//        }
+//    }
 
     private void AnimateInEditor()
     {
@@ -459,8 +445,8 @@ public class CameraPathAnimatorEditor : Editor
     /// </summary>
     public void CleanUp()
     {
-        if(_animator.editorPreview != null)
-            DestroyImmediate(_animator.editorPreview);
+//        if(_animator.editorPreview != null)
+//            DestroyImmediate(_animator.editorPreview);
     }
 
     /// <summary>

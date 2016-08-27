@@ -191,8 +191,11 @@ public class CameraPathOrientationList : CameraPathPointList
 
         Quaternion returnQ = CPMath.CalculateCubic(pointP.rotation, pointA.rotation, pointB.rotation, pointQ.rotation, ct);
 
-        if (float.IsNaN(returnQ.x))
-            Debug.Log(percentage+" "+pointP.fullName + " " + pointQ.fullName + " " + pointA.fullName + " " + pointB.fullName);
+        if(float.IsNaN(returnQ.x))
+        {
+            Debug.Log(percentage + " " + pointP.fullName + " " + pointQ.fullName + " " + pointA.fullName + " " + pointB.fullName);
+            returnQ = pointP.rotation;
+        }
 
 
         return returnQ;

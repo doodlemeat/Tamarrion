@@ -135,7 +135,8 @@ public class CameraPathSpeedList : CameraPathPointList
         float curveLength = endPercentage - startPercentage;
         float curvePercentage = percentage - startPercentage;
         float ct = curvePercentage / curveLength;
-        return Mathf.Lerp(pointP.speed, pointQ.speed, ct);
+        float output = Mathf.Lerp(pointP.speed, pointQ.speed, ct);
+        return output;
     }
 
     private float SmoothStepInterpolation(float percentage)

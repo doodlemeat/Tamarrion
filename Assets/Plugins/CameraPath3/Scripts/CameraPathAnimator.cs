@@ -48,19 +48,27 @@ public class CameraPathAnimator : MonoBehaviour
     //do you want this path to automatically animate at the start of your scene
     public bool playOnStart = true;
     //the actual transform you want to animate
-    public Transform animationObject = null;
+    public Transform animationObject;
     //a link to the camera component
-    private Camera animationObjectCamera = null;
+    private Camera animationObjectCamera;
     //is the transform you are animating a camera?
     private bool _isCamera = true;
-    private bool _playing = false;
+    private bool _playing;
     public animationModes animationMode = animationModes.once;
-    public orientationModes orientationMode = orientationModes.custom;
+    [SerializeField]
+    private orientationModes _orientationMode = orientationModes.custom;
+    public bool smoothOrientationModeChanges = false;
+    public float orientationModeLerpTime = 0.3f;
+    private float _orientationModeLerpTimer = 0;
+    private orientationModes _previousOrientationMode = orientationModes.custom;
+
     private float pingPongDirection = 1;
     public Vector3 fixedOrientaion = Vector3.forward;
     public Vector3 fixedPosition;
 
     public bool normalised = true;
+    [SerializeField]
+    private bool _dynamicNormalisation = false;
 
     //the time used in the editor to preview the path animation
     public float editorPercentage = 0;
@@ -70,10 +78,10 @@ public class CameraPathAnimator : MonoBehaviour
     //the time the path animation should last for
     [SerializeField]
     private float _pathSpeed = 10;
-    private float _percentage = 0;
-    private float _lastPercentage = 0;
+    private float _percentage;
+    private float _lastPercentage;
     public float nearestOffset = 0;
-    private float delayTime = 0;
+    private float _delayTime;
     public float startPercent = 0;
     public bool animateFOV = true;
     public Vector3 targetModeUp = Vector3.up;
@@ -84,14 +92,8 @@ public class CameraPathAnimator : MonoBehaviour
     public float minX = -90.0f;
     //the maximum the mouse can move up
     public float maxX = 90.0f;
-    private float rotationX = 0;
-    private float rotationY = 0;
 
-
-    public bool showPreview = true;
-    public GameObject editorPreview = null;
-    public bool showScenePreview = true;
-    private bool _animateSceneObjectInEditor = false;
+    private bool _animateSceneObjectInEditor;
 
     public Vector3 animatedObjectStartPosition;
     public Quaternion animatedObjectStartRotation;
@@ -155,7 +157,7 @@ public class CameraPathAnimator : MonoBehaviour
     /// <value>
     /// The path speed.
     /// </value>
-    public float pathSpeed
+    public virtual float pathSpeed
     {
         get
         {
@@ -175,7 +177,7 @@ public class CameraPathAnimator : MonoBehaviour
     /// <value>
     /// The animation time.
     /// </value>
-    public float animationTime
+    public virtual float animationTime
     {
         get
         {
@@ -192,7 +194,7 @@ public class CameraPathAnimator : MonoBehaviour
     /// <summary>
     /// Retreive the current time of the path animation
     /// </summary>
-    public float currentTime
+    public virtual float currentTime
     {
         get { return _pathTime * _percentage; }
     }
@@ -200,7 +202,7 @@ public class CameraPathAnimator : MonoBehaviour
     /// <summary>
     /// Play the path. If path has finished do not play it.
     /// </summary>
-    public void Play()
+    public virtual void Play()
     {
         _playing = true;
         if (!isReversed)
@@ -225,7 +227,7 @@ public class CameraPathAnimator : MonoBehaviour
     /// <summary>
     /// Stop and reset the animation back to the beginning
     /// </summary>
-    public void Stop()
+    public virtual void Stop()
     {
         _playing = false;
         _percentage = 0;
@@ -235,7 +237,7 @@ public class CameraPathAnimator : MonoBehaviour
     /// <summary>
     /// Pause the animation where it is
     /// </summary>
-    public void Pause()
+    public virtual void Pause()
     {
         _playing = false;
         if (AnimationPausedEvent != null) AnimationPausedEvent();
@@ -245,7 +247,7 @@ public class CameraPathAnimator : MonoBehaviour
     /// set the time of the animtion
     /// </summary>
     /// <param name="value">Seek Percent 0-1</param>
-    public void Seek(float value)
+    public virtual void Seek(float value)
     {
         _percentage = Mathf.Clamp01(value);
         _lastPercentage = _percentage;
@@ -261,7 +263,7 @@ public class CameraPathAnimator : MonoBehaviour
     /// <summary>
     /// Is the animation playing
     /// </summary>
-    public bool isPlaying
+    public virtual bool isPlaying
     {
         get { return _playing; }
     }
@@ -269,7 +271,7 @@ public class CameraPathAnimator : MonoBehaviour
     /// <summary>
     /// Current percent of animation
     /// </summary>
-    public float percentage
+    public virtual float percentage
     {
         get { return _percentage; }
     }
@@ -277,7 +279,7 @@ public class CameraPathAnimator : MonoBehaviour
     /// <summary>
     /// Is the animation ping pong direction forward
     /// </summary>
-    public bool pingPongGoingForward
+    public virtual bool pingPongGoingForward
     {
         get { return pingPongDirection == 1; }
     }
@@ -285,7 +287,7 @@ public class CameraPathAnimator : MonoBehaviour
     /// <summary>
     /// Reverse the animation
     /// </summary>
-    public void Reverse()
+    public virtual void Reverse()
     {
         switch (animationMode)
         {
@@ -310,7 +312,7 @@ public class CameraPathAnimator : MonoBehaviour
     /// <summary>
     /// A link to the Camera Path component
     /// </summary>
-    public CameraPath cameraPath
+    public virtual CameraPath cameraPath
     {
         get
         {
@@ -320,26 +322,50 @@ public class CameraPathAnimator : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Retrieve the animation orientation at a percent based on the animation mode
-    /// </summary>
-    /// <param name="percent">Path Percent 0-1</param>
-    /// <param name="ignoreNormalisation">Should the percetage be normalised</param>
-    /// <returns>A rotation</returns>
-    public Quaternion GetAnimatedOrientation(float percent, bool ignoreNormalisation)
+    public virtual bool dynamicNormalisation
+    {
+        get {return _dynamicNormalisation;}
+        set
+        {
+            if(value)
+            {
+                _dynamicNormalisation = true;
+                _cameraPath.normalised = false;
+            }
+            else
+            {
+                _dynamicNormalisation = false;
+            }
+        }
+    }
+
+    public virtual orientationModes orientationMode
+    {
+        get { return _orientationMode; }
+        set
+        {
+            if(_orientationMode != value)
+            {
+                _orientationModeLerpTimer = 0;
+                _previousOrientationMode = _orientationMode;
+                _orientationMode = value;
+            }
+        }
+    }
+
+    public virtual Quaternion GetOrientation(orientationModes mode, float percent, bool ignoreNormalisation)
     {
         Quaternion output = Quaternion.identity;
         Vector3 currentPosition, forward;
-//        bool isStill = animationMode == animationModes.still;
-        switch (orientationMode)
+        switch (mode)
         {
             case orientationModes.custom:
                 output = cameraPath.GetPathRotation(percent, ignoreNormalisation);
                 break;
 
             case orientationModes.target:
-                currentPosition = cameraPath.GetPathPosition(percent);
-                if(orientationTarget != null)
+                currentPosition = cameraPath.GetPathPosition(percent);//transform.TransformPoint(cameraPath.GetPathPosition(percent));
+                if (orientationTarget != null)
                     forward = orientationTarget.transform.position - currentPosition;
                 else
                     forward = Vector3.forward;
@@ -357,19 +383,21 @@ public class CameraPathAnimator : MonoBehaviour
                 break;
 
             case orientationModes.mouselook:
-                if(!Application.isPlaying)
+                if (!Application.isPlaying)
                 {
                     output = Quaternion.LookRotation(cameraPath.GetPathDirection(percent));
                     output *= Quaternion.Euler(transform.forward * -cameraPath.GetPathTilt(percent));
                 }
                 else
                 {
-                    output = GetMouseLook();
+                    //                    output = GetMouseLook();
+                    output = Quaternion.LookRotation(cameraPath.GetPathDirection(percent));
+                    output *= GetMouseLook();
                 }
                 break;
 
             case orientationModes.followTransform:
-                if(orientationTarget == null)
+                if (orientationTarget == null)
                     return Quaternion.identity;
                 float nearestPerc = cameraPath.GetNearestPoint(orientationTarget.position);
                 nearestPerc = Mathf.Clamp01(nearestPerc + nearestOffset);
@@ -389,16 +417,80 @@ public class CameraPathAnimator : MonoBehaviour
             case orientationModes.none:
                 output = animationObject.rotation;
                 break;
+
+        }
+        return output;
+    }
+
+    /// <summary>
+    /// Retrieve the animation orientation at a percent based on the animation mode
+    /// </summary>
+    /// <param name="percent">Path Percent 0-1</param>
+    /// <param name="ignoreNormalisation">Should the percetage be normalised</param>
+    /// <returns>A rotation</returns>
+    public virtual Quaternion GetAnimatedOrientation(float percent, bool ignoreNormalisation)
+    {
+        Quaternion output = GetOrientation(_orientationMode, percent, ignoreNormalisation);
+
+        if(smoothOrientationModeChanges && _orientationModeLerpTimer < orientationModeLerpTime)
+        {
+            Quaternion previous = GetOrientation(_previousOrientationMode, percent, ignoreNormalisation);
+            float lerpPercent = _orientationModeLerpTimer / orientationModeLerpTime;
+            float smoothStep = Mathf.SmoothStep(0, 1, lerpPercent);
+//            smoothStep = Mathf.SmoothStep(0, 1, smoothStep);
+//            float smoothStep = CPMath.SmoothStep(lerpPercent);
+            output = Quaternion.Slerp(previous, output, smoothStep);
+//            Quaternion.
         }
 
         output *= transform.rotation;
 
         return output;
     }
+    
+    public virtual bool isCamera
+    {
+        get
+        {
+            if (animationObject == null)
+                _isCamera = false;
+            else
+            {
+                _isCamera = animationObjectCamera != null;
+            }
+            return _isCamera;
+        }
+    }
+
+    public virtual bool animateSceneObjectInEditor
+    {
+        get { return _animateSceneObjectInEditor; }
+        set
+        {
+            if (value != _animateSceneObjectInEditor)
+            {
+                _animateSceneObjectInEditor = value;
+                if (animationObject != null && animationMode != animationModes.still)
+                {
+                    if (_animateSceneObjectInEditor)
+                    {
+                        animatedObjectStartPosition = animationObject.transform.position;
+                        animatedObjectStartRotation = animationObject.transform.rotation;
+                    }
+                    else
+                    {
+                        animationObject.transform.position = animatedObjectStartPosition;
+                        animationObject.transform.rotation = animatedObjectStartRotation;
+                    }
+                }
+            }
+            _animateSceneObjectInEditor = value;
+        }
+    }
 
     //MONOBEHAVIOURS
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if(animationObject == null)
             _isCamera = false;
@@ -424,12 +516,12 @@ public class CameraPathAnimator : MonoBehaviour
             _percentage = 1-startPercent;
         }
 
-        Vector3 initalRotation = cameraPath.GetPathRotation(_percentage, false).eulerAngles;
-        rotationX = initalRotation.y;
-        rotationY = initalRotation.x;
+//        Vector3 initalRotation = cameraPath.GetPathRotation(_percentage, false).eulerAngles;
+//        rotationX = initalRotation.y;
+//        rotationY = initalRotation.x;
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         cameraPath.eventList.CameraPathEventPoint += OnCustomEvent;
         cameraPath.delayList.CameraPathDelayEvent += OnDelayEvent;
@@ -437,16 +529,18 @@ public class CameraPathAnimator : MonoBehaviour
             animationObjectCamera = animationObject.GetComponentInChildren<Camera>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         if (playOnStart)
             Play();
 
-        if(Application.isPlaying && orientationTarget==null && (orientationMode==orientationModes.followTransform || orientationMode == orientationModes.target))
+        if (Application.isPlaying && orientationTarget == null && (_orientationMode == orientationModes.followTransform || _orientationMode == orientationModes.target))
             Debug.LogWarning("There has not been an orientation target specified in the Animation component of Camera Path.",transform);
+
+//        _storedMousePosition = Input.mousePosition;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (!isCamera)
         {
@@ -466,7 +560,7 @@ public class CameraPathAnimator : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    protected virtual void LateUpdate()
     {
         if (isCamera)
         {
@@ -486,29 +580,31 @@ public class CameraPathAnimator : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         CleanUp();
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         CleanUp();
     }
 
     //PRIVATE METHODS
 
-    private void PlayNextAnimation()
+    protected virtual void PlayNextAnimation()
     {
         if (_cameraPath.nextPath != null)
         {
-            _cameraPath.nextPath.GetComponent<CameraPathAnimator>().Play();
-            _percentage = 0;
+            CameraPathAnimator _animator = _cameraPath.nextPath.GetComponent<CameraPathAnimator>();
+            float nextPercent = _cameraPath.interpolateNextPath ? _percentage % 1 : 0;
+            _animator.Seek(nextPercent);
+            _animator.Play();
             Stop();
         }
     }
 
-    void UpdateAnimation()
+    protected virtual void UpdateAnimation()
     {
         if (animationObject == null)
         {
@@ -526,11 +622,11 @@ public class CameraPathAnimator : MonoBehaviour
                 _pathTime = _cameraPath.pathLength / Mathf.Max(cameraPath.GetPathSpeed(_percentage), minimumCameraSpeed);
             else
                 _pathTime = _cameraPath.pathLength / Mathf.Max(_pathSpeed * cameraPath.GetPathEase(_percentage), minimumCameraSpeed);
-
+            
             animationObject.position = cameraPath.GetPathPosition(_percentage);
         }
 
-        if(orientationMode != orientationModes.none)
+        if (_orientationMode != orientationModes.none)
             animationObject.rotation = GetAnimatedOrientation(_percentage,false);
 
         if(isCamera && _cameraPath.fovList.listEnabled)
@@ -544,7 +640,7 @@ public class CameraPathAnimator : MonoBehaviour
         CheckEvents();
     }
 
-    private void UpdatePointReached()
+    protected virtual void UpdatePointReached()
     {
         if(_percentage == _lastPercentage)//no movement
             return;
@@ -569,19 +665,19 @@ public class CameraPathAnimator : MonoBehaviour
         _lastPercentage = percentage;
     }
 
-    private void UpdateAnimationTime()
+    protected virtual void UpdateAnimationTime()
     {
         UpdateAnimationTime(true);
     }
 
-    private void UpdateAnimationTime(bool advance)
+    protected virtual void UpdateAnimationTime(bool advance)
     {
-        if(orientationMode == orientationModes.followTransform)
+        if (_orientationMode == orientationModes.followTransform)
             return;
 
-        if(delayTime > 0)
+        if(_delayTime > 0)
         {
-            delayTime += -Time.deltaTime;
+            _delayTime += -Time.deltaTime;
             return;
         }
 
@@ -603,23 +699,23 @@ public class CameraPathAnimator : MonoBehaviour
                     break;
 
                 case animationModes.loop:
-                    if(_percentage >= 1)
+                    _percentage += Time.deltaTime * (1.0f / _pathTime);
+                    if (_percentage >= 1)
                     {
-                        _percentage = 0;
+                        _percentage -= 1;
                         _lastPercentage = 0;
                         if(AnimationLoopedEvent != null) AnimationLoopedEvent();
                     }
-                    _percentage += Time.deltaTime * (1.0f / _pathTime);
                     break;
 
                 case animationModes.reverseLoop:
-                    if(_percentage <= 0)
+                    _percentage += -Time.deltaTime * (1.0f / _pathTime);
+                    if (_percentage <= 0)
                     {
-                        _percentage = 1;
+                        _percentage += 1;
                         _lastPercentage = 1;
                         if(AnimationLoopedEvent != null) AnimationLoopedEvent();
                     }
-                    _percentage += -Time.deltaTime * (1.0f / _pathTime);
                     break;
 
                 case animationModes.reverse:
@@ -666,87 +762,67 @@ public class CameraPathAnimator : MonoBehaviour
                     }
                     break;
             }
+
+            if (smoothOrientationModeChanges)
+            {
+                if(_orientationModeLerpTimer < orientationModeLerpTime)
+                    _orientationModeLerpTimer += Time.deltaTime;
+                else
+                    _orientationModeLerpTimer = orientationModeLerpTime;
+            }
         }
         _percentage = Mathf.Clamp01(_percentage);
     }
 
-    private Quaternion GetMouseLook()
+    protected virtual Quaternion GetMouseLook()
     {
         if (animationObject == null)
             return Quaternion.identity;
-        rotationX += Input.GetAxis("Mouse X") * sensitivity;
-        rotationY += -Input.GetAxis("Mouse Y") * sensitivity;
 
-        rotationY = Mathf.Clamp(rotationY, minX, maxX);
+        float screenHalfWidth = Screen.width/2f;
+        float screenHalfHeight = Screen.height/2f;
 
-        return Quaternion.Euler(new Vector3(rotationY, rotationX, 0));
+        float xRot = (Input.mousePosition.x - screenHalfWidth) / Screen.width * 180f;
+        float yRot = (Screen.height - Input.mousePosition.y - screenHalfHeight) / Screen.height * 180f;
+        yRot = Mathf.Clamp(yRot, minX, maxX);
+        return Quaternion.Euler(new Vector3(yRot, xRot, 0));
+//        rotationX += Input.GetAxis("Mouse X") * sensitivity;
+//        rotationY += -Input.GetAxis("Mouse Y") * sensitivity;
+//
+//        rotationY = Mathf.Clamp(rotationY, minX, maxX);
+//
+//        Debug.Log(Input.GetAxis("Mouse X") + " " + sensitivity + " " + Input.mousePosition);
+//        if(Input.touchCount>0)
+//            Debug.Log(Input.touches[0].deltaPosition.x);
+
+//        return Quaternion.Euler(new Vector3(rotationY, rotationX, 0));
     }
 
-    private void CheckEvents()
+    protected virtual void CheckEvents()
     {
         cameraPath.CheckEvents(_percentage);
     }
 
-    private bool isReversed
+    protected virtual bool isReversed
     {
         get { return (animationMode == animationModes.reverse || animationMode == animationModes.reverseLoop || pingPongDirection < 0); }
     }
 
-    public bool isCamera
-    {
-        get
-        {
-            if (animationObject == null)
-                _isCamera = false;
-            else
-            {
-                _isCamera = animationObjectCamera != null;
-            }
-            return _isCamera;
-        }
-    }
-
-    public bool animateSceneObjectInEditor
-    {
-        get {return _animateSceneObjectInEditor;} 
-        set
-        {
-            if (value != _animateSceneObjectInEditor)
-            {
-                _animateSceneObjectInEditor = value;
-                if (animationObject != null && animationMode != animationModes.still)
-                {
-                    if (_animateSceneObjectInEditor)
-                    {
-                        animatedObjectStartPosition = animationObject.transform.position;
-                        animatedObjectStartRotation = animationObject.transform.rotation;
-                    }
-                    else
-                    {
-                        animationObject.transform.position = animatedObjectStartPosition;
-                        animationObject.transform.rotation = animatedObjectStartRotation;
-                    }
-                }
-            }
-            _animateSceneObjectInEditor = value;
-        }
-    }
-
-    private void CleanUp()
+    protected virtual void CleanUp()
     {
         cameraPath.eventList.CameraPathEventPoint += OnCustomEvent;
         cameraPath.delayList.CameraPathDelayEvent += OnDelayEvent;
     }
 
-    private void OnDelayEvent(float time)
+    protected virtual void OnDelayEvent(float time)
     {
         if(time > 0)
-            delayTime = time;//start delay timer
+            _delayTime = time;//start delay timer
         else
             Pause();//indeffinite delay
     }
 
-    private void OnCustomEvent(string eventName)
+    protected virtual void OnCustomEvent(string eventName)
     {
         if(AnimationCustomEvent != null)
             AnimationCustomEvent(eventName);
@@ -767,9 +843,25 @@ public class CameraPathAnimator : MonoBehaviour
         sb.AppendLine("<animateSceneObjectInEditor>" + _animateSceneObjectInEditor + "</animateSceneObjectInEditor>");
         sb.AppendLine("<playOnStart>" + playOnStart + "</playOnStart>");
         sb.AppendLine("<animationMode>" + animationMode + "</animationMode>");
-        sb.AppendLine("<orientationMode>" + orientationMode + "</orientationMode>");
+        sb.AppendLine("<orientationMode>" + _orientationMode + "</orientationMode>");
         sb.AppendLine("<normalised>" + normalised + "</normalised>");
         sb.AppendLine("<pathSpeed>" + _pathSpeed + "</pathSpeed>");
+
+        sb.AppendLine("<smoothOrientationModeChanges>" + smoothOrientationModeChanges + "</smoothOrientationModeChanges>");
+        sb.AppendLine("<orientationModeLerpTime>" + orientationModeLerpTime + "</orientationModeLerpTime>");
+
+        sb.AppendLine("<fixedOrientaionx>" + fixedOrientaion.x + "</fixedOrientaionx>");
+        sb.AppendLine("<fixedOrientaiony>" + fixedOrientaion.y + "</fixedOrientaiony>");
+        sb.AppendLine("<fixedOrientaionz>" + fixedOrientaion.z + "</fixedOrientaionz>");
+
+        sb.AppendLine("<fixedPositionx>" + fixedPosition.x + "</fixedPositionx>");
+        sb.AppendLine("<fixedPositiony>" + fixedPosition.y + "</fixedPositiony>");
+        sb.AppendLine("<fixedPositionz>" + fixedPosition.z + "</fixedPositionz>");
+
+        sb.AppendLine("<sensitivity>" + sensitivity + "</sensitivity>");
+        sb.AppendLine("<minX>" + minX + "</minX>");
+        sb.AppendLine("<maxX>" + maxX + "</maxX>");
+
         sb.AppendLine("</animator>");
 
         return sb.ToString();
@@ -797,10 +889,42 @@ public class CameraPathAnimator : MonoBehaviour
         playOnStart = bool.Parse(xml["playOnStart"].FirstChild.Value);
 
         animationMode = (animationModes)Enum.Parse(typeof(animationModes), xml["animationMode"].FirstChild.Value);
-        orientationMode = (orientationModes)Enum.Parse(typeof(orientationModes), xml["orientationMode"].FirstChild.Value);
+        _orientationMode = (orientationModes)Enum.Parse(typeof(orientationModes), xml["orientationMode"].FirstChild.Value);
 
         normalised = bool.Parse(xml["normalised"].FirstChild.Value);
         _pathSpeed = float.Parse(xml["pathSpeed"].FirstChild.Value);
+
+        if (xml["smoothOrientationModeChanges"] != null)
+            smoothOrientationModeChanges = bool.Parse(xml["smoothOrientationModeChanges"].FirstChild.Value);
+        if (xml["orientationModeLerpTime"] != null)
+            orientationModeLerpTime = float.Parse(xml["orientationModeLerpTime"].FirstChild.Value);
+
+
+        if(xml["fixedOrientaionx"] != null)
+        {
+            Vector3 newOrientation = new Vector3();
+            newOrientation.x = float.Parse(xml["fixedOrientaionx"].FirstChild.Value);
+            newOrientation.y = float.Parse(xml["fixedOrientaiony"].FirstChild.Value);
+            newOrientation.z = float.Parse(xml["fixedOrientaionz"].FirstChild.Value);
+            fixedOrientaion = newOrientation;
+        }
+
+        if(xml["fixedPositionx"] != null)
+        {
+            Vector3 newPosition = new Vector3();
+            newPosition.x = float.Parse(xml["fixedPositionx"].FirstChild.Value);
+            newPosition.y = float.Parse(xml["fixedPositiony"].FirstChild.Value);
+            newPosition.z = float.Parse(xml["fixedPositionz"].FirstChild.Value);
+            fixedPosition = newPosition;
+        }
+
+
+        if (xml["sensitivity"] != null)
+            sensitivity = float.Parse(xml["sensitivity"].FirstChild.Value);
+        if (xml["minX"] != null)
+            minX = float.Parse(xml["minX"].FirstChild.Value);
+        if (xml["maxX"] != null)
+            maxX = float.Parse(xml["maxX"].FirstChild.Value);
     }
 #endif
 }

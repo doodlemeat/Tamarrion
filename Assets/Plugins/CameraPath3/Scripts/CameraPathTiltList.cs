@@ -151,7 +151,7 @@ public class CameraPathTiltList : CameraPathPointList
         float curveLength = endPercentage - startPercentage;
         float curvePercentage = percentage - startPercentage;
         float ct = curvePercentage / curveLength;
-        return Mathf.Lerp(pointP.tilt, pointQ.tilt, ct);
+        return Mathf.LerpAngle(pointP.tilt, pointQ.tilt, ct);
     }
 
     private float SmoothStepInterpolation(float percentage)
@@ -174,7 +174,8 @@ public class CameraPathTiltList : CameraPathPointList
         float curveLength = endPercentage - startPercentage;
         float curvePercentage = percentage - startPercentage;
         float ct = curvePercentage / curveLength;
-        return Mathf.Lerp(pointP.tilt, pointQ.tilt, CPMath.SmoothStep(ct));
+
+        return Mathf.LerpAngle(pointP.tilt, pointQ.tilt, CPMath.SmoothStep(ct));
     }
     
 #if UNITY_EDITOR
