@@ -10,11 +10,23 @@ namespace Tamarrion {
 		string valacTeleportKey = "F1";
 
 		[SerializeField]
+		string nithTeleportKey = "F2";
+
+		[SerializeField]
 		Transform valacTeleportPosition;
 
+		[SerializeField]
+		Transform nithTeleportPosition;
+
 		void Update() {
-			if(Input.GetKeyDown(KeyCode.F1)) {
-				Player.player.transform.position = valacTeleportPosition.position;
+			if ( Application.isEditor ) {
+				if ( Input.GetKeyDown (valacTeleportKey) ) {
+					Player.player.transform.position = valacTeleportPosition.position;
+				}
+
+				if ( Input.GetKeyDown (nithTeleportKey) ) {
+					Player.player.transform.position = nithTeleportPosition.position;
+				}
 			}
 		}
 	}
