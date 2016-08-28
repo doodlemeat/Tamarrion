@@ -1,6 +1,6 @@
 # Tamarrion
 
-Fast teleportation fungerar bara i Editor-läge.
+**Fast teleport** fungerar bara i Editor-läge.
 
 | Knapp         |Boss          |
 |:-------------:|-------------|
