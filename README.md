@@ -5,4 +5,6 @@
 | Knapp         |Boss          |
 |:-------------:|-------------|
 | F1            | Valac         |
-| F2            | Nitheana      |
+| F2            | Valac Before Activate         |
+| F3            | Nitheana      |
+| F4            | Nitheana Before Activate         |
