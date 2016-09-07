@@ -21,6 +21,7 @@ public class BossActivationCoffin : MonoBehaviour
 
     void Start()
     {
+		Debug.Log (name);
         lowerCoffinAnimation.Play();
         ActivationDistance = GetComponent<SphereCollider>().radius;
         lowerCoffinAnimation.wrapMode = WrapMode.ClampForever;
@@ -127,6 +128,7 @@ public class BossActivationCoffin : MonoBehaviour
 
 	public void OnIntroCinematicFinish()
 	{
+		Debug.Log ("OnIntroCinematicFinish");
 		_cinematicEnded = true;
 	}
 }

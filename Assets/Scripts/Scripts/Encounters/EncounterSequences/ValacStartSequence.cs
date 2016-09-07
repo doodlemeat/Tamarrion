@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class ValacStartSequence : BaseEncounterSequence
-{
+public class ValacStartSequence : BaseEncounterSequence {
     bool Started;
-    //bool _cinematicEnded = false;
+    bool _cinematicEnded = false;
     float _introEndTimeout = 1.0f;
     float _introEndTimer = 0.0f;
 
@@ -19,8 +18,7 @@ public class ValacStartSequence : BaseEncounterSequence
     public List<MausoleumAlcoveLight> alcoveLights = new List<MausoleumAlcoveLight>();
     public List<GameObject> ObjectsToActivateOnSequenceStart = new List<GameObject>();
 
-    void Start()
-    {
+    void Start() {
         Started = false;
         lowerCoffinAnimation.Play();
         lowerCoffinAnimation.wrapMode = WrapMode.ClampForever;
@@ -147,12 +145,12 @@ public class ValacStartSequence : BaseEncounterSequence
             Destroy(preFinishedCollision);
         flyingDoor.SetActive(true);
         //Destroy(flyingDoor.transform.parent.gameObject);
-        //flyingDoor.transform.SetParent(null);
+        flyingDoor.transform.SetParent(null);
         animationDoor.SetActive(false);
-        /*foreach (Collider col in Valac.instance.gameObject.GetComponentsInChildren<Collider>())
+        foreach (Collider col in Valac.instance.gameObject.GetComponentsInChildren<Collider>())
         {
             Physics.IgnoreCollision(col, flyingDoor.GetComponent<Collider>());
-        }*/
+        }
 
         if (ForcePusher.instance)
         {
@@ -161,13 +159,12 @@ public class ValacStartSequence : BaseEncounterSequence
         }
         if (Valac.instance)
             Valac.instance.ActivateBoss();
-
+			
         FightStats.StartTimer();
     }
 
     public void OnIntroCinematicFinish()
     {
-        //Debug.Log("event called!");
-        //_cinematicEnded = true;
+        _cinematicEnded = true;
     }
 }

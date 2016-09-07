@@ -8,8 +8,6 @@ public class UITextScale : MonoBehaviour {
 	void Awake () {
 		text = GetComponent<Text> ();
 		text.resizeTextForBestFit = true;
-		text.resizeTextMinSize = 8;
-		text.resizeTextMaxSize = 13;
 	}
 
 	void Update() {
