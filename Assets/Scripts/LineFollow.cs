@@ -10,7 +10,7 @@ public class LineFollow : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		niht = GameObject.Find ("Nihteana");
+		niht = GameObject.Find ("6_1");
 		myLine = GetComponent<LineRenderer> ();
 		myLine.SetVertexCount (2);
 		target = niht.transform.Find ("Nihteana_Animations_COMPLETE/hips");

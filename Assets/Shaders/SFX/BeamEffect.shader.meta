@@ -1,9 +1,14 @@
 fileFormatVersion: 2
 guid: 8a948db19a61ace47823ab56df3ddfb7
-timeCreated: 1450427908
+timeCreated: 1473414888
 licenseType: Free
 ShaderImporter:
-  defaultTextures: []
+  defaultTextures:
+  - _Beam1: {fileID: 2800000, guid: c2e2a0c4ba746a9468c4d69ab06765bf, type: 3}
+  - _Beam2: {fileID: 2800000, guid: e5256936abefb9a47a2007c48dfa8818, type: 3}
+  - _Disturbance: {fileID: 2800000, guid: 28c7aad1372ff114b90d330f8a2dd938, type: 3}
+  - _Gradient: {fileID: 2800000, guid: 5ba07aac9c2697747acc66e995b0a3c0, type: 3}
+  - _BreakGradient: {fileID: 2800000, guid: 6f4a6a22452da824781e424581661283, type: 3}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
