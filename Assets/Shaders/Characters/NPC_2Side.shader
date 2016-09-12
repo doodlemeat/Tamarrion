@@ -191,8 +191,8 @@ Shader "Characters/NPC_2Side" {
                 float3 diffuseColor = (_DiffuseColor.rgb*_Diffuse_var.rgb);
                 float3 diffuse = (directDiffuse + indirectDiffuse) * diffuseColor;
 ////// Emissive:
-                float4 node_5967 = _Time + _TimeEditor;
-                float2 node_4018 = (i.uv0+node_5967.g*float2(0.05,0.05));
+                float4 node_196 = _Time + _TimeEditor;
+                float2 node_4018 = (i.uv0+node_196.g*float2(0.05,0.05));
                 float4 _EmissivePanTexture_var = tex2D(_EmissivePanTexture,TRANSFORM_TEX(node_4018, _EmissivePanTexture));
                 float4 _EmissivePanMask_var = tex2D(_EmissivePanMask,TRANSFORM_TEX(i.uv0, _EmissivePanMask));
                 float4 _EmissiveStaticMask_var = tex2D(_EmissiveStaticMask,TRANSFORM_TEX(i.uv0, _EmissiveStaticMask));
@@ -450,8 +450,8 @@ Shader "Characters/NPC_2Side" {
                 UnityMetaInput o;
                 UNITY_INITIALIZE_OUTPUT( UnityMetaInput, o );
                 
-                float4 node_1454 = _Time + _TimeEditor;
-                float2 node_4018 = (i.uv0+node_1454.g*float2(0.05,0.05));
+                float4 node_82 = _Time + _TimeEditor;
+                float2 node_4018 = (i.uv0+node_82.g*float2(0.05,0.05));
                 float4 _EmissivePanTexture_var = tex2D(_EmissivePanTexture,TRANSFORM_TEX(node_4018, _EmissivePanTexture));
                 float4 _EmissivePanMask_var = tex2D(_EmissivePanMask,TRANSFORM_TEX(i.uv0, _EmissivePanMask));
                 float4 _EmissiveStaticMask_var = tex2D(_EmissiveStaticMask,TRANSFORM_TEX(i.uv0, _EmissiveStaticMask));
