@@ -46,7 +46,7 @@ public class SpellManager : MonoBehaviour
             selectedSpells[i] = -1;
             equippedSpells[i] = null;
         }
-        Load();
+        //Load();
     }
 
     void OnDisable()
@@ -56,7 +56,7 @@ public class SpellManager : MonoBehaviour
 
     void Start()
     {
-		playerScript = Player.player.GetComponent<Player>();
+		/*playerScript = Player.player.GetComponent<Player>();
         playerObject = playerScript.gameObject;
         for (int i = 0; i < SpellSlotCount; ++i)
         {
@@ -65,19 +65,19 @@ public class SpellManager : MonoBehaviour
 
 		lockSpells();
 
-        Loaded = true;
+        Loaded = true;*/
     }
 
     void Update()
     {
-        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && Input.GetKeyDown(KeyCode.P))
+        /*if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && Input.GetKeyDown(KeyCode.P))
         {
             for (int i = 0; i < SpellSlotCount; ++i)
             {
                 selectedSpells[i] = -1;
                 PlayerPrefs.SetInt("playerSpell_" + i, -1);
             }
-        }
+        }*/
     }
 
     public bool GetLoaded()
@@ -205,10 +205,11 @@ public class SpellManager : MonoBehaviour
 
     void Load()
     {
+		Debug.Log ("SpellManager:Load");
         if (!File.Exists(Application.persistentDataPath + "/spells.dat"))
             return;
 
-        BinaryFormatter bff = new BinaryFormatter();
+		BinaryFormatter bff = new BinaryFormatter();
         FileStream ffs = File.Open(Application.persistentDataPath + "/spells.dat", FileMode.Open);
 
         SpellData invTest = (SpellData)bff.Deserialize(ffs);

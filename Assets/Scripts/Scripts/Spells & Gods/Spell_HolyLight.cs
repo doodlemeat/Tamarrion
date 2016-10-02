@@ -8,6 +8,7 @@ public class Spell_HolyLight : SpellBase
 
     public override void use()
     {
+		Debug.Log ("Spell_HolyLight:use");
         base.use();
         _playerStats.HealFlat(Random.Range(minHealAmount, maxHealAmount));
     }

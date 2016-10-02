@@ -4,7 +4,7 @@ using System.Collections;
 
 [RequireComponent(typeof(Image))]
 
-public class ComboIcon : MonoBehaviour
+public class ComboIcon : Tamarrion.MyMonoBehaviour
 {
     public FSSkillElement godElement;
     public float lerpTime = 0.3f;
@@ -29,6 +29,8 @@ public class ComboIcon : MonoBehaviour
         GodManager.onGodActivated += OnGodActivated;
         GodManager.onGodDeactivated += OnGodDeactivated;
 
+		AddListener<Tamarrion.GodPowerPointChangeEvent> (OnGodPowerPointChange);
+
         SetImageFill(0f);
     }
 
@@ -38,7 +40,11 @@ public class ComboIcon : MonoBehaviour
         GodManager.onGodChosen -= OnGodChosen;
         GodManager.onGodActivated -= OnGodActivated;
         GodManager.onGodDeactivated -= OnGodDeactivated;
-    }
+	}
+
+	void OnDestroy() {
+		RemoveListener<Tamarrion.GodPowerPointChangeEvent> (OnGodPowerPointChange);
+	}
 
     void Update()
     {
@@ -72,6 +78,16 @@ public class ComboIcon : MonoBehaviour
         lerpTimer.StartTimerBySeconds(lerpTime);
         //SetImageFill(percentage);
     }
+
+	void OnGodPowerPointChange(Tamarrion.GodPowerPointChangeEvent e) {
+		if ( e.element != godElement )
+			return;
+
+		lerpStart = iconImage.fillAmount;
+		lerpTarget = e.percentageDone;
+		lerpOn = true;
+		lerpTimer.StartTimerBySeconds (lerpTime);
+	}
 
     void SetImageFill(float p_percentage)
     {

@@ -70,8 +70,14 @@ public abstract class FSSkillBase : MonoBehaviour
     public int TributeGainDefense = 0;
     public int TributeGainWar = 0;
 
-    //STATE: CASTING
-    [Header("State: Casting")]
+	[Tooltip ("Clear all God Power Points for own God Power on use")]
+	public bool removeAllGPPOnUse = false;
+
+	[Tooltip ("Clear amount of God Power Points for own God Power on use")]
+	public int removeAmountGPPOnUse = 0;
+
+	//STATE: CASTING
+	[Header("State: Casting")]
     public string CastAnimationName = "Cast";
     public string CastLoopAnimationName = "Looping spell";
     public float CastTime = 0;

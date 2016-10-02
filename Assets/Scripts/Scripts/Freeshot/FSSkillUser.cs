@@ -28,7 +28,7 @@ public class FSSkillUser : MonoBehaviour
     static bool m_SkillInUse = false;
     Vector3 m_castingStartPosition;
 
-    List<string> skillBlockers = new List<string>();
+    public List<string> skillBlockers = new List<string>();
 
     void Awake()
     {
@@ -175,6 +175,8 @@ public class FSSkillUser : MonoBehaviour
 
     void SetCurrentSkill(FSSkillBase p_skill)
     {
+		Debug.Log ("FSSkillUser:SetCurrentSkill");
+
         if (p_skill == null || p_skill == m_currentSkill)
             return;
 
@@ -365,9 +367,18 @@ public class FSSkillUser : MonoBehaviour
         for (int i = 0; i < (int)FSSkillElement.FS_Elem_Count; ++i)
         {
             int TempTributeGain = m_currentSkill.GetTributeGainByElement((FSSkillElement)i);
-            if (TempTributeGain > 0)
-                GodManager.Instance.AddTribute((FSSkillElement)i, TempTributeGain);
+
+			if ( TempTributeGain > 0 ) {
+				GodManager.Instance.AddTribute ((FSSkillElement)i, TempTributeGain);
+			}
         }
+
+		GodManager.Instance.RemoveGodPowerPoints (m_currentSkill.element, m_currentSkill.removeAmountGPPOnUse);
+		
+		if(m_currentSkill.removeAllGPPOnUse) {
+			GodManager.Instance.RemoveAllGodPowerPoints (m_currentSkill.element);
+		}
+
         m_currentSkill.SkillEnd();
         playerMovement.RemoveMoveBlock("freeshot");
         playerMovement.RemoveRotationBlock("freeshot");

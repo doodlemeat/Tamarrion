@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GodManager : MonoBehaviour
+public class GodManager : Tamarrion.MyMonoBehaviour
 {
     public static GodManager Instance;
     public List<God_Base> Gods = new List<God_Base>();
@@ -122,29 +122,68 @@ public class GodManager : MonoBehaviour
         return true;
     }
 
-    public void AddTribute(FSSkillElement p_element, float p_amount)
+    public void AddTribute(FSSkillElement element, float amount)
     {
         if (!tributeGodChosen)
         {
-            float diffToMax = maxTribute - currentTributeAmounts[(int)p_element];
-            if (p_amount > diffToMax)
-                p_amount = diffToMax;
+            float diffToMax = maxTribute - currentTributeAmounts[(int)element];
+            if (amount > diffToMax)
+                amount = diffToMax;
 
-            if (p_amount > 0)
+            if (amount > 0)
             {
-                currentTributeAmounts[(int)p_element] += p_amount;
-                if (currentTributeAmounts[(int)p_element] >= maxTribute)
+                currentTributeAmounts[(int)element] += amount;
+                if (currentTributeAmounts[(int)element] >= maxTribute)
                 {
                     tributeGodChosen = true;
-                    chosenGodElement = p_element;
+                    chosenGodElement = element;
                     if (onGodChosen != null)
-                        onGodChosen(p_element);
+                        onGodChosen(element);
                 }
                 if (onTributeGain != null)
-                    onTributeGain(p_element, p_amount);
+                    onTributeGain(element, amount);
             }
         }
     }
+	
+	/// <summary>
+	/// Removes all God Power Point from a specific God Power
+	/// </summary>
+	/// <param name="element"></param>
+	public void RemoveAllGodPowerPoints(FSSkillElement element) {
+		if ( tributeGodChosen )
+			return;
+
+		float amountToRemove = currentTributeAmounts[(int)element];
+		RemoveGodPowerPoints (element, amountToRemove);
+	}
+
+	/// <summary>
+	/// Removed a set amount of God Power Points from a specific God Power
+	/// </summary>
+	/// <param name="element"></param>
+	/// <param name="amount"></param>
+	public void RemoveGodPowerPoints(FSSkillElement element, float amount) {
+		if ( tributeGodChosen )
+			return;
+
+		if ( amount <= 0 )
+			return;
+
+		currentTributeAmounts[(int)element] -= amount;
+
+		if( currentTributeAmounts[(int)element] <= 0) {
+			amount = amount - Mathf.Abs(currentTributeAmounts[(int)element]);
+			currentTributeAmounts[(int)element] = 0;
+		}
+
+		Trigger (new Tamarrion.GodPowerPointChangeEvent {
+			newAmount = currentTributeAmounts[(int)element],
+			changedAmount = amount,
+			percentageDone = currentTributeAmounts[(int)element] / maxTribute,
+			element = element
+		});
+	}
 
     public float GetPercentDone()
     {
