@@ -11,6 +11,13 @@ public class GodManager : Tamarrion.MyMonoBehaviour
 
     public float[] currentTributeAmounts = new float[(int)FSSkillElement.FS_Elem_Count];
     public float maxTribute = 100f;
+
+	/// <summary>
+	/// Keep tracks of the last time tribute was gained or lost for a specific god.
+	/// Is used for tribute decay.
+	/// </summary>
+	Dictionary<God_Base, Tamarrion.TributeDecay> tributeChanges = new Dictionary<God_Base, Tamarrion.TributeDecay> ();
+
     bool tributeGodChosen = false;
     FSSkillElement chosenGodElement = FSSkillElement.FS_Elem_Count;
 
@@ -27,6 +34,15 @@ public class GodManager : Tamarrion.MyMonoBehaviour
     {
         Instance = this;
     }
+
+	void Start() {
+		for(int i = 0; i < Gods.Count; i++ ) {
+			tributeChanges.Add (Gods[i], new Tamarrion.TributeDecay {
+				timer = 0,
+				isDecaying = false
+			});
+		}
+	}
 
     void Update()
     {
@@ -46,6 +62,24 @@ public class GodManager : Tamarrion.MyMonoBehaviour
             if (Input.GetKeyDown(KeyCode.KeypadPlus))
                 AddTribute(FSSkillElement.FS_Elem_War, 20f);
         }
+
+		foreach(KeyValuePair<God_Base, Tamarrion.TributeDecay> e in tributeChanges) {
+			if(e.Value.timer >= e.Key.secondsBeforeDecayStart && 
+				currentTributeAmounts[(int)e.Key.element] > 0 &&
+				e.Value.isDecaying == false) {
+				Debug.Log ("Start Tribute Decay: " + e.Key.Name + ".e.Value.timer: " + e.Value.timer + " e.Key.secondsBeforeDecayStart: " + e.Key.secondsBeforeDecayStart);
+				e.Value.isDecaying = true;
+			}
+		}
+
+		// Update Tribute Decay timers and decay
+		foreach(KeyValuePair<God_Base, Tamarrion.TributeDecay> e in tributeChanges) {
+			e.Value.timer += Time.deltaTime;
+
+			if(e.Value.isDecaying) {
+				RemoveTribute (e.Key.element, e.Key.decayAmountPerSecond * Time.deltaTime, false);
+			}
+		}
 
         if (CurrentGod)
         {
@@ -132,7 +166,13 @@ public class GodManager : Tamarrion.MyMonoBehaviour
 
             if (amount > 0)
             {
-                currentTributeAmounts[(int)element] += amount;
+				foreach ( KeyValuePair<God_Base, Tamarrion.TributeDecay> e in tributeChanges ) {
+					if ( e.Key.element == element ) {
+						e.Value.timer = 0;
+						e.Value.isDecaying = false;
+					}
+				}
+				currentTributeAmounts[(int)element] += amount;
                 if (currentTributeAmounts[(int)element] >= maxTribute)
                 {
                     tributeGodChosen = true;
@@ -147,23 +187,23 @@ public class GodManager : Tamarrion.MyMonoBehaviour
     }
 	
 	/// <summary>
-	/// Removes all God Power Point from a specific God Power
+	/// Removes all Tribute from a specific God Power
 	/// </summary>
 	/// <param name="element"></param>
-	public void RemoveAllGodPowerPoints(FSSkillElement element) {
+	public void RemoveAllTribute(FSSkillElement element) {
 		if ( tributeGodChosen )
 			return;
 
 		float amountToRemove = currentTributeAmounts[(int)element];
-		RemoveGodPowerPoints (element, amountToRemove);
+		RemoveTribute (element, amountToRemove);
 	}
 
 	/// <summary>
-	/// Removed a set amount of God Power Points from a specific God Power
+	/// Removed a set amount of Tribute from a specific God Power
 	/// </summary>
 	/// <param name="element"></param>
 	/// <param name="amount"></param>
-	public void RemoveGodPowerPoints(FSSkillElement element, float amount) {
+	public void RemoveTribute(FSSkillElement element, float amount, bool updateDecayTimer = true) {
 		if ( tributeGodChosen )
 			return;
 
@@ -177,7 +217,16 @@ public class GodManager : Tamarrion.MyMonoBehaviour
 			currentTributeAmounts[(int)element] = 0;
 		}
 
-		Trigger (new Tamarrion.GodPowerPointChangeEvent {
+		if(updateDecayTimer) {
+			foreach(KeyValuePair<God_Base, Tamarrion.TributeDecay> e in tributeChanges) {
+				if(e.Key.element == element) {
+					e.Value.timer = 0;
+					e.Value.isDecaying = false;
+				}
+			}
+		}
+
+		Trigger (new Tamarrion.TributeChangeEvent {
 			newAmount = currentTributeAmounts[(int)element],
 			changedAmount = amount,
 			percentageDone = currentTributeAmounts[(int)element] / maxTribute,

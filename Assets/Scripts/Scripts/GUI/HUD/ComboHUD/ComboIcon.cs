@@ -29,7 +29,7 @@ public class ComboIcon : Tamarrion.MyMonoBehaviour
         GodManager.onGodActivated += OnGodActivated;
         GodManager.onGodDeactivated += OnGodDeactivated;
 
-		AddListener<Tamarrion.GodPowerPointChangeEvent> (OnGodPowerPointChange);
+		AddListener<Tamarrion.TributeChangeEvent> (OnGodPowerPointChange);
 
         SetImageFill(0f);
     }
@@ -43,7 +43,7 @@ public class ComboIcon : Tamarrion.MyMonoBehaviour
 	}
 
 	void OnDestroy() {
-		RemoveListener<Tamarrion.GodPowerPointChangeEvent> (OnGodPowerPointChange);
+		RemoveListener<Tamarrion.TributeChangeEvent> (OnGodPowerPointChange);
 	}
 
     void Update()
@@ -79,7 +79,7 @@ public class ComboIcon : Tamarrion.MyMonoBehaviour
         //SetImageFill(percentage);
     }
 
-	void OnGodPowerPointChange(Tamarrion.GodPowerPointChangeEvent e) {
+	void OnGodPowerPointChange(Tamarrion.TributeChangeEvent e) {
 		if ( e.element != godElement )
 			return;
 

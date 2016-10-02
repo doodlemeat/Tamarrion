@@ -9,6 +9,8 @@ public class God_Base : MonoBehaviour
     public AudioClip _sound;
     public GameObject godPowerActivationEffect;
     public GameObject godPowerPersistantEffect;
+	public float secondsBeforeDecayStart;
+	public float decayAmountPerSecond;
     GameObject godPowerPersistantEffectInstance;
 
     protected virtual void Start()

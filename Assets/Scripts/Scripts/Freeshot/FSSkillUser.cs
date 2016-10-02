@@ -373,10 +373,10 @@ public class FSSkillUser : MonoBehaviour
 			}
         }
 
-		GodManager.Instance.RemoveGodPowerPoints (m_currentSkill.element, m_currentSkill.removeAmountGPPOnUse);
+		GodManager.Instance.RemoveTribute (m_currentSkill.element, m_currentSkill.removeAmountGPPOnUse);
 		
 		if(m_currentSkill.removeAllGPPOnUse) {
-			GodManager.Instance.RemoveAllGodPowerPoints (m_currentSkill.element);
+			GodManager.Instance.RemoveAllTribute (m_currentSkill.element);
 		}
 
         m_currentSkill.SkillEnd();
