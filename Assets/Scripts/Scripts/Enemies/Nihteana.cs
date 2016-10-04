@@ -6,6 +6,7 @@ using System;
 
 public class Nihteana : Enemy_Base
 {
+    private const int DEFAULT_WAYPOINT_PROBABILITY = 500;
     private const float PHASE_3_TEXTURE_LERP_TIME = 1;
 
     public static Nihteana instance;
@@ -42,7 +43,7 @@ public class Nihteana : Enemy_Base
         instance = this;
         waypointProb = new float[waypoints.Count];
         for (int i = 0; i < waypointProb.Length; i++) {
-            waypointProb[i] = 500;
+            waypointProb[i] = DEFAULT_WAYPOINT_PROBABILITY;
         }
         //Nihteana.instance.GetComponent<Enemy_Stats>().Add_Modifier("invurnuable", "damage_reduction", 1, 1);
     }
@@ -89,27 +90,26 @@ public class Nihteana : Enemy_Base
                 //Debug.Log("------------------------------- Move ------------------------------");
                 moving = true;
 
-                float total_prob = 0.0f;
-                
+                float totalProbability = 0.0f;
                 for (int i = 0; i < waypoints.Count; i++) {
-                    float distance_prob = Vector3.Distance(waypoints[i], transform.position) - 10;
-                    distance_prob *= 100;
-                    waypointProb[i] += distance_prob;
-                    total_prob += waypointProb[i];
+                    float distProbability = Vector3.Distance(waypoints[i], transform.position) - 10;
+                    distProbability *= 100;
+                    waypointProb[i] += distProbability;
+                    totalProbability += waypointProb[i];
                 }
 
-                float rand_wp = UnityEngine.Random.Range(0, total_prob);
-                int dest_wp = 0;
+                float randomProbability = UnityEngine.Random.Range(0, totalProbability);
+                int destinationWaypoint = 0;
 
                 for (int i = 0; i < waypoints.Count; i++) {
-                    if (rand_wp < waypointProb[i])
+                    if (randomProbability < waypointProb[i])
                         break;
-                    rand_wp -= waypointProb[i];
-                    dest_wp++;
+                    randomProbability -= waypointProb[i];
+                    destinationWaypoint++;
                 }
 
-                waypointProb[dest_wp] -= 500;
-                destination = waypoints[dest_wp];
+                waypointProb[destinationWaypoint] -= DEFAULT_WAYPOINT_PROBABILITY;
+                destination = waypoints[destinationWaypoint];
                 m_agent.enabled = true;
             }
             if (moving) {
