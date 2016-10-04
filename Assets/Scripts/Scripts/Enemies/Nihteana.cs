@@ -6,28 +6,47 @@ using System;
 
 public class Nihteana : Enemy_Base
 {
+    private const float PHASE_3_TEXTURE_LERP_TIME = 1;
+
     public static Nihteana instance;
 
-    public int altarsAlive = 4;
-
-    public Minion_Altar[] altars;
+    // General
+    private bool died = false;
+    private float timeDead;
 
     public List<Vector3> minion_deaths = new List<Vector3>();
+    public float despawn_time = 0;
+    public float decompose_time = 0;
+    public SkinnedMeshRenderer[] materials;
+
+    // Movement
+    public bool moving = false;
+    public float move_cooldown;
+    public List<Vector3> Waypoints = new List<Vector3>();
+    public float Radius;
+    public Vector3 destination;
+
+    private float[] waypointProb;
+    private float distanceToPlayer;
+    private float moveCooldown;
+
+    // Phases
+    public float[] PhasesPercent = new float[1];
+    public Encounter encounter;
+
+    // Altars
+    public Minion_Altar[] altars;
+    public int altarsAlive = 4;
 
     void Awake()
     {
         instance = this;
-        wp_prob = new float[Waypoints.Count];
-        for (int i = 0; i < wp_prob.Length; i++) {
-            wp_prob[i] = 500;
+        waypointProb = new float[Waypoints.Count];
+        for (int i = 0; i < waypointProb.Length; i++) {
+            waypointProb[i] = 500;
         }
         //Nihteana.instance.GetComponent<Enemy_Stats>().Add_Modifier("invurnuable", "damage_reduction", 1, 1);
     }
-
-	float phase3TextureLerpTime = 1;
-	
-
-    public float[] PhasesPercent = new float[1];
 
     /*protected override void Update() {
         if (Alive && m_player.GetComponent<CombatStats>().m_stat["health"] > 0.0f) {
@@ -46,17 +65,8 @@ public class Nihteana : Enemy_Base
         }
     }*/
 
-    public List<Vector3> Waypoints = new List<Vector3>();
-    private float[] wp_prob;
-    public float Radius;
-    private float player_distance;
-    public float move_cooldown;
-    private float m_move_cooldown;
-    public bool moving = false;
-    public Vector3 destination;
-
     protected override void Observe_Specific() {
-        player_distance = Vector3.Distance(transform.position, m_playerTransform.position);
+        distanceToPlayer = Vector3.Distance(transform.position, m_playerTransform.position);
         /*if (Phase != PhasesPercent.Length)
         {
             if (gameObject.GetComponent<CombatStats>().GetPercentageHP() < PhasesPercent[Phase - 1])
@@ -74,9 +84,9 @@ public class Nihteana : Enemy_Base
     }
 
     protected override void Plan() {
-        //Debug.Log((!m_skill_manager.UsingSkill()).ToString() + ", " + (!moving).ToString() + ", " + (m_move_cooldown <= 0.0f).ToString() + ", " + (player_distance <= 4.0f).ToString());
+        //Debug.Log((!m_skill_manager.UsingSkill()).ToString() + ", " + (!moving).ToString() + ", " + (moveCooldown <= 0.0f).ToString() + ", " + (distanceToPlayer <= 4.0f).ToString());
         if (Phase >= 2) {
-            if (!m_skill_manager.UsingSkill() && !moving && m_move_cooldown <= 0.0f && player_distance <= 4.0f) {
+            if (!m_skill_manager.UsingSkill() && !moving && moveCooldown <= 0.0f && distanceToPlayer <= 4.0f) {
                 //Debug.Log("------------------------------- Move ------------------------------");
                 moving = true;
 
@@ -85,21 +95,21 @@ public class Nihteana : Enemy_Base
                 for (int i = 0; i < Waypoints.Count; i++) {
                     float distance_prob = Vector3.Distance(Waypoints[i], transform.position) - 10;
                     distance_prob *= 100;
-                    wp_prob[i] += distance_prob;
-                    total_prob += wp_prob[i];
+                    waypointProb[i] += distance_prob;
+                    total_prob += waypointProb[i];
                 }
 
                 float rand_wp = UnityEngine.Random.Range(0, total_prob);
                 int dest_wp = 0;
 
                 for (int i = 0; i < Waypoints.Count; i++) {
-                    if (rand_wp < wp_prob[i])
+                    if (rand_wp < waypointProb[i])
                         break;
-                    rand_wp -= wp_prob[i];
+                    rand_wp -= waypointProb[i];
                     dest_wp++;
                 }
 
-                wp_prob[dest_wp] -= 500;
+                waypointProb[dest_wp] -= 500;
                 destination = Waypoints[dest_wp];
                 m_agent.enabled = true;
             }
@@ -107,11 +117,11 @@ public class Nihteana : Enemy_Base
                 m_skill_relevance = 0;
                 if (Vector3.Distance(transform.position, destination) <= 3.0f) {
                     moving = false;
-                    m_move_cooldown = move_cooldown;
+                    moveCooldown = move_cooldown;
                 }
             }
             else {
-                m_move_cooldown -= (Time.deltaTime + m_time_to_update);
+                moveCooldown -= (Time.deltaTime + m_time_to_update);
             }
 			Nihteana.instance.GetComponent<Enemy_Stats>().Remove_Modifier("invurnuable");
         }
@@ -143,7 +153,7 @@ public class Nihteana : Enemy_Base
         m_animator.SetBool("Move Left", false);
         m_animator.SetBool("Move Right", false);
     }
-    public Encounter encounter;
+
     protected override void Death() {
         base.Death();
         foreach (Enemy_Base en in Enemy_List.Enemies) {
@@ -155,17 +165,12 @@ public class Nihteana : Enemy_Base
         encounter.SetEncounterAsCompelte();
     }
 
-    private bool died = false;
-    private float time_dead;
-    public float despawn_time = 0, decompose_time = 0;
-    public SkinnedMeshRenderer[] materials;
-
     protected override void Update() {
         base.Update();
 
 		if ( Phase == 3) {
 			foreach ( SkinnedMeshRenderer material in materials ) {
-				material.material.SetFloat ("_Phase2", timeInCurrentPhase / phase3TextureLerpTime);
+				material.material.SetFloat ("_Phase2", timeInCurrentPhase / PHASE_3_TEXTURE_LERP_TIME);
 				if(material.material.GetFloat("_Phase2") > 1) {
 					material.material.SetFloat ("_Phase2", 1);
 				}
@@ -174,17 +179,17 @@ public class Nihteana : Enemy_Base
 
 		if (!Alive && !died) {
             died = true;
-            time_dead = 0;
+            timeDead = 0;
             Nihteana.instance.minion_deaths.Add(transform.position);
         }
         if (died) {
-            time_dead += Time.deltaTime;
-            if (time_dead > despawn_time) {
+            timeDead += Time.deltaTime;
+            if (timeDead > despawn_time) {
                 foreach (SkinnedMeshRenderer m in materials) {
-                    m.material.SetFloat("_Dissolve", time_dead / decompose_time);
+                    m.material.SetFloat("_Dissolve", timeDead / decompose_time);
                 }
             }
-            if (time_dead > despawn_time + decompose_time) {
+            if (timeDead > despawn_time + decompose_time) {
                 Destroy(gameObject);
             }
         }
@@ -193,6 +198,6 @@ public class Nihteana : Enemy_Base
 	protected override void OnBossPhaseSwitch (BossPhaseSwitchEvent e) {
 		Debug.Log ("In phase 3");
 		Debug.Log ("timeInCurrentPhase: " + timeInCurrentPhase);
-		Debug.Log ("phase3TextureLerpTime: " + phase3TextureLerpTime);
+		Debug.Log ("Phase 3 Texture Lerp Time: " + PHASE_3_TEXTURE_LERP_TIME);
 	}
 }
