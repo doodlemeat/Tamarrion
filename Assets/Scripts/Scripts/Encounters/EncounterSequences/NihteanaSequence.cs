@@ -45,7 +45,7 @@ public class NihteanaSequence : BaseEncounterSequence
                 foreach (Enemy_Base a in altars)
                     a.Active = true;
 
-                Nihteana.instance.GetComponent<Enemy_Stats>().Add_Modifier("invurnuable", "damage_reduction", 1, 1);
+                Nihteana.instance.GetComponent<Enemy_Stats>().Add_Modifier("invulnerable", "damage_reduction", 1, 1);
             }
         }
         else if (effect_played && !portal_opened) {

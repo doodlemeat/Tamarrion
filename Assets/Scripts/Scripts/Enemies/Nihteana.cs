@@ -45,7 +45,7 @@ public class Nihteana : Enemy_Base
         for (int i = 0; i < waypointProb.Length; i++) {
             waypointProb[i] = DEFAULT_WAYPOINT_PROBABILITY;
         }
-        //Nihteana.instance.GetComponent<Enemy_Stats>().Add_Modifier("invurnuable", "damage_reduction", 1, 1);
+        //Nihteana.instance.GetComponent<Enemy_Stats>().Add_Modifier("invulnerable", "damage_reduction", 1, 1);
     }
 
     /*protected override void Update() {
@@ -122,7 +122,7 @@ public class Nihteana : Enemy_Base
             else {
                 currentMoveCooldown -= (Time.deltaTime + m_time_to_update);
             }
-			Nihteana.instance.GetComponent<Enemy_Stats>().Remove_Modifier("invurnuable");
+			Nihteana.instance.GetComponent<Enemy_Stats>().Remove_Modifier("invulnerable");
         }
         base.Plan();
         m_rotate = Vector3.Angle(transform.forward, transform.position - m_playerTransform.position) < 178;
