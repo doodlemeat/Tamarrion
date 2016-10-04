@@ -8,7 +8,7 @@ public class Nihteana : Enemy_Base
 {
     public static Nihteana instance;
 
-    public int altars_alive = 4;
+    public int altarsAlive = 4;
 
     public Minion_Altar[] altars;
 
@@ -65,7 +65,7 @@ public class Nihteana : Enemy_Base
                 gameObject.GetComponent<Enemy_SkillManager>().NewPhase(Phase);
             }
         }
-        if (Phase == 1 && altars_alive <= 0) {
+        if (Phase == 1 && altarsAlive <= 0) {
             Phase = 2;
         }
         if (Phase == 2 && Nihteana.instance.GetComponent<Enemy_Stats>().GetShield() <= 0) {

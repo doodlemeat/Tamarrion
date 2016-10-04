@@ -7164,7 +7164,7 @@ MonoBehaviour:
   encounterCompleteOnDeath: {fileID: 0}
   enemyName: Nihteana
   deathDescription: The wicked crow necromancer finally sleeps the long sleep.
-  altars_alive: 4
+  altarsAlive: 4
   altars:
   - {fileID: 0}
   - {fileID: 0}
