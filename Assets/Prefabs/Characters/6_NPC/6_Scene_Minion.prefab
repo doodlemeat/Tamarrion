@@ -6360,8 +6360,8 @@ MonoBehaviour:
   encounterCompleteOnDeath: {fileID: 0}
   enemyName: Minion
   deathDescription: 
-  despawn_time: 5
-  decompose_time: 4
+  despawnTime: 5
+  decomposeTime: 4
   Degredation:
   - 0
   - 0

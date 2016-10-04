@@ -15,15 +15,14 @@ public class Nihteana : Enemy_Base
     private float timeDead;
 
     public List<Vector3> minion_deaths = new List<Vector3>();
-    public float despawn_time = 0;
-    public float decompose_time = 0;
+    public float despawnTime = 0;
+    public float decomposeTime = 0;
     public SkinnedMeshRenderer[] materials;
 
     // Movement
     public bool moving = false;
     public float move_cooldown;
     public List<Vector3> Waypoints = new List<Vector3>();
-    public float Radius;
     public Vector3 destination;
 
     private float[] waypointProb;
@@ -184,12 +183,12 @@ public class Nihteana : Enemy_Base
         }
         if (died) {
             timeDead += Time.deltaTime;
-            if (timeDead > despawn_time) {
+            if (timeDead > despawnTime) {
                 foreach (SkinnedMeshRenderer m in materials) {
-                    m.material.SetFloat("_Dissolve", timeDead / decompose_time);
+                    m.material.SetFloat("_Dissolve", timeDead / decomposeTime);
                 }
             }
-            if (timeDead > despawn_time + decompose_time) {
+            if (timeDead > despawnTime + decomposeTime) {
                 Destroy(gameObject);
             }
         }

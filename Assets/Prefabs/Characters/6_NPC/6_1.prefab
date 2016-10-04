@@ -7188,8 +7188,8 @@ MonoBehaviour:
   moving: 0
   destination: {x: 0, y: 0, z: 0}
   encounter: {fileID: 0}
-  despawn_time: 0
-  decompose_time: 5
+  despawnTime: 0
+  decomposeTime: 5
   materials:
   - {fileID: 13744486}
   - {fileID: 13782768}

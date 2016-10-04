@@ -7,8 +7,8 @@ public class Minion_Trash : Enemy_Base
 {
     private bool died = false;
     private float time_dead = 0.0f;
-    public float despawn_time = 5.0f;
-    public float decompose_time = 4.0f;
+    public float despawnTime = 5.0f;
+    public float decomposeTime = 4.0f;
     public bool Activate_by_distance = true;
 
     protected override void Death()
@@ -37,11 +37,11 @@ public class Minion_Trash : Enemy_Base
         if (died)
         {
             time_dead += Time.deltaTime;
-            if (time_dead > despawn_time)
+            if (time_dead > despawnTime)
             {
-                transform.position -= new Vector3(0, 2.0f * Time.deltaTime * (1 / decompose_time), 0);
+                transform.position -= new Vector3(0, 2.0f * Time.deltaTime * (1 / decomposeTime), 0);
             }
-            if (time_dead > despawn_time + decompose_time)
+            if (time_dead > despawnTime + decomposeTime)
             {
                 Destroy(gameObject);
             }
