@@ -14,23 +14,23 @@ public class Nihteana : Enemy_Base
     private bool died = false;
     private float timeDead;
 
-    public List<Vector3> minion_deaths = new List<Vector3>();
+    public List<Vector3> minionDeaths = new List<Vector3>();
     public float despawnTime = 0;
     public float decomposeTime = 0;
     public SkinnedMeshRenderer[] materials;
 
     // Movement
     public bool moving = false;
-    public float move_cooldown;
-    public List<Vector3> Waypoints = new List<Vector3>();
+    public float moveCooldown;
+    public List<Vector3> waypoints = new List<Vector3>();
     public Vector3 destination;
 
     private float[] waypointProb;
     private float distanceToPlayer;
-    private float moveCooldown;
+    private float currentMoveCooldown;
 
     // Phases
-    public float[] PhasesPercent = new float[1];
+    public float[] phasesPercent = new float[1];
     public Encounter encounter;
 
     // Altars
@@ -40,7 +40,7 @@ public class Nihteana : Enemy_Base
     void Awake()
     {
         instance = this;
-        waypointProb = new float[Waypoints.Count];
+        waypointProb = new float[waypoints.Count];
         for (int i = 0; i < waypointProb.Length; i++) {
             waypointProb[i] = 500;
         }
@@ -66,9 +66,9 @@ public class Nihteana : Enemy_Base
 
     protected override void Observe_Specific() {
         distanceToPlayer = Vector3.Distance(transform.position, m_playerTransform.position);
-        /*if (Phase != PhasesPercent.Length)
+        /*if (Phase != phasesPercent.Length)
         {
-            if (gameObject.GetComponent<CombatStats>().GetPercentageHP() < PhasesPercent[Phase - 1])
+            if (gameObject.GetComponent<CombatStats>().GetPercentageHP() < phasesPercent[Phase - 1])
             {
                 Phase++;
                 gameObject.GetComponent<Enemy_SkillManager>().NewPhase(Phase);
@@ -83,16 +83,16 @@ public class Nihteana : Enemy_Base
     }
 
     protected override void Plan() {
-        //Debug.Log((!m_skill_manager.UsingSkill()).ToString() + ", " + (!moving).ToString() + ", " + (moveCooldown <= 0.0f).ToString() + ", " + (distanceToPlayer <= 4.0f).ToString());
+        //Debug.Log((!m_skill_manager.UsingSkill()).ToString() + ", " + (!moving).ToString() + ", " + (currentMoveCooldown <= 0.0f).ToString() + ", " + (distanceToPlayer <= 4.0f).ToString());
         if (Phase >= 2) {
-            if (!m_skill_manager.UsingSkill() && !moving && moveCooldown <= 0.0f && distanceToPlayer <= 4.0f) {
+            if (!m_skill_manager.UsingSkill() && !moving && currentMoveCooldown <= 0.0f && distanceToPlayer <= 4.0f) {
                 //Debug.Log("------------------------------- Move ------------------------------");
                 moving = true;
 
                 float total_prob = 0.0f;
                 
-                for (int i = 0; i < Waypoints.Count; i++) {
-                    float distance_prob = Vector3.Distance(Waypoints[i], transform.position) - 10;
+                for (int i = 0; i < waypoints.Count; i++) {
+                    float distance_prob = Vector3.Distance(waypoints[i], transform.position) - 10;
                     distance_prob *= 100;
                     waypointProb[i] += distance_prob;
                     total_prob += waypointProb[i];
@@ -101,7 +101,7 @@ public class Nihteana : Enemy_Base
                 float rand_wp = UnityEngine.Random.Range(0, total_prob);
                 int dest_wp = 0;
 
-                for (int i = 0; i < Waypoints.Count; i++) {
+                for (int i = 0; i < waypoints.Count; i++) {
                     if (rand_wp < waypointProb[i])
                         break;
                     rand_wp -= waypointProb[i];
@@ -109,18 +109,18 @@ public class Nihteana : Enemy_Base
                 }
 
                 waypointProb[dest_wp] -= 500;
-                destination = Waypoints[dest_wp];
+                destination = waypoints[dest_wp];
                 m_agent.enabled = true;
             }
             if (moving) {
                 m_skill_relevance = 0;
                 if (Vector3.Distance(transform.position, destination) <= 3.0f) {
                     moving = false;
-                    moveCooldown = move_cooldown;
+                    currentMoveCooldown = moveCooldown;
                 }
             }
             else {
-                moveCooldown -= (Time.deltaTime + m_time_to_update);
+                currentMoveCooldown -= (Time.deltaTime + m_time_to_update);
             }
 			Nihteana.instance.GetComponent<Enemy_Stats>().Remove_Modifier("invurnuable");
         }
@@ -179,7 +179,7 @@ public class Nihteana : Enemy_Base
 		if (!Alive && !died) {
             died = true;
             timeDead = 0;
-            Nihteana.instance.minion_deaths.Add(transform.position);
+            Nihteana.instance.minionDeaths.Add(transform.position);
         }
         if (died) {
             timeDead += Time.deltaTime;

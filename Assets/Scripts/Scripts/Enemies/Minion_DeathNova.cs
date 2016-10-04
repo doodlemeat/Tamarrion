@@ -37,7 +37,7 @@ public class Minion_DeathNova : Enemy_Base {
         if (!Alive && !died) {
             died = true;
             time_dead = 0;
-            Nihteana.instance.minion_deaths.Add(transform.position);
+            Nihteana.instance.minionDeaths.Add(transform.position);
         }
         if (died) {
             time_dead += Time.deltaTime;
