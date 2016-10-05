@@ -6,8 +6,8 @@ using System;
 
 public class Nihteana : Enemy_Base
 {
-    private const int DEFAULT_WAYPOINT_PROBABILITY = 500;
-    private const float PHASE_3_TEXTURE_LERP_TIME = 1;
+    private const int DefaultWaypointProbability = 500;
+    private const float Phase3TextureLerpTime = 1;
 
     public static Nihteana instance;
 
@@ -43,7 +43,7 @@ public class Nihteana : Enemy_Base
         instance = this;
         waypointProb = new float[waypoints.Count];
         for (int i = 0; i < waypointProb.Length; i++) {
-            waypointProb[i] = DEFAULT_WAYPOINT_PROBABILITY;
+            waypointProb[i] = DefaultWaypointProbability;
         }
         //Nihteana.instance.GetComponent<Enemy_Stats>().Add_Modifier("invulnerable", "damage_reduction", 1, 1);
     }
@@ -108,7 +108,7 @@ public class Nihteana : Enemy_Base
                     destinationWaypoint++;
                 }
 
-                waypointProb[destinationWaypoint] -= DEFAULT_WAYPOINT_PROBABILITY;
+                waypointProb[destinationWaypoint] -= DefaultWaypointProbability;
                 destination = waypoints[destinationWaypoint];
                 m_agent.enabled = true;
             }
@@ -169,7 +169,7 @@ public class Nihteana : Enemy_Base
 
 		if ( Phase == 3) {
 			foreach ( SkinnedMeshRenderer material in materials ) {
-				material.material.SetFloat ("_Phase2", timeInCurrentPhase / PHASE_3_TEXTURE_LERP_TIME);
+				material.material.SetFloat ("_Phase2", timeInCurrentPhase / Phase3TextureLerpTime);
 				if(material.material.GetFloat("_Phase2") > 1) {
 					material.material.SetFloat ("_Phase2", 1);
 				}
@@ -197,6 +197,6 @@ public class Nihteana : Enemy_Base
 	protected override void OnBossPhaseSwitch (BossPhaseSwitchEvent e) {
 		Debug.Log ("In phase 3");
 		Debug.Log ("timeInCurrentPhase: " + timeInCurrentPhase);
-		Debug.Log ("Phase 3 Texture Lerp Time: " + PHASE_3_TEXTURE_LERP_TIME);
+		Debug.Log ("Phase 3 Texture Lerp Time: " + Phase3TextureLerpTime);
 	}
 }
