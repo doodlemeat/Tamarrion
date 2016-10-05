@@ -16,7 +16,7 @@ public class Valac : Enemy_Base
         instance = this;
     }
 
-    public float[] PhasesPercent = new float[1];
+    public float[] phasesPercent = new float[1];
 
     protected override void Death()
     {
@@ -41,9 +41,9 @@ public class Valac : Enemy_Base
 
     protected override void Observe_Specific()
     {
-        if (Phase != PhasesPercent.Length)
+        if (Phase != phasesPercent.Length)
         {
-            if (gameObject.GetComponent<CombatStats>().GetPercentageHP() < PhasesPercent[Phase - 1])
+            if (gameObject.GetComponent<CombatStats>().GetPercentageHP() < phasesPercent[Phase - 1])
             {
                 Phase++;
                 gameObject.GetComponent<Enemy_SkillManager>().NewPhase(Phase);

@@ -7161,7 +7161,7 @@ MonoBehaviour:
   encounter: {fileID: 0}
   Whirling: 0
   Swiping: 0
-  PhasesPercent:
+  phasesPercent:
   - 0.9
   - 0.8
   - 0.6

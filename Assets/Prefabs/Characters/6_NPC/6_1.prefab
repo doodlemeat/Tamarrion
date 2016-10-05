@@ -7164,15 +7164,15 @@ MonoBehaviour:
   encounterCompleteOnDeath: {fileID: 0}
   enemyName: Nihteana
   deathDescription: The wicked crow necromancer finally sleeps the long sleep.
-  altars_alive: 4
+  altarsAlive: 4
   altars:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  minion_deaths: []
-  PhasesPercent: []
-  Waypoints:
+  minionDeaths: []
+  phasesPercent: []
+  waypoints:
   - {x: 73, y: -13, z: 65}
   - {x: 73, y: -13, z: 76}
   - {x: 73, y: -13, z: 88}
@@ -7183,13 +7183,12 @@ MonoBehaviour:
   - {x: 58, y: -13, z: 88}
   - {x: 50, y: -13, z: 70}
   - {x: 50, y: -13, z: 82}
-  Radius: 0
-  move_cooldown: 10
+  moveCooldown: 10
   moving: 0
   destination: {x: 0, y: 0, z: 0}
   encounter: {fileID: 0}
-  despawn_time: 0
-  decompose_time: 5
+  despawnTime: 0
+  decomposeTime: 5
   materials:
   - {fileID: 13744486}
   - {fileID: 13782768}

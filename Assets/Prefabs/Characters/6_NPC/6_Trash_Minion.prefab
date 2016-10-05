@@ -6375,8 +6375,8 @@ MonoBehaviour:
   encounterCompleteOnDeath: {fileID: 0}
   enemyName: Minion
   deathDescription: 
-  despawn_time: 5
-  decompose_time: 4
+  despawnTime: 5
+  decomposeTime: 4
   Activate_by_distance: 1
 --- !u!114 &11499596
 MonoBehaviour:

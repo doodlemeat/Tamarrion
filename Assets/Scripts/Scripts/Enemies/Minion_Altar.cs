@@ -46,7 +46,7 @@ public class Minion_Altar : Enemy_Base {
         LineFollow.SetActive(false);
         //GetComponentInChildren<LineFollow>().gameObject.SetActive(false);
         m_time_updated = 0.0f;
-        Nihteana.instance.altars_alive -= 1;
+        Nihteana.instance.altarsAlive -= 1;
 
         foreach (GameObject g in death_disables) {
             g.SetActive(false);
@@ -74,7 +74,7 @@ public class Minion_Altar : Enemy_Base {
         //Debug.Log("Reactivate");
         Activate();
         gameObject.GetComponent<Animator>().SetBool("Alive", true);
-        Nihteana.instance.altars_alive++;
+        Nihteana.instance.altarsAlive++;
     }
 
 	protected override void OnBossPhaseSwitch (BossPhaseSwitchEvent e) {

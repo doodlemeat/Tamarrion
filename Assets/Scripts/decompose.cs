@@ -3,7 +3,7 @@ using System.Collections;
 
 public class decompose : MonoBehaviour {
 
-    public float alive_time = 0, decompose_time = 0;
+    public float alive_time = 0, decomposeTime = 0;
     //public Vector3 decompose_travel = Vector3.zero;
     private float time_alive = 0, time_decomposed = 0;
     private bool decomposing = false;
@@ -26,9 +26,9 @@ public class decompose : MonoBehaviour {
                 time_alive = alive_time;
                 time_decomposed += Time.deltaTime;
 
-                gameObject.transform.position -= new Vector3(0, 1.0f * Time.deltaTime * (1 / decompose_time), 0);
+                gameObject.transform.position -= new Vector3(0, 1.0f * Time.deltaTime * (1 / decomposeTime), 0);
 
-                if (time_decomposed >= decompose_time) {
+                if (time_decomposed >= decomposeTime) {
                     Destroy(gameObject);
                 }
             }

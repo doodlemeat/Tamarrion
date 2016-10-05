@@ -14,7 +14,7 @@ public class Minion_Explosion_Placer : MonoBehaviour {
         //m_boss = Valac.instance.transform.position;
         m_time_spawned = 0.0f;
 
-        m_spawns = new float[Nihteana.instance.minion_deaths.Count];
+        m_spawns = new float[Nihteana.instance.minionDeaths.Count];
 
         for (int i = 0; i < m_spawns.Length; i++) {
             m_spawns[i] = Random.Range(0.0f, spawning_time[(int)Difficulty.Current_difficulty]);
@@ -23,9 +23,9 @@ public class Minion_Explosion_Placer : MonoBehaviour {
     }
     void Update() {
         if (m_time_spawned >= spawning_time[(int)Difficulty.Current_difficulty] || !Nihteana.instance) {
-            //Debug.Log("Before clear: " + Nihteana.instance.minion_deaths.Count);
-            Nihteana.instance.minion_deaths.Clear();
-            //Debug.Log("Clear minions deaths: " + Nihteana.instance.minion_deaths.Count);
+            //Debug.Log("Before clear: " + Nihteana.instance.minionDeaths.Count);
+            Nihteana.instance.minionDeaths.Clear();
+            //Debug.Log("Clear minions deaths: " + Nihteana.instance.minionDeaths.Count);
             Destroy(gameObject);
         }
         m_time_spawned += Time.deltaTime;
@@ -34,7 +34,7 @@ public class Minion_Explosion_Placer : MonoBehaviour {
             if (m_spawns[i] != 0 && m_spawns[i] < m_time_spawned) {
                 //Vector3 position = Random.insideUnitSphere * FallRadius[(int)Difficulty.Current_difficulty];
                 Telegrapher.m_boss = Nihteana.instance.gameObject;
-                Instantiate(Telegrapher, Nihteana.instance.minion_deaths[i], Quaternion.identity);
+                Instantiate(Telegrapher, Nihteana.instance.minionDeaths[i], Quaternion.identity);
                 m_spawns[i] = 0;
             }
         }

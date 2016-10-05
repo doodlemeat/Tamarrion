@@ -6,7 +6,7 @@ using Tamarrion;
 public class Minion_DeathNova : Enemy_Base {
     private bool died = false;
     private float time_dead = 0;
-    public float despawn_time, decompose_time;
+    public float despawnTime, decomposeTime;
     public float[] Degredation;
     public float Niht_Shield_Percent;
     public bool Activate_by_distance = false;
@@ -37,14 +37,14 @@ public class Minion_DeathNova : Enemy_Base {
         if (!Alive && !died) {
             died = true;
             time_dead = 0;
-            Nihteana.instance.minion_deaths.Add(transform.position);
+            Nihteana.instance.minionDeaths.Add(transform.position);
         }
         if (died) {
             time_dead += Time.deltaTime;
-            if (time_dead > despawn_time) {
-                transform.position -= new Vector3(0, 2.0f * Time.deltaTime * (1 / decompose_time), 0);
+            if (time_dead > despawnTime) {
+                transform.position -= new Vector3(0, 2.0f * Time.deltaTime * (1 / decomposeTime), 0);
             }
-            if (time_dead > despawn_time + decompose_time) {
+            if (time_dead > despawnTime + decomposeTime) {
                 Destroy(gameObject);
             }
         }

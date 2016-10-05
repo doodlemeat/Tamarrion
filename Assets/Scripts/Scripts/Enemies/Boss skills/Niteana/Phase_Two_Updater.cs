@@ -18,7 +18,7 @@ public class Phase_Two_Updater : Base_EnemySkill_Update {
             Nihteana.instance.gameObject.GetComponentInChildren<Animator>().SetBool("TurnPhase", false);
             Nihteana.instance.gameObject.GetComponentInChildren<Animator>().SetBool("Recoup", false);
             Nihteana.instance.gameObject.GetComponentInChildren<Animator>().SetBool("Spawn", false);
-            Nihteana.instance.GetComponent<Enemy_Stats>().Remove_Modifier("invurnuable");
+            Nihteana.instance.GetComponent<Enemy_Stats>().Remove_Modifier("invulnerable");
             foreach (Minion_Altar Altar in Nihteana.instance.altars) {
                 Altar.GetComponent<Enemy_Stats>().Kill();
             }

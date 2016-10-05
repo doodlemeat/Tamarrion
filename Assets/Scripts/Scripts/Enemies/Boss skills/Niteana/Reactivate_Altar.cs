@@ -16,8 +16,8 @@ public class Reactivate_Altar : Base_EnemySkill {
             m_cooldown -= delta_time;
             return 0.0f;
         }
-        //Debug.Log(Nihteana.instance.altars_alive + " altars alive!");
-        return 150.0f * (4 - Nihteana.instance.altars_alive);
+        //Debug.Log(Nihteana.instance.altarsAlive + " altars alive!");
+        return 150.0f * (4 - Nihteana.instance.altarsAlive);
     }
 
     protected override void InitializeSkill() {
