@@ -9,6 +9,7 @@ using System.Collections;
 ///<summary>
 ///Looks at a target
 ///</summary>
+namespace Tamarrion {
 [AddComponentMenu("Camera-Control/Smooth Look At CS")]
 public class SmoothLookAt : MonoBehaviour {
 	public Transform target;		//an Object to lock on to
@@ -72,4 +73,5 @@ public class SmoothLookAt : MonoBehaviour {
 			}
 		}
 	}
+}
 }

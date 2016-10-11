@@ -1,0 +1,23 @@
+{
+	"solution": "Tamarrion.sln",
+	"projects": [
+		"Tamarrion.CSharp"
+	],
+	"rules": {
+		"EnforceNamespace": {
+			"fail": "warning",
+			"options": {
+				"name": "Tamarrion"
+			}
+		},
+		"EmptyBlock": {
+			"fail": "error",
+			"options": {
+				"allow_comments_in_empty": false
+			}
+		},
+		"BraceStyle": {
+			"fail": "warning"
+		}
+	}
+}

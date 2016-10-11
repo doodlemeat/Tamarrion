@@ -1,19 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+namespace Tamarrion {
+	[RequireComponent (typeof (Renderer))]
 
-[RequireComponent(typeof(Renderer))]
+	public class SetMaterialEmissivePower : MonoBehaviour {
+		public float StartPower = 1f;
 
-public class SetMaterialEmissivePower : MonoBehaviour
-{
-    public float StartPower = 1f;
+		void Start () {
+			GetComponent<Renderer> ().material.SetFloat ("_EmissivePower", StartPower);
+		}
 
-    void Start()
-    {
-        GetComponent<Renderer>().material.SetFloat("_EmissivePower", StartPower);
-    }
-
-    public void SetEmissivePower(float p_value)
-    {
-        GetComponent<Renderer>().material.SetFloat("_EmissivePower", p_value);
-    }
+		public void SetEmissivePower (float p_value) {
+			GetComponent<Renderer> ().material.SetFloat ("_EmissivePower", p_value);
+		}
+	}
 }

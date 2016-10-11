@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TransparentCollision : MonoBehaviour 
-{
+namespace Tamarrion {
+	public class TransparentCollision : MonoBehaviour {
 
+	}
 }

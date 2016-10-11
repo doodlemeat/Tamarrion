@@ -1,39 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
+namespace Tamarrion {
+	[RequireComponent (typeof (Renderer))]
 
-[RequireComponent(typeof(Renderer))]
+	public class GodRayMaterialFade : MonoBehaviour {
+		public float fadeTime = 0.5f;
+		TopgunTimer fadeTimer = new TopgunTimer ();
+		bool done = false;
+		Renderer rend;
 
-public class GodRayMaterialFade : MonoBehaviour
-{
-    public float fadeTime = 0.5f;
-    TopgunTimer fadeTimer = new TopgunTimer();
-    bool done = false;
-    Renderer rend;
+		void Start () {
+			rend = GetComponent<Renderer> ();
+			SetSeqSelectValue (0f);
+			fadeTimer.StartTimerBySeconds (fadeTime);
+		}
 
-    void Start()
-    {
-        rend = GetComponent<Renderer>();
-        SetSeqSelectValue(0f);
-        fadeTimer.StartTimerBySeconds(fadeTime);
-    }
+		void Update () {
+			if ( done )
+				return;
 
-    void Update()
-    {
-        if (done)
-            return;
+			fadeTimer.Update ();
+			SetSeqSelectValue (fadeTimer.PercentComplete ());
 
-        fadeTimer.Update();
-        SetSeqSelectValue(fadeTimer.PercentComplete());
+			if ( fadeTimer.IsComplete ) {
+				SetSeqSelectValue (0f);
+				done = true;
+			}
+		}
 
-        if (fadeTimer.IsComplete)
-        {
-            SetSeqSelectValue(0f);
-            done = true;
-        }
-    }
-
-    void SetSeqSelectValue(float p_value)
-    {
-        rend.material.SetFloat("_SeqSelect", p_value);
-    }
+		void SetSeqSelectValue (float p_value) {
+			rend.material.SetFloat ("_SeqSelect", p_value);
+		}
+	}
 }

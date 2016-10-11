@@ -1,21 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+namespace Tamarrion {
+	public class NihteanaAnimationEventHandler : MonoBehaviour {
 
-public class NihteanaAnimationEventHandler : MonoBehaviour
-{
+		void Start () {
 
-    void Start()
-    {
+		}
 
-    }
+		public void OnStep () {
 
-    public void OnStep()
-    {
+		}
 
-    }
+		public void OnSwing () {
 
-    public void OnSwing()
-    {
-
-    }
+		}
+	}
 }

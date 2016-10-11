@@ -1,27 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
+namespace Tamarrion {
+	public class MenuSoundManager : MonoBehaviour {
+		public static MenuSoundManager instance;
 
-public class MenuSoundManager : MonoBehaviour
-{
-    public static MenuSoundManager instance;
+		public AudioSource clickSoundSource;
+		public AudioSource selectSoundSource;
 
-    public AudioSource clickSoundSource;
-    public AudioSource selectSoundSource;
-    
-    void Awake()
-    {
-        instance = this;
-    }
+		void Awake () {
+			instance = this;
+		}
 
-    public void PlayClickSound()
-    {
-        if (clickSoundSource)
-            clickSoundSource.Play();
-    }
+		public void PlayClickSound () {
+			if ( clickSoundSource )
+				clickSoundSource.Play ();
+		}
 
-    public void PlaySelectSound()
-    {
-        if (selectSoundSource)
-            selectSoundSource.Play();
-    }
+		public void PlaySelectSound () {
+			if ( selectSoundSource )
+				selectSoundSource.Play ();
+		}
+	}
 }

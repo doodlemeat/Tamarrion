@@ -1,24 +1,25 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+namespace Tamarrion {
+	public class UITextScale : MonoBehaviour {
+		Text text;
 
-public class UITextScale : MonoBehaviour {
-	Text text;
+		void Awake () {
+			text = GetComponent<Text> ();
+			text.resizeTextForBestFit = true;
+		}
 
-	void Awake () {
-		text = GetComponent<Text> ();
-		text.resizeTextForBestFit = true;
-	}
+		void Update () {
+			float width = text.preferredWidth;
+			float maxWidth = (transform as RectTransform).rect.width;
 
-	void Update() {
-		float width = text.preferredWidth;
-		float maxWidth = (transform as RectTransform).rect.width;
-
-		if(width > maxWidth) {
-			Vector3 scale = transform.localScale;
-			scale.x = maxWidth / width;
-			scale.y = scale.x;
-			transform.localScale = scale;
+			if ( width > maxWidth ) {
+				Vector3 scale = transform.localScale;
+				scale.x = maxWidth / width;
+				scale.y = scale.x;
+				transform.localScale = scale;
+			}
 		}
 	}
 }

@@ -1,30 +1,27 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+namespace Tamarrion {
+	public class MainMenuBossInfo : MonoBehaviour {
+		public static MainMenuBossInfo instance;
+		public Text title;
+		public Text description;
 
-public class MainMenuBossInfo : MonoBehaviour
-{
-    public static MainMenuBossInfo instance;
-    public Text title;
-    public Text description;
+		void Awake () {
+			instance = this;
+		}
 
-    void Awake()
-    {
-        instance = this;
-    }
+		public void SetTitleText (string p_newTitle) {
+			if ( !title )
+				return;
 
-    public void SetTitleText(string p_newTitle)
-    {
-        if (!title)
-            return;
+			title.text = p_newTitle;
+		}
 
-        title.text = p_newTitle;
-    }
+		public void SetDescriptionText (string p_newDescription) {
+			if ( !description )
+				return;
 
-    public void SetDescriptionText(string p_newDescription)
-    {
-        if (!description)
-            return;
-
-        description.text = p_newDescription;
-    }
+			description.text = p_newDescription;
+		}
+	}
 }

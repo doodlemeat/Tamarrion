@@ -1,35 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
+namespace Tamarrion {
+	public class UrnOrb : MonoBehaviour {
+		public GameObject particleSys;
+		protected PlayerStats _playerStats;
+		protected bool _triggered = false;
 
-public class UrnOrb : MonoBehaviour
-{
-    public GameObject particleSys;
-    protected PlayerStats _playerStats;
-    protected bool _triggered = false;
+		public float[] health = new float[3];
 
-    public float[] health = new float[3];
+		float _baseHeight;
 
-    float _baseHeight;
+		protected void OnTriggerEnter (Collider other) {
+			if ( other.gameObject != Player.player.gameObject )
+				return;
 
-    protected void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject != Player.player.gameObject)
-            return;
+			_playerStats = other.GetComponent<PlayerStats> ();
+			if ( _playerStats )
+				_triggered = true;
+			else
+				_triggered = false;
 
-        _playerStats = other.GetComponent<PlayerStats>();
-        if (_playerStats)
-            _triggered = true;
-        else
-            _triggered = false;
+			if ( _triggered && _playerStats.GetPercentageHP () < 1.0f ) {
+				_playerStats.HealPercentage (health[(int)Difficulty.Current_difficulty]);
+				//Debug.Log("Player healed by orb");
+				Destroy (gameObject);
+				if ( particleSys )
+					Instantiate (particleSys, other.gameObject.transform.position, particleSys.gameObject.transform.rotation);
+			}
 
-        if (_triggered && _playerStats.GetPercentageHP() < 1.0f)
-        {
-            _playerStats.HealPercentage(health[(int)Difficulty.Current_difficulty]);
-            //Debug.Log("Player healed by orb");
-            Destroy(gameObject);
-            if (particleSys)
-                Instantiate(particleSys, other.gameObject.transform.position, particleSys.gameObject.transform.rotation);
-        }
-
-    }
+		}
+	}
 }

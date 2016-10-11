@@ -1,47 +1,41 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+namespace Tamarrion {
+	public class ShowCanvasGroupOnMouseOver : MonoBehaviour {
+		public bool showFromStart = false;
+		bool showThis = false;
+		public CanvasGroup targetCanvasGroup;
 
-public class ShowCanvasGroupOnMouseOver : MonoBehaviour
-{
-    public bool showFromStart = false;
-    bool showThis = false;
-    public CanvasGroup targetCanvasGroup;
+		void Start () {
+			if ( showFromStart )
+				Show ();
+			else
+				Hide ();
+		}
 
-    void Start()
-    {
-        if (showFromStart)
-            Show();
-        else
-            Hide();
-    }
+		public void Show () {
+			showThis = true;
+			targetCanvasGroup.alpha = 1;
+		}
 
-    public void Show()
-    {
-        showThis = true;
-        targetCanvasGroup.alpha = 1;
-    }
+		public void Hide () {
+			showThis = false;
+			targetCanvasGroup.alpha = 0;
+		}
 
-    public void Hide()
-    {
-        showThis = false;
-        targetCanvasGroup.alpha = 0;
-    }
-    
-    bool GetShown()
-    {
-        return showThis;
-    }
+		bool GetShown () {
+			return showThis;
+		}
 
-    public void OnMouseEnter()
-    {
-        Debug.Log("mouse enter");
-        Show();
-    }
+		public void OnMouseEnter () {
+			Debug.Log ("mouse enter");
+			Show ();
+		}
 
-    public void OnMouseExit()
-    {
-        Debug.Log("mouse exit");
-        Hide();
-    }
+		public void OnMouseExit () {
+			Debug.Log ("mouse exit");
+			Hide ();
+		}
+	}
 }

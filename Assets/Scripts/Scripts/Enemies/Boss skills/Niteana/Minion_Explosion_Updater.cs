@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public class Minion_Explosion_Updater : Base_EnemySkill_Telegraph {
+namespace Tamarrion {
+	public class Minion_Explosion_Updater : Base_EnemySkill_Telegraph {
+	}
 }

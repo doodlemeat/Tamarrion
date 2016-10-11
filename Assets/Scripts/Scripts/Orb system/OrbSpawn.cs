@@ -1,27 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+namespace Tamarrion {
+	public class OrbSpawn : MonoBehaviour {
+		GameObject _orb;
 
-public class OrbSpawn : MonoBehaviour 
-{
-	GameObject _orb;
+		void Start () {
 
-	void Start () 
-	{
-	
-	}
+		}
 
-	void Update () 
-	{
-	
-	}
+		void Update () {
 
-	public void SetOrb(GameObject orbObject)
-	{
-		_orb = orbObject;
-	}
+		}
 
-	public bool HasOrb()
-	{
-		return _orb;
+		public void SetOrb (GameObject orbObject) {
+			_orb = orbObject;
+		}
+
+		public bool HasOrb () {
+			return _orb;
+		}
 	}
 }

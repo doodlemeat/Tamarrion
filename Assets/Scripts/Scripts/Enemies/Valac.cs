@@ -2,56 +2,49 @@
 using System.Collections;
 using System;
 using Tamarrion;
+namespace Tamarrion {
+	public class Valac : Enemy_Base {
+		public static Valac instance;
 
-public class Valac : Enemy_Base
-{
-    public static Valac instance;
+		public Encounter encounter;
 
-    public Encounter encounter;
+		public bool Whirling = false, Swiping = false;
 
-    public bool Whirling = false, Swiping = false;
-    
-    void Awake()
-    {
-        instance = this;
-    }
+		void Awake () {
+			instance = this;
+		}
 
-    public float[] phasesPercent = new float[1];
+		public float[] phasesPercent = new float[1];
 
-    protected override void Death()
-    {
-        base.Death();
+		protected override void Death () {
+			base.Death ();
 
-        //PlayerStats.instance.Add_Modifier("game_over_invul", "invulnerable", 1.0f, 0.0f);
-        if (HUDController.hudController)
-            HUDController.hudController.ShowStatsScreen(true);
+			//PlayerStats.instance.Add_Modifier("game_over_invul", "invulnerable", 1.0f, 0.0f);
+			if ( HUDController.hudController )
+				HUDController.hudController.ShowStatsScreen (true);
 
-        encounter.SetEncounterAsCompelte();
-    }
+			encounter.SetEncounterAsCompelte ();
+		}
 
-    protected override void Act()
-    {
-        base.Act();
+		protected override void Act () {
+			base.Act ();
 
-        if (Whirling)
-        {
-            transform.rotation *= Quaternion.Euler(new Vector3(0.0f, -1300.0f * Time.deltaTime, 0.0f));
-        }
-    }
+			if ( Whirling ) {
+				transform.rotation *= Quaternion.Euler (new Vector3 (0.0f, -1300.0f * Time.deltaTime, 0.0f));
+			}
+		}
 
-    protected override void Observe_Specific()
-    {
-        if (Phase != phasesPercent.Length)
-        {
-            if (gameObject.GetComponent<CombatStats>().GetPercentageHP() < phasesPercent[Phase - 1])
-            {
-                Phase++;
-                gameObject.GetComponent<Enemy_SkillManager>().NewPhase(Phase);
-            }
-        }
-    }
+		protected override void Observe_Specific () {
+			if ( Phase != phasesPercent.Length ) {
+				if ( gameObject.GetComponent<CombatStats> ().GetPercentageHP () < phasesPercent[Phase - 1] ) {
+					Phase++;
+					gameObject.GetComponent<Enemy_SkillManager> ().NewPhase (Phase);
+				}
+			}
+		}
 
-	protected override void OnBossPhaseSwitch (BossPhaseSwitchEvent e) {
-		
+		protected override void OnBossPhaseSwitch (BossPhaseSwitchEvent e) {
+
+		}
 	}
 }

@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public class Persistant : MonoBehaviour
-{
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+namespace Tamarrion {
+	public class Persistant : MonoBehaviour {
+		void Awake () {
+			DontDestroyOnLoad (gameObject);
+		}
+	}
 }

@@ -1,41 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
+namespace Tamarrion {
+	public class TopgunTimer {
+		float currentTime = 0;
+		float maxTime = 0;
+		bool complete = true;
 
-public class TopgunTimer
-{
-    float currentTime = 0;
-    float maxTime = 0;
-    bool complete = true;
-    
-    public void Update()
-    {
-        if (complete)
-            return;
+		public void Update () {
+			if ( complete )
+				return;
 
-        currentTime -= Time.deltaTime;
-        if (currentTime <= 0)
-            SetToComplete();
-    }
+			currentTime -= Time.deltaTime;
+			if ( currentTime <= 0 )
+				SetToComplete ();
+		}
 
-    public void StartTimerBySeconds(float p_seconds)
-    {
-        complete = false;
-        currentTime = maxTime = p_seconds;
-    }
+		public void StartTimerBySeconds (float p_seconds) {
+			complete = false;
+			currentTime = maxTime = p_seconds;
+		}
 
-    public bool IsComplete
-    {
-        get { return complete; }
-    }
+		public bool IsComplete {
+			get { return complete; }
+		}
 
-    public float PercentComplete()
-    {
-        return currentTime / maxTime;
-    }
+		public float PercentComplete () {
+			return currentTime / maxTime;
+		}
 
-    public void SetToComplete()
-    {
-        currentTime = 0;
-        complete = true;
-    }
+		public void SetToComplete () {
+			currentTime = 0;
+			complete = true;
+		}
+	}
 }

@@ -1,28 +1,26 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+namespace Tamarrion {
+	[RequireComponent (typeof (Button))]
 
-[RequireComponent(typeof(Button))]
+	public class BossSelectionButton : MonoBehaviour {
+		public string progressionString = "";
+		public string BossTitle = "";
+		public string BossDescription = "";
+		Button button;
 
-public class BossSelectionButton : MonoBehaviour
-{
-    public string progressionString = "";
-    public string BossTitle = "";
-    public string BossDescription = "";
-    Button button;
+		void Awake () {
+			button = GetComponent<Button> ();
+			button.onClick.AddListener (() => { OnClick (); });
+		}
 
-    void Awake()
-    {
-        button = GetComponent<Button>();
-        button.onClick.AddListener(() => { OnClick(); });
-    }
+		void OnClick () {
+			if ( !MainMenuBossInfo.instance || !Player.player )
+				return;
 
-    void OnClick()
-    {
-        if (!MainMenuBossInfo.instance || !Player.player)
-            return;
-        
-        MainMenuBossInfo.instance.SetTitleText(BossTitle);
-        MainMenuBossInfo.instance.SetDescriptionText(BossDescription);
-        Player.player.progressStateName = progressionString;
-    }
+			MainMenuBossInfo.instance.SetTitleText (BossTitle);
+			MainMenuBossInfo.instance.SetDescriptionText (BossDescription);
+			Player.player.progressStateName = progressionString;
+		}
+	}
 }
