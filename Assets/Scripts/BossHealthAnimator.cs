@@ -10,6 +10,7 @@ namespace Tamarrion {
 			//_image = GetComponent<Image>();
 		}
 
+		
 		void Update () {
 		}
 	}
