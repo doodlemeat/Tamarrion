@@ -5,9 +5,10 @@ using System.Linq;
 using System.IO;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
-using Tamarrion;
+
 namespace Tamarrion {
-	public class InventoryManager : MyMonoBehaviour {
+	[UnitySingleton (false, true)]
+	public class InventoryManager : UnitySingleton<InventoryManager> {
 		public static InventoryManager inventoryManager = null;
 
 		[Serializable]
@@ -50,7 +51,7 @@ namespace Tamarrion {
 		private bool Loaded = false;
 		private int version = 8;
 
-		void Awake () {
+		protected override void OnAwake () {
 			equipped = new int[(int)BaseItem.EItemType.Count];
 			inventoryManager = this;
 			GameObject ItemsInventory = new GameObject ();

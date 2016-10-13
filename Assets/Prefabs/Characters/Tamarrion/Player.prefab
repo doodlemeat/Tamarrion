@@ -1282,22 +1282,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &140590
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 488910}
-  - 114: {fileID: 11419972}
-  m_Layer: 9
-  m_Name: InventoryManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &140622
 GameObject:
   m_ObjectHideFlags: 1
@@ -3835,7 +3819,7 @@ Transform:
   - {fileID: 482502}
   - {fileID: 474944}
   m_Father: {fileID: 450120}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!4 &427918
 Transform:
   m_ObjectHideFlags: 1
@@ -4526,7 +4510,6 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 403684}
-  - {fileID: 488910}
   - {fileID: 457452}
   - {fileID: 427230}
   - {fileID: 488146}
@@ -4770,7 +4753,7 @@ Transform:
   - {fileID: 457456}
   - {fileID: 459024}
   m_Father: {fileID: 450120}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &457456
 Transform:
   m_ObjectHideFlags: 1
@@ -5013,7 +4996,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157622}
-  m_LocalRotation: {x: 0.64455634, y: 0.27407074, z: 0.27882415, w: 0.65703076}
+  m_LocalRotation: {x: 0.6445564, y: 0.27407077, z: 0.27882418, w: 0.6570308}
   m_LocalPosition: {x: -0.052934837, y: 0.00000010967254, z: 0.000000038146972}
   m_LocalScale: {x: 1.0000006, y: 0.9999988, z: 1.0000007}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5731,7 +5714,7 @@ Transform:
   m_Children:
   - {fileID: 490904}
   m_Father: {fileID: 450120}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &488214
 Transform:
   m_ObjectHideFlags: 1
@@ -5746,19 +5729,6 @@ Transform:
   - {fileID: 468044}
   m_Father: {fileID: 479468}
   m_RootOrder: 2
---- !u!4 &488910
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 140590}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1409.221, y: -202.63759, z: -342.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 450120}
-  m_RootOrder: 1
 --- !u!4 &490660
 Transform:
   m_ObjectHideFlags: 1
@@ -6004,7 +5974,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7da563e743aa9fb4f9cb0276ffd35856, type: 2}
+  - {fileID: 0}
   - {fileID: 2100000, guid: 28c1cd33c7988f44db8e813619ece0d4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -6034,7 +6004,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7da563e743aa9fb4f9cb0276ffd35856, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -6063,7 +6033,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7da563e743aa9fb4f9cb0276ffd35856, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -6122,7 +6092,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7da563e743aa9fb4f9cb0276ffd35856, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -6853,7 +6823,13 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some transforms are animated by both a Humanoid
+    animation clip and a Generic animation clip. Only the Humanoid clip will be applied
+    on those transforms.\n\tTransform 'hips'\n\tTransform 'CATRigLArmPalm'\n\tTransform
+    'CATRigLArmDigit41'\n\tTransform 'CATRigLeftLegLeftToe1'\n\tTransform 'CATRigLArmDigit51'\n\tTransform
+    'CATRigSpine2'\n\tTransform 'CATRigNeck1'\n\tTransform 'CATRigLeftLeg1'\n\tTransform
+    'CATRigRLegLeftToe1'\n\tTransform 'CATRigLArmDigit43'\n\tand more ...\n\tFrom
+    animation clip 'Spell_Start'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
 --- !u!108 &10821172
@@ -6995,61 +6971,6 @@ MonoBehaviour:
   ColorNature: {r: 0.5019608, g: 1, b: 0.48235294, a: 1}
   ColorDefense: {r: 0.48235294, g: 0.50980395, b: 1, a: 1}
   ColorWar: {r: 1, g: 0.48235294, b: 0.48235294, a: 1}
---- !u!114 &11419972
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 140590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 026929721a2a7b046b981a26731112a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemColors:
-  - rarity: 3
-    color: {r: 0.86764705, g: 0.27432954, b: 0.77762634, a: 1}
-  - rarity: 2
-    color: {r: 0.23405062, g: 0.29019672, b: 0.8602941, a: 1}
-  - rarity: 1
-    color: {r: 0.32379976, g: 0.8308824, b: 0.36926234, a: 1}
-  - rarity: 0
-    color: {r: 1, g: 1, b: 1, a: 1}
-  itemCategories:
-  - type: 1
-    name: Ring
-  - type: 2
-    name: Amulet
-  - type: 3
-    name: Weapon
-  - type: 4
-    name: Token
-  fillEmptyEquipment: 1
-  AvailableItems:
-  - {fileID: 118708, guid: 6112ec9e61fbf9a47b655739c4bdd10d, type: 2}
-  - {fileID: 118708, guid: 17ba1012c5e7f564ca5c3c1f7008bf8b, type: 2}
-  - {fileID: 118708, guid: 22a7f546e0e58b64f862ecce9ca20796, type: 2}
-  - {fileID: 118708, guid: d611edce3894b2b44872653cde6c22a0, type: 2}
-  - {fileID: 118708, guid: 8b7c14fdcfb8cee4db074c9a9f59eeaf, type: 2}
-  - {fileID: 118708, guid: f6ee22c96edc4cf44bfbba016260b447, type: 2}
-  - {fileID: 118708, guid: 2bde34ccdca3e2c428e5e4b5ffcac92b, type: 2}
-  - {fileID: 118708, guid: f66ed1da16438c2459ca8d1a93d7b013, type: 2}
-  - {fileID: 118708, guid: ef42956f2902b984896927c5423f5f2b, type: 2}
-  - {fileID: 118708, guid: 724577f13d857db4699abb0f45f2262d, type: 2}
-  - {fileID: 118708, guid: 6b1da9ddc1874624aa2c4409c51ab8f3, type: 2}
-  - {fileID: 118708, guid: 15e992384c076dd43a74984502b4c25e, type: 2}
-  - {fileID: 118708, guid: b92b41e0254343347a9ca7245ddbac75, type: 2}
-  - {fileID: 118708, guid: f3b8a204b8dc6a84c964f53c4b10c8a2, type: 2}
-  - {fileID: 118708, guid: 68ccd05edb0087247a77a3641fa242e8, type: 2}
-  - {fileID: 118708, guid: d045c8c86ad6ec6408335f40dff53f08, type: 2}
-  - {fileID: 118708, guid: fde2310505eae2c4781ce454e4fac865, type: 2}
-  - {fileID: 118708, guid: 8d13377efad717246a0bea7ae95730a5, type: 2}
-  - {fileID: 118708, guid: 9a5cfbdb96be5d049a1f5ff8313cdcdd, type: 2}
-  - {fileID: 118708, guid: 46716bd616346d148b10f0090b026d48, type: 2}
-  lockedStates: 0100010101010100010001010101010100000101
-  SelectedItem: -1
-  equipped: 0000000000000000000000000000000000000000
-  inventoryItems: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
 --- !u!114 &11420882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7327,6 +7248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f1b3fcdd149a37469c37e6422a479ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObject: {fileID: 0}
+  playerScript: {fileID: 0}
   spells: []
   passiveSpells: []
   selectedSpells: 00000000000000000000000000000000
@@ -7336,6 +7259,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   selectedPassiveSpells: 
+  Loaded: 0
 --- !u!114 &11460058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7723,7 +7647,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 45ff9fa1fc3ff4547bc13a0c6d68715a, type: 2}
-  - {fileID: 2100000, guid: 9c3dceca2894e244c8ea3b16f4e14481, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}

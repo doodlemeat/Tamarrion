@@ -64,7 +64,7 @@ namespace Tamarrion {
 				return;
 
 			if ( Input.GetKeyDown (KeyCode.P) ) {
-				Tamarrion.FreeFlyCamera camera = FindObjectOfType<Tamarrion.FreeFlyCamera> ();
+				FreeFlyCamera camera = FindObjectOfType<FreeFlyCamera> ();
 				if ( camera ) {
 					Destroy (camera.gameObject);
 					HUDController.hudController.EnableHUD ();

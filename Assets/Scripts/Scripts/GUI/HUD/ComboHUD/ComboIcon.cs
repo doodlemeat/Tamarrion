@@ -3,8 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 namespace Tamarrion {
 	[RequireComponent (typeof (Image))]
-
-	public class ComboIcon : Tamarrion.MyMonoBehaviour {
+	public class ComboIcon : MyMonoBehaviour {
 		public FSSkillElement godElement;
 		public float lerpTime = 0.3f;
 		Image iconImage;
@@ -27,7 +26,7 @@ namespace Tamarrion {
 			GodManager.onGodActivated += OnGodActivated;
 			GodManager.onGodDeactivated += OnGodDeactivated;
 
-			AddListener<Tamarrion.TributeChangeEvent> (OnGodPowerPointChange);
+			AddListener<TributeChangeEvent> (OnGodPowerPointChange);
 
 			SetImageFill (0f);
 		}
@@ -40,7 +39,7 @@ namespace Tamarrion {
 		}
 
 		void OnDestroy () {
-			RemoveListener<Tamarrion.TributeChangeEvent> (OnGodPowerPointChange);
+			RemoveListener<TributeChangeEvent> (OnGodPowerPointChange);
 		}
 
 		void Update () {
@@ -71,7 +70,7 @@ namespace Tamarrion {
 			//SetImageFill(percentage);
 		}
 
-		void OnGodPowerPointChange (Tamarrion.TributeChangeEvent e) {
+		void OnGodPowerPointChange (TributeChangeEvent e) {
 			if ( e.element != godElement )
 				return;
 
