@@ -16,7 +16,7 @@
 				"allow_comments_in_empty": false
 			}
 		},
-		"BraceStyle": {
+		"UsingDirectiveFormatting": {
 			"fail": "warning"
 		}
 	}

@@ -9,8 +9,8 @@ namespace Tamarrion {
 
 		private Texture m_textureEmpty = null;
 		GameObject m_player = null;
-		SpellManager Manager;
-		SpellBase Spell;
+		SpellManager2 Manager;
+		//SpellBase Spell;
 		private Image CooldownOverlay;
 		private bool ButtonLoaded = false;
 
@@ -22,7 +22,7 @@ namespace Tamarrion {
 
 		void Update () {
 			if ( !ButtonLoaded ) {
-				Manager = Player.player.gameObject.GetComponentInChildren<SpellManager> ();
+				Manager = Player.player.gameObject.GetComponentInChildren<SpellManager2> ();
 				if ( !Manager.GetLoaded () )
 					return;
 
@@ -32,25 +32,26 @@ namespace Tamarrion {
 				ButtonLoaded = true;
 			}
 
-			if ( Spell && !Spell.isCool () ) {
+			/*if ( Spell && !Spell.isCool () ) {
 				float Fill = Spell.GetComponent<SpellBase> ().CooldownRemainingPercent ();
 				CooldownOverlay.fillAmount = Fill;
 				CooldownOverlay.color = Color.Lerp (StartColor, EndColor, Fill);
-			}
+			}*/
 		}
 
 		void CheckTexture () {
-			SpellManager Manager = m_player.GetComponent<SpellManager> ();
+			SpellManager2 Manager = m_player.GetComponent<SpellManager2> ();
 			if ( Manager.GetSpellIndexInSlot (Slot) != -1 ) {
-				Spell = Manager.GetSpellInSlot (Slot).GetComponent<SpellBase> ();
+				/*Spell = Manager.GetSpellInSlot (Slot).GetComponent<SpellBase> ();
 				if ( Spell._spellIconIngame )
 					GetComponent<RawImage> ().texture = Spell._spellIconIngame;
 				if ( Spell._spellIconCooldown )
-					GetComponentInChildren<Image> ().sprite = Spell._spellIconCooldown;
+					GetComponentInChildren<Image> ().sprite = Spell._spellIconCooldown;*/
 			}
 			else {
+				/*
 				Spell = null;
-				GetComponent<RawImage> ().texture = m_textureEmpty;
+				GetComponent<RawImage> ().texture = m_textureEmpty;*/
 			}
 		}
 	}

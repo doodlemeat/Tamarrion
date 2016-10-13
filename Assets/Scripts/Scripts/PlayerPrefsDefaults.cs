@@ -2,13 +2,11 @@
 using System;
 using System.Collections;
 using System.IO;
-
-//(tomas)temp for testing:
 using System.Collections.Generic;
 namespace Tamarrion {
 	public class PlayerPrefsDefaults : MonoBehaviour {
 		void Awake () {
-			for ( int i = 0; i < SpellManager.SpellSlotCount; ++i ) {
+			for ( int i = 0; i < SpellManager2.SpellSlotCount; ++i ) {
 				PlayerPrefs.SetInt ("playerSpell_" + i, i);
 			}
 

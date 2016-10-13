@@ -14,31 +14,6 @@ namespace Tamarrion {
 		float ForceTime = 0.15f;
 		TopgunTimer forceTimer = new TopgunTimer ();
 
-		public override void RecoverStart () {
-			//if (PlayerMovement.instance)
-			//    PlayerMovement.instance.forceDirection(PlayerMovement.instance.transform.forward);
-
-			//Player.player.playerStats.Add_Modifier("Charge_Recover_MS", "movement_speed", 0, recoveringSpeedCurve.Evaluate(1 - FSSkillUser.m_recoverTimer.PercentComplete()));
-		}
-
-		public override void RecoverUpdate () {
-			//if (Player.player)
-			//{
-			//    Player.player.playerStats.Remove_Modifier("Charge_Recover_MS");
-			//    Player.player.playerStats.Add_Modifier("Charge_Recover_MS", "movement_speed", 0, recoveringSpeedCurve.Evaluate(1 - FSSkillUser.m_recoverTimer.PercentComplete()));
-			//}
-		}
-
-		public override void RecoverEnd () {
-			//if (PlayerMovement.instance)
-			//    PlayerMovement.instance.forceDirection(Vector3.zero);
-
-			//if (Evade.instance)
-			//    Evade.instance.RemoveEvadeBlock("skill_charge");
-
-			//Player.player.playerStats.Remove_Modifier("Charge_Recover_MS");
-		}
-
 		public override void ChannelStart () {
 			if ( Evade.instance ) {
 				Evade.instance.CancelEvade ();

@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+
 namespace Tamarrion {
-	public class SpellManager : MonoBehaviour {
-		public static SpellManager Instance;
+	public class SpellManager2 : MonoBehaviour {
+		public static SpellManager2 Instance;
 
 		public enum SpellType {
 			HOLY,
