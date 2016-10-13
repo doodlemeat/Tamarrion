@@ -66,7 +66,7 @@ namespace Tamarrion {
 		}
 
 		public void Play (AudioClip clip, float volume) {
-			audioSource.volume = 0.25f;
+			audioSource.volume = volume;
 			Play(clip);
 		}
 
