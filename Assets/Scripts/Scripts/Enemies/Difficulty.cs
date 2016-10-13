@@ -29,7 +29,7 @@ namespace Tamarrion {
 			//Load();
 
 			//if (FirstBoss.instance)
-			//    FirstBoss.instance.GetComponent<Enemy_Stats>().InitializeSpecificStats();
+			//	FirstBoss.instance.GetComponent<Enemy_Stats>().InitializeSpecificStats();
 
 			//Debug.Log("difficulty is " + Current_difficulty);
 		}

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 namespace Tamarrion {
 	public class Death_dissolve : StateMachineBehaviour {
 
@@ -37,5 +38,4 @@ namespace Tamarrion {
 		//
 		//}
 	}
-
 }

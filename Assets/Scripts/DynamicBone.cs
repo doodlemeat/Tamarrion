@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+
 namespace Tamarrion {
 	[AddComponentMenu ("Dynamic Bone/Dynamic Bone")]
 	public class DynamicBone : MonoBehaviour {
@@ -239,7 +240,7 @@ namespace Tamarrion {
 				p.m_InitLocalPosition = b.localPosition;
 				p.m_InitLocalRotation = b.localRotation;
 			}
-			else    // end bone
+			else	// end bone
 			{
 				Transform pb = m_Particles[parentIndex].m_Transform;
 				if ( m_EndLength > 0 ) {
@@ -301,7 +302,7 @@ namespace Tamarrion {
 				if ( p.m_Transform != null ) {
 					p.m_Position = p.m_PrevPosition = p.m_Transform.position;
 				}
-				else    // end bone
+				else	// end bone
 				{
 					Transform pb = m_Particles[p.m_ParentIndex].m_Transform;
 					p.m_Position = p.m_PrevPosition = pb.TransformPoint (p.m_EndOffset);
@@ -315,7 +316,7 @@ namespace Tamarrion {
 			Vector3 fdir = m_Gravity.normalized;
 			Vector3 rf = m_Root.TransformDirection (m_LocalGravity);
 			Vector3 pf = fdir * Mathf.Max (Vector3.Dot (rf, fdir), 0);  // project current gravity to rest gravity
-			force -= pf;    // remove projected gravity
+			force -= pf;	// remove projected gravity
 			force = (force + m_Force) * m_ObjectScale;
 
 			for ( int i = 0; i < m_Particles.Count; ++i ) {
@@ -380,7 +381,7 @@ namespace Tamarrion {
 					}
 				}
 
-				// freeze axis, project to plane 
+				// freeze axis, project to plane
 				if ( m_FreezeAxis != FreezeAxis.None ) {
 					switch ( m_FreezeAxis ) {
 					case FreezeAxis.X:
@@ -457,7 +458,7 @@ namespace Tamarrion {
 				Particle p = m_Particles[i];
 				Particle p0 = m_Particles[p.m_ParentIndex];
 
-				if ( p0.m_Transform.childCount <= 1 )       // do not modify bone orientation if has more then one child
+				if ( p0.m_Transform.childCount <= 1 )	   // do not modify bone orientation if has more then one child
 				{
 					Vector3 v;
 					if ( p.m_Transform != null )

@@ -2,9 +2,9 @@
 
 namespace Tamarrion {
 	public class ContextPanel : MyMonoBehaviour {
-		
+
 		protected string id;
-		
+
 		protected void Awake() {
 			id = gameObject.name.ToLower ();
 		}

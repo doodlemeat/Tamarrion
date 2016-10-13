@@ -27,8 +27,8 @@ namespace Tamarrion {
 
 		//public void OnSelect(UnityEngine.EventSystems.BaseEventData data)
 		//{
-		//    if (SelectSound)
-		//        SelectSound.Play();
+		//	if (SelectSound)
+		//		SelectSound.Play();
 		//}
 	}
 }

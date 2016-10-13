@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Tamarrion { 
+namespace Tamarrion {
 	[Serializable]
 	public class LootItem {
 		public float chance;

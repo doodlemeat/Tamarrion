@@ -193,7 +193,7 @@ namespace Tamarrion {
 
 		public static bool SetStringArray (String key, String[] stringArray) {
 			var bytes = new byte[stringArray.Length + 1];
-			bytes[0] = System.Convert.ToByte (ArrayType.String);    // Identifier
+			bytes[0] = System.Convert.ToByte (ArrayType.String);	// Identifier
 			Initialize ();
 
 			// Store the length of each string that's in stringArray, so we can extract the correct strings in GetStringArray

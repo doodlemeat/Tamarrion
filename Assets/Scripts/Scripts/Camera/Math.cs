@@ -114,7 +114,7 @@ namespace Tamarrion {
 		}
 
 		public class Perlin {
-			// Original C code derived from 
+			// Original C code derived from
 			// http://astronomy.swin.edu.au/~pbourke/texture/perlin/perlin.c
 			// http://astronomy.swin.edu.au/~pbourke/texture/perlin/perlin.h
 			private const int B = 0x100;

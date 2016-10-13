@@ -2,7 +2,7 @@
 
 // Cheat system enables you to teleport to boss locations
 // Only works when playing from editor
-// Extend this class further when neccessary 
+// Extend this class further when neccessary
 
 namespace Tamarrion {
 	public class Cheat : MyMonoBehaviour {

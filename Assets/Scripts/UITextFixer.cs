@@ -9,7 +9,7 @@ namespace Tamarrion {
 		void OnDestroy() {
 			RemoveListener<EnableHUDEvent> (OnEnableHud);
 		}
-		
+
 		void OnEnableHud(EnableHUDEvent e) {
 			Text[] texts = GetComponentsInChildren<Text> ();
 			foreach ( Text text in texts ) {

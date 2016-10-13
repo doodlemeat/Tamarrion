@@ -58,33 +58,33 @@ namespace Tamarrion {
 			if ( !Dying ) {
 				//if (active)
 				//{
-				//    if (lightObject)
-				//    {
-				//        if (!lightObject.enabled)
-				//        {
-				//            lightObject.enabled = true;
-				//        }
-				//    }
+				//	if (lightObject)
+				//	{
+				//		if (!lightObject.enabled)
+				//		{
+				//			lightObject.enabled = true;
+				//		}
+				//	}
 
-				//    if (!particleSystemObject.isPlaying)
-				//    {
-				//        particleSystemObject.Play();
-				//    }
+				//	if (!particleSystemObject.isPlaying)
+				//	{
+				//		particleSystemObject.Play();
+				//	}
 				//}
 				//else
 				//{
-				//    if (lightObject)
-				//    {
-				//        if (lightObject.enabled)
-				//        {
-				//            lightObject.enabled = false;
-				//        }
-				//    }
+				//	if (lightObject)
+				//	{
+				//		if (lightObject.enabled)
+				//		{
+				//			lightObject.enabled = false;
+				//		}
+				//	}
 
-				//    if (particleSystemObject.isPlaying)
-				//    {
-				//        particleSystemObject.Stop();
-				//    }
+				//	if (particleSystemObject.isPlaying)
+				//	{
+				//		particleSystemObject.Stop();
+				//	}
 				//}
 			}
 			else if ( DeathLightDurationCurrent > 0 ) {

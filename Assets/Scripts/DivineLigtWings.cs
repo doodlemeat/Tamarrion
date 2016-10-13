@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 namespace Tamarrion {
 	public class DivineLigtWings : MonoBehaviour {
-
 		public GameObject m_wings;
 		private GameObject wing;
 		private MeshRenderer[] renderers;

@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+
 namespace Tamarrion {
 	public class NihtAnimationEventHandler : MonoBehaviour {
-
-
 		// Raven
 		AudioSource _ravenSource;
 		public GameObject _ravenSourceObject;
@@ -26,13 +25,13 @@ namespace Tamarrion {
 		AudioSource _deathSource;
 		public GameObject _deathSourceObject;
 
-		void Start () {
-			_ravenSource = _ravenSourceObject.GetComponent<AudioSource> ();
-			_entombSource = _entombSourceObject.GetComponent<AudioSource> ();
-			_phaseSource = _phaseSourceObject.GetComponent<AudioSource> ();
-			_breath1Source = _breath2SourceObject.GetComponent<AudioSource> ();
-			_breath2Source = _breath2SourceObject.GetComponent<AudioSource> ();
-			_deathSource = _deathSourceObject.GetComponent<AudioSource> ();
+		void Start() {
+			_ravenSource = _ravenSourceObject.GetComponent<AudioSource>();
+			_entombSource = _entombSourceObject.GetComponent<AudioSource>();
+			_phaseSource = _phaseSourceObject.GetComponent<AudioSource>();
+			_breath1Source = _breath2SourceObject.GetComponent<AudioSource>();
+			_breath2Source = _breath2SourceObject.GetComponent<AudioSource>();
+			_deathSource = _deathSourceObject.GetComponent<AudioSource>();
 		}
 
 		/*public void OnStep()
@@ -49,12 +48,12 @@ namespace Tamarrion {
 				Debug.LogError("no particle effect @ boss step");
 		}
 		*/
-		public void OnRaven () {
-			_ravenSource.Play ();
+		public void OnRaven() {
+			_ravenSource.Play();
 		}
 
-		public void OnEntombStart () {
-			_entombSource.Play ();
+		public void OnEntombStart() {
+			_entombSource.Play();
 		}
 		/*
 		public void OnChopChop()
@@ -67,20 +66,20 @@ namespace Tamarrion {
 			_chopSounds[soundIndex] = tmp;
 		}
 		*/
-		public void OnPhaseChangeStart () {
-			_phaseSource.Play ();
+		public void OnPhaseChangeStart() {
+			_phaseSource.Play();
 		}
 
-		public void OnBreath1Start () {
-			_breath1Source.Play ();
+		public void OnBreath1Start() {
+			_breath1Source.Play();
 		}
 
-		public void OnBreath2Start () {
-			_breath2Source.Play ();
+		public void OnBreath2Start() {
+			_breath2Source.Play();
 		}
 
-		public void OnDeath () {
-			_deathSource.Play ();
+		public void OnDeath() {
+			_deathSource.Play();
 		}
 		/*
 		public void OnCleaveEnd()

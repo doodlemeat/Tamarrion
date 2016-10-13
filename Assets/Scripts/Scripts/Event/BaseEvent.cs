@@ -5,6 +5,6 @@ using System.Text;
 
 namespace Tamarrion {
 	public class BaseEvent {
-		
+
 	}
 }

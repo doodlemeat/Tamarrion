@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 namespace Tamarrion {
 	public class HeavyEffectController : MonoBehaviour {
 		public float _timeout = 1.0f;
 		//Animation _animation;
 		float _timer = 0.0f;
 
-		void Start () {
+		void Start() {
 			//_animation = GetComponent<Animation>();
 		}
 
-		void Update () {
+		void Update() {
 			_timer += Time.deltaTime;
 
-			if ( _timer >= _timeout ) {
-				Destroy (this.gameObject);
+			if (_timer >= _timeout) {
+				Destroy(this.gameObject);
 			}
 		}
 	}
