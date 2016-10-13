@@ -75,9 +75,6 @@ namespace Tamarrion {
 			if ( delegates.TryGetValue (e.GetType (), out del) ) {
 				del.Invoke (e);
 			}
-			else {
-				Debug.LogWarning ("Event: " + e.GetType () + " has no listener");
-			}
 		}
 	}
 }

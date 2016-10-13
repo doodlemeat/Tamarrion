@@ -65,8 +65,13 @@ namespace Tamarrion {
 			audioSource.PlayOneShot (clip);
 		}
 
+		public void Play (AudioClip clip, float volume) {
+			audioSource.volume = 0.25f;
+			Play(clip);
+		}
+
 		void Update() {
-			for(int i = audioSources.Count - 1; i >= 0; --i ) { 
+			for(int i = audioSources.Count - 1; i >= 0; --i ) {
 				if(!audioSources[i].isPlaying) {
 					Destroy (audioSources[i]);
 					audioSources.Remove (audioSources[i]);
