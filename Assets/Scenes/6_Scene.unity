@@ -6936,6 +6936,11 @@ Prefab:
       propertyPath: AllSpells.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012766004860, guid: 8c83ce52969ef2b44b899068bc788b1f,
+        type: 2}
+      propertyPath: SkillElements.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4000012681354388, guid: 8c83ce52969ef2b44b899068bc788b1f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6968,6 +6973,36 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012766004860, guid: 8c83ce52969ef2b44b899068bc788b1f,
+        type: 2}
+      propertyPath: SkillElements.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 718c10c75106af540a2dfad179bba929,
+        type: 2}
+    - target: {fileID: 114000012766004860, guid: 8c83ce52969ef2b44b899068bc788b1f,
+        type: 2}
+      propertyPath: SkillElements.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: f725b6d7afba6a64ca0f9ee9d097c6aa,
+        type: 2}
+    - target: {fileID: 114000012766004860, guid: 8c83ce52969ef2b44b899068bc788b1f,
+        type: 2}
+      propertyPath: SkillElements.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: a7e55ebd3e8208e4886729d1f9170d08,
+        type: 2}
+    - target: {fileID: 114000012766004860, guid: 8c83ce52969ef2b44b899068bc788b1f,
+        type: 2}
+      propertyPath: SkillElements.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: f00c27594627f204e9c380d16fd789a5,
+        type: 2}
+    - target: {fileID: 114000012766004860, guid: 8c83ce52969ef2b44b899068bc788b1f,
+        type: 2}
+      propertyPath: SkillElements.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: aa3e66dced8b1ad4581d425362ede828,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c83ce52969ef2b44b899068bc788b1f, type: 2}
   m_IsPrefabParent: 0

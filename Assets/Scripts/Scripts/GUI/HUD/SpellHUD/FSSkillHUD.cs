@@ -1,17 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 namespace Tamarrion {
     public class FSSkillHUD : MonoBehaviour {
         public FSSkillManager skillManager;
         public FSSkillUser skillUser;
-        public int skillSlot = 0;
-        public UnityEngine.UI.RawImage skillIconObject;
-        public UnityEngine.UI.RawImage BorderObject;
-        public UnityEngine.UI.Image cooldownOverlay;
-        public UnityEngine.CanvasGroup canvasGroup;
+        public int Slot = 0;
+        public RawImage skillIconObject;
+        public RawImage BorderObject;
+        public Image cooldownOverlay;
+        public CanvasGroup canvasGroup;
         public GameObject cdFX;
-        FSSkillBase m_connectedSkill;
+        FSSkillBase Skill;
         bool m_initSuccessful = false;
 
         enum SkillHUDState {
@@ -41,8 +42,8 @@ namespace Tamarrion {
                 return;
             }
 
-            m_connectedSkill = skillManager.GetSkillInSlot(skillSlot);
-            if (m_connectedSkill == null) {
+			Skill = SkillManager.GetSkillInSlot (Slot);
+            if ( Skill == null) {
                 return;
             }
 
@@ -51,8 +52,8 @@ namespace Tamarrion {
                 return;
             }
 
-            if (m_connectedSkill.skillIcon)
-                skillIconObject.texture = m_connectedSkill.skillIcon;
+            if ( Skill.skillIcon)
+                skillIconObject.texture = Skill.skillIcon;
 
             if (BorderObject == null) {
                 Debug.LogError("no border object found");
@@ -64,15 +65,15 @@ namespace Tamarrion {
                 return;
             }
 
-            if (m_connectedSkill.element == FSSkillElement.FS_Elem_Holy)
+            if ( Skill.element == FSSkillElement.FS_Elem_Holy)
                 BorderObject.color = skillManager.ColorHoly;
-            else if (m_connectedSkill.element == FSSkillElement.FS_Elem_Magic)
+            else if ( Skill.element == FSSkillElement.FS_Elem_Magic)
                 BorderObject.color = skillManager.ColorMagic;
-            else if (m_connectedSkill.element == FSSkillElement.FS_Elem_Defense)
+            else if ( Skill.element == FSSkillElement.FS_Elem_Defense)
                 BorderObject.color = skillManager.ColorDefense;
-            else if (m_connectedSkill.element == FSSkillElement.FS_Elem_Nature)
+            else if ( Skill.element == FSSkillElement.FS_Elem_Nature)
                 BorderObject.color = skillManager.ColorNature;
-            else if (m_connectedSkill.element == FSSkillElement.FS_Elem_War)
+            else if ( Skill.element == FSSkillElement.FS_Elem_War)
                 BorderObject.color = skillManager.ColorWar;
 
             m_initSuccessful = true;
@@ -92,18 +93,17 @@ namespace Tamarrion {
         }
 
         void UpdateCooldownVisual() {
-            if (m_connectedSkill && cooldownOverlay && !m_connectedSkill.cooldownTimer.IsComplete) {
-                float Fill = m_connectedSkill.cooldownTimer.PercentComplete();
+            if ( Skill && cooldownOverlay && !Skill.cooldownTimer.IsComplete) {
+                float Fill = Skill.cooldownTimer.PercentComplete();
                 cooldownOverlay.fillAmount = Fill;
                 cdFX.SetActive(false);
-                //cooldownOverlay.color = Color.Lerp(StartColor, EndColor, Fill);
             }
         }
 
         void CheckStateChange() {
-            if (skillUser.GetCurrentSkill() != m_connectedSkill && m_state != SkillHUDState.Inactive)
+            if (skillUser.GetCurrentSkill() != Skill && m_state != SkillHUDState.Inactive)
                 SetStateToInactive();
-            else if (skillUser.GetCurrentSkill() == m_connectedSkill && m_state != SkillHUDState.Active)
+            else if (skillUser.GetCurrentSkill() == Skill && m_state != SkillHUDState.Active)
                 SetStateToActive();
             cdFX.SetActive(true);
         }
