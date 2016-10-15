@@ -1,4 +1,0 @@
-﻿using UnityEngine;
-
-namespace Tamarrion {
-}

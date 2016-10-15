@@ -3,11 +3,12 @@ using System;
 
 namespace Tamarrion {
 	public abstract class UnitySingleton<T> : MyMonoBehaviour where T : MyMonoBehaviour {
-		private static T instance;
+		protected static T instance;
 
-		protected virtual void Awake() {
+		protected void Awake() {
 			int numberOfTypeComponents = GetComponents<T> ().Length;
 			if ( numberOfTypeComponents > 1 ) {
+				Debug.LogError ("An instance of " + typeof(T).Name + " do already exist on this object");
 				DestroyImmediate (this);
 			} else if ( instance == null ) {
 				instance = this as T;

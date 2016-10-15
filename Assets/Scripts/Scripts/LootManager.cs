@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Tamarrion {
-	[UnitySingleton (true, true)]
+	[UnitySingleton (false, true)]
 	public class LootManager : UnitySingleton<LootManager> {
 		protected override void OnAwake () {
 			AddListener<EnemyDeathEvent> (OnEnemyDeath);
