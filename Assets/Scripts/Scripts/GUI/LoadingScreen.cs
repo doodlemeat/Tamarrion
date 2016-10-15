@@ -67,17 +67,17 @@ namespace Tamarrion {
 					loadingOperation.allowSceneActivation = true;
 					loadingOperation = null;
 					pressAnyKeyText.enabled = true;
-					//                if (pressAnyKeyText)
-					//                    pressAnyKeyText.enabled = true;
+					//				if (pressAnyKeyText)
+					//					pressAnyKeyText.enabled = true;
 				}
 
-				//            if (loadingComplete && (Input.anyKeyDown || Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
-				//            {
-				//                if (pressAnyKeyText)
-				//                    pressAnyKeyText.text = "Loading complete, stand by...";
-				//                loadingOperation.allowSceneActivation = true;
-				//                loadingOperation = null;
-				//            }
+				//			if (loadingComplete && (Input.anyKeyDown || Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
+				//			{
+				//				if (pressAnyKeyText)
+				//					pressAnyKeyText.text = "Loading complete, stand by...";
+				//				loadingOperation.allowSceneActivation = true;
+				//				loadingOperation = null;
+				//			}
 			}
 		}
 	}

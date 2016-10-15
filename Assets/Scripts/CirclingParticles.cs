@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+
 namespace Tamarrion {
 	public class CirclingParticles : MonoBehaviour {
-
 		private List<Transform> m_orbs;
 		public Transform m_orb_prefab;
 		public int m_orb_amount = 1;

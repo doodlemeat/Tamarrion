@@ -52,8 +52,8 @@ namespace Tamarrion {
 			float fDistanceToTarget = Vector3.Distance (transform.localPosition, TargetPosition);
 			//if (fDistanceToTarget < fMaxDistanceSmall && fDistanceToTarget > 0.1f)
 			//{
-			//    transform.localPosition = Vector3.MoveTowards(transform.localPosition, xTargetPosition, -fDistanceAdjustmentSpeed * (fDistanceToTarget / fMaxDistanceSmall) * Time.deltaTime);
-			//    //transform.localPosition = new Vector3(transform.localPosition.x, fDesiredHeight, transform.localPosition.z);
+			//	transform.localPosition = Vector3.MoveTowards(transform.localPosition, xTargetPosition, -fDistanceAdjustmentSpeed * (fDistanceToTarget / fMaxDistanceSmall) * Time.deltaTime);
+			//	//transform.localPosition = new Vector3(transform.localPosition.x, fDesiredHeight, transform.localPosition.z);
 			//}
 			if ( fDistanceToTarget > StandardDistanceMax ) {
 				//Debug.Log((fDistanceToTarget / StandardDistanceMax) * Time.deltaTime * DistanceAdjustmentSpeed);
@@ -65,7 +65,7 @@ namespace Tamarrion {
 			if ( fDistanceToTarget < StandardDistanceMin && fDistanceToTarget > 1.0f ) {
 				//Debug.Log(-DistanceAdjustmentSpeed * Time.deltaTime);
 
-				transform.localPosition = Vector3.MoveTowards (transform.localPosition, TargetPosition, (StandardDistanceMax / fDistanceToTarget) * Time.deltaTime * -DistanceAdjustmentSpeed); // * (1 - StandardDistanceMin / fDistanceToTarget) 
+				transform.localPosition = Vector3.MoveTowards (transform.localPosition, TargetPosition, (StandardDistanceMax / fDistanceToTarget) * Time.deltaTime * -DistanceAdjustmentSpeed); // * (1 - StandardDistanceMin / fDistanceToTarget)
 																																																//transform.localPosition = new Vector3(transform.localPosition.x, DesiredHeight, transform.localPosition.z);
 			}
 		}

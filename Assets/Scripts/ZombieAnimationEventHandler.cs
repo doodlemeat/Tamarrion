@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+
 namespace Tamarrion {
 	public class ZombieAnimationEventHandler : MonoBehaviour {
-
-
 		// Attack
 		AudioSource _zombieattackSource;
 		public GameObject _zombieattackSourceObject;
 
 
 
-		void Start () {
-			_zombieattackSource = _zombieattackSourceObject.GetComponent<AudioSource> ();
+		void Start() {
+			_zombieattackSource = _zombieattackSourceObject.GetComponent<AudioSource>();
 
 		}
 
@@ -30,12 +29,11 @@ namespace Tamarrion {
 			Debug.LogError("no particle effect @ boss step");
 	}
 	*/
-		public void OnZombieAttack () {
-			_zombieattackSource.pitch = Random.Range (0.4f, 1.6f);
+		public void OnZombieAttack() {
+			_zombieattackSource.pitch = Random.Range(0.4f, 1.6f);
 			_zombieattackSource.volume = 2.0f;
 			_zombieattackSource.rolloffMode = AudioRolloffMode.Linear;
-			_zombieattackSource.Play ();
+			_zombieattackSource.Play();
 		}
-
 	}
 }

@@ -1,112 +1,114 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+
 namespace Tamarrion {
-	[RequireComponent (typeof (Image))]
-	public class ComboIcon : MyMonoBehaviour {
-		public FSSkillElement godElement;
-		public float lerpTime = 0.3f;
-		Image iconImage;
-		bool godPowerActive = false;
-		float lerpStart = 0, lerpTarget = 0;
-		bool lerpOn = false;
-		TopgunTimer lerpTimer = new TopgunTimer ();
+    [RequireComponent(typeof(Image))]
 
-		//add event:
-		//- when god is chosen
-		//- when god is disabled
-		//- when tribute is gained
+    public class ComboIcon : Tamarrion.MyMonoBehaviour {
+        public FSSkillElement godElement;
+        public float lerpTime = 0.3f;
+        Image iconImage;
+        bool godPowerActive = false;
+        float lerpStart = 0, lerpTarget = 0;
+        bool lerpOn = false;
+        TopgunTimer lerpTimer = new TopgunTimer();
 
-		void Start () {
-			iconImage = GetComponent<Image> ();
-			iconImage.color = FSSkillManager.instance.GetColorByElement (godElement);
+        //add event:
+        //- when god is chosen
+        //- when god is disabled
+        //- when tribute is gained
 
-			GodManager.onTributeGain += OnTributeGain;
-			GodManager.onGodChosen += OnGodChosen;
-			GodManager.onGodActivated += OnGodActivated;
-			GodManager.onGodDeactivated += OnGodDeactivated;
+        void Start() {
+            iconImage = GetComponent<Image>();
+            iconImage.color = FSSkillManager.instance.GetColorByElement(godElement);
 
-			AddListener<TributeChangeEvent> (OnGodPowerPointChange);
+            GodManager.onTributeGain += OnTributeGain;
+            GodManager.onGodChosen += OnGodChosen;
+            GodManager.onGodActivated += OnGodActivated;
+            GodManager.onGodDeactivated += OnGodDeactivated;
 
-			SetImageFill (0f);
-		}
+            AddListener<Tamarrion.TributeChangeEvent>(OnGodPowerPointChange);
 
-		void OnDisable () {
-			GodManager.onTributeGain -= OnTributeGain;
-			GodManager.onGodChosen -= OnGodChosen;
-			GodManager.onGodActivated -= OnGodActivated;
-			GodManager.onGodDeactivated -= OnGodDeactivated;
-		}
+            SetImageFill(0f);
+        }
 
-		void OnDestroy () {
-			RemoveListener<TributeChangeEvent> (OnGodPowerPointChange);
-		}
+        void OnDisable() {
+            GodManager.onTributeGain -= OnTributeGain;
+            GodManager.onGodChosen -= OnGodChosen;
+            GodManager.onGodActivated -= OnGodActivated;
+            GodManager.onGodDeactivated -= OnGodDeactivated;
+        }
 
-		void Update () {
-			if ( godPowerActive ) {
-				SetImageFill (GodManager.Instance.GetPercentDone ());
-			}
-			else if ( lerpOn ) {
-				lerpTimer.Update ();
-				SetImageFill (Mathf.Lerp (lerpStart, lerpTarget, (1 - lerpTimer.PercentComplete ())));
-				if ( lerpTimer.IsComplete ) {
-					lerpOn = false;
-				}
-			}
-		}
+        void OnDestroy() {
+            RemoveListener<Tamarrion.TributeChangeEvent>(OnGodPowerPointChange);
+        }
 
-		void OnTributeGain (FSSkillElement p_element, float p_amount) {
-			if ( p_element != godElement )
-				return;
+        void Update() {
+            if (godPowerActive) {
+                SetImageFill(GodManager.Instance.GetPercentDone());
+            }
+            else if (lerpOn) {
+                lerpTimer.Update();
+                SetImageFill(Mathf.Lerp(lerpStart, lerpTarget, (1 - lerpTimer.PercentComplete())));
+                if (lerpTimer.IsComplete) {
+                    lerpOn = false;
+                }
+            }
+        }
 
-			float percentage = GodManager.Instance.currentTributeAmounts[(int)p_element] / GodManager.Instance.maxTribute;
+        void OnTributeGain(FSSkillElement p_element, float p_amount) {
+            if (p_element != godElement)
+                return;
 
-			if ( iconImage )
-				lerpStart = iconImage.fillAmount;
+            float percentage = GodManager.Instance.currentTributeAmounts[(int)p_element] / GodManager.Instance.maxTribute;
 
-			lerpTarget = percentage;
-			lerpOn = true;
-			lerpTimer.StartTimerBySeconds (lerpTime);
-			//SetImageFill(percentage);
-		}
+            if (iconImage)
+                lerpStart = iconImage.fillAmount;
 
-		void OnGodPowerPointChange (TributeChangeEvent e) {
-			if ( e.element != godElement )
-				return;
+            lerpTarget = percentage;
+            lerpOn = true;
+            lerpTimer.StartTimerBySeconds(lerpTime);
+            //SetImageFill(percentage);
+        }
 
-			lerpStart = iconImage.fillAmount;
-			lerpTarget = e.percentageDone;
-			lerpOn = true;
-			lerpTimer.StartTimerBySeconds (lerpTime);
-		}
+        void OnGodPowerPointChange(Tamarrion.TributeChangeEvent e) {
+            if (e.element != godElement)
+                return;
 
-		void SetImageFill (float p_percentage) {
-			if ( iconImage )
-				iconImage.fillAmount = p_percentage;
-		}
+            lerpStart = iconImage.fillAmount;
+            lerpTarget = e.percentageDone;
+            lerpOn = true;
+            lerpTimer.StartTimerBySeconds(lerpTime);
+        }
 
-		void OnGodChosen (FSSkillElement p_element) {
-			if ( p_element != godElement )
-				iconImage.color = Color.white;
+        void SetImageFill(float p_percentage) {
+            if (iconImage)
+                iconImage.fillAmount = p_percentage;
+        }
 
-			lerpOn = false;
-		}
+        void OnGodChosen(FSSkillElement p_element) {
+            if (p_element != godElement)
+                iconImage.color = Color.white;
 
-		void OnGodActivated (FSSkillElement p_element) {
-			if ( p_element == godElement )
-				godPowerActive = true;
-			else
-				SetImageFill (0f);
+            lerpOn = false;
+        }
 
-			lerpOn = false;
-		}
+        void OnGodActivated(FSSkillElement p_element) {
+            if (p_element == godElement)
+                godPowerActive = true;
+            else
+                SetImageFill(0f);
 
-		void OnGodDeactivated (FSSkillElement p_element) {
-			if ( iconImage )
-				iconImage.color = FSSkillManager.instance.GetColorByElement (godElement);
+            lerpOn = false;
+        }
 
-			SetImageFill (0f);
-			godPowerActive = false;
-		}
-	}
+        void OnGodDeactivated(FSSkillElement p_element) {
+            if (iconImage)
+                iconImage.color = FSSkillManager.instance.GetColorByElement(godElement);
+
+            SetImageFill(0f);
+            godPowerActive = false;
+        }
+    }
 }

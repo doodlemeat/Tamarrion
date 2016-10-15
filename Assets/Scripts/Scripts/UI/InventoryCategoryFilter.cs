@@ -14,7 +14,7 @@ namespace Tamarrion {
 		}
 
 		void RemoveFilter() {
-			
+
 		}
 
 		void ApplyFilter (int filter) {

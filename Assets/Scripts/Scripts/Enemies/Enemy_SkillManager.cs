@@ -56,7 +56,7 @@ namespace Tamarrion {
 			foreach ( Base_EnemySkill skill in m_skills ) {
 				relevance = skill.CheckRelevance ();
 				//if (is_boss)
-				//    Debug.Log("Get relevance " + skill.m_name + ": " + relevance);
+				//	Debug.Log("Get relevance " + skill.m_name + ": " + relevance);
 				if ( relevance > m_current_relevance ) {
 					m_current_relevance = relevance;
 					m_relevant_skill = skill;

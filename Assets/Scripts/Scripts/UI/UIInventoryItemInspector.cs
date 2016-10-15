@@ -31,7 +31,7 @@ namespace Tamarrion {
 		Text itemStatMultistrike;
 		Text itemStatCooldownReduction;
 		Text itemStatMovementSpeed;
-		
+
 		void Awake() {
 			itemIcon = transform.Find ("ItemHeader/ItemIcon").GetComponent<RawImage>();
 			itemName = transform.Find ("ItemHeader/Panel/ItemName").GetComponent<Text> ();
@@ -92,7 +92,7 @@ namespace Tamarrion {
 				itemCompareStatMultistrike.text = (statsItem.stats[(int)StatsItem.EStatType.MultiStrike].value - slotItem.stats[(int)StatsItem.EStatType.MultiStrike].value).ToString ();
 				itemCompareStatCooldownReduction.text = (statsItem.stats[(int)StatsItem.EStatType.Cooldown].value - slotItem.stats[(int)StatsItem.EStatType.Cooldown].value).ToString ();
 				itemCompareStatMovementSpeed.text = (statsItem.stats[(int)StatsItem.EStatType.MovementSpeed].value - slotItem.stats[(int)StatsItem.EStatType.MovementSpeed].value).ToString ();
-				
+
 				itemCompareStatDamageReduction.color = float.Parse (itemCompareStatDamageReduction.text) < 0 ? diffLessColor : diffPlusColor;
 				itemCompareStatArmor.color = float.Parse (itemCompareStatArmor.text) < 0 ? diffLessColor : diffPlusColor;
 				itemCompareStatPhysicalDamage.color = float.Parse (itemCompareStatPhysicalDamage.text) < 0 ? diffLessColor : diffPlusColor;

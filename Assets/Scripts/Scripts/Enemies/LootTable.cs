@@ -13,7 +13,7 @@ namespace Tamarrion {
 
 		List<LootTableItem> lootTableItems = new List<LootTableItem>();
 		float sumChances = 0;
-		
+
 		void Awake() {
 			foreach( LootItem item in lootItems) {
 				if ( item.item ) {
@@ -33,7 +33,7 @@ namespace Tamarrion {
 			}
 
 			return null;
-		} 
+		}
 	}
 
 	class LootTableItem {

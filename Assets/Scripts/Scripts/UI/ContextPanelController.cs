@@ -5,7 +5,7 @@ namespace Tamarrion {
 	public class ContextPanelController : MyMonoBehaviour {
 		ContextPanel currentPanel;
 		Hashtable panels;
-		
+
 		void Awake () {
 			currentPanel = null;
 			panels = new Hashtable ();
@@ -42,7 +42,7 @@ namespace Tamarrion {
 			e.panel.gameObject.SetActive (false);
 			currentPanel = null;
 		}
-		
+
 		void SwitchPanel(string id) {
 			if(currentPanel != null) {
 				currentPanel.gameObject.SetActive (false);

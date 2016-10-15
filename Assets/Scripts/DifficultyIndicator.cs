@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+
 namespace Tamarrion {
 	public class DifficultyIndicator : MonoBehaviour {
-
 		private RawImage[] images;
 
 		void Start () {

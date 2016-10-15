@@ -38,7 +38,7 @@ namespace Tamarrion {
 			//Simoncode: Removed this as we no longer add non-castbar skills to the skillmanager
 			//if (skill_manager.UsingSkill() && !skill_manager.GetShowCastbar())
 			//{
-			//    //GetComponent<CanvasGroup>().alpha = 1;
+			//	//GetComponent<CanvasGroup>().alpha = 1;
 			//}
 
 			//Simoncode: Moved this up to get the progress before showing it on the bar
@@ -74,7 +74,7 @@ namespace Tamarrion {
 				return;
 			}
 			//if (!spell)
-			//    return;
+			//	return;
 			GetComponentInChildren<Text> ().text = spell;
 			if ( skill_manager.GetShowCastbar () )
 				GetComponent<CanvasGroup> ().alpha = 1;

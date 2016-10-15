@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+
 namespace Tamarrion {
 	public class AlcoveFires : MonoBehaviour {
 		public static AlcoveFires instance;
@@ -8,36 +9,36 @@ namespace Tamarrion {
 		public List<GameObject> DamageColliders;
 		public float DamageDelay = 1;
 		public float DamageInverval = 0.1f;
-		public List<float> DamageAmount = new List<float> ();
+		public List<float> DamageAmount = new List<float>();
 
 		private bool FiresActive = false;
 		private float DamageDelayCurrent;
 		private float DamageInvervalCurrent;
 		private float BackupDamage = 5;
 
-		void Awake () {
+		void Awake() {
 			instance = this;
-			Deactivate ();
+			Deactivate();
 		}
 
-		void Update () {
-			if ( FiresActive ) {
-				if ( DamageDelayCurrent > 0 ) {
+		void Update() {
+			if (FiresActive) {
+				if (DamageDelayCurrent > 0) {
 					DamageDelayCurrent -= Time.deltaTime;
-					if ( DamageDelayCurrent <= 0 )
+					if (DamageDelayCurrent <= 0)
 						DamageDelayCurrent = 0;
 				}
 				else {
 					DamageInvervalCurrent -= Time.deltaTime;
-					if ( DamageInvervalCurrent <= 0 ) {
+					if (DamageInvervalCurrent <= 0) {
 						DamageInvervalCurrent = DamageInverval;
-						foreach ( GameObject obj in DamageColliders ) {
-							if ( obj.GetComponent<BoxCollider> ().bounds.Contains (Player.player.transform.position) ) {
+						foreach (GameObject obj in DamageColliders) {
+							if (obj.GetComponent<BoxCollider>().bounds.Contains(Player.player.transform.position)) {
 								float FinalAmount = BackupDamage;
-								if ( DamageAmount.Count - 1 >= (int)Difficulty.Current_difficulty )
+								if (DamageAmount.Count - 1 >= (int)Difficulty.Current_difficulty)
 									FinalAmount = DamageAmount[(int)Difficulty.Current_difficulty];
 
-								PlayerStats.instance.DealDamage (FinalAmount);
+								PlayerStats.instance.DealDamage(FinalAmount);
 							}
 						}
 					}
@@ -45,19 +46,19 @@ namespace Tamarrion {
 			}
 		}
 
-		public void Activate () {
+		public void Activate() {
 			DamageDelayCurrent = DamageDelay;
 			DamageInvervalCurrent = DamageInverval;
 			FiresActive = true;
-			foreach ( GameObject obj in Fires ) {
-				obj.SetActive (true);
+			foreach (GameObject obj in Fires) {
+				obj.SetActive(true);
 			}
 		}
 
-		public void Deactivate () {
+		public void Deactivate() {
 			FiresActive = false;
-			foreach ( GameObject obj in Fires ) {
-				obj.SetActive (false);
+			foreach (GameObject obj in Fires) {
+				obj.SetActive(false);
 			}
 		}
 	}

@@ -52,7 +52,7 @@ namespace Tamarrion {
 						menuItemButton.GetComponent<InventoryItemUI> ().item = item;
 						menuItemButton.GetComponentInChildren<Text> ().text = item.itemName;
 						menuItemButton.GetComponentsInChildren<RawImage> ()[1].texture = item.itemIcon;
-					
+
 						inventoryItems.Add (menuItemButton.GetComponent<InventoryItemUI>());
 					}
 				}
