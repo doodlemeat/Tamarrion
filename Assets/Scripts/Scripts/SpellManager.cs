@@ -14,21 +14,33 @@ namespace Tamarrion {
 
 		protected override void OnAwake () { }
 
+		void OnDestroy() {
+			SaveStateToFile ();
+		}
+
 		void SaveStateToFile() {
+			Debug.Log ("Saving SpellManager");
 			StringBuilder sb = new StringBuilder ();
-			StringWriter sw = new StringWriter ();
-			JsonWriter writer = new JsonTextWriter (sw);
+			StringWriter sw = new StringWriter (sb);
+			JsonTextWriter writer = new JsonTextWriter (sw);
 			writer.Formatting = Formatting.Indented;
+			writer.Indentation = 1;
+			writer.IndentChar = '\t';
+
 			writer.WriteStartObject ();
 
 			writer.WritePropertyName ("SelectedSpells");
-			writer.WriteValue (SelectedSpells);
+			writer.WriteStartArray ();
+			SelectedSpells.ForEach (e => writer.WriteValue(e));
+			writer.WriteEndArray ();
+
 			writer.WriteEndObject ();
 
 			File.WriteAllText (Application.persistentDataPath + "/spells_" + GameManager.GetVersion() + ".json", sb.ToString());
 		}
 
 		void LoadStateFromFile() {
+
 		}
 	}
 }
