@@ -13,7 +13,6 @@ namespace Tamarrion {
         //    get { return this._bossTarget; }
         //}
         //private CharacterController controller;
-        private SpellManager spellManager;
         private PlayerMovement playerMovement;
         private Transform cameraFocusPoint;
         public PlayerStats playerStats;
@@ -45,7 +44,6 @@ namespace Tamarrion {
         }
 
         void Start() {
-            spellManager = SpellManager.Instance;
             playerStats = GetComponent<PlayerStats>();
             playerMovement = GetComponent<PlayerMovement>();
 
@@ -226,80 +224,6 @@ namespace Tamarrion {
             //        }
             //    }
             //}
-        }
-
-        void useSpell(int p_slot) {
-            GameObject spellObject = spellManager.GetSpellInSlot(p_slot);
-            if (!spellObject) {
-                return;
-            }
-
-            if (currentCastingSpell == spellObject)
-                return;
-
-            SpellBase spell = spellObject.GetComponent<SpellBase>();
-
-            if (!spell._canBeCastBeforeBoss && !Valac.instance.IsActive()) {
-                ErrorBar.instance.SpawnText("No target");
-                return;
-            }
-
-            if (!GetComponent<PlayerMovement>().RotationEnabled() && (gameObject.GetComponentInChildren<Animator>().GetBool("Attack") && !spell._castThroughAttack)) {
-                ErrorBar.instance.SpawnText("Can not cast spells right now");
-                return;
-            }
-
-            if (!spell.isCool()) {
-                ErrorBar.instance.SpawnText("Cooldown active");
-                return;
-            }
-
-            if (spell._castTime > 0.0f && playerMovement.IsMoving()) {
-                if (!GodManager.Instance.CurrentGod || GodManager.Instance.CurrentGod.element != FSSkillElement.FS_Elem_Nature) {
-                    ErrorBar.instance.SpawnText("Must stand still");
-                    return;
-                }
-            }
-
-            if (spell._ranged) {
-                //if (!_bossTarget)
-                //    return;
-
-                //if (Vector3.Distance(transform.position, _bossTarget.transform.position) > spell._range + spellCollider.radius)
-                //{
-                //    ErrorBar.instance.SpawnText("Out of range");
-                //    return;
-                //}
-
-                if (spell._angleDependent) {
-                    Vector3 LookDir = new Vector3(Valac.instance.transform.position.x, transform.position.y, Valac.instance.transform.position.z);
-                    Quaternion direction = Quaternion.LookRotation(LookDir - transform.position);
-                    transform.rotation = direction;
-
-                    //raycast check
-                    float DistanceToBoss = Vector3.Distance(Player.player.gameObject.transform.position, Valac.instance.gameObject.transform.position);
-                    if (DistanceToBoss > Valac.instance.gameObject.GetComponentInChildren<SphereCollider>().radius) {
-                        //RaycastHit hitInfo = new RaycastHit();
-                        //Ray ray = new Ray(transform.position + new Vector3(0, 2, 0), transform.forward);
-                        //bool hit = Physics.Raycast(ray, out hitInfo, spell._range);
-
-                        //if (hit && hitInfo.collider != spellCollider)
-                        //{
-                        //    ErrorBar.instance.SpawnText("Obstacle in the way");
-                        //    return;
-                        //}
-                    }
-                }
-            }
-
-            if (currentCastingSpell && currentCastingSpell != spellObject) {
-                currentCastingSpell.GetComponent<SpellBase>().CancelSpell();
-            }
-
-            currentCastingSpell = spellObject;
-            spell.cast();
-            if (spell._castTime > 0)
-                Player.player.GetComponentInChildren<CastHandEffect>().SetSpellEffect((int)spell.element);
         }
 
         public void OnIntroCameraFinish() {

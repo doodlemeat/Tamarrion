@@ -9,9 +9,9 @@ using System.Collections.Generic;
 namespace Tamarrion {
     public class PlayerPrefsDefaults : MonoBehaviour {
         void Awake() {
-            for (int i = 0; i < SpellManager.SpellSlotCount; ++i) {
-                PlayerPrefs.SetInt("playerSpell_" + i, i);
-            }
+            //for (int i = 0; i < SpellManager.SpellSlotCount; ++i) {
+            //    PlayerPrefs.SetInt("playerSpell_" + i, i);
+            //}
 
             PlayerPrefs.SetInt("playerSpell_" + 0, 0);
             PlayerPrefs.SetInt("playerSpell_" + 1, 1);
