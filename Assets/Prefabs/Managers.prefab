@@ -66,7 +66,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae7c00c63bb551241a097c90383d285c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllSpells: []
+  AllSpells:
+  - {fileID: 11474170, guid: 5fa6d6109c0f8284983c69e97017a884, type: 2}
+  - {fileID: 11419826, guid: ed99f21cfff5b6f42a56e96f1d122896, type: 2}
+  - {fileID: 11449050, guid: 0ac660eff1f41e6419c4d3a47acf12bd, type: 2}
+  - {fileID: 11451396, guid: 76bb6dd0d9dd9174294c0913e65f847c, type: 2}
+  - {fileID: 0}
   SelectedSpells: 
 --- !u!114 &114000013229191930
 MonoBehaviour:

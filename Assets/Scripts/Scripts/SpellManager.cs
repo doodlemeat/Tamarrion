@@ -12,14 +12,15 @@ namespace Tamarrion {
 		public List<FSSkillBase> AllSpells = new List<FSSkillBase> ();
 		public List<int> SelectedSpells = new List<int> ();
 
-		protected override void OnAwake () { }
+		protected override void OnAwake () {
+			SelectedSpells.AddRange(new int[] { -1, -1, -1, -1, -1 });
+		}
 
 		void OnDestroy() {
 			SaveStateToFile ();
 		}
 
 		void SaveStateToFile() {
-			Debug.Log ("Saving SpellManager");
 			StringBuilder sb = new StringBuilder ();
 			StringWriter sw = new StringWriter (sb);
 			JsonTextWriter writer = new JsonTextWriter (sw);
