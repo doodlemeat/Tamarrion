@@ -3,7 +3,7 @@ using System;
 
 namespace Tamarrion {
 	public abstract class UnitySingleton<T> : MyMonoBehaviour where T : MyMonoBehaviour {
-		private static T instance;
+		protected static T instance;
 
 		protected void Awake() {
 			int numberOfTypeComponents = GetComponents<T> ().Length;
