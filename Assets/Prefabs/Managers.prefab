@@ -72,7 +72,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a7e55ebd3e8208e4886729d1f9170d08, type: 2}
   - {fileID: 11400000, guid: f00c27594627f204e9c380d16fd789a5, type: 2}
   - {fileID: 11400000, guid: aa3e66dced8b1ad4581d425362ede828, type: 2}
-  AllSkills: []
+  AllSkills:
+  - {fileID: 11474170, guid: 5fa6d6109c0f8284983c69e97017a884, type: 2}
+  - {fileID: 11419826, guid: ed99f21cfff5b6f42a56e96f1d122896, type: 2}
+  - {fileID: 11449050, guid: 0ac660eff1f41e6419c4d3a47acf12bd, type: 2}
+  - {fileID: 11451396, guid: 76bb6dd0d9dd9174294c0913e65f847c, type: 2}
   SelectedSkills: 
 --- !u!114 &114000013229191930
 MonoBehaviour:

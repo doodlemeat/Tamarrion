@@ -32,11 +32,6 @@ namespace Tamarrion {
         }
 
         void InitiateSkill() {
-            if (skillManager == null) {
-                Debug.LogError("no skillmanager set");
-                return;
-            }
-
             if (skillUser == null) {
                 Debug.LogError("no skilluser set");
                 return;

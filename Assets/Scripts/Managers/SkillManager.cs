@@ -15,6 +15,14 @@ namespace Tamarrion {
 
 		protected override void OnAwake () {
 			SelectedSkills.AddRange(new int[] { -1, -1, -1, -1, -1 });
+
+			int StartingSkillIndex = 0;
+			for (int i = 0; i < SelectedSkills.Count; ++i ) {
+				if ( SelectedSkills[i] == -1 && StartingSkillIndex < AllSkills.Count ) {
+					SelectedSkills[i] = StartingSkillIndex;
+					++StartingSkillIndex;
+				}
+			}
 		}
 
 		void OnDestroy() {

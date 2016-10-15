@@ -52,15 +52,15 @@ namespace Tamarrion {
         void UpdateInputs() {
             if (SkillUserEnabled()) {
                 if (Input.GetButtonDown("Spell 1"))
-                    SetCurrentSkill(skillManager.GetSkillInSlot(0));
+                    SetCurrentSkill(SkillManager.GetSkillInSlot(0));
                 else if (Input.GetButtonDown("Spell 2"))
-                    SetCurrentSkill(skillManager.GetSkillInSlot(1));
+                    SetCurrentSkill(SkillManager.GetSkillInSlot (1));
                 else if (Input.GetButtonDown("Spell 3"))
-                    SetCurrentSkill(skillManager.GetSkillInSlot(2));
+                    SetCurrentSkill(SkillManager.GetSkillInSlot (2));
                 else if (Input.GetButtonDown("Spell 4"))
-                    SetCurrentSkill(skillManager.GetSkillInSlot(3));
+                    SetCurrentSkill(SkillManager.GetSkillInSlot (3));
                 else if (Input.GetButtonDown("Spell 5"))
-                    SetCurrentSkill(skillManager.GetSkillInSlot(4));
+                    SetCurrentSkill(SkillManager.GetSkillInSlot (4));
 
                 if (Input.GetButtonDown("Attack")) {
                     if (m_currentSkill != null && m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Inactive)
@@ -152,8 +152,6 @@ namespace Tamarrion {
         }
 
         void SetCurrentSkill(FSSkillBase p_skill) {
-            Debug.Log("FSSkillUser:SetCurrentSkill");
-
             if (p_skill == null || p_skill == m_currentSkill)
                 return;
 
