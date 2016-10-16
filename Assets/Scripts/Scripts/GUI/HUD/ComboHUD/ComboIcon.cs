@@ -21,7 +21,7 @@ namespace Tamarrion {
 
         void Start() {
             iconImage = GetComponent<Image>();
-            iconImage.color = FSSkillManager.instance.GetColorByElement(godElement);
+            iconImage.color = SkillManager.GetElement (godElement).Color;
 
             GodManager.onTributeGain += OnTributeGain;
             GodManager.onGodChosen += OnGodChosen;
@@ -104,8 +104,8 @@ namespace Tamarrion {
         }
 
         void OnGodDeactivated(FSSkillElement p_element) {
-            if (iconImage)
-                iconImage.color = FSSkillManager.instance.GetColorByElement(godElement);
+			if ( iconImage )
+				iconImage.color = SkillManager.GetElement (godElement).Color;
 
             SetImageFill(0f);
             godPowerActive = false;

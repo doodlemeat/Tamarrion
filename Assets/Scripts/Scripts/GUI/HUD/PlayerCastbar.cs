@@ -11,7 +11,6 @@ namespace Tamarrion {
 
         public static PlayerCastbar castbar = null;
         public float FadeOutTime = 0.5f;
-        public FSSkillManager skillManager;
 
         CastState m_castState = CastState.Cast;
         Image progressBar = null;
