@@ -76,7 +76,7 @@ namespace Tamarrion {
 
         void ResetSecondsTimerAndDisplayDuration() {
             secondDurationTimer.StartTimerBySeconds(1f);
-            ErrorBar.instance.SpawnText(currentSecondDuration.ToString(), FSSkillManager.instance.ColorNature);
+            ErrorBar.instance.SpawnText(currentSecondDuration.ToString(), SkillManager.GetElement(FSSkillElement.FS_Elem_Nature).Color);
         }
 
         void Update() {

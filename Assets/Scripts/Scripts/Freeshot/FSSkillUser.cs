@@ -10,7 +10,6 @@ namespace Tamarrion {
         public PlayerMovement playerMovement;
         public Animator playerAnimator;
         public CameraController cameraController;
-        public FSSkillManager skillManager;
         public Projector m_skillProjector;
         public Projector m_chargeProjector;
 
@@ -54,13 +53,13 @@ namespace Tamarrion {
                 if (Input.GetButtonDown("Spell 1"))
                     SetCurrentSkill(SkillManager.GetSkillInSlot(0));
                 else if (Input.GetButtonDown("Spell 2"))
-                    SetCurrentSkill(SkillManager.GetSkillInSlot (1));
+                    SetCurrentSkill(SkillManager.GetSkillInSlot(1));
                 else if (Input.GetButtonDown("Spell 3"))
-                    SetCurrentSkill(SkillManager.GetSkillInSlot (2));
+                    SetCurrentSkill(SkillManager.GetSkillInSlot(2));
                 else if (Input.GetButtonDown("Spell 4"))
-                    SetCurrentSkill(SkillManager.GetSkillInSlot (3));
+                    SetCurrentSkill(SkillManager.GetSkillInSlot(3));
                 else if (Input.GetButtonDown("Spell 5"))
-                    SetCurrentSkill(SkillManager.GetSkillInSlot (4));
+                    SetCurrentSkill(SkillManager.GetSkillInSlot(4));
 
                 if (Input.GetButtonDown("Attack")) {
                     if (m_currentSkill != null && m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Inactive)
@@ -152,6 +151,8 @@ namespace Tamarrion {
         }
 
         void SetCurrentSkill(FSSkillBase p_skill) {
+            Debug.Log("FSSkillUser:SetCurrentSkill");
+
             if (p_skill == null || p_skill == m_currentSkill)
                 return;
 
@@ -353,18 +354,7 @@ namespace Tamarrion {
             m_skillProjector.orthographic = true;
             m_skillProjector.aspectRatio = (float)m_currentSkill.shapeTexture.width / (float)m_currentSkill.shapeTexture.height;
             m_skillProjector.orthographicSize = m_currentSkill.shapeSize * 0.5f;
-
-            if (m_currentSkill.element == FSSkillElement.FS_Elem_Holy)
-                m_skillProjector.material.SetColor("_Color", skillManager.ColorHoly);
-            else if (m_currentSkill.element == FSSkillElement.FS_Elem_Magic)
-                m_skillProjector.material.SetColor("_Color", skillManager.ColorMagic);
-            else if (m_currentSkill.element == FSSkillElement.FS_Elem_Defense)
-                m_skillProjector.material.SetColor("_Color", skillManager.ColorDefense);
-            else if (m_currentSkill.element == FSSkillElement.FS_Elem_Nature)
-                m_skillProjector.material.SetColor("_Color", skillManager.ColorNature);
-            else if (m_currentSkill.element == FSSkillElement.FS_Elem_War)
-                m_skillProjector.material.SetColor("_Color", skillManager.ColorWar);
-
+			m_skillProjector.material.SetColor ("_Color", m_currentSkill.Element.Color);
             m_skillProjector.material.SetTexture("_ShadowTex", m_currentSkill.shapeTexture);
             currentPlacingMethod = m_currentSkill.placing;
         }

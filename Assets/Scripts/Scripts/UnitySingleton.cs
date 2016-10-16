@@ -12,7 +12,6 @@ namespace Tamarrion {
 				DestroyImmediate (this);
 			} else if ( instance == null ) {
 				instance = this as T;
-				name = typeof (T).Name;
 				HandleAttribute ();
 				OnAwake ();
 			}

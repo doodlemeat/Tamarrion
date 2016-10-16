@@ -12,9 +12,14 @@ namespace Tamarrion {
 		public List<SkillElement> SkillElements = new List<SkillElement> ();
 		public List<FSSkillBase> AllSkills = new List<FSSkillBase> ();
 		public List<int> SelectedSkills = new List<int> ();
+		public List<FSSkillBase> SelectedSkillsInstances = new List<FSSkillBase> ();
+		public Dictionary<FSSkillElement, SkillElement> SkillElementsLookup = new Dictionary<FSSkillElement, SkillElement> ();
 
 		protected override void OnAwake () {
 			SelectedSkills.AddRange(new int[] { -1, -1, -1, -1, -1 });
+			SelectedSkillsInstances.AddRange (new FSSkillBase[] { null, null, null, null, null });
+			
+			SkillElements.ForEach (e => SkillElementsLookup.Add (e.Id, e));
 
 			int StartingSkillIndex = 0;
 			for (int i = 0; i < SelectedSkills.Count; ++i ) {
@@ -23,10 +28,28 @@ namespace Tamarrion {
 					++StartingSkillIndex;
 				}
 			}
+
+			for(int i = 0; i < SelectedSkills.Count; ++i ) {
+				if(SelectedSkills[i] > -1) {
+					FSSkillBase Skill = Instantiate (AllSkills[SelectedSkills[i]]);
+					Skill.transform.SetParent (Player.player.transform);
+					Skill.Element = GetElement (Skill.element);
+
+					SelectedSkillsInstances[i] = Skill;
+				}
+			}
 		}
 
 		void OnDestroy() {
 			SaveStateToFile ();
+		}
+
+		void Update() {
+			SelectedSkillsInstances.ForEach (Skill => {
+				if ( Skill && !Skill.cooldownTimer.IsComplete ) {
+					Skill.cooldownTimer.Update ();
+				}
+			});
 		}
 
 		public static FSSkillBase GetSkillInSlot(int slot) {
@@ -34,12 +57,20 @@ namespace Tamarrion {
 				return null;
 			}
 
-			int selectedSkill = instance.SelectedSkills[slot];
-			if (selectedSkill == -1) {
-				return null;
+			if(instance.SelectedSkillsInstances[slot] != null) {
+				return instance.SelectedSkillsInstances[slot];
 			}
 
-			return instance.AllSkills[selectedSkill];
+			return null;
+		}
+
+		public static SkillElement GetElement(FSSkillElement element) {
+			SkillElement FoundSkillElement;
+			if(instance.SkillElementsLookup.TryGetValue (element, out FoundSkillElement)) {
+				return FoundSkillElement;
+			}
+
+			return null;
 		}
 
 		void SaveStateToFile() {

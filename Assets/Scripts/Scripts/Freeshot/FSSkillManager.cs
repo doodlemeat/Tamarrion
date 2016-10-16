@@ -18,6 +18,7 @@ namespace Tamarrion {
 			for ( int i = 0; i < currentSkills.Count; ++i ) {
 				currentSkills[i] = (FSSkillBase)Instantiate (currentSkills[i], Vector3.zero, Quaternion.identity);
 				currentSkills[i].transform.SetParent (PlayerSkills.transform);
+				currentSkills[i].Element = SkillManager.GetElement (currentSkills[i].element);
 			}
 		}
 

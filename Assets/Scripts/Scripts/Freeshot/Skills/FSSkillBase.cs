@@ -47,6 +47,7 @@ namespace Tamarrion {
 		public bool noPlacement = false;
 		public FSSkillType type = FSSkillType.FS_Type_Base;
 		public FSSkillElement element = FSSkillElement.FS_Elem_Holy;
+		public SkillElement Element;
 		public FSSkillShape shape = FSSkillShape.FS_Shape_Box;
 		public FSSkillPlacing placing = FSSkillPlacing.FS_Placing_FromPlayer;
 		public Texture2D shapeTexture;

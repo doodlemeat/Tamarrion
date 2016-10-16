@@ -68,20 +68,7 @@ namespace Tamarrion {
 
             GetComponentInChildren<Text>().text = castingSkill.skillName;
             canvasGroup.alpha = 1;
-
-            if (skillManager == null)
-                return;
-
-            if (castingSkill.element == FSSkillElement.FS_Elem_Holy)
-                progressBar.color = skillManager.ColorHoly;
-            else if (castingSkill.element == FSSkillElement.FS_Elem_Magic)
-                progressBar.color = skillManager.ColorMagic;
-            else if (castingSkill.element == FSSkillElement.FS_Elem_Nature)
-                progressBar.color = skillManager.ColorNature;
-            else if (castingSkill.element == FSSkillElement.FS_Elem_Defense)
-                progressBar.color = skillManager.ColorDefense;
-            else if (castingSkill.element == FSSkillElement.FS_Elem_War)
-                progressBar.color = skillManager.ColorWar;
+			progressBar.color = castingSkill.Element.Color;
         }
     }
 }

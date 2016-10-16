@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: SkillElement_Magic
   m_EditorClassIdentifier: 
   Color: {r: 0.6, g: 0.69803923, b: 1, a: 1}
+  Id: 1

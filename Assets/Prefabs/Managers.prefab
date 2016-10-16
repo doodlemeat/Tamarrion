@@ -78,6 +78,7 @@ MonoBehaviour:
   - {fileID: 11449050, guid: 0ac660eff1f41e6419c4d3a47acf12bd, type: 2}
   - {fileID: 11451396, guid: 76bb6dd0d9dd9174294c0913e65f847c, type: 2}
   SelectedSkills: 
+  SelectedSkillsInstances: []
 --- !u!114 &114000013229191930
 MonoBehaviour:
   m_ObjectHideFlags: 1
