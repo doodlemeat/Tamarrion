@@ -25,19 +25,11 @@ namespace Tamarrion {
             GodManager.onGodDeactivated -= OnGodDeactivated;
         }
 
-        //void Update()
-        //{
-        //    if (godPowerActive)
-        //    {
-        //        glyphImage.color = Color.Lerp(FSSkillManager.instance.GetColorByElement(element), Color.white, GodManager.Instance.GetPercentDone());
-        //    }
-        //}
-
         void OnTributeGain(FSSkillElement p_element, float p_amount) {
             if (p_element == element) {
                 float percentage = GodManager.Instance.currentTributeAmounts[(int)p_element] / GodManager.Instance.maxTribute;
                 if (glyphImage)
-                    glyphImage.color = Color.Lerp(Color.white, FSSkillManager.instance.GetColorByElement(element), percentage);
+                    glyphImage.color = Color.Lerp(Color.white, SkillManager.GetElement(element).Color, percentage);
             }
         }
 

@@ -21,8 +21,8 @@ namespace Tamarrion {
                 GameObject effectInstance = (GameObject)Instantiate(godPowerActivationEffect, Player.player.transform.position, godPowerActivationEffect.transform.rotation);
                 effectInstance.transform.SetParent(Player.player.transform);
                 effectInstance.transform.localPosition = godPowerActivationEffect.transform.position;
-                if (effectInstance.GetComponent<ParticleSystem>())
-                    effectInstance.GetComponent<ParticleSystem>().startColor = FSSkillManager.instance.GetColorByElement(element);
+				if ( effectInstance.GetComponent<ParticleSystem> () )
+					effectInstance.GetComponent<ParticleSystem> ().startColor = SkillManager.GetElement (element).Color;
             }
             if (godPowerPersistantEffect) {
                 godPowerPersistantEffectInstance = (GameObject)Instantiate(godPowerPersistantEffect, Player.player.transform.position, godPowerPersistantEffect.transform.rotation);
@@ -31,7 +31,7 @@ namespace Tamarrion {
             }
 
             if (GodPowerPlayerBodyMaterial.instance) {
-                GodPowerPlayerBodyMaterial.instance.SetMaterialColor("_EmissiveRimColor", FSSkillManager.instance.GetColorByElement(element));
+                GodPowerPlayerBodyMaterial.instance.SetMaterialColor("_EmissiveRimColor", SkillManager.GetElement(element).Color);
                 GodPowerPlayerBodyMaterial.instance.SetMaterialFloat("_EmissiveRimPower", 5f);
             }
         }
