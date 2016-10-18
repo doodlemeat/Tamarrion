@@ -25,9 +25,13 @@ namespace Tamarrion {
 		/** The length of the animation currently playing */
 		private float animationLength;
 
+		private bool transitioned;
+
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+			Debug.Log("BEGIN " + stateInfo.shortNameHash);
 			combatScript = Player.player.GetComponent<PlayerCombat>();
-			animator.SetBool("Combo", false);
+			animator.SetBool("StopAttack", false);
+			transitioned = false;
 
 			// Get the current animation length from the animator
 			AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(layerIndex);
@@ -55,7 +59,7 @@ namespace Tamarrion {
 		}
 
 		private void EndAttack() {
-
+			
 		}
 
 		override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -65,11 +69,23 @@ namespace Tamarrion {
 			}
 
 			// If we press attack again then queue it up for a combo,
-			if (stateInfo.normalizedTime > 0.25 && !animator.IsInTransition(layerIndex)) {
+			if (stateInfo.normalizedTime > 0.25 && stateInfo.normalizedTime < 0.9 && !transitioned) {
+				combatScript.ShowComboIndicator();
 				if (Input.GetMouseButtonDown(0)) {
 					animator.SetInteger("RandomAttack", Random.Range(0, 2));
-					animator.SetBool("Combo", true);
+					animator.SetTrigger("Combo");
+					transitioned = true;
+					combatScript.HideComboIndicator();
+
+					Debug.Log("Bingo");
 				}
+			}
+			Debug.Log("Time: " + stateInfo.normalizedTime + " " + stateInfo.shortNameHash + " " + transitioned);
+			if (stateInfo.normalizedTime > 1 && !transitioned) {
+				animator.SetBool("StopAttack", true);
+				transitioned = true;
+				combatScript.HideComboIndicator();
+				Debug.Log("STOPPING " + stateInfo.shortNameHash + " " + stateInfo.normalizedTime);
 			}
 
 			// Release the move block after some time
@@ -79,6 +95,7 @@ namespace Tamarrion {
 		}
 
 		override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+			Debug.Log("END " + stateInfo.shortNameHash);
 			EndAttack();
 		}
 	}

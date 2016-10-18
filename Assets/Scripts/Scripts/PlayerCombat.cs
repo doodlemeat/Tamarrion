@@ -9,6 +9,9 @@ namespace Tamarrion {
 	public class PlayerCombat : MyMonoBehaviour {
 		public static PlayerCombat instance;
 
+		/** The combo indicator */
+		public GameObject comboIndicator;
+
 		/** Particle system for attack hit effects */
 		public ParticleSystem onHitParticles;
 
@@ -31,7 +34,7 @@ namespace Tamarrion {
 		void Start() {
 			animator = GetComponentInChildren<Animator>();
 			playerStats = GetComponent<PlayerStats>();
-			weaponTrail = Player.player.GetComponentInChildren<Xft.XWeaponTrail>();
+			weaponTrail = GetComponentInChildren<Xft.XWeaponTrail>();
 
 			HideWeaponTrail();
 		}
@@ -61,7 +64,6 @@ namespace Tamarrion {
 			if (CanAttack()) {
 				if (Input.GetMouseButtonDown(0)) {
 					if (useMelee) {
-						Debug.Log("ATTACKING");
 						animator.SetTrigger("Attack");
 					}
 					else {
@@ -77,6 +79,16 @@ namespace Tamarrion {
 
 		public void HideWeaponTrail() {
 			weaponTrail.Deactivate();
+		}
+
+		public void ShowComboIndicator() {
+			if (!comboIndicator.activeSelf)
+				comboIndicator.SetActive(true);
+		}
+
+		public void HideComboIndicator() {
+			if (comboIndicator.activeSelf)
+				comboIndicator.SetActive(false);
 		}
 
 		public void SendForceFromPlayer(Vector3 force, float lifetime, Vector3 scale, Vector3 offset) {
