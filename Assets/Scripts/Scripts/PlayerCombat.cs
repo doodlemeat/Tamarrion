@@ -61,7 +61,6 @@ namespace Tamarrion {
 			if (CanAttack()) {
 				if (Input.GetMouseButtonDown(0)) {
 					if (useMelee) {
-						Debug.Log("ATTACKING");
 						animator.SetTrigger("Attack");
 					}
 					else {
