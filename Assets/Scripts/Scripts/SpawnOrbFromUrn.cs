@@ -6,10 +6,10 @@ namespace Tamarrion {
 		private readonly Vector3 Offset = new Vector3(0, 1, 0);
 
 		public GameObject healthOrb;
-		public float[] probability = new float[System.Enum.GetValues(typeof(Difficulty.difficulty)).Length];
+		public float[] probability = new float[System.Enum.GetValues(typeof(Difficulty)).Length];
 
 		void Start () {
-			if (Random.Range(0.0f, 100.0f) < probability[(int) Difficulty.Current_difficulty]) {
+			if (Random.Range(0.0f, 100.0f) < probability[(int) DifficultyManager.current]) {
 				Instantiate(healthOrb, transform.position + Offset, Quaternion.identity);
 			}
 		}

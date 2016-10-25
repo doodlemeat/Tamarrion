@@ -15,7 +15,7 @@ namespace Tamarrion {
             }*/
         }
         private void OnHitEnemyEffect(Enemy_Base en) {
-            float damage = Damage[(int)Difficulty.Current_difficulty];
+            float damage = Damage[(int)DifficultyManager.current];
             en.GetComponent<CombatStats>().DealDamage(damage);
         }
     }

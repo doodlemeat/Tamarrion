@@ -35,8 +35,8 @@ namespace Tamarrion {
 						foreach (GameObject obj in DamageColliders) {
 							if (obj.GetComponent<BoxCollider>().bounds.Contains(Player.player.transform.position)) {
 								float FinalAmount = BackupDamage;
-								if (DamageAmount.Count - 1 >= (int)Difficulty.Current_difficulty)
-									FinalAmount = DamageAmount[(int)Difficulty.Current_difficulty];
+								if (DamageAmount.Count - 1 >= (int)DifficultyManager.current)
+									FinalAmount = DamageAmount[(int)DifficultyManager.current];
 
 								PlayerStats.instance.DealDamage(FinalAmount);
 							}

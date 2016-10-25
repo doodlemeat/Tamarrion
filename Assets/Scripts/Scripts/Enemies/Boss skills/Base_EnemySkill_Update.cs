@@ -51,8 +51,8 @@ namespace Tamarrion {
 
 
 
-            m_Enemy_Stats.Add_Modifier(Buff_Debuff + "_movement", "movement_speed", 0.0f, Movement_modifier[(int)Difficulty.Current_difficulty]);
-            m_Enemy_Stats.Add_Modifier(Buff_Debuff + "_rotation", "rotation_speed", 0.0f, Rotation_modifier[(int)Difficulty.Current_difficulty]);
+            m_Enemy_Stats.Add_Modifier(Buff_Debuff + "_movement", "movement_speed", 0.0f, Movement_modifier[(int)DifficultyManager.current]);
+            m_Enemy_Stats.Add_Modifier(Buff_Debuff + "_rotation", "rotation_speed", 0.0f, Rotation_modifier[(int)DifficultyManager.current]);
 
             m_skill_activated = false;
             m_Enemy_Stats.DamageTaken = false;
@@ -102,10 +102,10 @@ namespace Tamarrion {
 
                 m_time_active += Time.deltaTime;
                 m_time_since_dot += Time.deltaTime;
-                if (m_time_since_dot >= Dot_time[(int)Difficulty.Current_difficulty]) {
-                    m_time_since_dot -= Dot_time[(int)Difficulty.Current_difficulty];
+                if (m_time_since_dot >= Dot_time[(int)DifficultyManager.current]) {
+                    m_time_since_dot -= Dot_time[(int)DifficultyManager.current];
                     CheckHit();
-                    if (m_time_active >= Active_time[(int)Difficulty.Current_difficulty]) {
+                    if (m_time_active >= Active_time[(int)DifficultyManager.current]) {
                         OnExit();
                         //m_trail.Deactivate();
                         m_Enemy_Stats.Remove_Modifier(Buff_Debuff + "_movement");
@@ -125,7 +125,7 @@ namespace Tamarrion {
             OnHitEffect();
         }
         protected virtual void OnHitEffect() {
-            float damage = Damage[(int)Difficulty.Current_difficulty];
+            float damage = Damage[(int)DifficultyManager.current];
 
             if (onHitEffect != null) {
                 onHitEffect(_isDirectional, ref damage);

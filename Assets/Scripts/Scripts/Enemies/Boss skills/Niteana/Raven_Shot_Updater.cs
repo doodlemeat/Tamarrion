@@ -8,7 +8,7 @@ namespace Tamarrion {
 
         protected override void Start() {
             base.Start();
-            Casting_time = Special_Cast_Time[(int)Difficulty.Current_difficulty];
+            Casting_time = Special_Cast_Time[(int)DifficultyManager.current];
         }
 
         protected override float GetSpecificSize(float p_size) {
@@ -21,7 +21,7 @@ namespace Tamarrion {
             projectile.Origin = Nihteana.instance.gameObject.GetComponentInChildren<SpellOrigin>().transform.position;
             projectile.Target = Player.player.gameObject.GetComponentInChildren<SpellTarget>().transform.position;
             projectile.Origin.y = projectile.Target.y;
-            projectile.Damage = Damage[(int)Difficulty.Current_difficulty];
+            projectile.Damage = Damage[(int)DifficultyManager.current];
             Instantiate(projectile, Vector3.zero, Quaternion.identity);
         }
     }

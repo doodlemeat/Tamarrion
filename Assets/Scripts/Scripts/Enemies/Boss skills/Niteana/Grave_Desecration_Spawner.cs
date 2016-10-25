@@ -14,7 +14,7 @@ namespace Tamarrion {
 
         }
         void Update() {
-            if (time_since_cast < cooldown[(int)Difficulty.Current_difficulty]) {
+            if (time_since_cast < cooldown[(int)DifficultyManager.current]) {
                 time_since_cast += Time.deltaTime;
                 return;
             }

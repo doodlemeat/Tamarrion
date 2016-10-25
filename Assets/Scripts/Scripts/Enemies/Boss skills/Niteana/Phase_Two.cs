@@ -16,7 +16,7 @@ namespace Tamarrion {
                 m_cooldown -= delta_time;
                 return 0.0f;
             }
-            if (Nihteana.instance.altarsAlive > 0 && Nihteana.instance.GetComponent<Enemy_Stats>().GetShield() < Nihteana.instance.GetComponent<Enemy_Stats>().Diff_Health[(int)Difficulty.Current_difficulty]) {
+            if (Nihteana.instance.altarsAlive > 0 && Nihteana.instance.GetComponent<Enemy_Stats>().GetShield() < Nihteana.instance.GetComponent<Enemy_Stats>().Diff_Health[(int)DifficultyManager.current]) {
                 return 0.0f;
             }
             //Debug.Log("Start");

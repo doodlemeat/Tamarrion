@@ -23,10 +23,10 @@ namespace Tamarrion {
 			if (m_time_alive <= Activate_time) {
 				transform.position += new Vector3(0, 4.0f * Time.deltaTime * (1 / Activate_time), 0);
 			}
-			else if (m_time_alive > Activate_time + Life_time[(int)Difficulty.Current_difficulty]) {
+			else if (m_time_alive > Activate_time + Life_time[(int)DifficultyManager.current]) {
 				transform.position -= new Vector3(0, 4.0f * Time.deltaTime * (1 / Death_time), 0);
 			}
-			if (m_time_alive > Activate_time + Life_time[(int)Difficulty.Current_difficulty] + Death_time) {
+			if (m_time_alive > Activate_time + Life_time[(int)DifficultyManager.current] + Death_time) {
 				Destroy(gameObject);
 			}
 		}

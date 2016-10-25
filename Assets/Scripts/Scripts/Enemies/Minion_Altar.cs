@@ -66,7 +66,7 @@ namespace Tamarrion {
 			//Debug.Log("Reactivate: Set alive");
 			Alive = true;
 			//Debug.Log("Reactivate: Heal 200%");
-			gameObject.GetComponent<CombatStats> ().Ressurect (Reactivated_Health[(int)Difficulty.Current_difficulty]);
+			gameObject.GetComponent<CombatStats> ().Ressurect (Reactivated_Health[(int)DifficultyManager.current]);
 			//Debug.Log("Reactivate: Restart");
 			Start ();
 			//Debug.Log("Reactivate: Move up");

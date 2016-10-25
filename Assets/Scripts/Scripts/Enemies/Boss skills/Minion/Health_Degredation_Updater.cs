@@ -7,8 +7,8 @@ namespace Tamarrion {
         public float Shield_Niht_Percent;
 
         protected override void OnHitEffect() {
-            Nihteana.instance.GetComponent<Enemy_Stats>().ShieldFlat(Damage[(int)Difficulty.Current_difficulty] * Shield_Niht_Percent);
-            m_boss.GetComponent<Enemy_Stats>().DealDamage(Damage[(int)Difficulty.Current_difficulty]);
+            Nihteana.instance.GetComponent<Enemy_Stats>().ShieldFlat(Damage[(int)DifficultyManager.current] * Shield_Niht_Percent);
+            m_boss.GetComponent<Enemy_Stats>().DealDamage(Damage[(int)DifficultyManager.current]);
         }
     }
 }

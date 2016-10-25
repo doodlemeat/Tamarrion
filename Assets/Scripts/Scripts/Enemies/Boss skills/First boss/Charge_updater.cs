@@ -20,7 +20,7 @@ namespace Tamarrion {
             }
             if (!m_hit && Vector3.Distance(m_player.transform.position, m_boss.transform.position) < 2.5f) {
                 m_hit = true;
-                m_player.GetComponent<CombatStats>().DealDamage(Damage[(int)Difficulty.Current_difficulty]);
+                m_player.GetComponent<CombatStats>().DealDamage(Damage[(int)DifficultyManager.current]);
                 m_time_casted = Casting_time;
             }
         }

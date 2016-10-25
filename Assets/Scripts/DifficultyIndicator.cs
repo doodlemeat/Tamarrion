@@ -8,14 +8,14 @@ namespace Tamarrion {
 
 		void Start () {
 			images = gameObject.GetComponentsInChildren<RawImage> ();
-			images[(int)Difficulty.Current_difficulty].color = new Color (1, 1, 1, 1);
+			images[(int)DifficultyManager.current].color = new Color (1, 1, 1, 1);
 		}
 
 		public void ChangeDifficulty () {
 			for ( int i = 0; i < images.Length; i++ ) {
 				images[i].color = new Color (1, 1, 1, 0);
 			}
-			images[(int)Difficulty.Current_difficulty].color = new Color (1, 1, 1, 1);
+			images[(int)DifficultyManager.current].color = new Color (1, 1, 1, 1);
 		}
 	}
 }
