@@ -3,14 +3,14 @@ using System.Collections;
 using UnityEngine.EventSystems;
 namespace Tamarrion {
 	public class DifficultyButton : MonoBehaviour, ISelectHandler {
-		public Difficulty.difficulty DifficultySetting = Difficulty.difficulty.beginner;
+		public Difficulty DifficultySetting = Difficulty.Beginner;
 
 		void Start () {
 			GetComponent<UnityEngine.UI.Button> ().onClick.AddListener (() => { OnClick (); });
 		}
 
 		void OnClick () {
-			Difficulty.Current_difficulty = DifficultySetting;
+			DifficultyManager.current = DifficultySetting;
 		}
 
 		public void OnSelect (UnityEngine.EventSystems.BaseEventData data) {

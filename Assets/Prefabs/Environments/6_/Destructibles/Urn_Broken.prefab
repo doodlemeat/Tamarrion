@@ -113,7 +113,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 432018}
-  - 114: {fileID: 11433342}
+  - 114: {fileID: 114000010486533822}
   m_Layer: 0
   m_Name: Urn_Broken
   m_TagString: Untagged
@@ -1064,22 +1064,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55be6d7a3f2898e429c6cd60531c876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11433342
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e217ffb247cdbc3418d4175d502b0217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health_orb: {fileID: 117984, guid: b4096857074ca2643825685bd9b51730, type: 2}
-  spawn_percent:
-  - 0
-  - 0
-  - 0
 --- !u!114 &11437230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1264,3 +1248,19 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 133738}
   m_IsPrefabParent: 1
+--- !u!114 &114000010486533822
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 133738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca847384198bc4e4d8220e333bd6c413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthOrb: {fileID: 0}
+  probability:
+  - 50
+  - 50
+  - 50

@@ -74,7 +74,7 @@ namespace Tamarrion {
         }
 
         void DealDamageToPlayer() {
-            m_player.GetComponent<CombatStats>().DealDamage(Damage[(int)Difficulty.Current_difficulty] * ++m_times_casted);
+            m_player.GetComponent<CombatStats>().DealDamage(Damage[(int)DifficultyManager.current] * ++m_times_casted);
         }
 
         void DestroyPillar(GameObject p_targetPillar) {

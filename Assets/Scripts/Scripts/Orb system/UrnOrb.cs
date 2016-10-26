@@ -22,7 +22,7 @@ namespace Tamarrion {
                 _triggered = false;
 
             if (_triggered && _playerStats.GetPercentageHP() < 1.0f) {
-                _playerStats.HealPercentage(health[(int)Difficulty.Current_difficulty]);
+                _playerStats.HealPercentage(health[(int)DifficultyManager.current]);
                 //Debug.Log("Player healed by orb");
                 Destroy(gameObject);
                 if (particleSys)

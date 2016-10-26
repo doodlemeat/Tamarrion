@@ -16,7 +16,7 @@ namespace Tamarrion {
             m_boss = Valac.instance.transform.position;
             m_time_spawned = 0.0f;
 
-            m_spawns = new float[(int)Stones[(int)Difficulty.Current_difficulty]];
+            m_spawns = new float[(int)Stones[(int)DifficultyManager.current]];
 
             for (int i = 0; i < m_spawns.Length; i++) {
                 m_spawns[i] = Random.Range(0.0f, spawning_time);
@@ -30,7 +30,7 @@ namespace Tamarrion {
             m_time_spawned = m_time_spawned > spawning_time ? spawning_time : m_time_spawned;
             for (int i = 0; i < m_spawns.Length; i++) {
                 if (m_spawns[i] != 0 && m_spawns[i] < m_time_spawned) {
-                    Vector3 position = Random.insideUnitSphere * FallRadius[(int)Difficulty.Current_difficulty];
+                    Vector3 position = Random.insideUnitSphere * FallRadius[(int)DifficultyManager.current];
                     Telegrapher.m_boss = Valac.instance.gameObject;
                     Instantiate(Telegrapher, new Vector3(m_boss.x + position.x, m_boss.y, m_boss.z + position.z), Quaternion.identity);
                     m_spawns[i] = 0;

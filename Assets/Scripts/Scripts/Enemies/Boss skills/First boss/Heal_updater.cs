@@ -10,7 +10,7 @@ namespace Tamarrion {
         private bool interrupted = false;
 
         protected override void OnHitEffect() {
-            m_boss.GetComponent<Enemy_Stats>().HealPercentage(Damage[(int)Difficulty.Current_difficulty]);
+            m_boss.GetComponent<Enemy_Stats>().HealPercentage(Damage[(int)DifficultyManager.current]);
             //Debug.Log("Boos healed 10%");
         }
         protected override void OnExit() {

@@ -15,16 +15,16 @@ namespace Tamarrion {
 
         public override void InitializeSpecificStats() {
             if (!Initialized) {
-                m_base.Add("rotation_speed", Diff_RotationSpeed[(int)Difficulty.Current_difficulty]);
+                m_base.Add("rotation_speed", Diff_RotationSpeed[(int)DifficultyManager.current]);
 
                 m_stat.Add("rotation_speed", m_base["rotation_speed"]);
             }
-            m_base["max_health"] = Diff_Health[(int)Difficulty.Current_difficulty];
-            m_base["health"] = Diff_Health[(int)Difficulty.Current_difficulty];
-            m_base["shield"] = Diff_Shield[(int)Difficulty.Current_difficulty];
-            m_base["damage_reduction"] = Diff_DamageReduction[(int)Difficulty.Current_difficulty];
-            m_base["movement_speed"] = Diff_MovementSpeed[(int)Difficulty.Current_difficulty];
-            m_base["rotation_speed"] = Diff_RotationSpeed[(int)Difficulty.Current_difficulty];
+            m_base["max_health"] = Diff_Health[(int)DifficultyManager.current];
+            m_base["health"] = Diff_Health[(int)DifficultyManager.current];
+            m_base["shield"] = Diff_Shield[(int)DifficultyManager.current];
+            m_base["damage_reduction"] = Diff_DamageReduction[(int)DifficultyManager.current];
+            m_base["movement_speed"] = Diff_MovementSpeed[(int)DifficultyManager.current];
+            m_base["rotation_speed"] = Diff_RotationSpeed[(int)DifficultyManager.current];
 
             m_stat["max_health"] = m_base["max_health"];
             m_stat["health"] = m_base["max_health"];

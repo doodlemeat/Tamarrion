@@ -28,8 +28,8 @@ namespace Tamarrion {
 			}
 			if ( Alive ) {
 				if ( Nihteana.instance ) {
-					GetComponent<Enemy_Stats> ().DealDamage (Degredation[(int)Difficulty.Current_difficulty] * Time.deltaTime, false, false);
-					Nihteana.instance.GetComponent<Enemy_Stats> ().ShieldFlat (Degredation[(int)Difficulty.Current_difficulty] * Niht_Shield_Percent * Time.deltaTime);
+					GetComponent<Enemy_Stats> ().DealDamage (Degredation[(int)DifficultyManager.current] * Time.deltaTime, false, false);
+					Nihteana.instance.GetComponent<Enemy_Stats> ().ShieldFlat (Degredation[(int)DifficultyManager.current] * Niht_Shield_Percent * Time.deltaTime);
 				}
 			}
 			base.Update ();

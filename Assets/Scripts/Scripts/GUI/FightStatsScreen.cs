@@ -90,8 +90,8 @@ namespace Tamarrion {
             SavedStats_HealingDone = (int)Mathf.Ceil(FightStats.HealingDone);
 
             //difficulty
-            if (p_victory || Difficulty.Current_difficulty != Difficulty.difficulty.beginner)
-                StatsText.text += Difficulty.Current_difficulty.ToString() + "\n";
+            if (p_victory || DifficultyManager.current != Difficulty.Beginner)
+                StatsText.text += DifficultyManager.current.ToString() + "\n";
             //boss health
             if (!p_victory)
                 StatsText.text += (int)(Valac.instance.GetComponent<CombatStats>().GetPercentageHP() * 100) + "% (" + (int)Valac.instance.GetComponent<CombatStats>().m_stat["health"] + " health)\n";
@@ -166,7 +166,7 @@ namespace Tamarrion {
                 DefeatAnim.SetActive(true);
                 //			MainMenu.SetActive (true);
                 //			Reset.SetActive (true);
-                if (Difficulty.Current_difficulty != Difficulty.difficulty.beginner)
+                if (DifficultyManager.current != Difficulty.Beginner)
                     StatnamesText.text = "Difficulty:\nBoss health:\nTime:\nDamage dealt:\nDamage per second:\nDamage taken:\nHealing done:";
                 else
                     StatnamesText.text = "Boss health:\nTime:\nDamage dealt:\nDamage per second:\nDamage taken:\nHealing done:";
@@ -186,7 +186,7 @@ namespace Tamarrion {
             scoreObject.AddField("damageDealt", SavedStats_DamageDealt);
             scoreObject.AddField("healingDone", SavedStats_HealingDone);
             scoreObject.AddField("time", SavedStats_Time);
-            scoreObject.AddField("difficulty", (int)Difficulty.Current_difficulty);
+            scoreObject.AddField("difficulty", (int)DifficultyManager.current);
         }
 
         public void SelectMainMenuButton() {

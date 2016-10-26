@@ -28,7 +28,7 @@ namespace Tamarrion {
             //m_animator = gameObject.GetComponentInParent<Animator>();
             //m_animator = m_boss.GetComponentInChildren<Animator>();
 
-            m_max_cooldown = Cooldown[(int)Difficulty.Current_difficulty];
+            m_max_cooldown = Cooldown[(int)DifficultyManager.current];
 
             m_time = new Stopwatch();
             m_time.Start();

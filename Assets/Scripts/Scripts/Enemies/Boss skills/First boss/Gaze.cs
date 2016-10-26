@@ -27,7 +27,7 @@ namespace Tamarrion {
             base.StartUsingSkill();
             GameObject.Find("HUD").gameObject.transform.Find("Hide").GetComponent<RectTransform>().gameObject.SetActive(true);
 
-            int[] spawn = { Minions_spawning[(int)Difficulty.Current_difficulty] };
+            int[] spawn = { Minions_spawning[(int)DifficultyManager.current] };
             Minion_Spawner.valac.Spawn_minions(spawn);
         }
     }

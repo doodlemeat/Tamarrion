@@ -10,7 +10,7 @@ namespace Tamarrion {
         public int phase_active;
 
         protected override void OnHitEffect() {
-            int[] spawn = { Minions_spawning[(int)Difficulty.Current_difficulty] };
+            int[] spawn = { Minions_spawning[(int)DifficultyManager.current] };
             if (phase_active == Nihteana.instance.Phase)
                 Minion_Spawner.niteana.Spawn_minions(spawn);
             //m_boss.GetComponent<Enemy_Stats>().HealPercentage(Damage[(int)Difficulty.Current_difficulty]);

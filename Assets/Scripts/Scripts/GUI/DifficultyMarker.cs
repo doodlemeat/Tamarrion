@@ -13,7 +13,7 @@ namespace Tamarrion {
 			image = gameObject.GetComponent<RawImage> ();
 		}
 
-		public void SetDifficultyTexture (Difficulty.difficulty p_diff) {
+		public void SetDifficultyTexture (Difficulty p_diff) {
 			if ( (int)p_diff > diffTextures.Count - 1 )
 				return;
 
