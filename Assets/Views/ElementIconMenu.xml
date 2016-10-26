@@ -1,0 +1,7 @@
+<ElementIconMenu>
+	<Group Orientation="Horizontal" Alignment="Top" ContentAlignment="Center" Spacing="10px">
+		<Button>
+			<Image />
+		</Button>
+	</Group>
+</ElementIconMenu>
