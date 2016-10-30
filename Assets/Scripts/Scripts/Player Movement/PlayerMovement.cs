@@ -61,7 +61,7 @@ namespace Tamarrion {
 				return;
 
 			// If the player is dead, don't allow any movement
-			if (PlayerStats.instance.m_stat["health"] <= 0)
+			if (Player.player.IsDead())
 				return;
 
 			if (MoveEnabled())
