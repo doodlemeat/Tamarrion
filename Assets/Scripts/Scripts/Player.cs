@@ -155,7 +155,7 @@ namespace Tamarrion {
 
         // Moves the character in the given direction
         public void Move(Vector3 direction) {
-            playerMovement._controller.Move(direction * Time.deltaTime);
+            playerMovement.Controller.Move(direction * Time.deltaTime);
         }
 
         void processComboPoints() {

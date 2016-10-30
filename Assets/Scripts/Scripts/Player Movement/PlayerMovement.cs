@@ -6,37 +6,39 @@ namespace Tamarrion {
     public class PlayerMovement : MonoBehaviour {
         public static PlayerMovement instance;
 
-        public float _gravity = 20.0f;
-        public float _rotationSpeed = 10.0f;
-        public bool _inverted = false;
-        public float m_strafeSpeedMod = 0.5f;
-        public float m_backwardsSpeedMod = 0.5f;
-        public float m_baseMoveSpeed = 1.0f;
+        public float Gravity = 20.0f;
+        public float RotationSpeed = 10.0f;
+        public bool Inverted = false;
+        public float StrafeSpeedMod = 0.5f;
+        public float BackwardsSpeedMod = 0.5f;
+        public float BaseMoveSpeed = 1.0f;
 
         [Header("Strafe rotation transforms")]
-        public float rotationAdjustmentDegrees = 30;
-        public List<Transform> rotationTransforms = new List<Transform>();
+        public float RotationAdjustmentDegrees = 30;
+        public List<Transform> RotationTransforms = new List<Transform>();
 
-        float m_currentMoveSpeed = 1.0f;
-        bool m_forceDirectionActive = false;
-        bool InMenu = false;
-        bool m_strafingLeft = false,
-            m_strafingRight = false,
-            m_movingBackwards = false;
+		public CharacterController Controller;
 
-        List<string> rotateBlockers = new List<string>();
-        List<string> moveBlockers = new List<string>();
+		private float currentMoveSpeed = 1.0f;
+		private bool forceDirectionActive = false;
+		private bool inMenu = false;
+		private bool strafingLeft = false,
+            strafingRight = false,
+            movingBackwards = false;
 
-        Animator _animator;
-        Vector3 _moveDirection;
-        Vector2 _input;
-        Vector3 _inputDirection;
-        public CharacterController _controller;
-        PlayerStats _playerStats;
+		private List<string> rotateBlockers = new List<string>();
+		private List<string> moveBlockers = new List<string>();
 
-        Vector3 forcedMoveDirection = Vector3.zero;
-        bool m_freeRotationEnabled = false;
-        Vector3 m_freeRotationCameraStartPos;
+		private Animator animator;
+		private Vector3 moveDirection;
+		private Vector2 input;
+		private Vector3 inputDirection;
+
+		private PlayerStats playerStats;
+
+		private Vector3 forcedMoveDirection = Vector3.zero;
+		private bool freeRotationEnabled = false;
+		private Vector3 freeRotationCameraStartPos;
 
         void Awake() {
             instance = this;
@@ -44,88 +46,88 @@ namespace Tamarrion {
 
         void Start() {
             if (Application.loadedLevelName == "main_menu") {
-                InMenu = true;
+                inMenu = true;
                 AddMoveBlock("main_menu_scene");
             }
 
-            _animator = Player.player.GetComponentInChildren<Animator>();
-            _moveDirection = Vector3.zero;
-            _inputDirection = Vector2.zero;
-            _playerStats = Player.player.GetComponent<PlayerStats>();
+            animator = Player.player.GetComponentInChildren<Animator>();
+            moveDirection = Vector3.zero;
+            inputDirection = Vector2.zero;
+            playerStats = Player.player.GetComponent<PlayerStats>();
         }
 
         void /*Fixed*/Update() {
-            if (InMenu)
+            if (inMenu)
                 return;
 
             if (PlayerStats.instance.m_stat["health"] <= 0)
                 return;
 
             if (MoveEnabled())
-                _inputDirection = GetInputDirection();
+                inputDirection = GetInputDirection();
             else
-                _inputDirection = new Vector3(0, 0, 0);
+                inputDirection = new Vector3(0, 0, 0);
 
             CheckFreeRotation();
 
             Quaternion direction = transform.rotation;
 
-            _moveDirection.x = _inputDirection.x;
-            _moveDirection.z = _inputDirection.z;
+            moveDirection.x = inputDirection.x;
+			moveDirection.z = inputDirection.z;
 
-            _moveDirection.y -= _gravity * Time.deltaTime;
+			moveDirection.y -= Gravity * Time.deltaTime;
 
-            m_forceDirectionActive = forcedMoveDirection != Vector3.zero;
-            if (m_forceDirectionActive) {
-                _moveDirection.x = forcedMoveDirection.x;
-                _moveDirection.z = forcedMoveDirection.z;
+            forceDirectionActive = forcedMoveDirection != Vector3.zero;
+            if (forceDirectionActive) {
+                moveDirection.x = forcedMoveDirection.x;
+                moveDirection.z = forcedMoveDirection.z;
             }
 
-            Vector2 XZ_plane = new Vector2(_moveDirection.x, _moveDirection.z);
+            Vector2 XZ_plane = new Vector2(moveDirection.x, moveDirection.z);
             XZ_plane.Normalize();
-            XZ_plane *= _playerStats.m_stat["movement_speed"];
-            _moveDirection.x = XZ_plane.x;
-            _moveDirection.z = XZ_plane.y;
+            XZ_plane *= playerStats.m_stat["movement_speed"];
+			moveDirection.x = XZ_plane.x;
+			moveDirection.z = XZ_plane.y;
 
-            Vector3 rotation_XZplane = (!m_freeRotationEnabled ? CameraController.instance.transform.forward : _controller.transform.forward);
+            Vector3 rotation_XZplane = (!freeRotationEnabled ? CameraController.instance.transform.forward : Controller.transform.forward);
             rotation_XZplane.y = 0;
 
             if (!rotation_XZplane.Equals(Vector3.zero)) {
                 direction = Quaternion.LookRotation(rotation_XZplane);
-                transform.rotation = Quaternion.Lerp(transform.rotation, direction, _rotationSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.Lerp(transform.rotation, direction, RotationSpeed * Time.deltaTime);
             }
 
-            _animator.SetFloat("Speed", XZ_plane.magnitude);
+            animator.SetFloat("Speed", XZ_plane.magnitude);
 
-            UpdateAnimatorMoveVariables(_input);
+            UpdateAnimatorMoveVariables(input);
 
             if (MoveEnabled()) {
-                m_currentMoveSpeed = m_baseMoveSpeed;
-                if (m_forceDirectionActive == false) {
-                    if (m_movingBackwards)
-                        m_currentMoveSpeed *= m_backwardsSpeedMod;
-                    else if (m_strafingLeft || m_strafingRight)
-                        m_currentMoveSpeed *= m_strafeSpeedMod;
+                currentMoveSpeed = BaseMoveSpeed;
+                if (forceDirectionActive == false) {
+                    if (movingBackwards)
+                        currentMoveSpeed *= BackwardsSpeedMod;
+                    else if (strafingLeft || strafingRight)
+                        currentMoveSpeed *= StrafeSpeedMod;
                 }
 
-                _controller.Move(_moveDirection * Time.deltaTime * m_currentMoveSpeed);
+                Controller.Move(moveDirection * Time.deltaTime * currentMoveSpeed);
             }
             else
-                _controller.Move(new Vector3(0.0f, _moveDirection.y, 0.0f) * Time.deltaTime);
+                Controller.Move(new Vector3(0.0f, moveDirection.y, 0.0f) * Time.deltaTime);
         }
 
         void CheckFreeRotation() {
             if (Input.GetButton("FreeRotation")) {
-                if (!m_freeRotationEnabled) {
+                if (!freeRotationEnabled) {
                     AddMoveBlock("FreeRotation");
-                    m_freeRotationEnabled = true;
-                    m_freeRotationCameraStartPos = CameraController.instance.gameObject.transform.position;
+                    freeRotationEnabled = true;
+                    freeRotationCameraStartPos = CameraController.instance.gameObject.transform.position;
                 }
             }
-            else if (m_freeRotationEnabled) {
+            else if (freeRotationEnabled) {
                 RemoveMoveBlock("FreeRotation");
-                m_freeRotationEnabled = false;
-                CameraController.instance.gameObject.transform.position = m_freeRotationCameraStartPos;
+                freeRotationEnabled = false;
+                CameraController.instance.gameObject.transform.position = freeRotationCameraStartPos;
                 CameraController.instance.gameObject.transform.LookAt(CameraController.instance.Target.transform.position);
             }
         }
@@ -140,15 +142,15 @@ namespace Tamarrion {
         }
 
         public Vector3 GetMoveDirection() {
-            return _moveDirection;
+            return moveDirection;
         }
 
         public Vector2 GetInput() {
-            return _input;
+            return input;
         }
 
         public bool IsMoving() {
-            Vector3 direction = _moveDirection;
+            Vector3 direction = moveDirection;
             direction.y = 0;
 
             if (direction.magnitude > 0)
@@ -162,10 +164,10 @@ namespace Tamarrion {
                 Vector3 cameraRight = Vector3.Scale(Camera.main.transform.right, new Vector3(1, 0, 1)).normalized;
 
                 // Get input vector
-                _input.x = Input.GetAxisRaw("Horizontal") * (_inverted ? -1 : 1);
-                _input.y = Input.GetAxisRaw("Vertical") * (_inverted ? -1 : 1);
+                input.x = Input.GetAxisRaw("Horizontal") * (Inverted ? -1 : 1);
+                input.y = Input.GetAxisRaw("Vertical") * (Inverted ? -1 : 1);
 
-                return _input.x * cameraRight + _input.y * cameraForward;
+                return input.x * cameraRight + input.y * cameraForward;
             }
 
             return Vector3.zero;
@@ -195,17 +197,17 @@ namespace Tamarrion {
         }
 
         void SetStrafeLeft(bool p_state) {
-            m_strafingLeft = p_state;
+            strafingLeft = p_state;
             //_animator.SetBool("MovingLeft", p_state);
         }
 
         void SetStrafeRight(bool p_state) {
-            m_strafingRight = p_state;
+            strafingRight = p_state;
             //_animator.SetBool("MovingRight", p_state);
         }
 
         void SetBackwards(bool p_state) {
-            m_movingBackwards = p_state;
+            movingBackwards = p_state;
         }
 
         public void AddRotationBlock(string p_sourceName) {
@@ -239,21 +241,21 @@ namespace Tamarrion {
         }
 
         void UpdateStrafeAnimatorVariables(Vector3 p_relativeDirection) {
-            _animator.SetBool("MovingLeft", (!IsMovingForwards(p_relativeDirection) && IsStrafingLeft(p_relativeDirection)));
-            _animator.SetBool("MovingRight", (!IsMovingForwards(p_relativeDirection) && IsStrafingRight(p_relativeDirection)));
-            _animator.SetBool("MovingBackwards", IsMovingBackwards(p_relativeDirection));
+            animator.SetBool("MovingLeft", (!IsMovingForwards(p_relativeDirection) && IsStrafingLeft(p_relativeDirection)));
+            animator.SetBool("MovingRight", (!IsMovingForwards(p_relativeDirection) && IsStrafingRight(p_relativeDirection)));
+            animator.SetBool("MovingBackwards", IsMovingBackwards(p_relativeDirection));
         }
 
         void RotateTransformsToLegRotation() {
-            foreach (Transform trans in rotationTransforms) {
-                if (m_strafingRight && !m_movingBackwards)
-                    trans.RotateAround(trans.position, Vector3.up, rotationAdjustmentDegrees);
-                else if (m_strafingRight && m_movingBackwards)
-                    trans.RotateAround(trans.position, Vector3.up, -rotationAdjustmentDegrees);
-                else if (m_strafingLeft && !m_movingBackwards)
-                    trans.RotateAround(trans.position, Vector3.up, -rotationAdjustmentDegrees);
-                else if (m_strafingLeft && m_movingBackwards)
-                    trans.RotateAround(trans.position, Vector3.up, rotationAdjustmentDegrees);
+            foreach (Transform trans in RotationTransforms) {
+                if (strafingRight && !movingBackwards)
+                    trans.RotateAround(trans.position, Vector3.up, RotationAdjustmentDegrees);
+                else if (strafingRight && movingBackwards)
+                    trans.RotateAround(trans.position, Vector3.up, -RotationAdjustmentDegrees);
+                else if (strafingLeft && !movingBackwards)
+                    trans.RotateAround(trans.position, Vector3.up, -RotationAdjustmentDegrees);
+                else if (strafingLeft && movingBackwards)
+                    trans.RotateAround(trans.position, Vector3.up, RotationAdjustmentDegrees);
             }
         }
 
