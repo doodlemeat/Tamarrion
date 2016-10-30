@@ -84,11 +84,11 @@ namespace Tamarrion {
 				moveDirection.z = forcedMoveDirection.z;
 			}
 
-			Vector2 XZ_plane = new Vector2(moveDirection.x, moveDirection.z);
-			XZ_plane.Normalize();
-			XZ_plane *= playerStats.m_stat["movement_speed"];
-			moveDirection.x = XZ_plane.x;
-			moveDirection.z = XZ_plane.y;
+			// Scale the movement direction by the movement speed
+			float movementSpeed = playerStats.m_stat["movement_speed"];
+			moveDirection.x *= movementSpeed;
+			moveDirection.z *= movementSpeed;
+			float currentSpeed = new Vector2(moveDirection.x, moveDirection.z).magnitude;
 
 			Vector3 rotation_XZplane = (!freeRotationEnabled ? CameraController.instance.transform.forward : Controller.transform.forward);
 			rotation_XZplane.y = 0;
@@ -98,7 +98,7 @@ namespace Tamarrion {
 				transform.rotation = Quaternion.Lerp(transform.rotation, direction, RotationSpeed * Time.deltaTime);
 			}
 
-			animator.SetFloat("Speed", XZ_plane.magnitude);
+			animator.SetFloat("Speed", currentSpeed);
 
 			UpdateAnimatorMoveVariables(input);
 
