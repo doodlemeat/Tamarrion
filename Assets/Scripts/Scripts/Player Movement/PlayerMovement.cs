@@ -89,16 +89,16 @@ namespace Tamarrion {
 			moveDirection.x *= movementSpeed;
 			moveDirection.z *= movementSpeed;
 			float currentSpeed = new Vector2(moveDirection.x, moveDirection.z).magnitude;
+			animator.SetFloat("Speed", currentSpeed);
 
-			Vector3 rotation_XZplane = (!freeRotationEnabled ? CameraController.instance.transform.forward : Controller.transform.forward);
-			rotation_XZplane.y = 0;
+			// Set the desired rotation of the camera
+			Vector3 rotation = (!freeRotationEnabled ? CameraController.instance.transform.forward : Controller.transform.forward);
+			rotation.y = 0;
 
-			if (!rotation_XZplane.Equals(Vector3.zero)) {
-				direction = Quaternion.LookRotation(rotation_XZplane);
+			if (!rotation.Equals(Vector3.zero)) {
+				direction = Quaternion.LookRotation(rotation);
 				transform.rotation = Quaternion.Lerp(transform.rotation, direction, RotationSpeed * Time.deltaTime);
 			}
-
-			animator.SetFloat("Speed", currentSpeed);
 
 			UpdateAnimatorMoveVariables(input);
 
