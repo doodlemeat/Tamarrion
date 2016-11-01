@@ -6,12 +6,12 @@
 		<Region Width="50%" Alignment="Right" IsVisible="True" Margin="16px, 16px, 16px, 16px">
 			<Region Alignment="Top" Height="84px">
 				<Region Alignment="Top" Height="32px">
-					<Group Orientation="Horizontal" Alignment="Bottom" Spacing="10px">
-						<Button Click="ClickChangeSkillTree" Height="32px" Width="32px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
-						<Button Click="ClickChangeSkillTree" Height="32px" Width="32px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
-						<Button Click="ClickChangeSkillTree" Height="32px" Width="32px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
-						<Button Click="ClickChangeSkillTree" Height="32px" Width="32px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
-						<Button Click="ClickChangeSkillTree" Height="32px" Width="32px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
+					<Group Width="100%" Orientation="Horizontal" Alignment="Bottom" Spacing="10px">
+						<Button Click="ClickChangeSkillTree" Width="128px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
+						<Button Click="ClickChangeSkillTree" Width="128px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
+						<Button Click="ClickChangeSkillTree" Width="128px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
+						<Button Click="ClickChangeSkillTree" Width="128px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
+						<Button Click="ClickChangeSkillTree" Width="128px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
 					</Group>
 				</Region>
 				<Region Alignment="Top" OffsetFromParent="0, 32px, 0, 0" Height="32px">
@@ -19,7 +19,7 @@
 				</Region>
 				<HorizontalBar Alignment="Top" OffsetFromParent="0, 64px, 0, 0" Height="16px" />
 			</Region>
-			<Region Alignment="Bottom" Margin="0, 84px, 0, 0" BackgroundColor="#FF0000">
+			<Region Alignment="Bottom" Margin="0, 84px, 0, 0">
 				<Button Text="Hej" FontColor="#FFFFFF"></Button>
 			</Region>
 			<!-- 

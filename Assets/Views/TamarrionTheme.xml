@@ -1,6 +1,6 @@
 <Theme Name="Tamarrion" BaseDirectory="Assets/Views">
-	<Button Style="MenuSelectionButton" FontSize="12" Height="20px" TextOffset="8, 0, 0, 0" Font="Fonts/Constantine.ttf" BackgroundImage="Sprites/MenuSelectionIdle.psd" />
-	<Image Style="MenuSelectionButtonHighlight" Height="20px" IsVisible="True" Offset="0, 0, 0, 0" BackgroundImage="Sprites/MenuSelectionHighlight.psd"  />
+	<Button Style="MenuSelectionButton" FontSize="22" Height="30px" TextOffset="16, 0, 0, 0" Font="Fonts/Constantine.ttf" BackgroundImage="Sprites/MenuSelectionIdle.psd" />
+	<Image Style="MenuSelectionButtonHighlight" Height="30px" IsVisible="True" Offset="0, 0, 0, 0" BackgroundImage="Sprites/MenuSelectionHighlight.psd"  />
 	
 	<Region Style="ContentPanelBackground" BackgroundImage="Sprites/frame_main.psd" />
 	<Label Style="TamarrionHeader" FontColor="#FF9900" Font="Fonts/Constantine.ttf" />

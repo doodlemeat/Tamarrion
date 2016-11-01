@@ -21,16 +21,13 @@ namespace MarkLight.Views.UI
     [HideInPresenter]
     public class UIView : View
     {
-		#region Fields
+        #region Fields
 
-		[ChangeHandler ("LayoutChanged")]
-		public _bool FlexGrow;
-
-		/// <summary>
-		/// The width of the view.
-		/// </summary>
-		/// <d>Specifies the width of the view either in pixels or percents.</d>
-		[ChangeHandler("LayoutsChanged")]
+        /// <summary>
+        /// The width of the view.
+        /// </summary>
+        /// <d>Specifies the width of the view either in pixels or percents.</d>
+        [ChangeHandler("LayoutsChanged")]
         public _ElementSize Width;
 
         /// <summary>
@@ -275,9 +272,7 @@ namespace MarkLight.Views.UI
             SortIndex.DirectValue = 0;
             UpdateRectTransform.DirectValue = true;
             UpdateBackground.DirectValue = true;
-			FlexGrow.DirectValue = false;
-
-		}
+        }
 
         /// <summary>
         /// Called when a field affecting the layout of the view (size and anchors) has changed.
@@ -574,12 +569,6 @@ namespace MarkLight.Views.UI
                 return Mathf.Abs(RectTransform.rect.height);
             }
         }
-
-		public float RealHeight {
-			get {
-				return Mathf.Abs (RectTransform.GetSize(CoordinateSystem.IgnoreAnchorsAndPivot).y);
-			}
-		}
 
         /// <summary>
         /// Gets canvas group component.
