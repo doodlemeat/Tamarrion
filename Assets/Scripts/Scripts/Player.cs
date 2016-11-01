@@ -17,7 +17,6 @@ namespace Tamarrion {
         private Transform cameraFocusPoint;
         public PlayerStats playerStats;
         //private GameObject spawnPositionObject;
-        private bool Alive = true;
         private GameObject currentCastingSpell;
 
         public bool InMenu = false;
@@ -62,7 +61,7 @@ namespace Tamarrion {
         }
 
         void Update() {
-            if (InMenu || !Alive)
+            if (InMenu || IsDead())
                 return;
 
             if (Input.GetKeyDown(KeyCode.P)) {
@@ -114,8 +113,7 @@ namespace Tamarrion {
                 }
             }
 
-            if (Alive && playerStats.m_stat["health"] == 0) {
-                Alive = false;
+            if (!IsDead() && playerStats.m_stat["health"] <= 0) {
                 //Debug.Log("Die");
                 GodManager.Instance.deactivate_current_god();
                 if (FSSkillUser.instance)
@@ -155,7 +153,7 @@ namespace Tamarrion {
 
         // Moves the character in the given direction
         public void Move(Vector3 direction) {
-            playerMovement._controller.Move(direction * Time.deltaTime);
+            playerMovement.Controller.Move(direction * Time.deltaTime);
         }
 
         void processComboPoints() {
@@ -236,9 +234,9 @@ namespace Tamarrion {
             currentCastingSpell = null;
         }
 
-        public bool GetAlive() {
-            return Alive;
-        }
+		public bool IsDead() {
+			return playerStats.m_stat["health"] <= 0;
+		}
 
         public static bool GameObjectIsPlayer(GameObject p_obj) {
             return p_obj.GetComponent<Player>();

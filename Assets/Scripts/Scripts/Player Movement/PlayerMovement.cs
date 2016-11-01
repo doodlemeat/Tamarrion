@@ -3,262 +3,266 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace Tamarrion {
-    public class PlayerMovement : MonoBehaviour {
-        public static PlayerMovement instance;
+	public class PlayerMovement : MonoBehaviour {
+		public static PlayerMovement instance;
 
-        public float _gravity = 20.0f;
-        public float _rotationSpeed = 10.0f;
-        public bool _inverted = false;
-        public float m_strafeSpeedMod = 0.5f;
-        public float m_backwardsSpeedMod = 0.5f;
-        public float m_baseMoveSpeed = 1.0f;
+		public float Gravity = 20.0f;
+		public float RotationSpeed = 10.0f;
+		public bool Inverted = false;
+		public float StrafeSpeedMod = 0.5f;
+		public float BackwardsSpeedMod = 0.5f;
+		public float BaseMoveSpeed = 1.0f;
 
-        [Header("Strafe rotation transforms")]
-        public float rotationAdjustmentDegrees = 30;
-        public List<Transform> rotationTransforms = new List<Transform>();
+		[Header("Strafe rotation transforms")]
+		public float RotationAdjustmentDegrees = 30;
+		public List<Transform> RotationTransforms = new List<Transform>();
 
-        float m_currentMoveSpeed = 1.0f;
-        bool m_forceDirectionActive = false;
-        bool InMenu = false;
-        bool m_strafingLeft = false,
-            m_strafingRight = false,
-            m_movingBackwards = false;
+		public CharacterController Controller;
 
-        List<string> rotateBlockers = new List<string>();
-        List<string> moveBlockers = new List<string>();
+		private float currentMoveSpeed = 1.0f;
+		private bool forceDirectionActive = false;
+		private bool inMenu = false;
+		private bool strafingLeft = false,
+			strafingRight = false,
+			movingBackwards = false;
 
-        Animator _animator;
-        Vector3 _moveDirection;
-        Vector2 _input;
-        Vector3 _inputDirection;
-        public CharacterController _controller;
-        PlayerStats _playerStats;
+		private List<string> rotateBlockers = new List<string>();
+		private List<string> moveBlockers = new List<string>();
 
-        Vector3 forcedMoveDirection = Vector3.zero;
-        bool m_freeRotationEnabled = false;
-        Vector3 m_freeRotationCameraStartPos;
+		private Animator animator;
+		private Vector3 moveDirection;
+		private Vector2 input;
+		private Vector3 inputDirection;
 
-        void Awake() {
-            instance = this;
-        }
+		private PlayerStats playerStats;
 
-        void Start() {
-            if (Application.loadedLevelName == "main_menu") {
-                InMenu = true;
-                AddMoveBlock("main_menu_scene");
-            }
+		private Vector3 forcedMoveDirection = Vector3.zero;
+		private bool freeRotationEnabled = false;
+		private Vector3 freeRotationCameraStartPos;
 
-            _animator = Player.player.GetComponentInChildren<Animator>();
-            _moveDirection = Vector3.zero;
-            _inputDirection = Vector2.zero;
-            _playerStats = Player.player.GetComponent<PlayerStats>();
-        }
+		void Awake() {
+			instance = this;
+		}
 
-        void /*Fixed*/Update() {
-            if (InMenu)
-                return;
+		void Start() {
+			if (Application.loadedLevelName == "main_menu") {
+				inMenu = true;
+				AddMoveBlock("main_menu_scene");
+			}
 
-            if (PlayerStats.instance.m_stat["health"] <= 0)
-                return;
+			animator = GetComponentInChildren<Animator>();
+			moveDirection = Vector3.zero;
+			inputDirection = Vector2.zero;
+			playerStats = GetComponent<PlayerStats>();
+		}
 
-            if (MoveEnabled())
-                _inputDirection = GetInputDirection();
-            else
-                _inputDirection = new Vector3(0, 0, 0);
+		void /*Fixed*/Update() {
+			if (inMenu)
+				return;
 
-            CheckFreeRotation();
+			// If the player is dead, don't allow any movement
+			if (Player.player.IsDead())
+				return;
 
-            Quaternion direction = transform.rotation;
+			if (MoveEnabled())
+				inputDirection = GetInputDirection();
+			else
+				inputDirection = new Vector3(0, 0, 0);
 
-            _moveDirection.x = _inputDirection.x;
-            _moveDirection.z = _inputDirection.z;
+			CheckFreeRotation();
 
-            _moveDirection.y -= _gravity * Time.deltaTime;
+			Quaternion direction = transform.rotation;
 
-            m_forceDirectionActive = forcedMoveDirection != Vector3.zero;
-            if (m_forceDirectionActive) {
-                _moveDirection.x = forcedMoveDirection.x;
-                _moveDirection.z = forcedMoveDirection.z;
-            }
+			moveDirection.x = inputDirection.x;
+			moveDirection.z = inputDirection.z;
 
-            Vector2 XZ_plane = new Vector2(_moveDirection.x, _moveDirection.z);
-            XZ_plane.Normalize();
-            XZ_plane *= _playerStats.m_stat["movement_speed"];
-            _moveDirection.x = XZ_plane.x;
-            _moveDirection.z = XZ_plane.y;
+			forceDirectionActive = forcedMoveDirection != Vector3.zero;
+			if (forceDirectionActive) {
+				moveDirection.x = forcedMoveDirection.x;
+				moveDirection.z = forcedMoveDirection.z;
+			}
 
-            Vector3 rotation_XZplane = (!m_freeRotationEnabled ? CameraController.instance.transform.forward : _controller.transform.forward);
-            rotation_XZplane.y = 0;
+			// Scale the movement direction by the movement speed
+			float movementSpeed = playerStats.m_stat["movement_speed"];
+			moveDirection.Normalize();
+			moveDirection.x *= movementSpeed;
+			moveDirection.z *= movementSpeed;
+			float currentSpeed = new Vector2(moveDirection.x, moveDirection.z).magnitude;
+			animator.SetFloat("Speed", currentSpeed);
 
-            if (!rotation_XZplane.Equals(Vector3.zero)) {
-                direction = Quaternion.LookRotation(rotation_XZplane);
-                transform.rotation = Quaternion.Lerp(transform.rotation, direction, _rotationSpeed * Time.deltaTime);
-            }
+			moveDirection.y -= Gravity * Time.deltaTime;
 
-            _animator.SetFloat("Speed", XZ_plane.magnitude);
+			// Set the desired rotation of the camera
+			Vector3 rotation = (!freeRotationEnabled ? CameraController.instance.transform.forward : Controller.transform.forward);
+			rotation.y = 0;
 
-            UpdateAnimatorMoveVariables(_input);
+			if (!rotation.Equals(Vector3.zero)) {
+				direction = Quaternion.LookRotation(rotation);
+				transform.rotation = Quaternion.Lerp(transform.rotation, direction, RotationSpeed * Time.deltaTime);
+			}
 
-            if (MoveEnabled()) {
-                m_currentMoveSpeed = m_baseMoveSpeed;
-                if (m_forceDirectionActive == false) {
-                    if (m_movingBackwards)
-                        m_currentMoveSpeed *= m_backwardsSpeedMod;
-                    else if (m_strafingLeft || m_strafingRight)
-                        m_currentMoveSpeed *= m_strafeSpeedMod;
-                }
+			UpdateAnimatorMoveVariables(input);
 
-                _controller.Move(_moveDirection * Time.deltaTime * m_currentMoveSpeed);
-            }
-            else
-                _controller.Move(new Vector3(0.0f, _moveDirection.y, 0.0f) * Time.deltaTime);
-        }
+			if (MoveEnabled()) {
+				currentMoveSpeed = BaseMoveSpeed;
+				if (forceDirectionActive == false) {
+					if (movingBackwards)
+						currentMoveSpeed *= BackwardsSpeedMod;
+					else if (strafingLeft || strafingRight)
+						currentMoveSpeed *= StrafeSpeedMod;
+				}
 
-        void CheckFreeRotation() {
-            if (Input.GetButton("FreeRotation")) {
-                if (!m_freeRotationEnabled) {
-                    AddMoveBlock("FreeRotation");
-                    m_freeRotationEnabled = true;
-                    m_freeRotationCameraStartPos = CameraController.instance.gameObject.transform.position;
-                }
-            }
-            else if (m_freeRotationEnabled) {
-                RemoveMoveBlock("FreeRotation");
-                m_freeRotationEnabled = false;
-                CameraController.instance.gameObject.transform.position = m_freeRotationCameraStartPos;
-                CameraController.instance.gameObject.transform.LookAt(CameraController.instance.Target.transform.position);
-            }
-        }
+				Controller.Move(moveDirection * Time.deltaTime * currentMoveSpeed);
+			}
+			else
+				Controller.Move(new Vector3(0.0f, moveDirection.y, 0.0f) * Time.deltaTime);
+		}
 
-        void LateUpdate() {
-            RotateTransformsToLegRotation();
-        }
+		void CheckFreeRotation() {
+			if (Input.GetButton("FreeRotation")) {
+				if (!freeRotationEnabled) {
+					AddMoveBlock("FreeRotation");
+					freeRotationEnabled = true;
+					freeRotationCameraStartPos = CameraController.instance.gameObject.transform.position;
+				}
+			}
+			else if (freeRotationEnabled) {
+				RemoveMoveBlock("FreeRotation");
+				freeRotationEnabled = false;
+				CameraController.instance.gameObject.transform.position = freeRotationCameraStartPos;
+				CameraController.instance.gameObject.transform.LookAt(CameraController.instance.Target.transform.position);
+			}
+		}
 
-        public void forceDirection(Vector3 forcedDirection) {
-            forcedMoveDirection = forcedDirection;
-            forcedMoveDirection.y = 0;
-        }
+		void LateUpdate() {
+			RotateTransformsToLegRotation();
+		}
 
-        public Vector3 GetMoveDirection() {
-            return _moveDirection;
-        }
+		public void forceDirection(Vector3 forcedDirection) {
+			forcedMoveDirection = forcedDirection;
+			forcedMoveDirection.y = 0;
+		}
 
-        public Vector2 GetInput() {
-            return _input;
-        }
+		public Vector3 GetMoveDirection() {
+			return moveDirection;
+		}
 
-        public bool IsMoving() {
-            Vector3 direction = _moveDirection;
-            direction.y = 0;
+		public Vector2 GetInput() {
+			return input;
+		}
 
-            if (direction.magnitude > 0)
-                return true;
-            return false;
-        }
+		public bool IsMoving() {
+			Vector3 direction = moveDirection;
+			direction.y = 0;
 
-        public Vector3 GetInputDirection() {
-            if (Camera.main != null) {
-                Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-                Vector3 cameraRight = Vector3.Scale(Camera.main.transform.right, new Vector3(1, 0, 1)).normalized;
+			if (direction.magnitude > 0)
+				return true;
+			return false;
+		}
 
-                // Get input vector
-                _input.x = Input.GetAxisRaw("Horizontal") * (_inverted ? -1 : 1);
-                _input.y = Input.GetAxisRaw("Vertical") * (_inverted ? -1 : 1);
+		public Vector3 GetInputDirection() {
+			if (Camera.main != null) {
+				Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+				Vector3 cameraRight = Vector3.Scale(Camera.main.transform.right, new Vector3(1, 0, 1)).normalized;
 
-                return _input.x * cameraRight + _input.y * cameraForward;
-            }
+				// Get input vector
+				input.x = Input.GetAxisRaw("Horizontal") * (Inverted ? -1 : 1);
+				input.y = Input.GetAxisRaw("Vertical") * (Inverted ? -1 : 1);
 
-            return Vector3.zero;
-        }
+				return input.x * cameraRight + input.y * cameraForward;
+			}
 
-        void UpdateAnimatorMoveVariables(Vector3 p_relativeDirection) {
-            SetStrafeLeft(IsStrafingLeft(p_relativeDirection));
-            SetStrafeRight(IsStrafingRight(p_relativeDirection));
-            SetBackwards(IsMovingBackwards(p_relativeDirection));
-            UpdateStrafeAnimatorVariables(p_relativeDirection);
-        }
+			return Vector3.zero;
+		}
 
-        bool IsMovingForwards(Vector3 p_relativeDirection) {
-            return (p_relativeDirection.y > 0);
-        }
+		void UpdateAnimatorMoveVariables(Vector3 relativeDirection) {
+			SetStrafeLeft(IsStrafingLeft(relativeDirection));
+			SetStrafeRight(IsStrafingRight(relativeDirection));
+			SetBackwards(IsMovingBackwards(relativeDirection));
+			UpdateStrafeAnimatorVariables(relativeDirection);
+		}
 
-        bool IsStrafingLeft(Vector3 p_relativeDirection) {
-            return (p_relativeDirection.x < 0);
-        }
+		bool IsMovingForwards(Vector3 relativeDirection) {
+			return (relativeDirection.y > 0);
+		}
 
-        bool IsStrafingRight(Vector3 p_relativeDirection) {
-            return (p_relativeDirection.x > 0);
-        }
+		bool IsStrafingLeft(Vector3 relativeDirection) {
+			return (relativeDirection.x < 0);
+		}
 
-        bool IsMovingBackwards(Vector3 p_relativeDirection) {
-            return (p_relativeDirection.y < 0);
-        }
+		bool IsStrafingRight(Vector3 relativeDirection) {
+			return (relativeDirection.x > 0);
+		}
 
-        void SetStrafeLeft(bool p_state) {
-            m_strafingLeft = p_state;
-            //_animator.SetBool("MovingLeft", p_state);
-        }
+		bool IsMovingBackwards(Vector3 relativeDirection) {
+			return (relativeDirection.y < 0);
+		}
 
-        void SetStrafeRight(bool p_state) {
-            m_strafingRight = p_state;
-            //_animator.SetBool("MovingRight", p_state);
-        }
+		void SetStrafeLeft(bool state) {
+			strafingLeft = state;
+			//_animator.SetBool("MovingLeft", p_state);
+		}
 
-        void SetBackwards(bool p_state) {
-            m_movingBackwards = p_state;
-        }
+		void SetStrafeRight(bool state) {
+			strafingRight = state;
+			//_animator.SetBool("MovingRight", p_state);
+		}
 
-        public void AddRotationBlock(string p_sourceName) {
-            if (!rotateBlockers.Contains(p_sourceName))
-                rotateBlockers.Add(p_sourceName);
-        }
+		void SetBackwards(bool state) {
+			movingBackwards = state;
+		}
 
-        public void RemoveRotationBlock(string p_sourceName) {
-            rotateBlockers.Remove(p_sourceName);
-        }
+		public void AddRotationBlock(string sourceName) {
+			if (!rotateBlockers.Contains(sourceName))
+				rotateBlockers.Add(sourceName);
+		}
 
-        public bool RotationEnabled() {
-            return rotateBlockers.Count == 0;
-        }
+		public void RemoveRotationBlock(string sourceName) {
+			rotateBlockers.Remove(sourceName);
+		}
 
-        public void AddMoveBlock(string p_sourceName) {
-            //Debug.Log("move block: " + p_sourceName);
+		public bool RotationEnabled() {
+			return rotateBlockers.Count == 0;
+		}
 
-            if (!moveBlockers.Contains(p_sourceName))
-                moveBlockers.Add(p_sourceName);
-        }
+		public void AddMoveBlock(string sourceName) {
+			//Debug.Log("move block: " + p_sourceName);
 
-        public void RemoveMoveBlock(string p_sourceName) {
-            //Debug.Log("REMOVE move block: " + p_sourceName);
+			if (!moveBlockers.Contains(sourceName))
+				moveBlockers.Add(sourceName);
+		}
 
-            moveBlockers.Remove(p_sourceName);
-        }
+		public void RemoveMoveBlock(string sourceName) {
+			//Debug.Log("REMOVE move block: " + p_sourceName);
 
-        public bool MoveEnabled() {
-            return moveBlockers.Count == 0;
-        }
+			moveBlockers.Remove(sourceName);
+		}
 
-        void UpdateStrafeAnimatorVariables(Vector3 p_relativeDirection) {
-            _animator.SetBool("MovingLeft", (!IsMovingForwards(p_relativeDirection) && IsStrafingLeft(p_relativeDirection)));
-            _animator.SetBool("MovingRight", (!IsMovingForwards(p_relativeDirection) && IsStrafingRight(p_relativeDirection)));
-            _animator.SetBool("MovingBackwards", IsMovingBackwards(p_relativeDirection));
-        }
+		public bool MoveEnabled() {
+			return moveBlockers.Count == 0;
+		}
 
-        void RotateTransformsToLegRotation() {
-            foreach (Transform trans in rotationTransforms) {
-                if (m_strafingRight && !m_movingBackwards)
-                    trans.RotateAround(trans.position, Vector3.up, rotationAdjustmentDegrees);
-                else if (m_strafingRight && m_movingBackwards)
-                    trans.RotateAround(trans.position, Vector3.up, -rotationAdjustmentDegrees);
-                else if (m_strafingLeft && !m_movingBackwards)
-                    trans.RotateAround(trans.position, Vector3.up, -rotationAdjustmentDegrees);
-                else if (m_strafingLeft && m_movingBackwards)
-                    trans.RotateAround(trans.position, Vector3.up, rotationAdjustmentDegrees);
-            }
-        }
+		void UpdateStrafeAnimatorVariables(Vector3 relativeDirection) {
+			animator.SetBool("MovingLeft", (!IsMovingForwards(relativeDirection) && IsStrafingLeft(relativeDirection)));
+			animator.SetBool("MovingRight", (!IsMovingForwards(relativeDirection) && IsStrafingRight(relativeDirection)));
+			animator.SetBool("MovingBackwards", IsMovingBackwards(relativeDirection));
+		}
 
-        public Vector3 GetForcedDirection() {
-            return forcedMoveDirection;
-        }
-    }
+		void RotateTransformsToLegRotation() {
+			foreach (Transform trans in RotationTransforms) {
+				if (strafingRight && !movingBackwards)
+					trans.RotateAround(trans.position, Vector3.up, RotationAdjustmentDegrees);
+				else if (strafingRight && movingBackwards)
+					trans.RotateAround(trans.position, Vector3.up, -RotationAdjustmentDegrees);
+				else if (strafingLeft && !movingBackwards)
+					trans.RotateAround(trans.position, Vector3.up, -RotationAdjustmentDegrees);
+				else if (strafingLeft && movingBackwards)
+					trans.RotateAround(trans.position, Vector3.up, RotationAdjustmentDegrees);
+			}
+		}
+
+		public Vector3 GetForcedDirection() {
+			return forcedMoveDirection;
+		}
+	}
 }
