@@ -76,8 +76,6 @@ namespace Tamarrion {
 			moveDirection.x = inputDirection.x;
 			moveDirection.z = inputDirection.z;
 
-			moveDirection.y -= Gravity * Time.deltaTime;
-
 			forceDirectionActive = forcedMoveDirection != Vector3.zero;
 			if (forceDirectionActive) {
 				moveDirection.x = forcedMoveDirection.x;
@@ -86,10 +84,13 @@ namespace Tamarrion {
 
 			// Scale the movement direction by the movement speed
 			float movementSpeed = playerStats.m_stat["movement_speed"];
+			moveDirection.Normalize();
 			moveDirection.x *= movementSpeed;
 			moveDirection.z *= movementSpeed;
 			float currentSpeed = new Vector2(moveDirection.x, moveDirection.z).magnitude;
 			animator.SetFloat("Speed", currentSpeed);
+
+			moveDirection.y -= Gravity * Time.deltaTime;
 
 			// Set the desired rotation of the camera
 			Vector3 rotation = (!freeRotationEnabled ? CameraController.instance.transform.forward : Controller.transform.forward);
