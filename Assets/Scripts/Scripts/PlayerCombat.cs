@@ -90,7 +90,8 @@ namespace Tamarrion {
 			PerformAttack(type);
 		}
 
-		private void PerformAttack(AttackType type) {
+		public void PerformAttack(AttackType type) {
+			Debug.Log("PERFORMING");
 			HideWeaponTrail();
 			Player player = Player.player;
 
@@ -104,7 +105,6 @@ namespace Tamarrion {
 					float damage = player.playerStats.GetDamage();
 
 					Trigger(new PlayerAttackEvent(damage));
-
 					if (EnemyInRange(player, enemy.gameObject) && EnemyInArc(player, enemy.gameObject)) {
 						// TODO Make enemy listener to hit event rather than directly dealing damage
 						enemy.GetComponent<Enemy_Stats>().DealDamage(damage); // TODO add whether the damage critted?

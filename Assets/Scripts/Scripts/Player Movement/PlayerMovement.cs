@@ -71,8 +71,6 @@ namespace Tamarrion {
 
 			CheckFreeRotation();
 
-			Quaternion direction = transform.rotation;
-
 			moveDirection.x = inputDirection.x;
 			moveDirection.z = inputDirection.z;
 
@@ -92,12 +90,13 @@ namespace Tamarrion {
 			animator.SetFloat("Speed", currentSpeed);
 
 			// Set the desired rotation of the camera
-			Vector3 rotation = (!freeRotationEnabled ? CameraController.instance.transform.forward : Controller.transform.forward);
-			rotation.y = 0;
-
-			if (!rotation.Equals(Vector3.zero)) {
-				direction = Quaternion.LookRotation(rotation);
-				transform.rotation = Quaternion.Lerp(transform.rotation, direction, RotationSpeed * Time.deltaTime);
+			Vector3 direction = (!freeRotationEnabled ? CameraController.instance.transform.forward : Controller.transform.forward);
+			direction.y = 0;
+			
+			Quaternion rotation = transform.rotation;
+			if (!direction.Equals(Vector3.zero)) {
+				rotation = Quaternion.LookRotation(direction);
+				transform.rotation = Quaternion.Lerp(transform.rotation, rotation, RotationSpeed * Time.deltaTime);
 			}
 
 			UpdateAnimatorMoveVariables(input);
