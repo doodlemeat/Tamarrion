@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+
 namespace Tamarrion {
 	public enum FSSkillType {
 		FS_Type_Base,
@@ -71,6 +72,10 @@ namespace Tamarrion {
 		[Tooltip ("Clear amount of God Power Points for own God Power on use")]
 		public int removeAmountGPPOnUse = 0;
 
+		public List<FSSkillBase> ChildSkills = new List<FSSkillBase>();
+		bool IsLocked = true;
+		List<FSSkillBase> ParentSkills = new List<FSSkillBase> ();
+
 		//STATE: CASTING
 		[Header ("State: Casting")]
 		public string CastAnimationName = "Cast";
@@ -109,6 +114,10 @@ namespace Tamarrion {
 
 		[Header ("Finish Casting")]
 		public string FinishAnimationName = "";
+
+		void Awake() {
+
+		}
 
 		public void CancelSkill () {
 			ResetStateToInactive ();

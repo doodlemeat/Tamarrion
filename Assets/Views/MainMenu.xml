@@ -20,7 +20,7 @@
           <Image Id="options_hover" Style="MenuSelectionButtonHighlight" IsVisible="False" RaycastBlockMode="Never" />
           <Image Id="exit_menu_hover" Style="MenuSelectionButtonHighlight" IsVisible="False" RaycastBlockMode="Never" />
           <Image Id="exit_desktop_hover" Style="MenuSelectionButtonHighlight" IsVisible="False" RaycastBlockMode="Never" />
-        </Group> 
+        </Group>
       </Region>
     </Region>
     <Region Width="75%" Alignment="Right">

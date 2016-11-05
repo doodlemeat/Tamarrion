@@ -40,6 +40,10 @@ namespace Tamarrion {
 			}
 		}
 
+		void Start() {
+			UpdateSkillTree ();
+		}
+
 		void OnDestroy() {
 			SaveStateToFile ();
 		}
@@ -71,6 +75,18 @@ namespace Tamarrion {
 			}
 
 			return null;
+		}
+		
+		void UpdateSkillTree() {
+
+			// Unlock skills that has no parent
+			/*AllSkills.ForEach (s => {
+				if(s.ParentSkills.Count == 0) {
+					s.IsLocked = false;
+				}
+			});*/
+
+			// 
 		}
 
 		void SaveStateToFile() {

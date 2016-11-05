@@ -4,23 +4,37 @@
 		
 		</Region>
 		<Region Width="50%" Alignment="Right" IsVisible="True" Margin="16px, 16px, 16px, 16px">
-			<Region Alignment="Top" Height="84px">
-				<Region Alignment="Top" Height="32px">
-					<Group Width="100%" Orientation="Horizontal" Alignment="Bottom" Spacing="10px">
-						<Button Click="ClickChangeSkillTree" Width="128px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
-						<Button Click="ClickChangeSkillTree" Width="128px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
-						<Button Click="ClickChangeSkillTree" Width="128px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
-						<Button Click="ClickChangeSkillTree" Width="128px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
-						<Button Click="ClickChangeSkillTree" Width="128px" FontColor="#FFFFFF"><Image BackgroundImage="Sprites/Icon_128x128.psd" /></Button>
-					</Group>
+			<Region Alignment="Top" Height="20%">
+				<Region Alignment="Top" Height="40%">
+          <Region Margin="0%, 0, 80%, 0">
+              <Image Click="ChangeToMagic" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+          </Region>
+          <Region Margin="20%, 0, 60%, 0">
+              <Image Click="ChangeToWar" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+          </Region>
+          <Region Margin="40%, 0, 40%, 0">
+              <Image Click="ChangeToNature" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+          </Region>
+          <Region Margin="60%, 0, 20%, 0">
+              <Image Click="ChangeToHoly" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+          </Region>
+          <Region Margin="80%, 0, 0, 0">
+              <Image Click="ChangeToDefense" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+          </Region>
 				</Region>
-				<Region Alignment="Top" OffsetFromParent="0, 32px, 0, 0" Height="32px">
+				<Region Alignment="Top" Margin="0, 40%, 0, 20%">
 					<Label Text="Holy" Height="16px" TextAlignment="Center" Style="TamarrionHeader" />
 				</Region>
-				<HorizontalBar Alignment="Top" OffsetFromParent="0, 64px, 0, 0" Height="16px" />
+				<HorizontalBar Alignment="Bottom" Height="20%" />
 			</Region>
-			<Region Alignment="Bottom" Margin="0, 84px, 0, 0">
-				<Button Text="Hej" FontColor="#FFFFFF"></Button>
+			<Region Id="SkillTreeArea" Alignment="Bottom" Margin="0, 20%, 0, 0">
+				<ViewSwitcher Id="ContentViewSwitcher_SkillTree" BaseDirectory="Assets/Views">
+					<SkillTreeMagic />
+					<SkillTreeWar />
+					<SkillTreeNature />
+					<SkillTreeHoly />
+					<SkillTreeDefense />
+				</ViewSwitcher>
 			</Region>
 			<!-- 
 			<Group Orientation="Horizontal" Alignment="Top" ContentAlignment="Center" Spacing="10px">

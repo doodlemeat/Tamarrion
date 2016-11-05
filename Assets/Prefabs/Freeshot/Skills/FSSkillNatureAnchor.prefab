@@ -23,8 +23,9 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167958}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.326943874, y: .441576481, z: 80.3458176}
+  m_LocalPosition: {x: -0.32694387, y: 0.44157648, z: 80.34582}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -48,7 +49,8 @@ MonoBehaviour:
   showRange: 0
   noPlacement: 0
   type: 1
-  element: 2
+  element: 1
+  Element: {fileID: 0}
   shape: 1
   placing: 1
   shapeTexture: {fileID: 2800000, guid: f86eeac3b0c04844999295564d75a8f5, type: 3}
@@ -61,30 +63,32 @@ MonoBehaviour:
   TributeGainNature: 25
   TributeGainDefense: 0
   TributeGainWar: 0
+  removeAllGPPOnUse: 0
+  removeAmountGPPOnUse: 0
   CastAnimationName: Cast
   CastLoopAnimationName: Looping spell
   CastTime: 0
   CastCancelOnMove: 1
   CastCanMove: 1
   CastCanRotate: 1
-  CastMovespeedMod: .5
+  CastMovespeedMod: 0.5
   PerformAnimationName: 
   PerformTime: 0
   PerformCanMove: 1
   PerformCanRotate: 1
-  PerformMovespeedMod: .5
+  PerformMovespeedMod: 0.5
   RecoverAnimationName: 
   RecoverTime: 0
   RecoverCanMove: 1
   RecoverCanRotate: 1
-  RecoverMovespeedMod: .5
+  RecoverMovespeedMod: 0.5
   ChannelingAnimationName: 
   isChanneling: 0
   CanBeCanceled: 0
   ChannelingTime: 0
   ChannelingCanMove: 1
   ChannelingCanRotate: 1
-  ChannelingMovespeedMod: .5
+  ChannelingMovespeedMod: 0.5
   FinishAnimationName: Cast defensive
   areaObject: {fileID: 0}
   ArrowMinDistance: 3.5
