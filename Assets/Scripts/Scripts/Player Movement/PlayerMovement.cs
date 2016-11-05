@@ -32,7 +32,6 @@ namespace Tamarrion {
 		private Animator animator;
 		private Vector3 moveDirection;
 		private Vector2 input;
-		private Vector3 inputDirection;
 
 		private PlayerStats playerStats;
 
@@ -52,7 +51,7 @@ namespace Tamarrion {
 
 			animator = GetComponentInChildren<Animator>();
 			moveDirection = Vector3.zero;
-			inputDirection = Vector2.zero;
+			
 			playerStats = GetComponent<PlayerStats>();
 		}
 
@@ -64,6 +63,7 @@ namespace Tamarrion {
 			if (Player.player.IsDead())
 				return;
 
+			Vector3 inputDirection = Vector3.zero;
 			if (MoveEnabled())
 				inputDirection = GetInputDirection();
 			else
@@ -73,6 +73,7 @@ namespace Tamarrion {
 
 			Quaternion direction = transform.rotation;
 
+			inputDirection.Normalize();
 			moveDirection.x = inputDirection.x;
 			moveDirection.z = inputDirection.z;
 
@@ -84,7 +85,6 @@ namespace Tamarrion {
 
 			// Scale the movement direction by the movement speed
 			float movementSpeed = playerStats.m_stat["movement_speed"];
-			moveDirection.Normalize();
 			moveDirection.x *= movementSpeed;
 			moveDirection.z *= movementSpeed;
 			float currentSpeed = new Vector2(moveDirection.x, moveDirection.z).magnitude;
