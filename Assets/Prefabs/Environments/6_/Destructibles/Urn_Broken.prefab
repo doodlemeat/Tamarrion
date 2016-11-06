@@ -1259,8 +1259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca847384198bc4e4d8220e333bd6c413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthOrb: {fileID: 0}
+  healthOrb: {fileID: 115278, guid: 85c49f0639b6a4a4a89325c81e49131f, type: 2}
   probability:
-  - 50
-  - 50
-  - 50
+  - 10
+  - 10
+  - 10
