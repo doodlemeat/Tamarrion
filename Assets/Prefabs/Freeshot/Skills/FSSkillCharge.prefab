@@ -40,7 +40,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f77aa7d0659cf4c8aa56b45cd3604f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Dashing Strike
+  Name: Charge
+  Identifier: war_charge
   skillIcon: {fileID: 2800000, guid: 5c5eabb8ec5b71f438aa69fcce5674f9, type: 3}
   cooldown: 5
   duration: 0
@@ -50,6 +51,7 @@ MonoBehaviour:
   noPlacement: 0
   type: 0
   element: 1
+  Element: {fileID: 0}
   shape: 0
   placing: 0
   shapeTexture: {fileID: 2800000, guid: cf95e4e45ec365a41810789ef45bb556, type: 3}
@@ -64,6 +66,12 @@ MonoBehaviour:
   TributeGainWar: 80
   removeAllGPPOnUse: 0
   removeAmountGPPOnUse: 0
+  ParentSkills:
+  - {fileID: 11474170, guid: 5fa6d6109c0f8284983c69e97017a884, type: 2}
+  IsLocked: 1
+  Cost: 5
+  RequireAllParentToUnlock: 1
+  RequireAmountOfParentsToUnlock: 0
   CastAnimationName: 
   CastLoopAnimationName: 
   CastTime: 0

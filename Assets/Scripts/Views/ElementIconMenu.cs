@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace Tamarrion {
-	public class ElementIconMenu : MyViewMonoBehavior {
+	public class ElementIconMenu : MyUIViewMonoBehavior {
 
 	}
 }

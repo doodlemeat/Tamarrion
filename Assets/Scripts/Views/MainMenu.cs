@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using MarkLight.Views.UI;
-using MarkLight.Views;
 using MarkLight;
 
 namespace Tamarrion {
-	public class MainMenu : MyViewMonoBehavior {
+	public class MainMenu : MyUIViewMonoBehavior {
 		public ViewSwitcher ContentViewSwitcher;
 		public Region MainMenuRegion;
 
@@ -28,6 +26,7 @@ namespace Tamarrion {
 			MainMenuRegion.IsVisible.Value = false;
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
+			Trigger (new EnableHUDEvent (true));
 			Debug.Log ("Menu hide");
 		}
 
@@ -35,6 +34,7 @@ namespace Tamarrion {
 			MainMenuRegion.IsVisible.Value = true;
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
+			Trigger (new EnableHUDEvent(false));
 			Debug.Log ("Menu show");
 		}
 

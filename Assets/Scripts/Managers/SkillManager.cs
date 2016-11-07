@@ -29,15 +29,23 @@ namespace Tamarrion {
 				}
 			}
 
-			for(int i = 0; i < SelectedSkills.Count; ++i ) {
-				if(SelectedSkills[i] > -1) {
-					FSSkillBase Skill = Instantiate (AllSkills[SelectedSkills[i]]);
-					Skill.transform.SetParent (Player.player.transform);
-					Skill.Element = GetElement (Skill.element);
+			if ( Application.isPlaying ) {
+				for ( int i = 0; i < SelectedSkills.Count; ++i ) {
+					if ( SelectedSkills[i] > -1 ) {
+						FSSkillBase Skill = Instantiate (AllSkills[SelectedSkills[i]]);
+						Skill.transform.SetParent (Player.player.transform);
+						Skill.Element = GetElement (Skill.element);
 
-					SelectedSkillsInstances[i] = Skill;
+						SelectedSkillsInstances[i] = Skill;
+					}
 				}
 			}
+
+			if(AllSkills.GroupBy (s => s.Identifier).Count () != AllSkills.Count) {
+				Debug.LogError ("All skills needs to have unique identifers.");
+			}
+
+			AllSkills.FindAll (s => s.IsUnlockable).ForEach (s => s.Unlock ());
 		}
 
 		void Start() {
@@ -45,6 +53,8 @@ namespace Tamarrion {
 		}
 
 		void OnDestroy() {
+			SelectedSkills.Clear ();
+			SelectedSkillsInstances.Clear ();
 			SaveStateToFile ();
 		}
 
@@ -54,6 +64,16 @@ namespace Tamarrion {
 					Skill.cooldownTimer.Update ();
 				}
 			});
+		}
+
+		public static FSSkillBase GetSkill(string identifer) {
+			var skill = instance.AllSkills.FirstOrDefault (s => s.Identifier == identifer);
+
+			if(!skill) {
+				throw new SkillNotFoundException (string.Format("Failed to find skill with identifier: {0}", identifer)); 
+			}
+
+			return skill;
 		}
 
 		public static FSSkillBase GetSkillInSlot(int slot) {

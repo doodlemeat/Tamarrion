@@ -2,6 +2,6 @@
 using System.Collections;
 
 namespace Tamarrion {
-	public class HorizontalBar : MyViewMonoBehavior {
+	public class HorizontalBar : MyUIViewMonoBehavior {
 	}
 }

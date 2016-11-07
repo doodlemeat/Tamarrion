@@ -1,4 +1,4 @@
 ﻿namespace Tamarrion {
-	class SkillTreeHoly : MyViewMonoBehavior {
+	class SkillTreeHoly : MyUIViewMonoBehavior {
 	}
 }

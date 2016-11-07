@@ -23,8 +23,9 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.326943874, y: .441576481, z: 80.3458176}
+  m_LocalPosition: {x: -0.32694387, y: 0.44157648, z: 80.34582}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -39,7 +40,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485f2816a0762a244acbc71575a1a642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Sacred Ground
+  Name: Holy Field
+  Identifier: holy_ground
   skillIcon: {fileID: 2800000, guid: 240640800c3011743b2aac6b308926e5, type: 3}
   cooldown: 8
   duration: 10
@@ -49,6 +51,7 @@ MonoBehaviour:
   noPlacement: 0
   type: 1
   element: 0
+  Element: {fileID: 0}
   shape: 1
   placing: 2
   shapeTexture: {fileID: 2800000, guid: f86eeac3b0c04844999295564d75a8f5, type: 3}
@@ -61,6 +64,14 @@ MonoBehaviour:
   TributeGainNature: 0
   TributeGainDefense: 0
   TributeGainWar: 0
+  removeAllGPPOnUse: 0
+  removeAmountGPPOnUse: 0
+  ParentSkills:
+  - {fileID: 11474170, guid: 5fa6d6109c0f8284983c69e97017a884, type: 2}
+  IsLocked: 1
+  Cost: 5
+  RequireAllParentToUnlock: 1
+  RequireAmountOfParentsToUnlock: 0
   CastAnimationName: Cast
   CastLoopAnimationName: Looping spell
   CastTime: 0
@@ -72,19 +83,19 @@ MonoBehaviour:
   PerformTime: 0
   PerformCanMove: 1
   PerformCanRotate: 1
-  PerformMovespeedMod: .5
+  PerformMovespeedMod: 0.5
   RecoverAnimationName: 
   RecoverTime: 0
   RecoverCanMove: 1
   RecoverCanRotate: 1
-  RecoverMovespeedMod: .5
+  RecoverMovespeedMod: 0.5
   ChannelingAnimationName: 
   isChanneling: 0
   CanBeCanceled: 0
   ChannelingTime: 0
   ChannelingCanMove: 1
   ChannelingCanRotate: 1
-  ChannelingMovespeedMod: .5
+  ChannelingMovespeedMod: 0.5
   FinishAnimationName: Cast offensive
   areaObject: {fileID: 173256, guid: 64a6c59634e5f3b498207861fc3cc07e, type: 2}
 --- !u!1001 &100100000

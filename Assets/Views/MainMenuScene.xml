@@ -1,6 +1,8 @@
 <MainMenuScene>
     <UserInterface>
         <MainMenu />
+		<MessageBox Id="MessageBox" />
+		<Alert Id="Alert" />
     </UserInterface>
     <EventSystem />
 </MainMenuScene>

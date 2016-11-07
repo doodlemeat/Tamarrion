@@ -23,17 +23,23 @@
           </Region>
 				</Region>
 				<Region Alignment="Top" Margin="0, 40%, 0, 20%">
-					<Label Text="Holy" Height="16px" TextAlignment="Center" Style="TamarrionHeader" />
+					<ViewSwitcher  Id="ViewSwitcher_SkillTreeName">
+						<Label Id="SkillElementMagic" Text="Magic" Height="16px" TextAlignment="Center" Style="TamarrionHeader" />
+						<Label Id="SkillElementWar" Text="War" Height="16px" TextAlignment="Center" Style="TamarrionHeader" />
+						<Label Id="SkillElementNature" Text="Nature" Height="16px" TextAlignment="Center" Style="TamarrionHeader" />
+						<Label Id="SkillElementHoly" Text="Holy" Height="16px" TextAlignment="Center" Style="TamarrionHeader" />
+						<Label Id="SkillElementDefense" Text="Defense" Height="16px" TextAlignment="Center" Style="TamarrionHeader" />
+					</ViewSwitcher>
 				</Region>
 				<HorizontalBar Alignment="Bottom" Height="20%" />
 			</Region>
 			<Region Id="SkillTreeArea" Alignment="Bottom" Margin="0, 20%, 0, 0">
-				<ViewSwitcher Id="ContentViewSwitcher_SkillTree" BaseDirectory="Assets/Views">
-					<SkillTreeMagic />
-					<SkillTreeWar />
-					<SkillTreeNature />
-					<SkillTreeHoly />
-					<SkillTreeDefense />
+				<ViewSwitcher Id="ContentViewSwitcher_SkillTree">
+					<SkillTreeMagic Id="SkillTreeMagic" />
+					<SkillTreeWar Id="SkillTreeWar" />
+					<SkillTreeNature Id="SkillTreeNature" />
+					<SkillTreeHoly Id="SkillTreeHoly" />
+					<SkillTreeDefense Id="SkillTreeDefense" />
 				</ViewSwitcher>
 			</Region>
 			<!-- 

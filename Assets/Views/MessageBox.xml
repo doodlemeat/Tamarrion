@@ -1,0 +1,15 @@
+﻿<MessageBox IsVisible="False">
+	<Region Width="40%" Height="200px" BackgroundColor="#F0F0F0">
+		<Region Alignment="Top" Margin="16px, 16px, 16px, 16px" Height="160px">
+			<Label Width="100%" HorizontalOverflow="Wrap" TextAlignment="Center" Text="{Message}" />
+		</Region>
+		<Region Alignment="Bottom" Margin="16px, 16px, 16px, 16px" Height="40px">
+			<Region Width="50%" Alignment="Left">
+				<Button Text="Yes" Click="ClickYes" Width="100%" BackgroundColor="#FF00FF" Alignment="Bottom" Margin="0, 0, 8px, 0"  />
+			</Region>
+			<Region Width="50%" Alignment="Right">
+				<Button Text="No" Click="ClickNo" Width="100%" BackgroundColor="#FF00FF" Alignment="Bottom" Margin="8px, 0, 0, 0" />
+			</Region>
+		</Region>
+	</Region>
+</MessageBox>
