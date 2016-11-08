@@ -11,10 +11,14 @@ namespace Tamarrion {
 		void Awake () {
 			hudController = this;
 			AddListener<EnableHUDEvent> (OnEnableHUD);
+			AddListener<IngameMenuOpenEvent> (OnIngameMenuOpenEvent);
+			AddListener<IngameMenuCloseEvent> (OnIngameMenuCloseEvent);
 		}
 
 		void OnDestroy () {
 			RemoveListener<EnableHUDEvent> (OnEnableHUD);
+			RemoveListener<IngameMenuOpenEvent> (OnIngameMenuOpenEvent);
+			RemoveListener<IngameMenuCloseEvent> (OnIngameMenuCloseEvent);
 		}
 
 		void OnEnableHUD (EnableHUDEvent e) {
@@ -29,6 +33,14 @@ namespace Tamarrion {
 		void Start () {
 			if ( enabledFromStart == false )
 				DisableHUD ();
+		}
+
+		void OnIngameMenuOpenEvent(IngameMenuOpenEvent e) {
+			DisableHUD ();
+		}
+
+		void OnIngameMenuCloseEvent(IngameMenuCloseEvent e) {
+			EnableHUD ();
 		}
 
 		public void ShowStatsScreen (bool p_victory) {

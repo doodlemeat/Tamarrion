@@ -26,7 +26,7 @@ namespace Tamarrion {
 			MainMenuRegion.IsVisible.Value = false;
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
-			Trigger (new EnableHUDEvent (true));
+			Trigger (new IngameMenuCloseEvent ());
 			Debug.Log ("Menu hide");
 		}
 
@@ -34,7 +34,7 @@ namespace Tamarrion {
 			MainMenuRegion.IsVisible.Value = true;
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
-			Trigger (new EnableHUDEvent(false));
+			Trigger (new IngameMenuOpenEvent ());
 			Debug.Log ("Menu show");
 		}
 

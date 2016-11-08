@@ -1,26 +1,42 @@
 <GameMenuSkills>
 	<Region BackgroundImage="Sprites/frame_main.psd">
-		<Region Width="50%" Alignment="Left">
-		
+		<Region Width="50%" Alignment="Left" Margin="16px, 16px, 16px, 16px">
+			<Region Alignment="Bottom" Height="10%">
+				<Region Margin="0%, 0, 80%, 0">
+					<Image Click="ChangeToMagic" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+				</Region>
+				<Region Margin="20%, 0, 60%, 0">
+					<Image Click="ChangeToWar" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+				</Region>
+				<Region Margin="40%, 0, 40%, 0">
+					<Image Click="ChangeToNature" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+				</Region>
+				<Region Margin="60%, 0, 20%, 0">
+					<Image Click="ChangeToHoly" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+				</Region>
+				<Region Margin="80%, 0, 0, 0">
+					<Image Click="ChangeToDefense" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+				</Region>
+			</Region>
 		</Region>
 		<Region Width="50%" Alignment="Right" IsVisible="True" Margin="16px, 16px, 16px, 16px">
 			<Region Alignment="Top" Height="20%">
 				<Region Alignment="Top" Height="40%">
-          <Region Margin="0%, 0, 80%, 0">
-              <Image Click="ChangeToMagic" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
-          </Region>
-          <Region Margin="20%, 0, 60%, 0">
-              <Image Click="ChangeToWar" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
-          </Region>
-          <Region Margin="40%, 0, 40%, 0">
-              <Image Click="ChangeToNature" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
-          </Region>
-          <Region Margin="60%, 0, 20%, 0">
-              <Image Click="ChangeToHoly" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
-          </Region>
-          <Region Margin="80%, 0, 0, 0">
-              <Image Click="ChangeToDefense" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
-          </Region>
+					<Region Margin="0%, 0, 80%, 0">
+						<Image Click="ChangeToMagic" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+					</Region>
+					<Region Margin="20%, 0, 60%, 0">
+						<Image Click="ChangeToWar" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+					</Region>
+					<Region Margin="40%, 0, 40%, 0">
+						<Image Click="ChangeToNature" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+					</Region>
+					<Region Margin="60%, 0, 20%, 0">
+						<Image Click="ChangeToHoly" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+					</Region>
+					<Region Margin="80%, 0, 0, 0">
+						<Image Click="ChangeToDefense" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+					</Region>
 				</Region>
 				<Region Alignment="Top" Margin="0, 40%, 0, 20%">
 					<ViewSwitcher  Id="ViewSwitcher_SkillTreeName">

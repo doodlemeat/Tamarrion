@@ -53,9 +53,9 @@ namespace Tamarrion {
 		}
 
 		void OnDestroy() {
+			SaveStateToFile ();
 			SelectedSkills.Clear ();
 			SelectedSkillsInstances.Clear ();
-			SaveStateToFile ();
 		}
 
 		void Update() {

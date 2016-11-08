@@ -15,7 +15,7 @@ namespace Tamarrion {
 		public void ClickSkill() {
 			CurrentSkill = SkillManager.GetSkill (Id);
 			
-			if( CurrentSkill.IsLocked) {
+			if( CurrentSkill.IsLocked ) {
 				Trigger (new MessageBoxEvent {
 					Message = "Do you want to spend " + CurrentSkill.Cost + " Favour to unlock " + CurrentSkill.Name + "?",
 					YesAction = ClickYesUnlock,
