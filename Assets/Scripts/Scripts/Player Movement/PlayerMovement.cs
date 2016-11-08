@@ -44,19 +44,14 @@ namespace Tamarrion {
 		}
 
 		void Start() {
-			if (Application.loadedLevelName == "main_menu") {
-				inMenu = true;
-				AddMoveBlock("main_menu_scene");
-			}
-
 			animator = GetComponentInChildren<Animator>();
 			moveDirection = Vector3.zero;
 			
 			playerStats = GetComponent<PlayerStats>();
 		}
 
-		void /*Fixed*/Update() {
-			if (inMenu)
+		void Update() {
+			if (GameManager.Paused)
 				return;
 
 			// If the player is dead, don't allow any movement
