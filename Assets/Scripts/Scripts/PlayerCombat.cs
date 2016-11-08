@@ -37,7 +37,7 @@ namespace Tamarrion {
 		}
 
 		void Update() {
-			if (SceneManager.Instance.IsPaused()) {
+			if (GameManager.Paused) {
 				return;
 			}
 

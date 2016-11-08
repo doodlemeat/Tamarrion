@@ -5,11 +5,11 @@ namespace Tamarrion {
 	[UnitySingleton(false, true)]
 	public class GameManager : UnitySingleton<GameManager> {
 		public string Version;
-		bool _Paused;
+		private bool paused;
 
 		public static bool Paused {
 			get {
-				return instance._Paused;
+				return instance.paused;
 			}
 		}
 
@@ -32,12 +32,12 @@ namespace Tamarrion {
 		}
 
 		void PauseStart() {
-			_Paused = true;
+			paused = true;
 			Time.timeScale = 0;
 		}
 
 		void PauseStop() {
-			_Paused = false;
+			paused = false;
 			Time.timeScale = 1;
 		}
 
