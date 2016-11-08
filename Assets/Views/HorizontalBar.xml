@@ -1,0 +1,3 @@
+<HorizontalBar BaseDirectory="Assets/Views" Height="16px">
+	<Image BackgroundImage="Sprites/HorBarSlice16.psd" BackgroundImageType="Sliced" />
+</HorizontalBar>

@@ -1,0 +1,34 @@
+<MainMenu>
+  <Region Id="MainMenuRegion" IsVisible="True">
+    <Region Width="25%" Alignment="Left">
+      <Region Width="60%" Alignment="Center" Margin="0, 0, 0, 40px">
+        <Group Alignment="Bottom" Spacing="4px" Width="100%">
+          <Button FontColor="#FF9900" Width="100%" Click="ClickMenu" Id="resume" Text="Resume (ESC)" MouseEnter="MouseEnterMenuButton" MouseExit="MouseExitMenuButton" TextAlignment="Left" Style="MenuSelectionButton" />
+          <Button FontColor="#FF9900" Width="100%" Click="ClickMenu" Id="restart" Text="Restart" MouseEnter="MouseEnterMenuButton" MouseExit="MouseExitMenuButton" TextAlignment="Left" Style="MenuSelectionButton" />
+          <Button FontColor="#FF9900" Width="100%" Click="ClickMenu" Id="inventory" Text="Inventory" MouseEnter="MouseEnterMenuButton" MouseExit="MouseExitMenuButton" TextAlignment="Left" Style="MenuSelectionButton" />
+          <Button FontColor="#FF9900" Width="100%" Click="ClickMenu" Id="skills" Text="Skills" MouseEnter="MouseEnterMenuButton" MouseExit="MouseExitMenuButton" TextAlignment="Left" Style="MenuSelectionButton" />
+          <Button FontColor="#FF9900" Width="100%" Click="ClickMenu" Id="options" Text="Options" MouseEnter="MouseEnterMenuButton" MouseExit="MouseExitMenuButton" TextAlignment="Left" Style="MenuSelectionButton" />
+          <Button FontColor="#FF9900" Width="100%" Click="ClickMenu" Id="exit_menu" Text="Exit to menu" MouseEnter="MouseEnterMenuButton" MouseExit="MouseExitMenuButton" TextAlignment="Left" Style="MenuSelectionButton" />
+          <Button FontColor="#FF9900" Width="100%" Click="ClickMenu" Id="exit_desktop" Text="Exit to desktop" MouseEnter="MouseEnterMenuButton" MouseExit="MouseExitMenuButton" TextAlignment="Left" Style="MenuSelectionButton" />
+        </Group>
+
+        <Group Alignment="Bottom" Spacing="4px" Offset="-8, 0, 0, 0">
+          <Image Id="resume_hover" Style="MenuSelectionButtonHighlight" IsVisible="False" RaycastBlockMode="Never" />
+          <Image Id="restart_hover" Style="MenuSelectionButtonHighlight" IsVisible="False" RaycastBlockMode="Never" />
+          <Image Id="inventory_hover" Style="MenuSelectionButtonHighlight" IsVisible="False" RaycastBlockMode="Never" />
+          <Image Id="skills_hover" Style="MenuSelectionButtonHighlight" IsVisible="False" RaycastBlockMode="Never" />
+          <Image Id="options_hover" Style="MenuSelectionButtonHighlight" IsVisible="False" RaycastBlockMode="Never" />
+          <Image Id="exit_menu_hover" Style="MenuSelectionButtonHighlight" IsVisible="False" RaycastBlockMode="Never" />
+          <Image Id="exit_desktop_hover" Style="MenuSelectionButtonHighlight" IsVisible="False" RaycastBlockMode="Never" />
+        </Group>
+      </Region>
+    </Region>
+    <Region Width="75%" Alignment="Right">
+      <ViewSwitcher Id="ContentViewSwitcher" BaseDirectory="Assets/Views">
+        <Region Id="skills_submenu">
+          <GameMenuSkills />
+        </Region>
+      </ViewSwitcher>
+    </Region>
+  </Region>
+</MainMenu>

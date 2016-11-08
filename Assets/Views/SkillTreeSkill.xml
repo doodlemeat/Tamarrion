@@ -1,0 +1,3 @@
+<SkillTreeSkill Width="64px" Height="64px" Click="ClickSkill">
+	<Image Width="64px" Height="64px" BackgroundImage="Sprites/Icon_128x128.psd" />
+</SkillTreeSkill>

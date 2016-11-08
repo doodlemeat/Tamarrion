@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 7e8e3046a9c17b34f937b515e5a4e57f
+timeCreated: 1476733810
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Constantine
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 56bc31bc7447b98498a94220c2f6dd22, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

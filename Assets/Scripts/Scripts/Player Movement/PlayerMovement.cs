@@ -32,7 +32,6 @@ namespace Tamarrion {
 		private Animator animator;
 		private Vector3 moveDirection;
 		private Vector2 input;
-		private Vector3 inputDirection;
 
 		private PlayerStats playerStats;
 
@@ -52,7 +51,7 @@ namespace Tamarrion {
 
 			animator = GetComponentInChildren<Animator>();
 			moveDirection = Vector3.zero;
-			inputDirection = Vector2.zero;
+			
 			playerStats = GetComponent<PlayerStats>();
 		}
 
@@ -64,6 +63,7 @@ namespace Tamarrion {
 			if (Player.player.IsDead())
 				return;
 
+			Vector3 inputDirection = Vector3.zero;
 			if (MoveEnabled())
 				inputDirection = GetInputDirection();
 			else
@@ -71,10 +71,11 @@ namespace Tamarrion {
 
 			CheckFreeRotation();
 
+			Quaternion direction = transform.rotation;
+
+			inputDirection.Normalize();
 			moveDirection.x = inputDirection.x;
 			moveDirection.z = inputDirection.z;
-
-			moveDirection.y -= Gravity * Time.deltaTime;
 
 			forceDirectionActive = forcedMoveDirection != Vector3.zero;
 			if (forceDirectionActive) {
@@ -89,14 +90,15 @@ namespace Tamarrion {
 			float currentSpeed = new Vector2(moveDirection.x, moveDirection.z).magnitude;
 			animator.SetFloat("Speed", currentSpeed);
 
+			moveDirection.y -= Gravity * Time.deltaTime;
+
 			// Set the desired rotation of the camera
-			Vector3 direction = (!freeRotationEnabled ? CameraController.instance.transform.forward : Controller.transform.forward);
-			direction.y = 0;
-			
-			Quaternion rotation = transform.rotation;
-			if (!direction.Equals(Vector3.zero)) {
-				rotation = Quaternion.LookRotation(direction);
-				transform.rotation = Quaternion.Lerp(transform.rotation, rotation, RotationSpeed * Time.deltaTime);
+			Vector3 rotation = (!freeRotationEnabled ? CameraController.instance.transform.forward : Controller.transform.forward);
+			rotation.y = 0;
+
+			if (!rotation.Equals(Vector3.zero)) {
+				direction = Quaternion.LookRotation(rotation);
+				transform.rotation = Quaternion.Lerp(transform.rotation, direction, RotationSpeed * Time.deltaTime);
 			}
 
 			UpdateAnimatorMoveVariables(input);

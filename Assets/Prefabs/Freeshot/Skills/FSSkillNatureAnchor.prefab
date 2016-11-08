@@ -23,8 +23,9 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167958}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.326943874, y: .441576481, z: 80.3458176}
+  m_LocalPosition: {x: -0.32694387, y: 0.44157648, z: 80.34582}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -39,7 +40,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2682381e6ee7c429c92852f436daa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Nature Anchor
+  Name: Nature Anchor
+  Identifier: nature_anchor
   skillIcon: {fileID: 2800000, guid: 27b6c42394d79a84e9e9e63376f84867, type: 3}
   cooldown: 3
   duration: 8
@@ -48,7 +50,8 @@ MonoBehaviour:
   showRange: 0
   noPlacement: 0
   type: 1
-  element: 2
+  element: 1
+  Element: {fileID: 0}
   shape: 1
   placing: 1
   shapeTexture: {fileID: 2800000, guid: f86eeac3b0c04844999295564d75a8f5, type: 3}
@@ -61,30 +64,39 @@ MonoBehaviour:
   TributeGainNature: 25
   TributeGainDefense: 0
   TributeGainWar: 0
+  removeAllGPPOnUse: 0
+  removeAmountGPPOnUse: 0
+  ParentSkills:
+  - {fileID: 11419826, guid: ed99f21cfff5b6f42a56e96f1d122896, type: 2}
+  - {fileID: 11449050, guid: 0ac660eff1f41e6419c4d3a47acf12bd, type: 2}
+  IsLocked: 1
+  Cost: 6
+  RequireAllParentToUnlock: 0
+  RequireAmountOfParentsToUnlock: 1
   CastAnimationName: Cast
   CastLoopAnimationName: Looping spell
   CastTime: 0
   CastCancelOnMove: 1
   CastCanMove: 1
   CastCanRotate: 1
-  CastMovespeedMod: .5
+  CastMovespeedMod: 0.5
   PerformAnimationName: 
   PerformTime: 0
   PerformCanMove: 1
   PerformCanRotate: 1
-  PerformMovespeedMod: .5
+  PerformMovespeedMod: 0.5
   RecoverAnimationName: 
   RecoverTime: 0
   RecoverCanMove: 1
   RecoverCanRotate: 1
-  RecoverMovespeedMod: .5
+  RecoverMovespeedMod: 0.5
   ChannelingAnimationName: 
   isChanneling: 0
   CanBeCanceled: 0
   ChannelingTime: 0
   ChannelingCanMove: 1
   ChannelingCanRotate: 1
-  ChannelingMovespeedMod: .5
+  ChannelingMovespeedMod: 0.5
   FinishAnimationName: Cast defensive
   areaObject: {fileID: 0}
   ArrowMinDistance: 3.5

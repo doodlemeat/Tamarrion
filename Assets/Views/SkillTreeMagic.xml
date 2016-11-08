@@ -1,0 +1,12 @@
+﻿<SkillTreeMagic>
+	<SkillTreeTierBlock>
+		<SkillTreeSkill Id="magic_arcane" />
+	</SkillTreeTierBlock>
+	<SkillTreeTierBlock>
+		<SkillTreeSkill Id="war_charge" />
+		<SkillTreeSkill Id="holy_ground" />
+	</SkillTreeTierBlock>
+	<SkillTreeTierBlock>
+		<SkillTreeSkill Id="nature_anchor" />
+	</SkillTreeTierBlock>
+</SkillTreeMagic>

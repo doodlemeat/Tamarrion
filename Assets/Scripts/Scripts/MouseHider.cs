@@ -27,6 +27,7 @@ namespace Tamarrion {
 			}
 			else if ( m_showCursor )
 				HideCursor ();
+				
 		}
 
 		void ShowCursor () {
@@ -36,6 +37,7 @@ namespace Tamarrion {
 			m_showCursor = true;
 			Cursor.visible = true;
 			Cursor.lockState = CursorLockMode.None;
+			Debug.Log ("Show cursor");
 		}
 
 		void HideCursor () {
@@ -45,6 +47,7 @@ namespace Tamarrion {
 			m_showCursor = false;
 			Cursor.visible = false;
 			Cursor.lockState = CursorLockMode.Locked;
+			Debug.Log ("Hide cursor");
 		}
 
 		public void SetForceShow (bool p_value) {

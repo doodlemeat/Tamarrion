@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace Tamarrion {
     public class Player : MonoBehaviour {
         public static Player player = null;
-
+		public int Balance;
         //private GameObject _bossTarget;
         //public GameObject bossTarget
         //{
@@ -33,7 +33,7 @@ namespace Tamarrion {
             public string progressStateName = "";
         }
 
-        void Awake() {
+		void Awake() {
             Load();
             player = this;
         }
@@ -41,6 +41,21 @@ namespace Tamarrion {
         void OnDisable() {
             Save();
         }
+
+		public void Deposit(int amount) {
+			Balance = Balance + amount;
+		}
+
+		public void Withdraw(int amount) {
+			Balance -= amount;
+			if ( Balance < 0 ) {
+				Balance = 0;
+			}
+		}
+
+		public bool CanAfford(int amount) {
+			return Balance >= amount;
+		}
 
         void Start() {
             playerStats = GetComponent<PlayerStats>();

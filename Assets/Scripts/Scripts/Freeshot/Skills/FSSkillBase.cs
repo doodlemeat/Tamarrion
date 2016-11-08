@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+using System;
+using System.Linq;
+
 namespace Tamarrion {
 	public enum FSSkillType {
 		FS_Type_Base,
@@ -37,7 +40,8 @@ namespace Tamarrion {
 	}
 
 	public abstract class FSSkillBase : MonoBehaviour {
-		public string skillName;
+		public string Name;
+		public string Identifier;
 		public Texture2D skillIcon;
 		public float cooldown = 2;
 		public float duration = 0;
@@ -70,6 +74,25 @@ namespace Tamarrion {
 
 		[Tooltip ("Clear amount of God Power Points for own God Power on use")]
 		public int removeAmountGPPOnUse = 0;
+
+		public List<FSSkillBase> ParentSkills = new List<FSSkillBase>();
+		public bool IsLocked;
+		public int Cost;
+		public bool IsUnlockable {
+			get {
+				if(RequireAllParentToUnlock) {
+					return ParentSkills.All (s => !s.IsLocked);
+				}
+
+				return ParentSkills.Count (s => !s.IsLocked) >= RequireAmountOfParentsToUnlock;
+			}
+		}
+
+		[SerializeField]
+		private bool RequireAllParentToUnlock = true;
+
+		[SerializeField]
+		private int RequireAmountOfParentsToUnlock = 0;
 
 		//STATE: CASTING
 		[Header ("State: Casting")]
@@ -110,10 +133,16 @@ namespace Tamarrion {
 		[Header ("Finish Casting")]
 		public string FinishAnimationName = "";
 
+		void Awake() {
+			if ( Identifier == "" ) {
+				Debug.LogError ("Skill requires a unique identifer.");
+			}
+		}
+
 		public void CancelSkill () {
 			ResetStateToInactive ();
 		}
-
+		
 		public FSSkillStates GetCurrentState () {
 			return m_currentState;
 		}
@@ -191,5 +220,11 @@ namespace Tamarrion {
 		abstract public void ApplySkillEffect ();
 
 		abstract public void SkillEnd ();
+
+		public void Unlock() {
+			if(IsUnlockable) {
+				IsLocked = false;
+			}
+		}
 	}
 }

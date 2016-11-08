@@ -65,7 +65,7 @@ namespace Tamarrion {
             m_castState = p_state;
             castingSkill = p_skill;
 
-            GetComponentInChildren<Text>().text = castingSkill.skillName;
+            GetComponentInChildren<Text>().text = castingSkill.Name;
             canvasGroup.alpha = 1;
 			progressBar.color = castingSkill.Element.Color;
         }

@@ -1,0 +1,7 @@
+﻿<Alert IsVisible="False" Click="Click">
+  <Region Width="40%" Height="100px" BackgroundColor="#A0B3EF">
+    <Region Alignment="Top" Margin="16px, 16px, 16px, 16px">
+      <Label Width="100%" HorizontalOverflow="Wrap" TextAlignment="Center" Text="{Message}" />
+    </Region>
+  </Region>
+</Alert>
