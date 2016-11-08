@@ -1,6 +1,11 @@
 <GameMenuSkills>
 	<Region BackgroundImage="Sprites/frame_main.psd">
 		<Region Width="50%" Alignment="Left" Margin="16px, 16px, 16px, 16px">
+			<Region Alignment="Top">
+				<Region Alignment="Top" Height="80px">
+					<Image Alignment="Left" BackgroundImagePreserveAspect="True" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />
+				</Region>
+			</Region>
 			<Region Alignment="Bottom" Height="10%">
 				<Region Margin="0%, 0, 80%, 0">
 					<Image Click="ChangeToMagic" BackgroundImagePreserveAspect="True" Width="100%" Height="100%" BackgroundImage="Sprites/Icon_128x128.psd" />

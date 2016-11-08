@@ -3,11 +3,11 @@
 namespace Tamarrion {
 	[AttributeUsage(AttributeTargets.All, Inherited = true)]
 	public class UnitySingletonAttribute : Attribute {
-		public readonly bool mustBeOnlyComponent;
+		public readonly bool mustBeOnlyComponentOnObject;
 		public readonly bool mustBeWithinRootObject;
 
-		public UnitySingletonAttribute (bool mustBeOnlyComponent = false, bool mustBeWithinRootObject = false) {
-			this.mustBeOnlyComponent = mustBeOnlyComponent;
+		public UnitySingletonAttribute (bool mustBeOnlyComponentOnObject = false, bool mustBeWithinRootObject = false) {
+			this.mustBeOnlyComponentOnObject = mustBeOnlyComponentOnObject;
 			this.mustBeWithinRootObject = mustBeWithinRootObject;
 		}
 	}

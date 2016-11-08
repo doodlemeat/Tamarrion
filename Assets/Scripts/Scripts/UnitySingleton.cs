@@ -34,7 +34,7 @@ namespace Tamarrion {
 				Debug.LogError ("Failed to find " + typeof (UnitySingletonAttribute).Name + " on " + typeof (T));
 			}
 			else {
-				if ( attribute.mustBeOnlyComponent ) {
+				if ( attribute.mustBeOnlyComponentOnObject ) {
 					Component[] allComponents = GetComponents<Component> ();
 					if ( allComponents.Length > 2 ) {
 						Debug.LogError (typeof (T) + " must be the only component on this object");

@@ -4,7 +4,8 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Tamarrion {
-	public class DifficultyManager : MyMonoBehaviour {
+	[UnitySingleton (false, true)]
+	public class DifficultyManager : UnitySingleton<DifficultyManager> {
 		public static Difficulty current;
 
 		[System.Serializable]
