@@ -13,16 +13,16 @@ namespace Tamarrion {
 				Instance = this;
 			}
 
-			AddListener<PauseEvent> (OnPause);
+			//AddListener<PauseEvent> (OnPause);
 		}
 
 		void OnDestroy () {
-			RemoveListener<PauseEvent> (OnPause);
+			//RemoveListener<PauseEvent> (OnPause);
 		}
 
-		void OnPause (PauseEvent e) {
+		/*void OnPause (PauseEvent e) {
 			paused = e.paused;
-		}
+		}*/
 
 		public bool IsPaused () {
 			return paused;
