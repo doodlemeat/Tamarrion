@@ -124,6 +124,11 @@ namespace Tamarrion {
 			SelectedSkills.ForEach (e => writer.WriteValue(e));
 			writer.WriteEndArray ();
 
+			writer.WritePropertyName ("UnlockedSkills");
+			writer.WriteStartArray ();
+			AllSkills.FindAll (s => !s.IsLocked).ForEach (s => writer.WriteValue(s.Identifier));
+			writer.WriteEndArray ();
+
 			writer.WriteEndObject ();
 
 			File.WriteAllText (Application.persistentDataPath + "/skills_" + GameManager.GetVersion() + ".json", sb.ToString());
