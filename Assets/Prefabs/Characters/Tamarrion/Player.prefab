@@ -665,20 +665,16 @@ GameObject:
   - 143: {fileID: 14364000}
   - 114: {fileID: 11424418}
   - 114: {fileID: 11471328}
-  - 114: {fileID: 11489078}
   - 114: {fileID: 11411330}
-  - 114: {fileID: 11457878}
+  - 114: {fileID: 114000010894454678}
   - 114: {fileID: 11498432}
   - 114: {fileID: 11447044}
   - 114: {fileID: 11438994}
   - 114: {fileID: 11495606}
-  - 114: {fileID: 11460058}
   - 114: {fileID: 11420882}
   - 82: {fileID: 8231312}
   - 114: {fileID: 11400484}
   - 136: {fileID: 13657204}
-  - 136: {fileID: 13695756}
-  - 114: {fileID: 114000010894454678}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -4997,7 +4993,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157622}
-  m_LocalRotation: {x: 0.6445564, y: 0.27407077, z: 0.27882418, w: 0.6570308}
+  m_LocalRotation: {x: 0.64455634, y: 0.27407074, z: 0.27882415, w: 0.65703076}
   m_LocalPosition: {x: -0.052934837, y: 0.00000010967254, z: 0.000000038146972}
   m_LocalScale: {x: 1.0000006, y: 0.9999988, z: 1.0000007}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6929,6 +6925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3eb6f7b8259a54cb2f734c97cb5d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Balance: 0
   playerStats: {fileID: 11471328}
   InMenu: 0
   m_locked_on_boss: 0
@@ -7002,7 +6999,6 @@ MonoBehaviour:
   playerMovement: {fileID: 11424418}
   playerAnimator: {fileID: 9525238}
   cameraController: {fileID: 0}
-  skillManager: {fileID: 11413494}
   m_skillProjector: {fileID: 11959710}
   m_chargeProjector: {fileID: 0}
   fromPlayerRange: 1
@@ -7018,17 +7014,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a562eac3aecd6458425a2e8fa12152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gravity: 20
-  _rotationSpeed: 100
-  _inverted: 0
-  m_strafeSpeedMod: 1
-  m_backwardsSpeedMod: 0.5
-  m_baseMoveSpeed: 4.2
-  rotationAdjustmentDegrees: 20
-  rotationTransforms:
-  - {fileID: 474552}
-  - {fileID: 469034}
-  _controller: {fileID: 14364000}
+  Gravity: 20
+  RotationSpeed: 10
+  Inverted: 0
+  StrafeSpeedMod: 0.5
+  BackwardsSpeedMod: 0.5
+  BaseMoveSpeed: 1
+  RotationAdjustmentDegrees: 30
+  RotationTransforms: []
+  Controller: {fileID: 0}
 --- !u!114 &11431498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7238,87 +7232,6 @@ MonoBehaviour:
   fade_in: 1
   duration: 10
   next_hit_stun: 0
---- !u!114 &11457878
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 119542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f1b3fcdd149a37469c37e6422a479ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
-  playerScript: {fileID: 0}
-  spells: []
-  passiveSpells: []
-  selectedSpells: 00000000000000000000000000000000
-  equippedSpells:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  selectedPassiveSpells: 
-  Loaded: 0
---- !u!114 &11460058
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 119542}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9ac8d30c6a0d9642a11e5be4c440740, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Root: {fileID: 0}
-  m_UpdateRate: 60
-  m_Damping: 0.1
-  m_DampingDistrib:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_Elasticity: 0.1
-  m_ElasticityDistrib:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_Stiffness: 0.1
-  m_StiffnessDistrib:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_Inert: 0
-  m_InertDistrib:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_Radius: 0
-  m_RadiusDistrib:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_EndLength: 0
-  m_EndOffset: {x: 0, y: 0, z: 0}
-  m_Gravity: {x: 0, y: 0, z: 0}
-  m_Force: {x: 0, y: 0, z: 0}
-  m_Colliders: []
-  m_Exclusions: []
-  m_FreezeAxis: 0
-  m_DistantDisable: 0
-  m_ReferenceObject: {fileID: 0}
-  m_DistanceToObject: 20
 --- !u!114 &11469684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7483,27 +7396,6 @@ MonoBehaviour:
   m_Height: 0
   m_Direction: 0
   m_Bound: 0
---- !u!114 &11489078
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 119542}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de852fa1ff4e5d74ab0d98ee820b2883, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleSys: {fileID: 19875274, guid: a9e04946f8ecee74ab12378c5412f102, type: 2}
-  FloatingText: {fileID: 11452276, guid: a80bf812f5643fc4dad97016457845ac, type: 2}
-  SpeedModifier: 1
-  AttackTime: 0.3
-  RotateTime: 0
-  DefaultForceDelay: 0.8
-  AttackAngleDegrees: 67.5
-  combo: 0
-  comboIndicator: {fileID: 0}
-  _hitSounds: []
 --- !u!114 &11495346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7610,19 +7502,6 @@ Projector:
     serializedVersion: 2
     m_Bits: 512
 --- !u!136 &13657204
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 119542}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!136 &13695756
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -7872,3 +7751,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09683036208b59d4faf159c0ef6334ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onHitParticles: {fileID: 0}
