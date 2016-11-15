@@ -15,10 +15,10 @@ namespace Tamarrion {
 
         public static List<GameObject> m_enemyList;
 
-        static public TopgunTimer m_castingTimer = new TopgunTimer();
-        static public TopgunTimer m_performTimer = new TopgunTimer();
-        static public TopgunTimer m_recoverTimer = new TopgunTimer();
-        static public TopgunTimer m_channelTimer = new TopgunTimer();
+        static public Timer m_castingTimer = new Timer();
+        static public Timer m_performTimer = new Timer();
+        static public Timer m_recoverTimer = new Timer();
+        static public Timer m_channelTimer = new Timer();
 
         FSSkillBase m_currentSkill;
 
@@ -79,7 +79,7 @@ namespace Tamarrion {
             if (m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Inactive || m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Casting)
                 CancelCurrentSkill();
             else if (m_currentSkill.CanBeCanceled && m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Channeling)
-                m_channelTimer.SetToComplete();
+                m_channelTimer.Finish();
         }
 
         void UpdateCurrentSkill() {
@@ -90,13 +90,13 @@ namespace Tamarrion {
                 if (m_currentSkill.CastTime > 0 && m_currentSkill.CastCancelOnMove && (player.transform.position - m_castingStartPosition).magnitude > 0.1f) {
                     if (ErrorBar.instance)
                         ErrorBar.instance.SpawnText("Must stand still");
-                    m_castingTimer.SetToComplete();
+                    m_castingTimer.Finish();
                     CancelCurrentSkill();
                     return;
                 }
 
                 m_castingTimer.Update();
-                if (m_castingTimer.IsComplete) {
+                if (m_castingTimer.IsFinished) {
                     FinishCastingSkill();
                     m_currentSkill.AdvanceState();
                     StartPerformingSkill();
@@ -105,7 +105,7 @@ namespace Tamarrion {
             if (m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Perform) {
                 m_currentSkill.PerformUpdate();
                 m_performTimer.Update();
-                if (m_performTimer.IsComplete) {
+                if (m_performTimer.IsFinished) {
                     FinishPerformingSkill();
                     if (m_currentSkill.isChanneling)
                         StartChannelingSkill();
@@ -116,7 +116,7 @@ namespace Tamarrion {
             if (m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Channeling) {
                 m_currentSkill.ChannelUpdate();
                 m_channelTimer.Update();
-                if (m_channelTimer.IsComplete) {
+                if (m_channelTimer.IsFinished) {
                     FinishChannelingSkill();
                     StartRecoveringFromSkill();
                 }
@@ -124,7 +124,7 @@ namespace Tamarrion {
             if (m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Recover) {
                 m_currentSkill.RecoverUpdate();
                 m_recoverTimer.Update();
-                if (m_recoverTimer.IsComplete) {
+                if (m_recoverTimer.IsFinished) {
                     FinishRecoveringSkill();
                 }
             }
@@ -192,7 +192,7 @@ namespace Tamarrion {
                 playerAnimator.SetBool(m_currentSkill.CastAnimationName, true);
 
             if (m_currentSkill.CastTime > 0) {
-                m_castingTimer.StartTimerBySeconds(m_currentSkill.CastTime);
+                m_castingTimer.Start(m_currentSkill.CastTime);
                 m_castingStartPosition = player.transform.position;
                 if (m_currentSkill.CastCanMove == false)
                     playerMovement.AddMoveBlock("freeshot");
@@ -204,7 +204,7 @@ namespace Tamarrion {
                 PlayerCastbar.castbar.OnSpellcast(m_currentSkill);
             }
             else {
-                m_castingTimer.SetToComplete();
+                m_castingTimer.Finish();
                 if (m_currentSkill.HasFinishAnimationName())
                     playerAnimator.SetBool(m_currentSkill.FinishAnimationName, true);
             }
@@ -228,7 +228,7 @@ namespace Tamarrion {
                 playerAnimator.SetBool(m_currentSkill.PerformAnimationName, true);
 
             if (m_currentSkill.PerformTime > 0) {
-                m_performTimer.StartTimerBySeconds(m_currentSkill.PerformTime);
+                m_performTimer.Start(m_currentSkill.PerformTime);
                 if (m_currentSkill.PerformCanMove == false)
                     playerMovement.AddMoveBlock("freeshot");
                 if (m_currentSkill.PerformCanRotate == false)
@@ -236,7 +236,7 @@ namespace Tamarrion {
                 player.playerStats.Add_Modifier("freeshot_perform_ms", "movement_speed", 0, m_currentSkill.PerformMovespeedMod);
             }
             else
-                m_performTimer.SetToComplete();
+                m_performTimer.Finish();
 
             m_currentSkill.PerformStart();
         }
@@ -268,7 +268,7 @@ namespace Tamarrion {
             if (m_currentSkill.HasChannelingAnimationName())
                 playerAnimator.SetBool(m_currentSkill.ChannelingAnimationName, true);
 
-            m_channelTimer.StartTimerBySeconds(m_currentSkill.ChannelingTime);
+            m_channelTimer.Start(m_currentSkill.ChannelingTime);
             if (m_currentSkill.ChannelingCanMove == false)
                 playerMovement.AddMoveBlock("freeshot");
             if (m_currentSkill.ChannelingCanRotate == false)
@@ -297,7 +297,7 @@ namespace Tamarrion {
                 playerAnimator.SetBool(m_currentSkill.RecoverAnimationName, true);
 
             if (m_currentSkill.RecoverTime > 0) {
-                m_recoverTimer.StartTimerBySeconds(m_currentSkill.RecoverTime);
+                m_recoverTimer.Start(m_currentSkill.RecoverTime);
                 if (m_currentSkill.RecoverCanMove == false)
                     playerMovement.AddMoveBlock("freeshot");
                 if (m_currentSkill.RecoverCanRotate == false)
@@ -305,7 +305,7 @@ namespace Tamarrion {
                 player.playerStats.Add_Modifier("freeshot_recover_ms", "movement_speed", 0, m_currentSkill.RecoverMovespeedMod);
             }
             else
-                m_recoverTimer.SetToComplete();
+                m_recoverTimer.Finish();
 
             m_currentSkill.RecoverStart();
         }

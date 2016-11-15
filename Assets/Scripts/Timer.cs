@@ -6,7 +6,7 @@ namespace Tamarrion {
         private float time;
         private float duration;
 
-        private bool finished;
+        private bool finished = true;
 
         public void Update() {
             if (finished)
@@ -14,23 +14,28 @@ namespace Tamarrion {
 
             time += Time.deltaTime;
 
-            if (time > duration) {
-                time = duration;
-                finished = true;
+            if (time >= duration) {
+                Finish();
             }
         }
 
         public void Start(float duration) {
             this.duration = duration;
+            time = 0;
             finished = false;
+        }
+
+        public void Finish() {
+            time = duration;
+            finished = true;
         }
 
         public float Progress() {
             return time / duration;
         }
 
-        public bool isFinished() {
-            return finished;
+        public bool IsFinished {
+            get { return finished; }
         }
     }
 }

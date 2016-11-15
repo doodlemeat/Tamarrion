@@ -44,9 +44,9 @@ namespace Tamarrion {
             }
 
             if (m_castState == CastState.Cast)
-                progressBar.fillAmount = 1 - FSSkillUser.m_castingTimer.PercentComplete();
+                progressBar.fillAmount = FSSkillUser.m_castingTimer.Progress();
             else if (m_castState == CastState.Channel)
-                progressBar.fillAmount = FSSkillUser.m_channelTimer.PercentComplete();
+                progressBar.fillAmount = 1 - FSSkillUser.m_channelTimer.Progress();
 
             if (m_castState == CastState.Cast && castingSkill.GetCurrentState() != FSSkillStates.FS_State_Casting) {
                 FadeCurrent = FadeOutTime;
