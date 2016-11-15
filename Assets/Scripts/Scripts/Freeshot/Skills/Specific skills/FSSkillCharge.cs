@@ -13,7 +13,7 @@ namespace Tamarrion {
         GameObject m_speedEffectInstance;
         GameObject m_collisionObjectInstance;
         float ForceTime = 0.15f;
-        TopgunTimer forceTimer = new TopgunTimer();
+        Timer forceTimer = new Timer();
 
         public override void RecoverStart() {
             //if (PlayerMovement.instance)
@@ -99,8 +99,8 @@ namespace Tamarrion {
             rumble.Play();
 
             forceTimer.Update();
-            if (forceTimer.IsComplete) {
-                forceTimer.StartTimerBySeconds(ForceTime);
+            if (forceTimer.IsFinished) {
+                forceTimer.Start(ForceTime);
                 ForcePusher.instance.SendForceFromObject(Player.player.gameObject, new Vector3(25, 0, 0), 0.1f, ForcePusher.Shape.Box, new Vector3(1f, 1f, 1f), new Vector3(0, 0.65f, 0), true);
             }
         }

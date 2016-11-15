@@ -6,7 +6,7 @@ namespace Tamarrion {
 		public float duration = 0;
 		public float range = 0;
 
-		TopgunTimer durationTimer = new TopgunTimer ();
+		Timer durationTimer = new Timer ();
 		Vector3 startPosition;
 
 		virtual public void Start () {
@@ -18,7 +18,7 @@ namespace Tamarrion {
 
 		virtual public void Update () {
 			durationTimer.Update ();
-			if ( durationTimer.IsComplete )
+			if ( durationTimer.IsFinished )
 				Destroy (gameObject);
 
 			if ( (startPosition - transform.position).magnitude >= range )

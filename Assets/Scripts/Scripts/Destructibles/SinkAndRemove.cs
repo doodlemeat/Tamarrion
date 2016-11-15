@@ -10,14 +10,14 @@ namespace Tamarrion {
 		public bool WaitForIdleRigidBody = true;
 
 		bool sinkHasBegun = false;
-		TopgunTimer sinkTimer = new TopgunTimer ();
-		TopgunTimer destroyTimer = new TopgunTimer ();
+		Timer sinkTimer = new Timer();
+        Timer destroyTimer = new Timer();
 		Rigidbody rigidBody;
 
 		void Start () {
 			rigidBody = GetComponent<Rigidbody> ();
-			sinkTimer.StartTimerBySeconds (SinkDelay);
-			destroyTimer.StartTimerBySeconds (DestroyDelayAfterSink);
+			sinkTimer.Start(SinkDelay);
+			destroyTimer.Start(DestroyDelayAfterSink);
 		}
 
 		void Update () {
@@ -34,7 +34,7 @@ namespace Tamarrion {
 			}
 			else {
 				sinkTimer.Update ();
-				if ( sinkTimer.IsComplete ) {
+				if ( sinkTimer.IsFinished ) {
 					StartSink ();
 				}
 			}
@@ -51,7 +51,7 @@ namespace Tamarrion {
 				return;
 
 			destroyTimer.Update ();
-			if ( destroyTimer.IsComplete ) {
+			if ( destroyTimer.IsFinished ) {
 				Destroy (gameObject);
 			}
 		}

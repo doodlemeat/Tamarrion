@@ -14,7 +14,7 @@ namespace Tamarrion {
 		List<Quaternion> m_LockRotations = new List<Quaternion> ();
 		float m_lockDegrees = 0f;
 
-		TopgunTimer m_legLockTimer = new TopgunTimer ();
+		Timer m_legLockTimer = new Timer();
 
 		void Start () {
 			foreach ( Transform trans in m_LockTransformRotations ) {
@@ -28,7 +28,7 @@ namespace Tamarrion {
 					OrderLock ();
 
 				m_legLockTimer.Update ();
-				if ( m_legLockTimer.IsComplete && m_legRotationLocked == false )
+				if ( m_legLockTimer.IsFinished && m_legRotationLocked == false )
 					LockRotations ();
 
 				if ( m_legRotationLocked ) {
@@ -49,7 +49,7 @@ namespace Tamarrion {
 
 		void OrderLock () {
 			m_legRotationLockOrdered = true;
-			m_legLockTimer.StartTimerBySeconds (legLockTime);
+			m_legLockTimer.Start(legLockTime);
 		}
 
 		void StartStepLeft () {

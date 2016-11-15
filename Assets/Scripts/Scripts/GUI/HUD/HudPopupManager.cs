@@ -17,8 +17,8 @@ namespace Tamarrion {
 		public GameObject popupObject;
 		public Text popupTitle;
 		public Text popupContent;
-		TopgunTimer popupTimer = new TopgunTimer ();
-		TopgunTimer betweenPopupsTimer = new TopgunTimer ();
+		Timer popupTimer = new Timer();
+        Timer betweenPopupsTimer = new Timer();
 		CanvasGroupController canvasGroupController;
 
 		enum PopupState {
@@ -47,13 +47,13 @@ namespace Tamarrion {
 			}
 			else if ( state == PopupState.Active ) {
 				popupTimer.Update ();
-				if ( popupTimer.IsComplete ) {
+				if ( popupTimer.IsFinished ) {
 					DeactivateCurrentPopup ();
 				}
 			}
 			else if ( state == PopupState.BetweenPopups ) {
 				betweenPopupsTimer.Update ();
-				if ( betweenPopupsTimer.IsComplete ) {
+				if ( betweenPopupsTimer.IsFinished) {
 					state = PopupState.Inactive;
 				}
 			}
@@ -70,7 +70,7 @@ namespace Tamarrion {
 		void ActivateNextPopup () {
 			currentPopup = popupQueue[0];
 			state = PopupState.Active;
-			popupTimer.StartTimerBySeconds (currentPopup.Time);
+			popupTimer.Start(currentPopup.Time);
 
 			if ( popupObject )
 				canvasGroupController.Show (2f);
@@ -92,7 +92,7 @@ namespace Tamarrion {
 
 		void StartPauseBetweenPopups () {
 			state = PopupState.BetweenPopups;
-			betweenPopupsTimer.StartTimerBySeconds (betweenPopupsTime);
+			betweenPopupsTimer.Start(betweenPopupsTime);
 		}
 
 		void RemoveFirstPopupFromQueue () {

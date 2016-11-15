@@ -10,7 +10,7 @@ namespace Tamarrion {
 		public Color secondColor = Color.white;
 
 		Text targetText;
-		TopgunTimer pulseTimer = new TopgunTimer ();
+		Timer pulseTimer = new Timer();
 
 		void Start () {
 			RestartTimer ();
@@ -21,15 +21,15 @@ namespace Tamarrion {
 		}
 
 		void RestartTimer () {
-			pulseTimer.StartTimerBySeconds (pulseSpeedInSeconds);
+			pulseTimer.Start(pulseSpeedInSeconds);
 		}
 
 		void Update () {
 			pulseTimer.Update ();
-			if ( pulseTimer.IsComplete ) {
+			if ( pulseTimer.IsFinished ) {
 				RestartTimer ();
 			}
-			targetText.color = Color.Lerp (firstColor, secondColor, pulseCurve.Evaluate (pulseTimer.PercentComplete ()));
+			targetText.color = Color.Lerp (firstColor, secondColor, pulseCurve.Evaluate (1-pulseTimer.Progress()));
 		}
 	}
 }

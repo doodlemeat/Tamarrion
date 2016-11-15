@@ -77,8 +77,8 @@ namespace Tamarrion {
         }
 
         void UpdateCooldownVisual() {
-            if (m_connectedSkill && cooldownOverlay && !m_connectedSkill.cooldownTimer.IsComplete) {
-                float Fill = m_connectedSkill.cooldownTimer.PercentComplete();
+            if (m_connectedSkill && cooldownOverlay && !m_connectedSkill.cooldownTimer.IsFinished) {
+                float Fill = 1 - m_connectedSkill.cooldownTimer.Progress();
                 cooldownOverlay.fillAmount = Fill;
                 cdFX.SetActive(false);
                 //cooldownOverlay.color = Color.Lerp(StartColor, EndColor, Fill);

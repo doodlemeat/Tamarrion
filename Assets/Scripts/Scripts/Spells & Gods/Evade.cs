@@ -21,8 +21,8 @@ public class Evade : MyMonoBehaviour {
     bool isInvulnerable = false;
     Vector3 RollDirection;
     GameObject trailInstance;
-    TopgunTimer rollTimer = new TopgunTimer();
-    TopgunTimer invulTimer = new TopgunTimer();
+    Timer rollTimer = new Timer();
+    Timer invulTimer = new Timer();
 
     List<string> evadeBlockers = new List<string>();
 
@@ -50,7 +50,7 @@ public class Evade : MyMonoBehaviour {
         if (isInvulnerable)
         {
             invulTimer.Update();
-            if (invulTimer.IsComplete)
+            if (invulTimer.IsFinished)
             {
                 PlayerStats.instance.Remove_Modifier("roll_invul");
             }
@@ -62,17 +62,17 @@ public class Evade : MyMonoBehaviour {
             PlayerStats.instance.Remove_Modifier("Roll_MS");
 
             rollTimer.Update();
-            if (rollTimer.IsComplete)
+            if (rollTimer.IsFinished)
             {
                 CancelEvade();
             }
             else
-                PlayerStats.instance.Add_Modifier("Roll_MS", "movement_speed", 0, SpeedCurve.Evaluate(1 - rollTimer.PercentComplete()));
+                PlayerStats.instance.Add_Modifier("Roll_MS", "movement_speed", 0, SpeedCurve.Evaluate(rollTimer.Progress()));
         }
         else if (GodModeOn)
         {
             rollTimer.Update();
-            if (rollTimer.IsComplete)
+            if (rollTimer.IsFinished)
             {
                 RemoveEvadeBlock("Evade_GodMode");
             }
@@ -89,12 +89,12 @@ public class Evade : MyMonoBehaviour {
         RollDirection = p_direction;
 
         if (!GodModeOn)
-            rollTimer.StartTimerBySeconds(RollTime);
+            rollTimer.Start(RollTime);
         else
-            rollTimer.StartTimerBySeconds(GodCooldownTime);
+            rollTimer.Start(GodCooldownTime);
 
         isInvulnerable = true;
-        invulTimer.StartTimerBySeconds(InvulTime);
+        invulTimer.Start(InvulTime);
 
         SpawnNormalParticleEffect();
 

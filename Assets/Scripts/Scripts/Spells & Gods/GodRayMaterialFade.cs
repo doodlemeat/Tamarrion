@@ -5,14 +5,14 @@ namespace Tamarrion {
 
 	public class GodRayMaterialFade : MonoBehaviour {
 		public float fadeTime = 0.5f;
-		TopgunTimer fadeTimer = new TopgunTimer ();
+		Timer fadeTimer = new Timer();
 		bool done = false;
 		Renderer rend;
 
 		void Start () {
 			rend = GetComponent<Renderer> ();
 			SetSeqSelectValue (0f);
-			fadeTimer.StartTimerBySeconds (fadeTime);
+			fadeTimer.Start(fadeTime);
 		}
 
 		void Update () {
@@ -20,9 +20,9 @@ namespace Tamarrion {
 				return;
 
 			fadeTimer.Update ();
-			SetSeqSelectValue (fadeTimer.PercentComplete ());
+			SetSeqSelectValue (1-fadeTimer.Progress());
 
-			if ( fadeTimer.IsComplete ) {
+			if ( fadeTimer.IsFinished ) {
 				SetSeqSelectValue (0f);
 				done = true;
 			}

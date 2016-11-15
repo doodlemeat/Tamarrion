@@ -59,7 +59,7 @@ namespace Tamarrion {
 		public Collider shapeCollider;
 		public float MagicDamagePercentage = 1f;
 		public float PhysicalDamagePercentage = 1f;
-		public TopgunTimer cooldownTimer = new TopgunTimer ();
+		public Timer cooldownTimer = new Timer();
 		FSSkillStates m_currentState = FSSkillStates.FS_State_Inactive;
 
 		[Header ("God Power Tribute Gain")]

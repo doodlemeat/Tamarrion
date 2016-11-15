@@ -13,18 +13,18 @@ namespace Tamarrion {
         public float RaycastRange = 6;
         public float MagicDamagePercentage = 1f;
 
-        TopgunTimer tickTimer = new TopgunTimer();
-        TopgunTimer upgradeTimer = new TopgunTimer();
+        Timer tickTimer = new Timer();
+        Timer upgradeTimer = new Timer();
         float ForceTime = 0.15f;
-        TopgunTimer forceTimer = new TopgunTimer();
+        Timer forceTimer = new Timer();
 
         int m_currentUpgradeLevel = 0;
         GameObject m_hitTarget;
         Vector3 m_lastHitPos;
 
         void Start() {
-            tickTimer.StartTimerBySeconds(TickTime);
-            forceTimer.StartTimerBySeconds(ForceTime);
+            tickTimer.Start(TickTime);
+            forceTimer.Start(ForceTime);
             UpdateBeamParticles();
             SpawnSparkParticles();
         }
@@ -34,8 +34,8 @@ namespace Tamarrion {
 
             if (m_hitTarget) {
                 upgradeTimer.Update();
-                if (upgradeTimer.IsComplete) {
-                    upgradeTimer.StartTimerBySeconds(UpgradeTime);
+                if (upgradeTimer.IsFinished) {
+                    upgradeTimer.Start(UpgradeTime);
                     if (LevelUpgradeAllowed()) {
                         SpawnSparkParticles();
                         UpgradeToNextLevel();
@@ -44,8 +44,8 @@ namespace Tamarrion {
             }
 
             tickTimer.Update();
-            if (tickTimer.IsComplete) {
-                tickTimer.StartTimerBySeconds(TickTime);
+            if (tickTimer.IsFinished) {
+                tickTimer.Start(TickTime);
 
                 if (m_hitTarget) {
                     DealDamageToHitTarget();
@@ -56,8 +56,8 @@ namespace Tamarrion {
             }
 
             forceTimer.Update();
-            if (forceTimer.IsComplete) {
-                forceTimer.StartTimerBySeconds(ForceTime);
+            if (forceTimer.IsFinished) {
+                forceTimer.Start(ForceTime);
                 ForcePusher.instance.SendForceFromObject(Player.player.gameObject, new Vector3(30, 0, 0), 0.35f, ForcePusher.Shape.Box, new Vector3(1.5f, 1, 1.5f), new Vector3(0, 0.65f, 0), true);
             }
         }
@@ -106,7 +106,7 @@ namespace Tamarrion {
 
         void ResetUpgradeLevelAndTimer() {
             m_currentUpgradeLevel = 0;
-            upgradeTimer.StartTimerBySeconds(UpgradeTime);
+            upgradeTimer.Start(UpgradeTime);
         }
 
         void ChangeTarget(GameObject p_obj) {

@@ -5,7 +5,7 @@ namespace Tamarrion {
 	[RequireComponent (typeof (CanvasGroup))]
 	public class CanvasGroupController : MonoBehaviour {
 		CanvasGroup canvasGroup;
-		TopgunTimer fadeTimer = new TopgunTimer ();
+		Timer fadeTimer = new Timer();
 		bool shown = false;
 		bool fadeActive = false;
 		enum FadeState {
@@ -22,9 +22,9 @@ namespace Tamarrion {
 			if ( fadeActive ) {
 				fadeTimer.Update ();
 				if ( canvasGroup )
-					canvasGroup.alpha = (fadeOutActive != FadeState.In) ? fadeTimer.PercentComplete () : 1f - fadeTimer.PercentComplete ();
+					canvasGroup.alpha = (fadeOutActive != FadeState.In) ? 1-fadeTimer.Progress() : fadeTimer.Progress();
 
-				if ( fadeTimer.IsComplete )
+				if ( fadeTimer.IsFinished )
 					fadeActive = false;
 			}
 		}
@@ -40,7 +40,7 @@ namespace Tamarrion {
 				else {
 					fadeActive = true;
 					fadeOutActive = FadeState.In;
-					fadeTimer.StartTimerBySeconds (p_fadeInTime);
+					fadeTimer.Start(p_fadeInTime);
 				}
 			}
 		}
@@ -56,7 +56,7 @@ namespace Tamarrion {
 				else {
 					fadeActive = true;
 					fadeOutActive = FadeState.Out;
-					fadeTimer.StartTimerBySeconds (p_fadeInTime);
+					fadeTimer.Start(p_fadeInTime);
 				}
 			}
 		}

@@ -60,7 +60,7 @@ namespace Tamarrion {
 
 		void Update() {
 			SelectedSkillsInstances.ForEach (Skill => {
-				if ( Skill && !Skill.cooldownTimer.IsComplete ) {
+				if ( Skill && !Skill.cooldownTimer.IsFinished ) {
 					Skill.cooldownTimer.Update ();
 				}
 			});

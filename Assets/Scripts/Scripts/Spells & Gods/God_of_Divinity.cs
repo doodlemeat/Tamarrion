@@ -16,7 +16,7 @@ namespace Tamarrion {
         public float OrbRespawnTime = 1f;
 
         class OrbHandler {
-            TopgunTimer respawnTimer = new TopgunTimer();
+            Timer respawnTimer = new Timer();
             public bool active = true;
             public GameObject orbInstance;
 
@@ -32,14 +32,14 @@ namespace Tamarrion {
                     orbInstance.SetActive(false);
 
                 active = false;
-                respawnTimer.StartTimerBySeconds(p_deactivationTime);
+                respawnTimer.Start(p_deactivationTime);
             }
             public void Update() {
                 if (active)
                     return;
 
                 respawnTimer.Update();
-                if (respawnTimer.IsComplete)
+                if (respawnTimer.IsFinished)
                     Activate();
             }
         }

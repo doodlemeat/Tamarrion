@@ -12,7 +12,7 @@ namespace Tamarrion {
         bool godPowerActive = false;
         float lerpStart = 0, lerpTarget = 0;
         bool lerpOn = false;
-        TopgunTimer lerpTimer = new TopgunTimer();
+        Timer lerpTimer = new Timer();
 
         //add event:
         //- when god is chosen
@@ -50,8 +50,8 @@ namespace Tamarrion {
             }
             else if (lerpOn) {
                 lerpTimer.Update();
-                SetImageFill(Mathf.Lerp(lerpStart, lerpTarget, (1 - lerpTimer.PercentComplete())));
-                if (lerpTimer.IsComplete) {
+                SetImageFill(Mathf.Lerp(lerpStart, lerpTarget, (lerpTimer.Progress())));
+                if (lerpTimer.IsFinished) {
                     lerpOn = false;
                 }
             }
@@ -68,7 +68,7 @@ namespace Tamarrion {
 
             lerpTarget = percentage;
             lerpOn = true;
-            lerpTimer.StartTimerBySeconds(lerpTime);
+            lerpTimer.Start(lerpTime);
             //SetImageFill(percentage);
         }
 
@@ -79,7 +79,7 @@ namespace Tamarrion {
             lerpStart = iconImage.fillAmount;
             lerpTarget = e.percentageDone;
             lerpOn = true;
-            lerpTimer.StartTimerBySeconds(lerpTime);
+            lerpTimer.Start(lerpTime);
         }
 
         void SetImageFill(float p_percentage) {

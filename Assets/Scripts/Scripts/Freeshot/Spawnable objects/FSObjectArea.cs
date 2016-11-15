@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Tamarrion {
     public class FSObjectArea : MonoBehaviour {
         public bool timed = false;
-        TopgunTimer durationTimer = new TopgunTimer();
+        Timer durationTimer = new Timer();
         protected List<GameObject> m_enemiesWithinBounds = new List<GameObject>();
         protected bool m_PlayerIsWithinBounds = false;
         public float MagicDamagePercentage = 1f;
@@ -18,14 +18,14 @@ namespace Tamarrion {
         virtual public void Update() {
             if (timed) {
                 durationTimer.Update();
-                if (durationTimer.IsComplete)
+                if (durationTimer.IsFinished)
                     DestroyThis();
             }
         }
 
         public void SetDuration(float p_dur) {
             timed = true;
-            durationTimer.StartTimerBySeconds(p_dur);
+            durationTimer.Start(p_dur);
         }
 
         public virtual void SetSphereCollisionRadius(float p_radius) {

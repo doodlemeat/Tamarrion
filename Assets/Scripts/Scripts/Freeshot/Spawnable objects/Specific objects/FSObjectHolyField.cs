@@ -11,19 +11,19 @@ namespace Tamarrion {
         public GameObject healEffectChild;
         public GameObject damageEffectChild;
         GameObject playerHealingInstance;
-        TopgunTimer tickTimer = new TopgunTimer();
+        Timer tickTimer = new Timer();
         bool m_friendlyParticles = false;
 
         public override void Start() {
             base.Start();
-            tickTimer.StartTimerBySeconds(TickTime);
+            tickTimer.Start(TickTime);
             ActivateDamageEffect();
         }
 
         public override void Update() {
             tickTimer.Update();
-            if (tickTimer.IsComplete) {
-                tickTimer.StartTimerBySeconds(TickTime);
+            if (tickTimer.IsFinished) {
+                tickTimer.Start(TickTime);
                 ApplyEffect();
             }
             base.Update();

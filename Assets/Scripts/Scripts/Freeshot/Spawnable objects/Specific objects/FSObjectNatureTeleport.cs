@@ -10,7 +10,7 @@ namespace Tamarrion {
         public ParticleSystem teleportObjectEffect;
 
         GameObject m_targetObject;
-        TopgunTimer teleportDelayTimer = new TopgunTimer();
+        Timer teleportDelayTimer = new Timer();
         bool m_teleportUsed = false;
 
         public delegate void TeleportAction();
@@ -47,7 +47,7 @@ namespace Tamarrion {
         }
 
         public void ResetDelay() {
-            teleportDelayTimer.StartTimerBySeconds(teleportDelaySeconds);
+            teleportDelayTimer.Start(teleportDelaySeconds);
         }
 
         protected override void OnTriggerExit(Collider other) {
@@ -119,7 +119,7 @@ namespace Tamarrion {
 
             if (m_targetObject && otherTeleport) {
                 teleportDelayTimer.Update();
-                if (teleportDelayTimer.IsComplete)
+                if (teleportDelayTimer.IsFinished)
                     PerformTeleport();
             }
         }

@@ -6,14 +6,14 @@ namespace Tamarrion {
 		struct FadeClip {
 			public float m_fadeInTime, m_fadeOutTime;
 			public AudioClip m_clip;
-			public TopgunTimer m_fadeInTimer;
-			public TopgunTimer m_fadeOutTimer;
+			public Timer m_fadeInTimer;
+			public Timer m_fadeOutTimer;
 
 			public void StartFadeInTimer () {
-				m_fadeInTimer.StartTimerBySeconds (m_fadeInTime);
+				m_fadeInTimer.Start(m_fadeInTime);
 			}
 			public void StartFadeOutTimer () {
-				m_fadeOutTimer.StartTimerBySeconds (m_fadeOutTime);
+				m_fadeOutTimer.Start(m_fadeOutTime);
 			}
 		}
 
@@ -32,7 +32,7 @@ namespace Tamarrion {
 		void Update () {
 			if ( changeClip ) {
 				if ( PlayingClip.m_clip != null ) {
-					if ( PlayingClip.m_fadeOutTimer.IsComplete == false ) {
+					if ( PlayingClip.m_fadeOutTimer.IsFinished == false ) {
 
 					}
 				}

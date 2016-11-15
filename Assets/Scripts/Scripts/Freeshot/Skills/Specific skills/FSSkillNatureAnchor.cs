@@ -19,7 +19,7 @@ namespace Tamarrion {
         bool arrowVisible = false;
 
         int currentSecondDuration;
-        TopgunTimer secondDurationTimer = new TopgunTimer();
+        Timer secondDurationTimer = new Timer();
 
         void Start() {
             noPlacementDefault = noPlacement;
@@ -75,7 +75,7 @@ namespace Tamarrion {
         }
 
         void ResetSecondsTimerAndDisplayDuration() {
-            secondDurationTimer.StartTimerBySeconds(1f);
+            secondDurationTimer.Start(1f);
             ErrorBar.instance.SpawnText(currentSecondDuration.ToString(), SkillManager.GetElement(FSSkillElement.FS_Elem_Nature).Color);
         }
 
@@ -84,7 +84,7 @@ namespace Tamarrion {
                 ArrowRangeCheck();
 
                 secondDurationTimer.Update();
-                if (secondDurationTimer.IsComplete) {
+                if (secondDurationTimer.IsFinished) {
                     --currentSecondDuration;
                     if (currentSecondDuration == 0) {
                         RemoveAnchor();

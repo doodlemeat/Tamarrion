@@ -5,7 +5,7 @@ namespace Tamarrion {
 		public static WingProgressionBase instance;
 
 		public float initTime = 0.2f;
-		TopgunTimer initTimer = new TopgunTimer ();
+		Timer initTimer = new Timer();
 		protected Dictionary<string, WingProgression> WingProgressions = new Dictionary<string, WingProgression> ();
 
 		void Awake () {
@@ -24,7 +24,7 @@ namespace Tamarrion {
 		bool initDone = false;
 
 		void Start () {
-			initTimer.StartTimerBySeconds (initTime);
+			initTimer.Start(initTime);
 		}
 
 		void Update () {
@@ -32,7 +32,7 @@ namespace Tamarrion {
 				return;
 
 			initTimer.Update ();
-			if ( initTimer.IsComplete ) {
+			if ( initTimer.IsFinished ) {
 				initDone = true;
 
 				Initialize ();

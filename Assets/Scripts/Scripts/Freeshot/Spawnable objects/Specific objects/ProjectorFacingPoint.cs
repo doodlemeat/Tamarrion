@@ -14,7 +14,7 @@ namespace Tamarrion {
 		Color defaultColor;
 		Color transparentColor;
 
-		TopgunTimer fadeTimer = new TopgunTimer ();
+		Timer fadeTimer = new Timer();
 
 		void Start () {
 			proj = GetComponent<Projector> ();
@@ -40,17 +40,17 @@ namespace Tamarrion {
 		}
 
 		void LerpColor () {
-			if ( lerpColorOn && !fadeTimer.IsComplete ) {
+			if ( lerpColorOn && !fadeTimer.IsFinished ) {
 				fadeTimer.Update ();
-				proj.material.SetColor ("_Color", Color.Lerp (defaultColor, transparentColor, fadeTimer.PercentComplete ()));
-				if ( fadeTimer.IsComplete ) {
+				proj.material.SetColor ("_Color", Color.Lerp (defaultColor, transparentColor, 1-fadeTimer.Progress()));
+				if ( fadeTimer.IsFinished) {
 					lerpColorOn = false;
 				}
 			}
-			else if ( lerpColorOff && !fadeTimer.IsComplete ) {
+			else if ( lerpColorOff && !fadeTimer.IsFinished) {
 				fadeTimer.Update ();
-				proj.material.SetColor ("_Color", Color.Lerp (transparentColor, defaultColor, fadeTimer.PercentComplete ()));
-				if ( fadeTimer.IsComplete ) {
+				proj.material.SetColor ("_Color", Color.Lerp (transparentColor, defaultColor, 1-fadeTimer.Progress()));
+				if ( fadeTimer.IsFinished) {
 					lerpColorOff = false;
 				}
 			}
@@ -60,7 +60,7 @@ namespace Tamarrion {
 			lerpColorOff = false;
 			if ( !p_instant ) {
 				lerpColorOn = true;
-				fadeTimer.StartTimerBySeconds (fadeTime);
+				fadeTimer.Start(fadeTime);
 			}
 			else
 				proj.material.SetColor ("_Color", defaultColor);
@@ -70,7 +70,7 @@ namespace Tamarrion {
 			lerpColorOn = false;
 			if ( !p_instant ) {
 				lerpColorOff = true;
-				fadeTimer.StartTimerBySeconds (fadeTime);
+				fadeTimer.Start(fadeTime);
 			}
 			else
 				proj.material.SetColor ("_Color", transparentColor);

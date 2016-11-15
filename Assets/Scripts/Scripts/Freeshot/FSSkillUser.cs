@@ -156,7 +156,7 @@ namespace Tamarrion {
             if (p_skill == null || p_skill == m_currentSkill)
                 return;
 
-            if (!p_skill.cooldownTimer.IsComplete) {
+            if (!p_skill.cooldownTimer.IsFinished) {
                 if (ErrorBar.instance)
                     ErrorBar.instance.SpawnText("Cooldown active");
 
@@ -220,7 +220,7 @@ namespace Tamarrion {
             player.playerStats.Remove_Modifier("freeshot_casting_ms");
             playerMovement.RemoveMoveBlock("freeshot");
             playerMovement.RemoveRotationBlock("freeshot");
-            m_currentSkill.cooldownTimer.StartTimerBySeconds(m_currentSkill.cooldown);
+            m_currentSkill.cooldownTimer.Start(m_currentSkill.cooldown);
         }
 
         void StartPerformingSkill() {
