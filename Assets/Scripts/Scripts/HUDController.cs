@@ -47,7 +47,7 @@ namespace Tamarrion {
 			if ( StatsScreen == null )
 				return;
 
-			MouseHider.instance.SetForceShow (true);
+			// MouseHider.instance.SetForceShow (true);
 			StatsScreen.SetActive (true);
 			StatsScreen.GetComponent<FightStatsScreen> ().SetVictory (p_victory);
 		}

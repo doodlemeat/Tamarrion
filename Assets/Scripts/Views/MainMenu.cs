@@ -24,16 +24,12 @@ namespace Tamarrion {
 
 		void HideMenu () {
 			MainMenuRegion.IsVisible.Value = false;
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
 			Trigger (new IngameMenuCloseEvent ());
 			Debug.Log ("Menu hide");
 		}
 
 		void ShowMenu () {
 			MainMenuRegion.IsVisible.Value = true;
-			Cursor.lockState = CursorLockMode.None;
-			Cursor.visible = true;
 			Trigger (new IngameMenuOpenEvent ());
 			Debug.Log ("Menu show");
 		}

@@ -53,7 +53,7 @@ namespace Tamarrion {
         void Deactivate() {
             Active = false;
 
-            MouseHider.instance.SetForceShow(false);
+            //MouseHider.instance.SetForceShow(false);
 
             Player.player.InMenu = false;
             Time.timeScale = 1;

@@ -53,13 +53,13 @@ namespace Tamarrion {
 
 		void Hide () {
 			canvas.enabled = false;
-			MouseHider.instance.SetForceShow(false);
+			//MouseHider.instance.SetForceShow(false);
 		}
 
 		void Show () {
 			canvas.enabled = true;
-			MouseHider.instance.SetForceShow(true);
-			Cursor.lockState = CursorLockMode.None;
+			//MouseHider.instance.SetForceShow(true);
+			//Cursor.lockState = CursorLockMode.None;
 		}
 
 		public void Close() {
