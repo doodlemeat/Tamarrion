@@ -67,7 +67,7 @@ public class Evade : MyMonoBehaviour {
                 CancelEvade();
             }
             else
-                PlayerStats.instance.Add_Modifier("Roll_MS", "movement_speed", 0, SpeedCurve.Evaluate(rollTimer.Progress()));
+                PlayerStats.instance.Add_Modifier("Roll_MS", Property.MovementSpeed, 0, SpeedCurve.Evaluate(rollTimer.Progress()));
         }
         else if (GodModeOn)
         {
@@ -129,8 +129,8 @@ public class Evade : MyMonoBehaviour {
 
         if (PlayerStats.instance)
         {
-            PlayerStats.instance.Add_Modifier("roll_invul", "damage_reduction", 1);
-            PlayerStats.instance.Add_Modifier("Roll_MS", "movement_speed", 0, SpeedCurve.Evaluate(1));
+            PlayerStats.instance.Add_Modifier("roll_invul", Property.DamageReduction, 1);
+            PlayerStats.instance.Add_Modifier("Roll_MS", Property.MovementSpeed, 0, SpeedCurve.Evaluate(1));
         }
 
         animator.SetBool("Rolling", true);

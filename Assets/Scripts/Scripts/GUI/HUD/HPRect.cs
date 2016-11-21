@@ -67,7 +67,7 @@ namespace Tamarrion {
             }
             //update percentage text
             if (TextPercent)
-                TextPercent.text = "" + (int)(((Target.GetStatValue("health") + Target.GetStatValue("shield")) / Target.GetStatValue("max_health")) * 100) + " %";
+                TextPercent.text = "" + (int)(((Target.GetStatValue(Property.Health) + Target.GetStatValue(Property.Shield)) / Target.GetStatValue(Property.MaxHealth)) * 100) + " %";
 
             //check if change has occurred
             if (CurrentPercent != PreviousPercent) {
@@ -94,7 +94,7 @@ namespace Tamarrion {
                 PreviousPercent = CurrentPercent;
             }
 
-            if (deactivateIfTargetDies && Target.m_stat["health"] == 0)
+            if (deactivateIfTargetDies && Target.m_stat[Property.Health] == 0)
                 gameObject.SetActive(false);
         }
     }

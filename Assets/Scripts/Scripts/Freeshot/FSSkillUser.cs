@@ -198,7 +198,7 @@ namespace Tamarrion {
                     playerMovement.AddMoveBlock("freeshot");
                 if (m_currentSkill.CastCanRotate == false)
                     playerMovement.AddRotationBlock("freeshot");
-                player.playerStats.Add_Modifier("freeshot_casting_ms", "movement_speed", 0, m_currentSkill.CastMovespeedMod);
+                player.playerStats.Add_Modifier("freeshot_casting_ms", Property.MovementSpeed, 0, m_currentSkill.CastMovespeedMod);
                 if (m_currentSkill.HasCastLoopAnimationName())
                     playerAnimator.SetBool(m_currentSkill.CastLoopAnimationName, true);
                 PlayerCastbar.castbar.OnSpellcast(m_currentSkill);
@@ -233,7 +233,7 @@ namespace Tamarrion {
                     playerMovement.AddMoveBlock("freeshot");
                 if (m_currentSkill.PerformCanRotate == false)
                     playerMovement.AddRotationBlock("freeshot");
-                player.playerStats.Add_Modifier("freeshot_perform_ms", "movement_speed", 0, m_currentSkill.PerformMovespeedMod);
+                player.playerStats.Add_Modifier("freeshot_perform_ms", Property.MovementSpeed, 0, m_currentSkill.PerformMovespeedMod);
             }
             else
                 m_performTimer.Finish();
@@ -273,7 +273,7 @@ namespace Tamarrion {
                 playerMovement.AddMoveBlock("freeshot");
             if (m_currentSkill.ChannelingCanRotate == false)
                 playerMovement.AddRotationBlock("freeshot");
-            player.playerStats.Add_Modifier("freeshot_perform_ms", "movement_speed", 0, m_currentSkill.ChannelingMovespeedMod);
+            player.playerStats.Add_Modifier("freeshot_perform_ms", Property.MovementSpeed, 0, m_currentSkill.ChannelingMovespeedMod);
 
             m_currentSkill.ChannelStart();
         }
@@ -302,7 +302,7 @@ namespace Tamarrion {
                     playerMovement.AddMoveBlock("freeshot");
                 if (m_currentSkill.RecoverCanRotate == false)
                     playerMovement.AddRotationBlock("freeshot");
-                player.playerStats.Add_Modifier("freeshot_recover_ms", "movement_speed", 0, m_currentSkill.RecoverMovespeedMod);
+                player.playerStats.Add_Modifier("freeshot_recover_ms", Property.MovementSpeed, 0, m_currentSkill.RecoverMovespeedMod);
             }
             else
                 m_recoverTimer.Finish();

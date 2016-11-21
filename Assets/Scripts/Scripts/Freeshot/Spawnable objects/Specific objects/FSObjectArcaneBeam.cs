@@ -131,8 +131,8 @@ namespace Tamarrion {
                 float totalDamage = DamageAmount[m_currentUpgradeLevel];
                 bool crit = (PlayerStats.instance ? PlayerStats.instance.GetCrit() : false);
                 if (PlayerStats.instance) {
-                    totalDamage += PlayerStats.instance.GetStatValue("magical") * MagicDamagePercentage;
-                    totalDamage *= (crit ? PlayerStats.instance.GetStatValue("crit_damage") : 1.0f);
+                    totalDamage += PlayerStats.instance.GetStatValue(Property.MagicalDamage) * MagicDamagePercentage;
+                    totalDamage *= (crit ? PlayerStats.instance.GetStatValue(Property.CriticalDamage) : 1.0f);
                 }
 
                 m_hitTarget.GetComponent<Enemy_Stats>().DealDamage(totalDamage, crit);

@@ -128,7 +128,7 @@ namespace Tamarrion {
                 }
             }
 
-            if (!IsDead() && playerStats.m_stat["health"] <= 0) {
+            if (!IsDead() && playerStats.m_stat[Property.Health] <= 0) {
                 //Debug.Log("Die");
                 GodManager.Instance.deactivate_current_god();
                 if (FSSkillUser.instance)
@@ -158,7 +158,7 @@ namespace Tamarrion {
             if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && Input.GetKeyDown(KeyCode.B)) {
                 if (Valac.instance) {
                     CombatStats valacStats = Valac.instance.GetComponent<CombatStats>();
-                    valacStats.DealDamage(valacStats.GetStatValue("max_health") * 0.1f);
+                    valacStats.DealDamage(valacStats.GetStatValue(Property.MaxHealth) * 0.1f);
                 }
             }
 #endif
@@ -250,7 +250,7 @@ namespace Tamarrion {
         }
 
 		public bool IsDead() {
-			return playerStats.m_stat["health"] <= 0;
+			return playerStats.m_stat[Property.Health] <= 0;
 		}
 
         public static bool GameObjectIsPlayer(GameObject p_obj) {

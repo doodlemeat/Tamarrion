@@ -81,7 +81,7 @@ namespace Tamarrion {
                 CameraController.instance.gameObject.transform.rotation = SkipCameraPos.rotation;
             }
 
-            PlayerStats.instance.m_stat["health"] = PlayerStats.instance.m_stat["max_health"];
+            PlayerStats.instance.m_stat[Property.Health] = PlayerStats.instance.m_stat[Property.MaxHealth];
             OrbSystem.Instance.DestroyAllOrbs();
         }
 

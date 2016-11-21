@@ -35,7 +35,7 @@ namespace Tamarrion {
         }
         protected override void OnExit() {
             Valac.instance.gameObject.GetComponentInChildren<Animator>().SetBool("Whirl", false);
-            m_Enemy_Stats.Add_Modifier(Buff_Debuff + "_stunned", "stun", 5.0f, 1.0f);
+            m_Enemy_Stats.ApplyStatusEffect(new StunEffect(5));
             BuffManager.boss_buffs.AddBuff(Buff_Debuff + "_stunned", Valac.instance.gameObject, stun_duration, stunned_texture);
         }
     }

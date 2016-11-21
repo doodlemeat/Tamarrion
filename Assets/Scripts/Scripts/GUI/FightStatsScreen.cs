@@ -94,7 +94,7 @@ namespace Tamarrion {
                 StatsText.text += DifficultyManager.current.ToString() + "\n";
             //boss health
             if (!p_victory)
-                StatsText.text += (int)(Valac.instance.GetComponent<CombatStats>().GetPercentageHP() * 100) + "% (" + (int)Valac.instance.GetComponent<CombatStats>().m_stat["health"] + " health)\n";
+                StatsText.text += (int)(Valac.instance.GetComponent<CombatStats>().GetPercentageHP() * 100) + "% (" + (int)Valac.instance.GetComponent<CombatStats>().m_stat[Property.Health] + " health)\n";
             //time
             int hours = (int)(SavedStats_Time / 60.0f / 60.0f);
             int minutes = (int)(SavedStats_Time / 60.0f);

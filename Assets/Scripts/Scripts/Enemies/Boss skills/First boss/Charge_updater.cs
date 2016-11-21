@@ -32,7 +32,7 @@ namespace Tamarrion {
 
         protected override void OnHitEffect() {
             Debug.Log("Player stunned");
-            m_player.GetComponent<CombatStats>().Add_Modifier(Buff_Debuff + "_stunned", "stun", 5.0f, 1.0f);
+            m_player.GetComponent<CombatStats>().ApplyStatusEffect(new StunEffect(5));
             //BuffManager.player_buffs.AddBuff(Buff_Debuff + "_stunned", Valac.instance.gameObject, stun_tam_duration, stunned_texture);
             m_player_hit = true;
         }
@@ -44,7 +44,7 @@ namespace Tamarrion {
             Valac.instance.GetComponentInChildren<Animator>().SetBool("Charge", false);
             m_hit = false;
             if (!m_player_hit) {
-                m_Enemy_Stats.Add_Modifier(Buff_Debuff + "_stunned", "stun", 5.0f, 1.0f);
+                m_Enemy_Stats.ApplyStatusEffect(new StunEffect(5));
                 BuffManager.boss_buffs.AddBuff(Buff_Debuff + "_stunned", Valac.instance.gameObject, stun_self_duration, stunned_texture);
             }
             //m_boss.transform.rotation *= new Vector4(0, 0, 0, -1);

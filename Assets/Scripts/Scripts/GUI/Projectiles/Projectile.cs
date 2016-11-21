@@ -75,8 +75,8 @@ namespace Tamarrion {
         void HitEnemy(GameObject p_enemy) {
             p_enemy.GetComponent<Enemy_Stats>().DealDamage(damage, crit);
             if (heavy) {
-                p_enemy.GetComponent<CombatStats>().Add_Modifier("Projectile Stun", "stun", 1);
-                p_enemy.GetComponent<CombatStats>().Add_Modifier("Projectile DR", "damage_reduction", vulnerability);
+                p_enemy.GetComponent<CombatStats>().ApplyStatusEffect(new StunEffect(1));
+                p_enemy.GetComponent<CombatStats>().Add_Modifier("Projectile DR", Property.DamageReduction, vulnerability);
             }
         }
     }

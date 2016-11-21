@@ -49,7 +49,7 @@ namespace Tamarrion {
             if (PlayerMovement.instance)
                 PlayerMovement.instance.forceDirection(PlayerMovement.instance.transform.forward);
 
-            Player.player.playerStats.Add_Modifier("Charge_MS", "movement_speed", 0, channelingSpeedCurve.Evaluate(FSSkillUser.m_channelTimer.Progress()));
+            Player.player.playerStats.Add_Modifier("Charge_MS", Property.MovementSpeed, 0, channelingSpeedCurve.Evaluate(FSSkillUser.m_channelTimer.Progress()));
 
             SpawnStartEffect();
             SpawnCollisionObject();
@@ -91,7 +91,7 @@ namespace Tamarrion {
             PlayerMovement.instance.RemoveMoveBlock("attack");
 
             Player.player.playerStats.Remove_Modifier("Charge_MS");
-            Player.player.playerStats.Add_Modifier("Charge_MS", "movement_speed", 0, curveEvaluation);
+            Player.player.playerStats.Add_Modifier("Charge_MS", Property.MovementSpeed, 0, curveEvaluation);
 
             var rumble = CameraEffectManager.Instance.Create<Rumble>();
             rumble._speed = curveEvaluation * 2;

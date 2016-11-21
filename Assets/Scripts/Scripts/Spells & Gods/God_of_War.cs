@@ -21,7 +21,7 @@ namespace Tamarrion {
             if (_currentHits >= _hits) {
                 //To-Do (Tomas 2015-12-17): FIXA SÅ DET FUNKAR MED Enemy_List
                 BuffManager.boss_buffs.AddBuff("Stun", Valac.instance.gameObject, _stunDuration, _buffIcon);
-                Valac.instance.GetComponent<Enemy_Stats>().Add_Modifier("Stun", "stun", 1);
+                Valac.instance.GetComponent<Enemy_Stats>().ApplyStatusEffect(new StunEffect(1));
                 _currentHits = 0;
             }
         }

@@ -78,7 +78,7 @@ namespace Tamarrion {
 
 			if ( Active && !Activated )
 				Activate ();
-			if ( Alive && m_player.GetComponent<CombatStats> ().m_stat["health"] > 0.0f ) {
+			if ( Alive && m_player.GetComponent<CombatStats> ().m_stat[Property.Health] > 0.0f ) {
 				Observe ();
 				m_update_time += Time.deltaTime;
 				if ( m_update_time >= m_time_to_update && !m_animator.GetBool ("Stunned") ) {
@@ -119,7 +119,7 @@ namespace Tamarrion {
 				Observe_Specific ();
 			}
 
-			if ( Alive && gameObject.GetComponent<CombatStats> ().m_stat["health"] <= 0.0f ) {
+			if ( Alive && gameObject.GetComponent<CombatStats> ().m_stat[Property.Health] <= 0.0f ) {
 				Death ();
 			}
 		}

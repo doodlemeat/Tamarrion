@@ -79,7 +79,7 @@ namespace Tamarrion {
 			}
 
 			// Scale the movement direction by the movement speed
-			float movementSpeed = playerStats.m_stat["movement_speed"];
+			float movementSpeed = playerStats.m_stat[Property.MovementSpeed];
 			moveDirection.x *= movementSpeed;
 			moveDirection.z *= movementSpeed;
 			float currentSpeed = new Vector2(moveDirection.x, moveDirection.z).magnitude;

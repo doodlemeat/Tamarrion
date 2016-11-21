@@ -201,29 +201,27 @@ namespace Tamarrion {
 					if ( itemScript.stats[(int)StatsItem.EStatType.Health].value > 0 ) {
 						float health_percent = PlayerStats.instance.GetPercentageHP ();
 						//Debug.Log("health: " + playerStats.m_stat["health"] + " max health: " + playerStats.m_stat["max_health"] + " percentage: " + health_percent);
-						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_maxhealth", "max_health", itemScript.stats[(int)StatsItem.EStatType.Health].value);
-						PlayerStats.instance.m_stat["health"] = PlayerStats.instance.m_stat["max_health"] * health_percent;
+						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_maxhealth", Property.MaxHealth, itemScript.stats[(int)StatsItem.EStatType.Health].value);
+						PlayerStats.instance.m_stat[Property.Health] = PlayerStats.instance.m_stat[Property.MaxHealth] * health_percent;
 					}
 					if ( itemScript.stats[(int)StatsItem.EStatType.DamageReduction].value > 0 )
-						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_damagereduction", "damage_reduction", itemScript.stats[(int)StatsItem.EStatType.DamageReduction].value);
+						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_damagereduction", Property.DamageReduction, itemScript.stats[(int)StatsItem.EStatType.DamageReduction].value);
 					if ( itemScript.stats[(int)StatsItem.EStatType.Armor].value > 0 )
-						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_armor", "armor", itemScript.stats[(int)StatsItem.EStatType.Armor].value);
+						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_armor", Property.DamageReduction, itemScript.stats[(int)StatsItem.EStatType.Armor].value);
 					if ( itemScript.stats[(int)StatsItem.EStatType.Damage].value > 0 )
-						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_damage", "damage", itemScript.stats[(int)StatsItem.EStatType.Damage].value);
+						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_damage", Property.Damage, itemScript.stats[(int)StatsItem.EStatType.Damage].value);
 					if ( itemScript.stats[(int)StatsItem.EStatType.Physical].value > 0 )
-						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_physical", "physical", itemScript.stats[(int)StatsItem.EStatType.Physical].value);
+						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_physical", Property.PhysicalDamage, itemScript.stats[(int)StatsItem.EStatType.Physical].value);
 					if ( itemScript.stats[(int)StatsItem.EStatType.Magical].value > 0 )
-						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_magical", "magical", itemScript.stats[(int)StatsItem.EStatType.Magical].value);
+						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_magical", Property.MagicalDamage, itemScript.stats[(int)StatsItem.EStatType.Magical].value);
 					if ( itemScript.stats[(int)StatsItem.EStatType.CritChance].value > 0 )
-						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_critchance", "crit_chance", itemScript.stats[(int)StatsItem.EStatType.CritChance].value);
+						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_critchance", Property.CriticalChance, itemScript.stats[(int)StatsItem.EStatType.CritChance].value);
 					if ( itemScript.stats[(int)StatsItem.EStatType.CritDamage].value > 0 )
-						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_critdamage", "crit_damage", itemScript.stats[(int)StatsItem.EStatType.CritDamage].value);
-					if ( itemScript.stats[(int)StatsItem.EStatType.MultiStrike].value > 0 )
-						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_multistrike", "multistrike", itemScript.stats[(int)StatsItem.EStatType.MultiStrike].value);
+						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_critdamage", Property.CriticalDamage, itemScript.stats[(int)StatsItem.EStatType.CritDamage].value);
 					if ( itemScript.stats[(int)StatsItem.EStatType.Cooldown].value > 0 )
-						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_cooldownreduction", "cooldown_reduction", itemScript.stats[(int)StatsItem.EStatType.Cooldown].value);
+						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_cooldownreduction", Property.CooldownReduction, itemScript.stats[(int)StatsItem.EStatType.Cooldown].value);
 					if ( itemScript.stats[(int)StatsItem.EStatType.MovementSpeed].value > 0 )
-						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_movementspeed", "movement_speed", itemScript.stats[(int)StatsItem.EStatType.MovementSpeed].value);
+						PlayerStats.instance.Add_Modifier (itemScript.itemName + "_movementspeed", Property.MovementSpeed, itemScript.stats[(int)StatsItem.EStatType.MovementSpeed].value);
 				}
 			}
 			//PlayerStats.instance.PrintModifiers();

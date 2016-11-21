@@ -6,9 +6,9 @@ namespace Tamarrion {
 		public bool blockMovement = true, blockRotation = true;
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 			if (blockMovement)
-				Valac.instance.GetComponent<Enemy_Stats>().Add_Modifier("start_skill_movement", "movement_speed", 0.0f, 0.0f);
+				Valac.instance.GetComponent<Enemy_Stats>().Add_Modifier("start_skill_movement", Property.MovementSpeed, 0.0f, 0.0f);
 			if (blockRotation)
-				Valac.instance.GetComponent<Enemy_Stats>().Add_Modifier("start_skill_rotation", "rotation_speed", 0.0f, 0.0f);
+				Valac.instance.GetComponent<Enemy_Stats>().Add_Modifier("start_skill_rotation", Property.RotationSpeed, 0.0f, 0.0f);
 		}
 
 		override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {

@@ -48,11 +48,11 @@ namespace Tamarrion {
         void Update() {
             if (liquid_love_equipped) {
                 liquid_love_time_no_damage += Time.deltaTime;
-                if (liquid_love_last_hp > m_stat["health"]) {
+                if (liquid_love_last_hp > m_stat[Property.Health]) {
                     liquid_love_time_no_damage = 0.0f;
                     liquid_love_hot_time = 0.0f;
                 }
-                liquid_love_last_hp = m_stat["health"];
+                liquid_love_last_hp = m_stat[Property.Health];
                 if (liquid_love_time_no_damage > liquid_love_no_damage_time) {
                     liquid_love_hot_time += Time.deltaTime;
                     if (liquid_love_hot_time > liquid_love_tick_time) {
@@ -61,6 +61,8 @@ namespace Tamarrion {
                     }
                 }
             }
+
+            base.Update();
         }
 
         public override void HealFlat(float p_amount) {
@@ -70,7 +72,7 @@ namespace Tamarrion {
                 if (InventoryManager.inventoryManager.equipped[4] == i && InventoryManager.inventoryManager.AvailableItems[i].GetComponent<BaseItem>().itemName == "Perkulator") {
                     if (Random.Range(0.0f, 100.0f) <= percent_to_gain_speed_by_perk) {
                         Remove_Modifier("perkulator_speed");
-                        Add_Modifier("perkulator_speed", "movement_speed", 0.0f, perk_speed_boost);
+                        Add_Modifier("perkulator_speed", Property.MovementSpeed, 0.0f, perk_speed_boost);
                         BuffManager.player_buffs.AddBuff("perkulator_speed", Player.player.gameObject, perk_speed_duration, InventoryManager.inventoryManager.AvailableItems[i].GetComponent<BaseItem>().itemIcon);
                     }
                     break;
@@ -114,8 +116,8 @@ namespace Tamarrion {
                 reanimator_used = true;
                 if (ReanimParticleSys)
                     Instantiate(ReanimParticleSys, Player.player.gameObject.transform.position, ReanimParticleSys.transform.rotation);
-                m_stat["health"] = reanimator_health_flat;
-                m_stat["health"] += m_stat["max_health"] * reanimator_health_percent;
+                m_stat[Property.Health] = reanimator_health_flat;
+                m_stat[Property.Health] += m_stat[Property.MaxHealth] * reanimator_health_percent;
             }
             reanimator_used = true;
         }

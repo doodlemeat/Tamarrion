@@ -16,8 +16,8 @@ namespace Tamarrion {
                     float totalDamage = ChargeHitDamage;
                     bool crit = (PlayerStats.instance ? PlayerStats.instance.GetCrit() : false);
                     if (PlayerStats.instance) {
-                        totalDamage += PlayerStats.instance.GetStatValue("physical") * PhysicalDamagePercentage;
-                        totalDamage *= (crit ? PlayerStats.instance.GetStatValue("crit_damage") : 1.0f);
+                        totalDamage += PlayerStats.instance.GetStatValue(Property.PhysicalDamage) * PhysicalDamagePercentage;
+                        totalDamage *= (crit ? PlayerStats.instance.GetStatValue(Property.CriticalDamage) : 1.0f);
                     }
 
                     other.gameObject.transform.parent.GetComponent<Enemy_Stats>().DealDamage(totalDamage, crit);

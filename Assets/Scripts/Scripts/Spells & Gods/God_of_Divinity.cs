@@ -126,7 +126,7 @@ namespace Tamarrion {
                 CollisionIgnoranceManager.SetCollisionBetweenPlayerAndChosenCollider(projectileObject.GetComponent<Collider>(), false);
                 Projectile projectileScript = projectileObject.GetComponent<Projectile>();
                 projectileScript.speed = _speed;
-                projectileScript.damage = e.damage + Random.Range(_damageMin, _damageMax) + (PlayerStats.instance ? PlayerStats.instance.GetStatValue("magical") : 0);
+                projectileScript.damage = e.damage + Random.Range(_damageMin, _damageMax) + (PlayerStats.instance ? PlayerStats.instance.GetStatValue(Property.MagicalDamage) : 0);
                 // TODO projectileScript.crit = attackInfo._crit;
                 projectileScript.UpdateVelocity();
             }

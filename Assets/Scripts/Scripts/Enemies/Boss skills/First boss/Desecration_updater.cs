@@ -45,7 +45,7 @@ namespace Tamarrion {
         }
         protected override void OnHitEffect() {
             m_player.GetComponent<CombatStats>().Remove_Modifier("desecration_slow");
-            m_player.GetComponent<CombatStats>().Add_Modifier("desecration_slow", "movement_speed", 0.0f, slow_amount);
+            m_player.GetComponent<CombatStats>().Add_Modifier("desecration_slow", Property.MovementSpeed, 0.0f, slow_amount);
             BuffManager.player_buffs.AddBuff("desecration_slow", Player.player.gameObject, slow_time, slow_texture);
         }
     }

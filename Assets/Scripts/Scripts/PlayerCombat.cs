@@ -42,7 +42,7 @@ namespace Tamarrion {
 			}
 
 			// FIXME Shouldn't this be in the Player class?
-			if (playerStats.m_stat["health"] <= 0) {
+			if (playerStats.m_stat[Property.Health] <= 0) {
 				animator.SetBool("Dead", true);
 				return;
 			}
@@ -120,7 +120,7 @@ namespace Tamarrion {
 
 		private bool EnemyInRange(Player player, GameObject enemy) {
 			float distance = Vector3.Distance(player.gameObject.transform.position, enemy.transform.position);
-			return distance < player.playerStats.m_stat["attack_range"];
+			return distance < player.playerStats.m_stat[Property.AttackRange];
 		}
 
 		private bool EnemyInArc(Player player, GameObject enemy) {

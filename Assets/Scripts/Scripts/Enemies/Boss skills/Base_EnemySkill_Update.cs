@@ -51,8 +51,8 @@ namespace Tamarrion {
 
 
 
-            m_Enemy_Stats.Add_Modifier(Buff_Debuff + "_movement", "movement_speed", 0.0f, Movement_modifier[(int)DifficultyManager.current]);
-            m_Enemy_Stats.Add_Modifier(Buff_Debuff + "_rotation", "rotation_speed", 0.0f, Rotation_modifier[(int)DifficultyManager.current]);
+            m_Enemy_Stats.Add_Modifier(Buff_Debuff + "_movement", Property.MovementSpeed, 0.0f, Movement_modifier[(int)DifficultyManager.current]);
+            m_Enemy_Stats.Add_Modifier(Buff_Debuff + "_rotation", Property.RotationSpeed, 0.0f, Rotation_modifier[(int)DifficultyManager.current]);
 
             m_skill_activated = false;
             m_Enemy_Stats.DamageTaken = false;
@@ -62,7 +62,7 @@ namespace Tamarrion {
                 EndSkill();
             if (HitInterruptable && m_Enemy_Stats.DamageTaken)
                 EndSkill();
-            if (StunInterruptable && m_Enemy_Stats.Stunned && (m_time_casted < Casting_time || ActiveInterruptable))
+            if (StunInterruptable && m_Enemy_Stats.inStatusEffect(StatusEffectType.Stun) && (m_time_casted < Casting_time || ActiveInterruptable))
                 EndSkill();
 
             particle_time += Time.deltaTime;
