@@ -21,7 +21,6 @@ namespace Tamarrion {
 
 		private float currentMoveSpeed = 1.0f;
 		private bool forceDirectionActive = false;
-		private bool inMenu = false;
 		private bool strafingLeft = false,
 			strafingRight = false,
 			movingBackwards = false;
