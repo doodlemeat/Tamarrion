@@ -5,49 +5,34 @@
 // Extend this class further when neccessary
 
 namespace Tamarrion {
-	public class Cheat : MyMonoBehaviour {
-		[SerializeField]
-		string valacTeleportKey = "f1";
+    public class Cheat : MyMonoBehaviour {
+        [SerializeField]
+        private string firstBossTeleportKey = "f1";
 
-		[SerializeField]
-		string valacTeleportKeyBeforeActivate = "f2";
+        [SerializeField]
+        private string secondBossTeleportKey = "f1";
 
-		[SerializeField]
-		string nithTeleportKey = "f3";
+        [SerializeField]
+        private string thirdBossTeleportKey = "f3";
 
-		[SerializeField]
-		string nithTeleportKeyBeforeActive = "f4";
+        public Transform firstBossTeleportPosition;
+        public Transform secondBossTeleportPosition;
+        public Transform thirdBossTeleportPosition;
 
-		[SerializeField]
-		Transform valacTeleportPosition;
+        void Update() {
+            if (Application.isEditor) {
+                if (Input.GetKeyDown(firstBossTeleportKey.ToLower())) {
+                    Player.player.transform.position = firstBossTeleportPosition.position;
+                }
 
-		[SerializeField]
-		Transform valacTeleportPositionBeforeActivate;
+                if (Input.GetKeyDown(secondBossTeleportKey.ToLower())) {
+                    Player.player.transform.position = secondBossTeleportPosition.position;
+                }
 
-		[SerializeField]
-		Transform nithTeleportPosition;
-
-		[SerializeField]
-		Transform nithTeleportPositionBeforeActive;
-
-		void Update() {
-			if ( Application.isEditor ) {
-				if ( Input.GetKeyDown (valacTeleportKey.ToLower()) ) {
-					Player.player.transform.position = valacTeleportPosition.position;
-				}
-
-				if ( Input.GetKeyDown (nithTeleportKey.ToLower()) ) {
-					Player.player.transform.position = nithTeleportPosition.position;
-				}
-
-				if ( Input.GetKeyDown (valacTeleportKeyBeforeActivate.ToLower ()) ) {
-					Player.player.transform.position = valacTeleportPositionBeforeActivate.position;
-				}
-
-				if ( Input.GetKeyDown (nithTeleportKeyBeforeActive.ToLower ()) ) {
-					Player.player.transform.position = nithTeleportPositionBeforeActive.position;
-				}
-			}
-		}
-	}
+                if (Input.GetKeyDown(thirdBossTeleportKey.ToLower())) {
+                    Player.player.transform.position = thirdBossTeleportPosition.position;
+                }
+            }
+        }
+    }
 }
