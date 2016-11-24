@@ -15,7 +15,6 @@ public class SmoothLookAt : MonoBehaviour {
 	public float minDistance = 10.0f;	//How far the target is from the camera
 	public string property = "";
 	
-	private Color color;
 	private float alpha = 1.0f;
 	private Transform _myTransform;
 	
@@ -25,15 +24,6 @@ public class SmoothLookAt : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		//		if(renderer.material.HasProperty(property)) {
-		//			color = renderer.material.GetColor(property);
-		//		}
-		//		else {
-		//			property = "";
-		//		}
-		//		if(rigidbody) {
-		//			rigidbody.freezeRotation = true;
-		//		}
 		
 	}
 	
@@ -61,12 +51,6 @@ public class SmoothLookAt : MonoBehaviour {
 					alpha = Mathf.Lerp(alpha, 1.0f, Time.deltaTime * 2.0f);
 					
 				}
-				//				if(!string.IsNullOrEmpty(property)) {
-				//					color.a = Mathf.Clamp(alpha, 0.0f, 1.0f);
-				
-				//					renderer.material.SetColor(property, color);
-				
-				//				}
 			}
 		}
 	}
