@@ -6,7 +6,6 @@ namespace Tamarrion {
         public Texture2D CursorTexture;
         public Vector2 Offset = new Vector2(0, 0);
         private bool showCursor;
-        private bool forceShowCursor = false;
 
         private void Start() {
             HideCursor();
