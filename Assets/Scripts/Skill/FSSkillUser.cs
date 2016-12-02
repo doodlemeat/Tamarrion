@@ -10,24 +10,24 @@ namespace Tamarrion {
         public PlayerMovement playerMovement;
         public Animator playerAnimator;
         public CameraController cameraController;
-        public Projector m_skillProjector;
-        public Projector m_chargeProjector;
-
-        public static List<GameObject> m_enemyList;
-
-        static public Timer m_castingTimer = new Timer();
-        static public Timer m_performTimer = new Timer();
-        static public Timer m_recoverTimer = new Timer();
-        static public Timer m_channelTimer = new Timer();
-
-        FSSkillBase m_currentSkill;
-
-        FSSkillPlacing currentPlacingMethod = FSSkillPlacing.FS_Placing_FromPlayer;
+        public Projector skillProjector;
+        public Projector chargeProjector;
         public float fromPlayerRange = 2.5f;
-        static bool m_SkillInUse = false;
-        Vector3 m_castingStartPosition;
-
         public List<string> skillBlockers = new List<string>();
+
+        private static List<GameObject> enemyList;
+
+        static public Timer castingTimer = new Timer();
+        static public Timer performTimer = new Timer();
+        static public Timer recoverTimer = new Timer();
+        static public Timer channelTimer = new Timer();
+
+        private FSSkillBase currentSkill;
+
+        private FSSkillPlacing currentPlacingMethod = FSSkillPlacing.FS_Placing_FromPlayer;
+        
+        private static bool SkillInUse = false;
+        private Vector3 castingStartPosition;
 
         void Awake() {
             instance = this;
@@ -41,8 +41,8 @@ namespace Tamarrion {
             UpdateInputs();
             UpdateCurrentSkill();
 
-            if (m_currentSkill != null
-                && SkillStateShouldShowProjector(m_currentSkill.GetCurrentState())
+            if (currentSkill != null
+                && SkillStateShouldShowProjector(currentSkill.GetCurrentState())
                 && currentPlacingMethod == FSSkillPlacing.FS_Placing_FreePlace) {
                 UpdatePositionToPlacing();
             }
@@ -62,7 +62,7 @@ namespace Tamarrion {
                     SetCurrentSkill(SkillManager.GetSkillInSlot(4));
 
                 if (Input.GetButtonDown("Attack")) {
-                    if (m_currentSkill != null && m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Inactive)
+                    if (currentSkill != null && currentSkill.GetCurrentState() == FSSkillStates.FS_State_Inactive)
                         StartCastingSkill();
                 }
 
@@ -73,58 +73,58 @@ namespace Tamarrion {
         }
 
         void TryToCancelCurrentSpell() {
-            if (!m_currentSkill)
+            if (!currentSkill)
                 return;
 
-            if (m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Inactive || m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Casting)
+            if (currentSkill.GetCurrentState() == FSSkillStates.FS_State_Inactive || currentSkill.GetCurrentState() == FSSkillStates.FS_State_Casting)
                 CancelCurrentSkill();
-            else if (m_currentSkill.CanBeCanceled && m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Channeling)
-                m_channelTimer.Finish();
+            else if (currentSkill.CanBeCanceled && currentSkill.GetCurrentState() == FSSkillStates.FS_State_Channeling)
+                channelTimer.Finish();
         }
 
         void UpdateCurrentSkill() {
-            if (m_currentSkill == null)
+            if (currentSkill == null)
                 return;
 
-            if (m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Casting) {
-                if (m_currentSkill.CastTime > 0 && m_currentSkill.CastCancelOnMove && (player.transform.position - m_castingStartPosition).magnitude > 0.1f) {
+            if (currentSkill.GetCurrentState() == FSSkillStates.FS_State_Casting) {
+                if (currentSkill.CastTime > 0 && currentSkill.CastCancelOnMove && (player.transform.position - castingStartPosition).magnitude > 0.1f) {
                     if (ErrorBar.instance)
                         ErrorBar.instance.SpawnText("Must stand still");
-                    m_castingTimer.Finish();
+                    castingTimer.Finish();
                     CancelCurrentSkill();
                     return;
                 }
 
-                m_castingTimer.Update();
-                if (m_castingTimer.IsFinished) {
+                castingTimer.Update();
+                if (castingTimer.IsFinished) {
                     FinishCastingSkill();
-                    m_currentSkill.AdvanceState();
+                    currentSkill.AdvanceState();
                     StartPerformingSkill();
                 }
             }
-            if (m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Perform) {
-                m_currentSkill.PerformUpdate();
-                m_performTimer.Update();
-                if (m_performTimer.IsFinished) {
+            if (currentSkill.GetCurrentState() == FSSkillStates.FS_State_Perform) {
+                currentSkill.PerformUpdate();
+                performTimer.Update();
+                if (performTimer.IsFinished) {
                     FinishPerformingSkill();
-                    if (m_currentSkill.isChanneling)
+                    if (currentSkill.isChanneling)
                         StartChannelingSkill();
                     else
                         StartRecoveringFromSkill();
                 }
             }
-            if (m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Channeling) {
-                m_currentSkill.ChannelUpdate();
-                m_channelTimer.Update();
-                if (m_channelTimer.IsFinished) {
+            if (currentSkill.GetCurrentState() == FSSkillStates.FS_State_Channeling) {
+                currentSkill.ChannelUpdate();
+                channelTimer.Update();
+                if (channelTimer.IsFinished) {
                     FinishChannelingSkill();
                     StartRecoveringFromSkill();
                 }
             }
-            if (m_currentSkill.GetCurrentState() == FSSkillStates.FS_State_Recover) {
-                m_currentSkill.RecoverUpdate();
-                m_recoverTimer.Update();
-                if (m_recoverTimer.IsFinished) {
+            if (currentSkill.GetCurrentState() == FSSkillStates.FS_State_Recover) {
+                currentSkill.RecoverUpdate();
+                recoverTimer.Update();
+                if (recoverTimer.IsFinished) {
                     FinishRecoveringSkill();
                 }
             }
@@ -141,19 +141,19 @@ namespace Tamarrion {
             player.playerStats.Remove_Modifier("freeshot_recover_ms");
             playerMovement.RemoveMoveBlock("freeshot");
             playerMovement.RemoveRotationBlock("freeshot");
-            if (m_currentSkill) {
-                m_currentSkill.ResetStateToInactive();
-                if (m_currentSkill.HasCastLoopAnimationName())
-                    playerAnimator.SetBool(m_currentSkill.CastLoopAnimationName, false);
+            if (currentSkill) {
+                currentSkill.ResetStateToInactive();
+                if (currentSkill.HasCastLoopAnimationName())
+                    playerAnimator.SetBool(currentSkill.CastLoopAnimationName, false);
             }
-            m_currentSkill = null;
-            m_SkillInUse = false;
+            currentSkill = null;
+            SkillInUse = false;
         }
 
         void SetCurrentSkill(FSSkillBase p_skill) {
             Debug.Log("FSSkillUser:SetCurrentSkill");
 
-            if (p_skill == null || p_skill == m_currentSkill)
+            if (p_skill == null || p_skill == currentSkill)
                 return;
 
             if (!p_skill.cooldownTimer.IsFinished) {
@@ -163,126 +163,126 @@ namespace Tamarrion {
                 return;
             }
 
-            if (m_currentSkill && m_currentSkill.GetCurrentState() != FSSkillStates.FS_State_Casting && m_currentSkill.GetCurrentState() != FSSkillStates.FS_State_Inactive) {
+            if (currentSkill && currentSkill.GetCurrentState() != FSSkillStates.FS_State_Casting && currentSkill.GetCurrentState() != FSSkillStates.FS_State_Inactive) {
                 return;
             }
 
             //TO-DO: code queueing of skills instead of cancelling
             CancelCurrentSkill();
 
-            m_currentSkill = p_skill;
-            m_SkillInUse = true;
+            currentSkill = p_skill;
+            SkillInUse = true;
             ResetCurrentSkill();
 
-            if (m_currentSkill.noPlacement)
+            if (currentSkill.noPlacement)
                 StartCastingSkill();
         }
 
         public static bool CurrentSkillIsActive() {
-            return m_SkillInUse;
+            return SkillInUse;
         }
 
         void StartCastingSkill() {
-            m_currentSkill.SetState(FSSkillStates.FS_State_Casting);
+            currentSkill.SetState(FSSkillStates.FS_State_Casting);
 
-            if (!m_currentSkill.noPlacement)
+            if (!currentSkill.noPlacement)
                 // FIXME PlayerCombat.instance.DisableAttackNextFrame();
 
-            if (m_currentSkill.HasCastAnimationName())
-                playerAnimator.SetBool(m_currentSkill.CastAnimationName, true);
+            if (currentSkill.HasCastAnimationName())
+                playerAnimator.SetBool(currentSkill.CastAnimationName, true);
 
-            if (m_currentSkill.CastTime > 0) {
-                m_castingTimer.Start(m_currentSkill.CastTime);
-                m_castingStartPosition = player.transform.position;
-                if (m_currentSkill.CastCanMove == false)
+            if (currentSkill.CastTime > 0) {
+                castingTimer.Start(currentSkill.CastTime);
+                castingStartPosition = player.transform.position;
+                if (currentSkill.CastCanMove == false)
                     playerMovement.AddMoveBlock("freeshot");
-                if (m_currentSkill.CastCanRotate == false)
+                if (currentSkill.CastCanRotate == false)
                     playerMovement.AddRotationBlock("freeshot");
-                player.playerStats.Add_Modifier("freeshot_casting_ms", Property.MovementSpeed, 0, m_currentSkill.CastMovespeedMod);
-                if (m_currentSkill.HasCastLoopAnimationName())
-                    playerAnimator.SetBool(m_currentSkill.CastLoopAnimationName, true);
-                PlayerCastbar.castbar.OnSpellcast(m_currentSkill);
+                player.playerStats.Add_Modifier("freeshot_casting_ms", Property.MovementSpeed, 0, currentSkill.CastMovespeedMod);
+                if (currentSkill.HasCastLoopAnimationName())
+                    playerAnimator.SetBool(currentSkill.CastLoopAnimationName, true);
+                PlayerCastbar.castbar.OnSpellcast(currentSkill);
             }
             else {
-                m_castingTimer.Finish();
-                if (m_currentSkill.HasFinishAnimationName())
-                    playerAnimator.SetBool(m_currentSkill.FinishAnimationName, true);
+                castingTimer.Finish();
+                if (currentSkill.HasFinishAnimationName())
+                    playerAnimator.SetBool(currentSkill.FinishAnimationName, true);
             }
         }
 
         void FinishCastingSkill() {
-            if (m_currentSkill.HasCastLoopAnimationName())
-                playerAnimator.SetBool(m_currentSkill.CastLoopAnimationName, false);
+            if (currentSkill.HasCastLoopAnimationName())
+                playerAnimator.SetBool(currentSkill.CastLoopAnimationName, false);
 
-            if (m_currentSkill.HasFinishAnimationName())
-                playerAnimator.SetBool(m_currentSkill.FinishAnimationName, true);
+            if (currentSkill.HasFinishAnimationName())
+                playerAnimator.SetBool(currentSkill.FinishAnimationName, true);
 
             player.playerStats.Remove_Modifier("freeshot_casting_ms");
             playerMovement.RemoveMoveBlock("freeshot");
             playerMovement.RemoveRotationBlock("freeshot");
-            m_currentSkill.cooldownTimer.Start(m_currentSkill.cooldown);
+            currentSkill.cooldownTimer.Start(currentSkill.cooldown);
         }
 
         void StartPerformingSkill() {
-            if (m_currentSkill.HasPerformAnimationName())
-                playerAnimator.SetBool(m_currentSkill.PerformAnimationName, true);
+            if (currentSkill.HasPerformAnimationName())
+                playerAnimator.SetBool(currentSkill.PerformAnimationName, true);
 
-            if (m_currentSkill.PerformTime > 0) {
-                m_performTimer.Start(m_currentSkill.PerformTime);
-                if (m_currentSkill.PerformCanMove == false)
+            if (currentSkill.PerformTime > 0) {
+                performTimer.Start(currentSkill.PerformTime);
+                if (currentSkill.PerformCanMove == false)
                     playerMovement.AddMoveBlock("freeshot");
-                if (m_currentSkill.PerformCanRotate == false)
+                if (currentSkill.PerformCanRotate == false)
                     playerMovement.AddRotationBlock("freeshot");
-                player.playerStats.Add_Modifier("freeshot_perform_ms", Property.MovementSpeed, 0, m_currentSkill.PerformMovespeedMod);
+                player.playerStats.Add_Modifier("freeshot_perform_ms", Property.MovementSpeed, 0, currentSkill.PerformMovespeedMod);
             }
             else
-                m_performTimer.Finish();
+                performTimer.Finish();
 
-            m_currentSkill.PerformStart();
+            currentSkill.PerformStart();
         }
 
         void FinishPerformingSkill() {
-            if (m_currentSkill.HasPerformAnimationName())
-                playerAnimator.SetBool(m_currentSkill.PerformAnimationName, false);
+            if (currentSkill.HasPerformAnimationName())
+                playerAnimator.SetBool(currentSkill.PerformAnimationName, false);
 
-            if (m_currentSkill.type == FSSkillType.FS_Type_Area) {
-                FSSkillArea areaSkill = (FSSkillArea)m_currentSkill;
-                areaSkill.SetSpawnPosition(m_skillProjector.transform.position + (m_skillProjector.transform.forward * (m_skillProjector.farClipPlane * 0.5f)));
-                areaSkill.SetSpawnRotation(m_skillProjector.transform.rotation * Quaternion.Euler(new Vector3(-90, 0, 0)));
+            if (currentSkill.type == FSSkillType.FS_Type_Area) {
+                FSSkillArea areaSkill = (FSSkillArea)currentSkill;
+                areaSkill.SetSpawnPosition(skillProjector.transform.position + (skillProjector.transform.forward * (skillProjector.farClipPlane * 0.5f)));
+                areaSkill.SetSpawnRotation(skillProjector.transform.rotation * Quaternion.Euler(new Vector3(-90, 0, 0)));
             }
             //add projectile spawn
-            m_currentSkill.ApplySkillEffect();
+            currentSkill.ApplySkillEffect();
             player.playerStats.Remove_Modifier("freeshot_perform_ms");
             playerMovement.RemoveMoveBlock("freeshot");
             playerMovement.RemoveRotationBlock("freeshot");
             HideSkillShape();
 
-            m_currentSkill.PerformEnd();
+            currentSkill.PerformEnd();
         }
 
         void StartChannelingSkill() {
-            PlayerCastbar.castbar.OnSpellcast(m_currentSkill, PlayerCastbar.CastState.Channel);
+            PlayerCastbar.castbar.OnSpellcast(currentSkill, PlayerCastbar.CastState.Channel);
 
-            m_currentSkill.SetState(FSSkillStates.FS_State_Channeling);
+            currentSkill.SetState(FSSkillStates.FS_State_Channeling);
 
-            if (m_currentSkill.HasChannelingAnimationName())
-                playerAnimator.SetBool(m_currentSkill.ChannelingAnimationName, true);
+            if (currentSkill.HasChannelingAnimationName())
+                playerAnimator.SetBool(currentSkill.ChannelingAnimationName, true);
 
-            m_channelTimer.Start(m_currentSkill.ChannelingTime);
-            if (m_currentSkill.ChannelingCanMove == false)
+            channelTimer.Start(currentSkill.ChannelingTime);
+            if (currentSkill.ChannelingCanMove == false)
                 playerMovement.AddMoveBlock("freeshot");
-            if (m_currentSkill.ChannelingCanRotate == false)
+            if (currentSkill.ChannelingCanRotate == false)
                 playerMovement.AddRotationBlock("freeshot");
-            player.playerStats.Add_Modifier("freeshot_perform_ms", Property.MovementSpeed, 0, m_currentSkill.ChannelingMovespeedMod);
+            player.playerStats.Add_Modifier("freeshot_perform_ms", Property.MovementSpeed, 0, currentSkill.ChannelingMovespeedMod);
 
-            m_currentSkill.ChannelStart();
+            currentSkill.ChannelStart();
         }
 
         void FinishChannelingSkill() {
-            m_currentSkill.ChannelEnd();
+            currentSkill.ChannelEnd();
 
-            if (m_currentSkill.HasChannelingAnimationName())
-                playerAnimator.SetBool(m_currentSkill.ChannelingAnimationName, false);
+            if (currentSkill.HasChannelingAnimationName())
+                playerAnimator.SetBool(currentSkill.ChannelingAnimationName, false);
 
             player.playerStats.Remove_Modifier("freeshot_perform_ms");
             playerMovement.RemoveMoveBlock("freeshot");
@@ -290,31 +290,31 @@ namespace Tamarrion {
         }
 
         void StartRecoveringFromSkill() {
-            m_currentSkill.SetState(FSSkillStates.FS_State_Recover);
+            currentSkill.SetState(FSSkillStates.FS_State_Recover);
             player.playerStats.Remove_Modifier("freeshot_perform_ms");
 
-            if (m_currentSkill.HasRecoverAnimationName())
-                playerAnimator.SetBool(m_currentSkill.RecoverAnimationName, true);
+            if (currentSkill.HasRecoverAnimationName())
+                playerAnimator.SetBool(currentSkill.RecoverAnimationName, true);
 
-            if (m_currentSkill.RecoverTime > 0) {
-                m_recoverTimer.Start(m_currentSkill.RecoverTime);
-                if (m_currentSkill.RecoverCanMove == false)
+            if (currentSkill.RecoverTime > 0) {
+                recoverTimer.Start(currentSkill.RecoverTime);
+                if (currentSkill.RecoverCanMove == false)
                     playerMovement.AddMoveBlock("freeshot");
-                if (m_currentSkill.RecoverCanRotate == false)
+                if (currentSkill.RecoverCanRotate == false)
                     playerMovement.AddRotationBlock("freeshot");
-                player.playerStats.Add_Modifier("freeshot_recover_ms", Property.MovementSpeed, 0, m_currentSkill.RecoverMovespeedMod);
+                player.playerStats.Add_Modifier("freeshot_recover_ms", Property.MovementSpeed, 0, currentSkill.RecoverMovespeedMod);
             }
             else
-                m_recoverTimer.Finish();
+                recoverTimer.Finish();
 
-            m_currentSkill.RecoverStart();
+            currentSkill.RecoverStart();
         }
 
         void FinishRecoveringSkill() {
-            m_currentSkill.RecoverEnd();
+            currentSkill.RecoverEnd();
 
-            if (m_currentSkill.HasRecoverAnimationName())
-                playerAnimator.SetBool(m_currentSkill.RecoverAnimationName, false);
+            if (currentSkill.HasRecoverAnimationName())
+                playerAnimator.SetBool(currentSkill.RecoverAnimationName, false);
 
             player.playerStats.Remove_Modifier("freeshot_recover_ms");
             playerMovement.RemoveMoveBlock("freeshot");
@@ -324,56 +324,56 @@ namespace Tamarrion {
 
         void CompleteCurrentSkill() {
             for (int i = 0; i < (int)FSSkillElement.FS_Elem_Count; ++i) {
-                int TempTributeGain = m_currentSkill.GetTributeGainByElement((FSSkillElement)i);
+                int TempTributeGain = currentSkill.GetTributeGainByElement((FSSkillElement)i);
 
                 if (TempTributeGain > 0) {
                     GodManager.Instance.AddTribute((FSSkillElement)i, TempTributeGain);
                 }
             }
 
-            GodManager.Instance.RemoveTribute(m_currentSkill.element, m_currentSkill.removeAmountGPPOnUse);
+            GodManager.Instance.RemoveTribute(currentSkill.element, currentSkill.removeAmountGPPOnUse);
 
-            if (m_currentSkill.removeAllGPPOnUse) {
-                GodManager.Instance.RemoveAllTribute(m_currentSkill.element);
+            if (currentSkill.removeAllGPPOnUse) {
+                GodManager.Instance.RemoveAllTribute(currentSkill.element);
             }
 
-            m_currentSkill.SkillEnd();
+            currentSkill.SkillEnd();
             playerMovement.RemoveMoveBlock("freeshot");
             playerMovement.RemoveRotationBlock("freeshot");
             CancelCurrentSkill();
         }
 
         void ResetCurrentSkill() {
-            m_currentSkill.SetState(FSSkillStates.FS_State_Inactive);
+            currentSkill.SetState(FSSkillStates.FS_State_Inactive);
             SetNewSkillShape();
             ShowSkillShape();
             UpdatePositionToPlacing();
         }
 
         void SetNewSkillShape() {
-            m_skillProjector.orthographic = true;
-            m_skillProjector.aspectRatio = (float)m_currentSkill.shapeTexture.width / (float)m_currentSkill.shapeTexture.height;
-            m_skillProjector.orthographicSize = m_currentSkill.shapeSize * 0.5f;
-			m_skillProjector.material.SetColor ("_Color", m_currentSkill.Element.Color);
-            m_skillProjector.material.SetTexture("_ShadowTex", m_currentSkill.shapeTexture);
-            currentPlacingMethod = m_currentSkill.placing;
+            skillProjector.orthographic = true;
+            skillProjector.aspectRatio = (float)currentSkill.shapeTexture.width / (float)currentSkill.shapeTexture.height;
+            skillProjector.orthographicSize = currentSkill.shapeSize * 0.5f;
+            skillProjector.material.SetColor ("_Color", currentSkill.Element.Color);
+            skillProjector.material.SetTexture("_ShadowTex", currentSkill.shapeTexture);
+            currentPlacingMethod = currentSkill.placing;
         }
 
         void ShowSkillShape() {
-            m_skillProjector.gameObject.SetActive(true);
+            skillProjector.gameObject.SetActive(true);
         }
 
         void HideSkillShape() {
-            m_skillProjector.gameObject.SetActive(false);
+            skillProjector.gameObject.SetActive(false);
         }
 
         public static void AddEnemyToTargetList(GameObject p_enemy) {
-            m_enemyList.Add(p_enemy);
+            enemyList.Add(p_enemy);
         }
 
         float GetClosestDistanceToShapeCenter() {
-            if (m_currentSkill != null)
-                return fromPlayerRange + m_currentSkill.shapeSize * 0.5f;
+            if (currentSkill != null)
+                return fromPlayerRange + currentSkill.shapeSize * 0.5f;
 
             return fromPlayerRange;
         }
@@ -382,20 +382,20 @@ namespace Tamarrion {
             if (currentPlacingMethod == FSSkillPlacing.FS_Placing_FreePlace)
                 DetermineFreeplaceTargetPosition();
             else if (currentPlacingMethod == FSSkillPlacing.FS_Placing_FromPlayer) {
-                m_skillProjector.transform.localRotation = (Quaternion.Euler(90, 0, 0));
-                m_skillProjector.transform.localPosition = (Vector3.up * (m_skillProjector.farClipPlane * 0.5f)) + new Vector3(0, 0, GetClosestDistanceToShapeCenter());
+                skillProjector.transform.localRotation = (Quaternion.Euler(90, 0, 0));
+                skillProjector.transform.localPosition = (Vector3.up * (skillProjector.farClipPlane * 0.5f)) + new Vector3(0, 0, GetClosestDistanceToShapeCenter());
             }
             else if (currentPlacingMethod == FSSkillPlacing.FS_Placing_PlayerIsCenter) {
-                m_skillProjector.transform.localRotation = (Quaternion.Euler(90, 0, 0));
-                m_skillProjector.transform.localPosition = (Vector3.up * (m_skillProjector.farClipPlane * 0.5f));
+                skillProjector.transform.localRotation = (Quaternion.Euler(90, 0, 0));
+                skillProjector.transform.localPosition = (Vector3.up * (skillProjector.farClipPlane * 0.5f));
             }
         }
 
         void DetermineFreeplaceTargetPosition() {
-            if (SetProjectionViaRaycast(player.transform.position + new Vector3(0, 1, 0), cameraController.transform.forward, m_currentSkill.range)) {
+            if (SetProjectionViaRaycast(player.transform.position + new Vector3(0, 1, 0), cameraController.transform.forward, currentSkill.range)) {
                 ShowSkillShape();
             }
-            else if (SetProjectionViaRaycast(player.transform.position + new Vector3(0, 1, 0) + cameraController.transform.forward * m_currentSkill.range, Vector3.down, 30.0f)) {
+            else if (SetProjectionViaRaycast(player.transform.position + new Vector3(0, 1, 0) + cameraController.transform.forward * currentSkill.range, Vector3.down, 30.0f)) {
                 ShowSkillShape();
             }
             else {
@@ -418,9 +418,9 @@ namespace Tamarrion {
                     float distanceToHit = (hit.point - p_startPos).magnitude;
                     if (distanceToHit <= closestDistance) {
                         closestDistance = distanceToHit;
-                        m_skillProjector.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-                        m_skillProjector.transform.position = hit.point + (m_skillProjector.transform.up * (m_skillProjector.farClipPlane * 0.5f));
-                        m_skillProjector.transform.rotation = m_skillProjector.transform.rotation * (Quaternion.Euler(90, 0, 0));
+                        skillProjector.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                        skillProjector.transform.position = hit.point + (skillProjector.transform.up * (skillProjector.farClipPlane * 0.5f));
+                        skillProjector.transform.rotation = skillProjector.transform.rotation * (Quaternion.Euler(90, 0, 0));
                     }
                 }
                 return true;
@@ -430,7 +430,7 @@ namespace Tamarrion {
         }
 
         public FSSkillBase GetCurrentSkill() {
-            return m_currentSkill;
+            return currentSkill;
         }
 
         public void AddSkillBlock(string p_sourceName) {

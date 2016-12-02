@@ -49,7 +49,7 @@ namespace Tamarrion {
             if (PlayerMovement.instance)
                 PlayerMovement.instance.forceDirection(PlayerMovement.instance.transform.forward);
 
-            Player.player.playerStats.Add_Modifier("Charge_MS", Property.MovementSpeed, 0, channelingSpeedCurve.Evaluate(FSSkillUser.m_channelTimer.Progress()));
+            Player.player.playerStats.Add_Modifier("Charge_MS", Property.MovementSpeed, 0, channelingSpeedCurve.Evaluate(FSSkillUser.channelTimer.Progress()));
 
             SpawnStartEffect();
             SpawnCollisionObject();
@@ -86,7 +86,7 @@ namespace Tamarrion {
         }
 
         public override void ChannelUpdate() {
-            float curveEvaluation = channelingSpeedCurve.Evaluate(FSSkillUser.m_channelTimer.Progress());
+            float curveEvaluation = channelingSpeedCurve.Evaluate(FSSkillUser.channelTimer.Progress());
 
             PlayerMovement.instance.RemoveMoveBlock("attack");
 
