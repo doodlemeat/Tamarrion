@@ -10,7 +10,7 @@ namespace Tamarrion {
         public PlayerMovement playerMovement;
         public Animator playerAnimator;
         public CameraController cameraController;
-        public Projector skillProjector;
+        public SkillProjector skillProjector;
         public Projector chargeProjector;
         public float fromPlayerRange = 2.5f;
         public List<string> skillBlockers = new List<string>();
@@ -34,7 +34,7 @@ namespace Tamarrion {
         }
 
         void Start() {
-            HideSkillShape();
+            skillProjector.HideSkillShape();
         }
 
         void Update() {
@@ -44,10 +44,13 @@ namespace Tamarrion {
             if (currentSkill != null
                 && SkillStateShouldShowProjector(currentSkill.GetCurrentState())
                 && currentPlacingMethod == FSSkillPlacing.FS_Placing_FreePlace) {
-                UpdatePositionToPlacing();
+                skillProjector.UpdatePositionToPlacing(currentPlacingMethod, player.gameObject, currentSkill);
             }
         }
 
+        /* 
+         * 
+         */
         void UpdateInputs() {
             if (SkillUserEnabled()) {
                 if (Input.GetButtonDown("Spell 1"))
@@ -135,7 +138,7 @@ namespace Tamarrion {
         }
 
         public void CancelCurrentSkill() {
-            HideSkillShape();
+            skillProjector.HideSkillShape();
             player.playerStats.Remove_Modifier("freeshot_casting_ms");
             player.playerStats.Remove_Modifier("freeshot_perform_ms");
             player.playerStats.Remove_Modifier("freeshot_recover_ms");
@@ -150,12 +153,17 @@ namespace Tamarrion {
             SkillInUse = false;
         }
 
+        /*
+         * 
+         */
         void SetCurrentSkill(FSSkillBase p_skill) {
             Debug.Log("FSSkillUser:SetCurrentSkill");
 
+            // If the given skill is null or already our current skill, do nothing
             if (p_skill == null || p_skill == currentSkill)
                 return;
 
+            // If the given skill is not off cooldown, show an error and return
             if (!p_skill.cooldownTimer.IsFinished) {
                 if (ErrorBar.instance)
                     ErrorBar.instance.SpawnText("Cooldown active");
@@ -163,11 +171,14 @@ namespace Tamarrion {
                 return;
             }
 
+            // Only allow cancelling the current skill when it is casting or inactive
             if (currentSkill && currentSkill.GetCurrentState() != FSSkillStates.FS_State_Casting && currentSkill.GetCurrentState() != FSSkillStates.FS_State_Inactive) {
                 return;
             }
 
             //TO-DO: code queueing of skills instead of cancelling
+
+            // Cancel current skill and start casting the new skill
             CancelCurrentSkill();
 
             currentSkill = p_skill;
@@ -247,7 +258,7 @@ namespace Tamarrion {
 
             if (currentSkill.type == FSSkillType.FS_Type_Area) {
                 FSSkillArea areaSkill = (FSSkillArea)currentSkill;
-                areaSkill.SetSpawnPosition(skillProjector.transform.position + (skillProjector.transform.forward * (skillProjector.farClipPlane * 0.5f)));
+                areaSkill.SetSpawnPosition(skillProjector.transform.position + (skillProjector.transform.forward * (skillProjector.GetMaxDistance() * 0.5f)));
                 areaSkill.SetSpawnRotation(skillProjector.transform.rotation * Quaternion.Euler(new Vector3(-90, 0, 0)));
             }
             //add projectile spawn
@@ -255,7 +266,7 @@ namespace Tamarrion {
             player.playerStats.Remove_Modifier("freeshot_perform_ms");
             playerMovement.RemoveMoveBlock("freeshot");
             playerMovement.RemoveRotationBlock("freeshot");
-            HideSkillShape();
+            skillProjector.HideSkillShape();
 
             currentSkill.PerformEnd();
         }
@@ -343,28 +354,15 @@ namespace Tamarrion {
             CancelCurrentSkill();
         }
 
+        /*
+         * 
+         */
         void ResetCurrentSkill() {
             currentSkill.SetState(FSSkillStates.FS_State_Inactive);
-            SetNewSkillShape();
-            ShowSkillShape();
-            UpdatePositionToPlacing();
-        }
-
-        void SetNewSkillShape() {
-            skillProjector.orthographic = true;
-            skillProjector.aspectRatio = (float)currentSkill.shapeTexture.width / (float)currentSkill.shapeTexture.height;
-            skillProjector.orthographicSize = currentSkill.shapeSize * 0.5f;
-            skillProjector.material.SetColor ("_Color", currentSkill.Element.Color);
-            skillProjector.material.SetTexture("_ShadowTex", currentSkill.shapeTexture);
+            skillProjector.SetNewSkillShape(currentSkill);
             currentPlacingMethod = currentSkill.placing;
-        }
-
-        void ShowSkillShape() {
-            skillProjector.gameObject.SetActive(true);
-        }
-
-        void HideSkillShape() {
-            skillProjector.gameObject.SetActive(false);
+            skillProjector.ShowSkillShape();
+            skillProjector.UpdatePositionToPlacing(currentPlacingMethod, player.gameObject, currentSkill);
         }
 
         public static void AddEnemyToTargetList(GameObject p_enemy) {
@@ -376,57 +374,6 @@ namespace Tamarrion {
                 return fromPlayerRange + currentSkill.shapeSize * 0.5f;
 
             return fromPlayerRange;
-        }
-
-        void UpdatePositionToPlacing() {
-            if (currentPlacingMethod == FSSkillPlacing.FS_Placing_FreePlace)
-                DetermineFreeplaceTargetPosition();
-            else if (currentPlacingMethod == FSSkillPlacing.FS_Placing_FromPlayer) {
-                skillProjector.transform.localRotation = (Quaternion.Euler(90, 0, 0));
-                skillProjector.transform.localPosition = (Vector3.up * (skillProjector.farClipPlane * 0.5f)) + new Vector3(0, 0, GetClosestDistanceToShapeCenter());
-            }
-            else if (currentPlacingMethod == FSSkillPlacing.FS_Placing_PlayerIsCenter) {
-                skillProjector.transform.localRotation = (Quaternion.Euler(90, 0, 0));
-                skillProjector.transform.localPosition = (Vector3.up * (skillProjector.farClipPlane * 0.5f));
-            }
-        }
-
-        void DetermineFreeplaceTargetPosition() {
-            if (SetProjectionViaRaycast(player.transform.position + new Vector3(0, 1, 0), cameraController.transform.forward, currentSkill.range)) {
-                ShowSkillShape();
-            }
-            else if (SetProjectionViaRaycast(player.transform.position + new Vector3(0, 1, 0) + cameraController.transform.forward * currentSkill.range, Vector3.down, 30.0f)) {
-                ShowSkillShape();
-            }
-            else {
-                HideSkillShape();
-            }
-        }
-
-        //- returns success
-        bool SetProjectionViaRaycast(Vector3 p_startPos, Vector3 p_direction, float p_maxRange) {
-            Ray ray = new Ray(p_startPos, p_direction);
-            Debug.DrawRay(p_startPos, p_direction * p_maxRange, Color.cyan, 0.2f);
-            RaycastHit[] hitInfo = Physics.RaycastAll(ray, p_maxRange);
-
-            if (hitInfo.Length > 0) {
-                float closestDistance = (hitInfo[0].point - (player.transform.position + new Vector3(0, 1, 0))).magnitude;
-                foreach (RaycastHit hit in hitInfo) {
-                    if (hit.collider.gameObject.tag == "IgnoreFreeshotProjecting")
-                        continue;
-
-                    float distanceToHit = (hit.point - p_startPos).magnitude;
-                    if (distanceToHit <= closestDistance) {
-                        closestDistance = distanceToHit;
-                        skillProjector.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-                        skillProjector.transform.position = hit.point + (skillProjector.transform.up * (skillProjector.farClipPlane * 0.5f));
-                        skillProjector.transform.rotation = skillProjector.transform.rotation * (Quaternion.Euler(90, 0, 0));
-                    }
-                }
-                return true;
-            }
-
-            return false;
         }
 
         public FSSkillBase GetCurrentSkill() {
