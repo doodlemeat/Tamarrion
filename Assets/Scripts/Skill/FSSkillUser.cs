@@ -11,8 +11,6 @@ namespace Tamarrion {
         public Animator playerAnimator;
         public CameraController cameraController;
         public SkillProjector skillProjector;
-        public Projector chargeProjector;
-        public float fromPlayerRange = 2.5f;
         public List<string> skillBlockers = new List<string>();
 
         private static List<GameObject> enemyList;
@@ -367,13 +365,6 @@ namespace Tamarrion {
 
         public static void AddEnemyToTargetList(GameObject p_enemy) {
             enemyList.Add(p_enemy);
-        }
-
-        float GetClosestDistanceToShapeCenter() {
-            if (currentSkill != null)
-                return fromPlayerRange + currentSkill.shapeSize * 0.5f;
-
-            return fromPlayerRange;
         }
 
         public FSSkillBase GetCurrentSkill() {
